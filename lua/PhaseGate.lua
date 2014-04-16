@@ -335,8 +335,7 @@ function PhaseGate:Phase(user)
         user:TriggerEffects("phase_gate_player_exit")
         
         self.timeOfLastPhase = Shared.GetTime()
-        self.phasepossible = false
-		
+        
         return true
         
     end
