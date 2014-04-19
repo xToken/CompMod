@@ -180,6 +180,13 @@ local kOtherTypes = {
 	"TunnelExit"
 }
 
+local kIndexToUpgrades =
+{
+    { kTechId.Shell, kTechId.Carapace, kTechId.Regeneration },
+    { kTechId.Spur, kTechId.Celerity, kTechId.Adrenaline },
+    { kTechId.Veil, kTechId.Silence, kTechId.Camouflage, kTechId.Aura },
+}
+
 local function SharedCreate(scriptName)
 
     local scriptPath = scriptName
@@ -218,6 +225,10 @@ local function SharedCreate(scriptName)
 		
 		if scriptName == "GUIInsight_OtherHealthbars" then
 			ReplaceLocals(GUIInsight_OtherHealthbars.Update, { otherList = table.array(25) })
+		end
+		
+		if scriptName == "GUIUpgradeChamberDisplay" then
+			ReplaceLocals(GUIUpgradeChamberDisplay.Update, { kIndexToUpgrades = kIndexToUpgrades })
 		end
 		
         return newScript

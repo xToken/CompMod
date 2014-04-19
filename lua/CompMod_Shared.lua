@@ -14,7 +14,7 @@ kShiftCost = 13 					// Comp Mod change, increased from 10
 kVeilCost = 15 						// Comp Mod change, decreased from 20
 kShadeCost = 13 					// Comp Mod change, increased from 10
 kWhipCost = 13 						// Comp Mod change, increased from 10
-// kStartBlinkEnergyCost = 11 		// Comp Mod change, reduced from 14.
+kStartBlinkEnergyCost = 14 			// Comp Mod change, unchanged.
 kUpgradeSkulkResearchCost = 15 		// Comp Mod change, decreased from 20
 kUpgradeGorgeResearchCost = 20 		// Comp Mod change, decreased from 30
 kUpgradeLerkResearchCost = 25 		// Comp Mod change, decreased from 35
@@ -42,39 +42,51 @@ kSwipeDamage = 75					// Comp Mod change, changed to maintain same damage.
 SwipeBlink.kDamage = kSwipeDamage	// Really? Move a global into a Global?
 kBoneShieldDamageReduction = 0.25	// Comp Mod change, bone shield blocks 75% of damage.
 kGoreDamage = 90					// Comp Mod change, decreased from 100.
+kGoreEnergyCost = 10				// Comp Mod change, decreased from 12.
 kNanoShieldCost = 3					// Comp Mod change, decreased from 5.
 kAdvancedArmoryUpgradeCost = 20		// Comp Mod change, decreased from 30.
 kFlamethrowerCost = 20				// Comp Mod change, decreased from 25.
 kLayMineWeight = 0.10				// Comp Mod change, decreased from 0.19.
 
 // Comp Mod changes to alien tech tree below, cost and new additions.
-kLeapResearchCost = 15
-kXenocideResearchCost = 25
-kBabblersResearchCost = 5
-kBabblersResearchTime = 60
-kGorgeTunnelResearchCost = 15
-kBileBombResearchCost = 15
-kWebResearchCost = 10
-kWebResearchTime = 60
-kUmbraResearchCost = 20
-kSporesResearchCost = 20
-kShadowStepResearchCost = 15
-kVortexResearchCost = 15
-kMetabolizeEnergyResearchCost = 15
-kMetabolizeEnergyResearchTime = 40
-kMetabolizeHealthResearchCost = 15
-kMetabolizeHealthResearchTime = 45
-kStabResearchCost = 25
-kChargeResearchCost = 15
-kStompResearchCost = 25
-kBoneShieldResearchCost = 20
+
+kLeapResearchCost = 15				// Comp Mod change, decreased from 20.
+kLeapResearchTime = 40				// Comp Mod change, unchanged.
+kXenocideResearchCost = 25			// Comp Mod change, increased from 15.
+kXenocideResearchTime = 60			// Comp Mod change, unchanged.
+
+kBabblersResearchCost = 5			// Comp Mod change, added this.
+kBabblersResearchTime = 60			// Comp Mod change, added this.
+kBileBombResearchCost = 15			// Comp Mod change, unchanged.
+kBileBombResearchTime = 40			// Comp Mod change, unchanged.
+kWebResearchCost = 10				// Comp Mod change, decreased from 15.
+kWebResearchTime = 60				// Comp Mod change, unchanged.
+
+kUmbraResearchCost = 20				// Comp Mod change, unchanged.
+kUmbraResearchTime = 45				// Comp Mod change, unchanged.
+kSporesResearchCost = 20			// Comp Mod change, unchanged.
+kSporesResearchTime = 60			// Comp Mod change, unchanged.
+
+kMetabolizeEnergyResearchCost = 15	// Comp Mod change, added this.
+kMetabolizeEnergyResearchTime = 40	// Comp Mod change, added this.
+kMetabolizeHealthResearchCost = 20	// Comp Mod change, added this.
+kMetabolizeHealthResearchTime = 45	// Comp Mod change, added this.
+kStabResearchCost = 25				// Comp Mod change, increased from 25.
+kStabResearchTime = 60				// Comp Mod change, unchanged.
+
+kChargeResearchCost = 15			// Comp Mod change, increased from 10.
+kChargeResearchTime = 40			// Comp Mod change, unchanged.
+kBoneShieldResearchCost = 20		// Comp Mod change, increased from 15.
+kBoneShieldResearchTime = 40		// Comp Mod change, decreased from 60.
+kStompResearchCost = 25				// Comp Mod change, increased from 20.
+kStompResearchTime = 60				// Comp Mod change, unchanged.
 
 //BalanceHealth.lua changes
 
 kObservatoryHealth = 700			// Comp Mod change, lowered from 1700.
 kObservatoryArmor = 500				// Comp Mod change, increased from 0.
-kPhaseGateHealth = 2000				// Comp Mod change, lowered from 3100.
-kPhaseGateArmor = 550				// Comp Mod change, increased from 0.
+kPhaseGateHealth = 1500				// Comp Mod change, lowered from 3100.
+kPhaseGateArmor = 800				// Comp Mod change, increased from 0.
 kInfantryPortalHealth = 1525		// Comp Mod change, lowered from 2250.
 kInfantryPortalArmor = 500			// Comp Mod change, increased from 125.
 kArmsLabHealth = 1650				// Comp Mod change, lowered from 2200.
@@ -91,7 +103,7 @@ kBoneWallHealth = 100
 kBoneWallArmor = 0
 kBoneWallHealthPerBioMass = 100
 
-kAlienRegenerationPercentage = 0.08	// Comp Mod change, increased from 4%
+kAlienRegenerationPercentage = 0.08	// Comp Mod change, increased from 4%.
 kAlienMinRegeneration = 6			// Comp Mod change, currently unchanged.
 kAlienMaxRegeneration = 80			// Comp Mod change, increased from 40.
 
@@ -100,11 +112,18 @@ kAlienMaxRegeneration = 80			// Comp Mod change, increased from 40.
 kCystMaturationTime = 60 			// Comp Mod change, decreased from 180.
 kPhaseGateDepartureRate = 0.5   	// Comp Mod change, added this value to control phase gate departures.
 kCorrodeDamagePlayerArmorScalar = 0.12	// Comp Mod change, lowered from 0.23.
-kJetpackingAccel = 0.78				// Comp Mod change, increased from 0.7.
+kJetpackingAccel = 0.8				// Comp Mod change, increased from 0.7.
 kJetpackUseFuelRate = .21			// Comp Mod change, decreased from 0.23.
 kJetpackReplenishFuelRate = .11		// Comp Mod change, decreased from 0.24.
 kPulseGrenadeAutoDetonateRange = 1  // Comp Mod change, decreased from 3.
 kWeaponStayTime = 25    			// Comp Mod change, decreased from 30.
 kStructureLightHealthPerArmor = 9	// Comp Mod change, increased from 4 to 9.
 kStructureLightArmorUseFraction = 0.9	// Comp Mod change, increased from .7
-kFadeAirFriction = 0.14				// Comp Mod change, removed celerity air friction decreases, changed default to match - down from 0.17
+kFadeAirFriction = 0.14				// Comp Mod change, removed celerity air friction decreases, changed default to match - down from 0.17.
+kHallucinationCloudCooldown = 5		// Comp Mod change, increased from 3 seconds.
+kChargeEnergyCost = 30 				// Comp Mod change, decreased from 38.
+Onos.kChargeEnergyCost = kChargeEnergyCost // Really? Move a global into a global?
+kAlienHealRateTimeLimit = 1			// Comp Mod change, added alien healing rate limit.
+kAlienHealRateLimit = 100			// Comp Mod change, added alien healing rate limit.
+kAlienHealRatePercentLimit = .1		// Comp Mod change, added alien healing rate limit.
+kAlienHealRateOverLimitReduction = 1	// Comp Mod change, added alien healing rate limit.

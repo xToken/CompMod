@@ -190,7 +190,7 @@ end
 
 function Fade:MovementModifierChanged(newMovementModifierState, input)
 
-    if newMovementModifierState then
+    if newMovementModifierState and self:GetActiveWeapon() ~= nil then
 		//Just for Rantology
 		local weaponMapName = self:GetActiveWeapon():GetMapName()
 		local metabweapon = self:GetWeapon(Metabolize.kMapName)

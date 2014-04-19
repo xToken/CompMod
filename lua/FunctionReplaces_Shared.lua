@@ -144,6 +144,30 @@ end
 
 ReplaceLocals(Onos.PlayerCameraCoordsAdjustment, { kOnosHeadMoveAmount = 0 })
 
+local function HasUpgrade(callingEntity, techId)
+
+    if not callingEntity then
+        return false
+    end
+
+    local techtree = GetTechTree(callingEntity:GetTeamNumber())
+
+    if techtree then
+        return callingEntity:GetHasUpgrade(techId) // and techtree:GetIsTechAvailable(techId)
+    else
+        return false
+    end
+
+end
+
+function GetHasCamouflageUpgrade(callingEntity)
+    return HasUpgrade(callingEntity, kTechId.Camouflage)
+end
+
+function GetHasSilenceUpgrade(callingEntity)
+    return HasUpgrade(callingEntity, kTechId.Silence)
+end
+
 //Comp Mod change, remove double jump to jetpack requirement.
 function JetpackMarine:UpdateJetpack(input)
     
@@ -187,9 +211,14 @@ function JetpackMarine:UpdateJetpack(input)
 end
 
 // Comp Mod change, tweaking jetpack acceleration
+// Jetpacking verticle movement will not start until the frame after the jetpack is triggered.
 local kFlySpeed = 9
 local kFlyFriction = 0.0
 local kFlyAcceleration = 28
+
+function JetpackMarine:GetCanJump()
+    return not self:GetIsWebbed() and ( self:GetIsOnGround() or (self.timeJetpackingChanged == Shared.GetTime() and self.startedFromGround) or self:GetIsOnLadder() )
+end
 
 function JetpackMarine:ModifyVelocity(input, velocity, deltaTime)
 
@@ -250,7 +279,7 @@ end
 
 function JetpackMarine:ModifyJump(input, velocity, jumpVelocity)
 
-    jumpVelocity.y = jumpVelocity.y * 0.875
+    jumpVelocity.y = jumpVelocity.y * 0.8
     Marine.ModifyJump(self, input, velocity, jumpVelocity)
 
 end
@@ -523,3 +552,30 @@ function BuildClassToGrid()
 	ClassToGrid["TunnelExit"] = { 3, 8 }
 	return ClassToGrid
 end
+
+// Add healing per second cap to aliens.
+function Alien:ModifyHeal(healTable)
+	if self.lasthealingtable == nil then
+		self.lasthealingtable = {time = 0, healing = 0}
+	end
+	
+	local curtime = Shared.GetTime()
+	
+	if curtime < self.lasthealingtable.time + kAlienHealRateTimeLimit then
+		//Check current max limit
+		if self.lasthealingtable.healing >= kAlienHealRateLimit then
+			//Were over the limit, reduce.
+			healTable.health = healTable.health * kAlienHealRateOverLimitReduction
+		elseif self.lasthealingtable.healing >= (self:GetBaseHealth() * kAlienHealRatePercentLimit) then	//Check current % limit
+			//Were over the limit, reduce.
+			healTable.health = healTable.health * kAlienHealRateOverLimitReduction
+		end
+		//Add to current limit
+		self.lasthealingtable.healing = self.lasthealingtable.healing + healTable.health
+	else
+		//Not under limit, clear table
+		self.lasthealingtable.time = curtime
+		self.lasthealingtable.healing = 0 
+	end
+	
+end 

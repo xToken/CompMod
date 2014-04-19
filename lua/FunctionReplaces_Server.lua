@@ -468,8 +468,11 @@ function AlienTeam:InitTechTree()
     // personal upgrades (all alien types)
     self.techTree:AddBuyNode(kTechId.Carapace, kTechId.Shell, kTechId.None, kTechId.AllAliens)    
     self.techTree:AddBuyNode(kTechId.Regeneration, kTechId.Shell, kTechId.None, kTechId.AllAliens)
+	
     self.techTree:AddBuyNode(kTechId.Aura, kTechId.Veil, kTechId.None, kTechId.AllAliens)
-    self.techTree:AddBuyNode(kTechId.Phantom, kTechId.Veil, kTechId.None, kTechId.AllAliens)
+    self.techTree:AddBuyNode(kTechId.Silence, kTechId.Veil, kTechId.None, kTechId.AllAliens)
+	self.techTree:AddBuyNode(kTechId.Camouflage, kTechId.Veil, kTechId.None, kTechId.AllAliens)
+		
     self.techTree:AddBuyNode(kTechId.Celerity, kTechId.Spur, kTechId.None, kTechId.AllAliens)  
     self.techTree:AddBuyNode(kTechId.Adrenaline, kTechId.Spur, kTechId.None, kTechId.AllAliens)  
 
@@ -525,12 +528,12 @@ function AlienTeam:InitTechTree()
     self.techTree:AddResearchNode(kTechId.Spores,              kTechId.BioMassSix, kTechId.None, kTechId.AllAliens)
     
     // fade researches 
-    self.techTree:AddResearchNode(kTechId.MetabolizeEnergy,        kTechId.BioMassTwo, kTechId.None, kTechId.AllAliens) 
-    self.techTree:AddResearchNode(kTechId.MetabolizeHealth,            kTechId.BioMassFive, kTechId.None, kTechId.AllAliens)
+    self.techTree:AddResearchNode(kTechId.MetabolizeEnergy,        kTechId.BioMassThree, kTechId.None, kTechId.AllAliens) 
+    self.techTree:AddResearchNode(kTechId.MetabolizeHealth,            kTechId.BioMassFive, kTechId.MetabolizeEnergy, kTechId.AllAliens)
     self.techTree:AddResearchNode(kTechId.Stab,              kTechId.BioMassSeven, kTechId.None, kTechId.AllAliens)
     
     // onos researches
-    self.techTree:AddResearchNode(kTechId.Charge,            kTechId.BioMassThree, kTechId.None, kTechId.AllAliens)
+    self.techTree:AddResearchNode(kTechId.Charge,            kTechId.BioMassTwo, kTechId.None, kTechId.AllAliens)
     self.techTree:AddResearchNode(kTechId.BoneShield,        kTechId.BioMassFive, kTechId.None, kTechId.AllAliens)
     self.techTree:AddResearchNode(kTechId.Stomp,             kTechId.BioMassEight, kTechId.None, kTechId.AllAliens)    
 
@@ -664,37 +667,3 @@ local function ScanForOldWeapons()
 end
 
 Event.Hook("UpdateServer", ScanForOldWeapons)
-
-//I regret everything :S
-local oldShiftTriggerEcho = Shift.TriggerEcho
-function Shift:TriggerEcho(techId, position)
-	local success = oldShiftTriggerEcho(self, techId, position)
-	if not success and techId == kTechId.TeleportTunnel then
-		local teleportClassname = "TunnelExit"
-        local teleportCost = LookupTechData(techId, kTechDataCostKey, 0)
-        
-        local validPos = GetIsBuildLegal(techId, position, 0, kStructureSnapRadius, self:GetOwner(), self)
-        
-        if validPos then
-        
-            local teleportAbles = GetEntitiesForTeamWithinRange(teleportClassname, self:GetTeamNumber(), self:GetOrigin(), kEchoRange)
-            Shared.SortEntitiesByDistance(self:GetOrigin(), teleportAbles)
-            
-            for _, teleportAble in ipairs(teleportAbles) do
-            
-                if teleportAble:GetCanTeleport() then
-                
-                    teleportAble:TriggerTeleport(5, self:GetId(), position, teleportCost)
-                    self:TriggerEffects("shift_echo")
-                    success = true
-                    self.echoActive = true
-                    self.timeLastEcho = Shared.GetTime()
-                    break
-                    
-                end
-            
-            end
-        
-        end
-	end	
-end

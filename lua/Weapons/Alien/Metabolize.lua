@@ -64,7 +64,6 @@ function Metabolize:OnPrimaryAttack(player)
 
     if player:GetEnergy() >= self:GetEnergyCost() and not self:GetHasAttackDelay() then
         self.primaryAttacking = true
-		self.lastPrimaryAttackTime = Shared.GetTime()
     else
         self:OnPrimaryAttackEnd()
     end
@@ -93,7 +92,7 @@ function Metabolize:OnTag(tagName)
 
     PROFILE("Metabolize:OnTag")
 
-    if tagName == "metabolize" then
+    if tagName == "metabolize" and not self:GetHasAttackDelay() then
 		local player = self:GetParent()
         if player then
 			player:DeductAbilityEnergy(kMetabolizeEnergyCost)
@@ -104,9 +103,10 @@ function Metabolize:OnTag(tagName)
 			player:AddEnergy(kMetabolizeEnergyRegain)
 			if self.attackedfromshift ~= nil then
 				player:SetActiveWeapon(self.attackedfromshift)
-				self.primaryAttacking = false
 			end
 			self.attackedfromshift = nil
+			self.lastPrimaryAttackTime = Shared.GetTime()
+			self.primaryAttacking = false
 		end
 	elseif tagName == "metabolize_end" then
 		local player = self:GetParent()
