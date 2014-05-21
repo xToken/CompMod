@@ -478,18 +478,16 @@ end
 
 function GUIGorgeBuildMenu:AdditionalInputs(key)
     local selectPressed = false
-    if GorgeBuild_GetIsAbilityAvailable(key) and GorgeBuild_GetCanAffordAbility(self.buttons[key].techId)  then
-        GorgeBuild_SendSelect(key)
-        GorgeBuild_OnClose()
-        GorgeBuild_Close()
-        local player = Client.GetLocalPlayer()
-        if player then
-            local dropStructureAbility = player:GetWeapon(DropStructureAbility.kMapName)
-            if dropStructureAbility then
-                dropStructureAbility.menuActive = false
-            end
-        end
-    end
+	local player = Client.GetLocalPlayer()
+	if player then
+		local dropStructureAbility = player:GetWeapon(DropStructureAbility.kMapName)
+		if GorgeBuild_GetIsAbilityAvailable(key) and GorgeBuild_GetCanAffordAbility(self.buttons[key].techId) and dropStructureAbility and dropStructureAbility.menuActive then
+			GorgeBuild_SendSelect(key)
+			GorgeBuild_OnClose()
+			GorgeBuild_Close()
+			dropStructureAbility.menuActive = false
+		end
+	end
 end
 
 function GUIGorgeBuildMenu:_GetIsMouseOver(overItem)

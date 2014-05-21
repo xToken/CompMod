@@ -35,7 +35,7 @@ kTechId = createTechIdEnum({
     'AlienMove', 'AlienAttack', 'AlienConstruct', 'Heal', 'AutoHeal',
     
     // Commander menus for selected units
-    'RootMenu', 'BuildMenu', 'AdvancedMenu', 'AssistMenu', 'MarkersMenu', 'UpgradesMenu', 'WeaponsMenu',
+    'RootMenu', 'BuildMenu', 'AdvancedMenu', 'AssistMenu', 'MarkersMenu', 'UpgradesMenu', 'WeaponsMenu', 'Return',
     
     // Robotics factory menus
     'RoboticsFactoryARCUpgradesMenu', 'RoboticsFactoryMACUpgradesMenu', 'UpgradeRoboticsFactory',

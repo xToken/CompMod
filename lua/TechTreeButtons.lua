@@ -298,6 +298,7 @@ kTechIdToMaterialOffset[kTechId.ShadePhantomStructuresMenu] = 126
 kTechIdToMaterialOffset[kTechId.BuildMenu] = 128
 kTechIdToMaterialOffset[kTechId.AdvancedMenu] = 129 
 kTechIdToMaterialOffset[kTechId.AssistMenu] = 130
+kTechIdToMaterialOffset[kTechId.Return] = 133
 kTechIdToMaterialOffset[kTechId.Construct] = 131
 kTechIdToMaterialOffset[kTechId.AutoConstruct] = 131
 

@@ -48,6 +48,13 @@ function EvolutionChamber:OnInitialized()
     
 end
 
+function EvolutionChamber:SetIncludeRelevancyMask(includeMask)
+
+    includeMask = bit.bor(includeMask, kRelevantToTeam2Commander)    
+    ScriptActor.SetIncludeRelevancyMask(self, includeMask)    
+
+end
+
 local kUpgradeButtons =
 {							 
 	[kTechId.SkulkMenu] = { kTechId.Leap, kTechId.Xenocide, kTechId.None, kTechId.None,
@@ -77,12 +84,15 @@ function EvolutionChamber:GetTechButtons(techId)
 	
 	if techButtons[1] ~= kTechId.SkulkMenu then
 		if self:GetIsResearching() then
-			techButtons[7] = kTechId.LifeFormMenu
-			techButtons[8] = kTechId.Cancel
+			techButtons[7] = kTechId.Return
 		else
-			techButtons[7] = kTechId.None	
-			techButtons[8] = kTechId.LifeFormMenu
+			techButtons[7] = kTechId.None
+			techButtons[8] = kTechId.Return
 		end
+	end
+	
+	if self:GetIsResearching() then
+		techButtons[8] = kTechId.Cancel
     end
 	
     return techButtons

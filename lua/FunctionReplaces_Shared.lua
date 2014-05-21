@@ -129,17 +129,17 @@ end
 
 // Comp Mod change, onos != garbage truck - increased from 3.3
 function Onos:GetAcceleration()
-    return 7
+    return 6.5
 end
 
 // Comp Mod change, onos != garbage truck - increased from 0.2
 function Onos:GetAirControl()
-    return 6
+    return 4
 end
 
 // Comp Mod change, onos != garbage truck - increased from 3
 function Onos:GetGroundFriction()
-    return 8
+    return 6
 end
 
 ReplaceLocals(Onos.PlayerCameraCoordsAdjustment, { kOnosHeadMoveAmount = 0 })
@@ -287,7 +287,11 @@ end
 local oldLookupTechId = LookupTechId
 function LookupTechId(...)
 	oldLookupTechId(...)
-	// Comp Mod change, add metabolize tech crap
+	// Comp Mod change, add tech crap
+	table.insert(kTechData, { 	[kTechDataId] = kTechId.Return,
+								[kTechDataDisplayName] = "Return",
+								[kTechDataTooltipInfo] = "Returns to previous menu."})
+								
 	table.insert(kTechData, { 	[kTechDataId] = kTechId.MetabolizeEnergy,           
 								[kTechDataCategory] = kTechId.Fade,
 								[kTechDataMapName] = Metabolize.kMapName,
@@ -444,43 +448,6 @@ function BoneWall:GetCanBeHealedOverride()
     return false
 end
 
-local kAlienMenuButtons =
-{
-    [kTechId.BuildMenu] = { kTechId.Cyst, kTechId.Harvester, kTechId.DrifterEgg, kTechId.Hive,
-								kTechId.ThreatMarker, kTechId.NeedHealingMarker, kTechId.ExpandingMarker, kTechId.LifeFormMenu },
-                            
-    [kTechId.AdvancedMenu] = { kTechId.Crag, kTechId.Shade, kTechId.Shift, kTechId.Whip,
-                               kTechId.Shell, kTechId.Veil, kTechId.Spur, kTechId.None },
-
-    [kTechId.AssistMenu] = { kTechId.HealWave, kTechId.ShadeInk, kTechId.SelectShift, kTechId.SelectDrifter,
-								kTechId.NutrientMist, kTechId.Rupture, kTechId.BoneWall, kTechId.Contamination }
-}
-
-function AlienCommander:GetButtonTable()
-    return kAlienMenuButtons
-end
-
-// Top row always the same. Alien commander can override to replace. 
-function AlienCommander:GetQuickMenuTechButtons(techId)
-
-    // Top row always for quick access.
-    local alienTechButtons = { kTechId.BuildMenu, kTechId.AdvancedMenu, kTechId.AssistMenu, kTechId.RootMenu }
-    local menuButtons = kAlienMenuButtons[techId]
-
-    if not menuButtons then
-    
-        // Make sure all slots are initialized so entities can override simply.
-        menuButtons = { kTechId.None, kTechId.None, kTechId.None, kTechId.None, kTechId.None, kTechId.None, kTechId.None, kTechId.None }
-        
-    end
-    
-    table.copy(menuButtons, alienTechButtons, true)
-    
-    // Return buttons and true/false if we are in a quick-access menu.
-    return alienTechButtons
-    
-end
-
 // Comp Mod change, allow targetting of arcs.
 function ARC:GetTechButtons(techId)
 
@@ -500,30 +467,71 @@ function ARC:OnOverrideOrder(order)
 end
 
 function ARC:OnOrderGiven(order)
-	if order ~= nil and (order:GetType() == kTechId.Attack or order:GetType() == kTechId.SetTarget)  then
-		self.targetedEntity = order:GetParam()
-		self.orderedEntity = order:GetParam()
+	if order ~= nil and (order:GetType() == kTechId.Attack or order:GetType() == kTechId.SetTarget) then
+		local target = Shared.GetEntity(order:GetParam())
+		if target then
+			local dist = (self:GetOrigin() - target:GetOrigin()):GetLength()
+			local valid = true
+			if not HasMixin(target, "Live") or not target:GetIsAlive() then
+				valid = false
+			end
+			if not GetAreEnemies(self, target) then        
+				valid = false
+			end
+			if not target.GetReceivesStructuralDamage or not target:GetReceivesStructuralDamage() then        
+				valid = false
+			end
+			if dist and valid and dist >= ARC.kMinFireRange and dist <= ARC.kFireRange then
+				self.targetedEntity = order:GetParam()
+				self.orderedEntity = order:GetParam()
+			end
+		end
     end
 end
 
-function AlienCommander:GetEvoChamber()
-	if self.evochamber then
-		return Shared.GetEntity(self.evochamber)
-	end
+// Changes to handle the evolution chamber assigned to each hive.
+function Hive:GetEvolutionChamber()
+	return self.evochamber
 end
 
-local oldAlienCommanderOnProcessMove = AlienCommander.OnProcessMove
-function AlienCommander:OnProcessMove(input)
-	oldAlienCommanderOnProcessMove(self, input)
-	if Server and self:GetEvoChamber() ~= nil then
-		self:GetEvoChamber():SetOrigin(self:GetOrigin())
+function Hive:GetTechButtons(techId)
+
+    local techButtons = { kTechId.ShiftHatch, kTechId.None, kTechId.None, kTechId.None,
+                          kTechId.None, kTechId.None, kTechId.None, kTechId.None }
+
+    if self:GetTechId() == kTechId.Hive then
+    
+        techButtons[5] = ConditionalValue(GetHiveTypeResearchAllowed(self, kTechId.UpgradeToCragHive), kTechId.UpgradeToCragHive, kTechId.None)
+        techButtons[6] = ConditionalValue(GetHiveTypeResearchAllowed(self, kTechId.UpgradeToShadeHive), kTechId.UpgradeToShadeHive, kTechId.None)
+        techButtons[7] = ConditionalValue(GetHiveTypeResearchAllowed(self, kTechId.UpgradeToShiftHive), kTechId.UpgradeToShiftHive, kTechId.None)
+    
+    end
+	
+	if self:GetEvolutionChamber() ~= Entity.invalidId then
+		techButtons[4] = kTechId.LifeFormMenu
 	end
+    
+    if self.bioMassLevel <= 1 then
+        techButtons[2] = kTechId.ResearchBioMassOne
+    elseif self.bioMassLevel <= 2 then
+        techButtons[2] = kTechId.ResearchBioMassTwo
+	else
+		
+    end
+    
+    return techButtons
+    
 end
 
-Class_Reload("AlienCommander", {evochamber = "entityid"})
+Class_Reload("Hive", {evochamber = "entityid"})
 
 function BabblerEggAbility:IsAllowed(player)
 	return GetHasTech(player, kTechId.BabblerTech)
+end
+
+//Babblers cant be healed
+function Babbler:GetCanBeHealedOverride()
+    return false
 end
 
 function WebsAbility:IsAllowed(player)

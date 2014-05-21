@@ -194,7 +194,7 @@ function Fade:MovementModifierChanged(newMovementModifierState, input)
 		//Just for Rantology
 		local weaponMapName = self:GetActiveWeapon():GetMapName()
 		local metabweapon = self:GetWeapon(Metabolize.kMapName)
-		if metabweapon and not metabweapon:GetHasAttackDelay() then
+		if metabweapon and not metabweapon:GetHasAttackDelay() and self:GetEnergy() >= metabweapon:GetEnergyCost() then
 			self:SetActiveWeapon(Metabolize.kMapName)
 			self:PrimaryAttack()
 			if weaponMapName ~= Metabolize.kMapName then
@@ -308,7 +308,7 @@ local function GetIsStabbing(self)
 end
 
 function Fade:GetCanJump()
-    return self:GetIsOnGround() and not self:GetIsBlinking() and not GetIsStabbing(self)
+    return self:GetIsOnGround() and not self:GetIsBlinking()
 end
 
 function Fade:GetIsShadowStepping()
@@ -323,8 +323,6 @@ function Fade:GetMaxSpeed(possible)
     
     if self:GetIsBlinking() then
         return kBlinkSpeed
-    elseif GetIsStabbing(self) then
-        return kStabSpeed
     end
     
     // Take into account crouching.
@@ -373,10 +371,6 @@ function Fade:GetHasMovementSpecial()
 end
 
 function Fade:GetMovementSpecialEnergyCost()
-	local metabweapon = self:GetWeapon(Metabolize.kMapName)
-	if metabweapon and metabweapon:GetHasAttackDelay() then
-		return 101
-	end
     return kMetabolizeEnergyCost
 end
 
