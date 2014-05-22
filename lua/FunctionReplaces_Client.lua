@@ -290,9 +290,9 @@ origPlayerSendKeyEvent = Class_ReplaceMethod("Player", "SendKeyEvent",
 		local consumed = origPlayerSendKeyEvent(self, key, down)
 		if not consumed and down then
 			if GetIsBinding(key, "Weapon6") then
-				Shared.ConsoleCommand("slot6")	
+				Shared.ConsoleCommand("slot6")
+				consumed = true
 			end
-			consumed = true
 		end	
 		return consumed
 	end
@@ -314,9 +314,8 @@ ReplaceLocals(BindingsUI_GetBindingsData, { globalControlBindings = newGlobalCon
 local defaults = GetUpValue( GetDefaultInputValue,   "defaults", 			{ LocateRecurse = true } )
 table.insert(defaults, { "Weapon6", "6" })
 
-local GetBinding = GetUpValue( ConsoleBindingsKeyPressed,   "GetBinding", 			{ LocateRecurse = true } )
 local bindings = GetUpValue( ConsoleBindingsKeyPressed,   "bindings", 			{ LocateRecurse = true } )
-local bindcommand = GetBinding(InputKey.Num6)
+local bindcommand = bindings["Num6"] and bindings["Num6"].command or nil
 
 if bindcommand and string.gsub(bindcommand, " ", "") == "slot6" then
 	bindings["Num6"] = nil
