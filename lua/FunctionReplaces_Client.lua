@@ -1,5 +1,7 @@
 Script.Load("lua/Hud/GUIEvent.lua")
 Script.Load("lua/AlienTechMap.lua")
+Script.Load( "lua/CompMod/Elixer_Utility.lua" )
+Elixer.UseVersion( 1.3 )
 
 local function GetUnlockIconParams(unlockId)
 
@@ -104,7 +106,7 @@ end
 
 ReplaceLocals(CommanderUI_MenuButtonOffset, { GetIsMenu = GetIsMenu })
 
-local kPrettyInputNames = nil
+/*local kPrettyInputNames = nil
 local function InitInputNames()
 
 	kPrettyInputNames = { }
@@ -133,8 +135,7 @@ function GetPrettyInputName(inputName)
 	local foundPrettyInputName = kPrettyInputNames[prettyInputName]
 	return foundPrettyInputName and foundPrettyInputName or prettyInputName
 	
-end
-
+end*/
 
 local kOtherTypes = {
     "CommandStructure",
@@ -174,70 +175,16 @@ local kIndexToUpgrades =
     { kTechId.Veil, kTechId.Silence, kTechId.Camouflage, kTechId.Aura },
 }
 
-local function SharedCreate(scriptName)
-
-    local scriptPath = scriptName
-
-    local result = StringSplit(scriptName, "/")    
-    scriptName = result[table.count(result)]
-    
-    local creationFunction = _G[scriptName]
-    
-    if not creationFunction then
-    
-        Script.Load("lua/" .. scriptPath .. ".lua")
-        creationFunction = _G[scriptName]
-        
-    end
-    
-    if creationFunction == nil then
-    
-        Shared.Message("Error: Failed to load GUI script named " .. scriptName)
-        return nil
-        
-    else
-    
-        local newScript = creationFunction()
-        newScript._scriptName = scriptName
-		
-		if scriptName == "GUIMinimapFrame" then
-						
-			Script.Load( "lua/CompMod/Elixer_Utility.lua" )
-			Elixer.UseVersion( 1.3 )
-			local kBlipInfo 		= GetUpValue( GUIMinimap.Initialize,   "kBlipInfo", 			{ LocateRecurse = true } )
-			local kBlipColorType 	= GetUpValue( GUIMinimap.Initialize,   "kBlipColorType", 		{ LocateRecurse = true } )
-			local kBlipSizeType 	= GetUpValue( GUIMinimap.Initialize,   "kBlipSizeType", 		{ LocateRecurse = true } )
-			local kStaticBlipsLayer = GetUpValue( GUIMinimap.Initialize,   "kStaticBlipsLayer", 	{ LocateRecurse = true } )
-			kBlipInfo[kMinimapBlipType.TunnelEntrance] = { kBlipColorType.MAC, kBlipSizeType.Normal, kStaticBlipsLayer }
-			
-		end
-		
-		if scriptName == "GUIInsight_OtherHealthbars" then
-			ReplaceLocals(GUIInsight_OtherHealthbars.Update, { kOtherTypes = kOtherTypes })
-		end
-		
-        newScript:Initialize()
-		
-		if scriptName == "GUIInsight_OtherHealthbars" then
-			ReplaceLocals(GUIInsight_OtherHealthbars.Update, { otherList = table.array(25) })
-		end
-		
-		if scriptName == "GUIUpgradeChamberDisplay" then
-			ReplaceLocals(GUIUpgradeChamberDisplay.Update, { kIndexToUpgrades = kIndexToUpgrades })
-		end
-		
-        return newScript
-        
-    end
-    
-end
-
 local kHookedScripts = { }
 
 local kGUIPreOverrides = { }
 kGUIPreOverrides["GUIMinimapFrame"] 			= 	function() 
-														return ReplaceLocals(GUIMinimap.Initialize, { kBlipInfo = kBlipInfo })
-															
+														local kBlipInfo 		= GetUpValue( GUIMinimap.Initialize,   "kBlipInfo", 			{ LocateRecurse = true } )
+														local kBlipColorType 	= GetUpValue( GUIMinimap.Initialize,   "kBlipColorType", 		{ LocateRecurse = true } )
+														local kBlipSizeType 	= GetUpValue( GUIMinimap.Initialize,   "kBlipSizeType", 		{ LocateRecurse = true } )
+														local kStaticBlipsLayer = GetUpValue( GUIMinimap.Initialize,   "kStaticBlipsLayer", 	{ LocateRecurse = true } )
+														kBlipInfo[kMinimapBlipType.TunnelEntrance] = { kBlipColorType.MAC, kBlipSizeType.Normal, kStaticBlipsLayer }
+														return "0"
 													end
 kGUIPreOverrides["GUIInsight_OtherHealthbars"] = 	function() 
 														return ReplaceLocals(GUIInsight_OtherHealthbars.Update, { kOtherTypes = kOtherTypes }) 
@@ -284,8 +231,6 @@ function GUIManager:CreateGUIScript(scriptName)
 	PostInitOverrides(scriptName)
 	return script
 end
-
-//ReplaceLocals(GUIManager.CreateGUIScriptSingle, { SharedCreate = SharedCreate })
 
 kAlienTechMap =
 {
@@ -338,3 +283,42 @@ kAlienLines =
     GetLinePositionForTechMap(kAlienTechMap, kTechId.Spur, kTechId.Celerity),GetLinePositionForTechMap(kAlienTechMap, kTechId.Spur, kTechId.Adrenaline),
 
 }
+
+local origPlayerSendKeyEvent
+origPlayerSendKeyEvent = Class_ReplaceMethod("Player", "SendKeyEvent", 
+	function(self, key, down)
+		local consumed = origPlayerSendKeyEvent(self, key, down)
+		if not consumed and down then
+			if GetIsBinding(key, "Weapon6") then
+				Shared.ConsoleCommand("slot6")	
+			end
+			consumed = true
+		end	
+		return consumed
+	end
+)
+
+local origControlBindings = GetUpValue( BindingsUI_GetBindingsData,   "globalControlBindings", 			{ LocateRecurse = true } )
+local newGlobalControlBindings = { }
+for i = 1, #origControlBindings do
+	table.insert(newGlobalControlBindings, origControlBindings[i])
+	if origControlBindings[i] == "5" then
+		table.insert(newGlobalControlBindings, "Weapon6")
+		table.insert(newGlobalControlBindings, "input")
+		table.insert(newGlobalControlBindings, "Weapon #6")
+		table.insert(newGlobalControlBindings, "6")
+	end	
+end
+ReplaceLocals(BindingsUI_GetBindingsData, { globalControlBindings = newGlobalControlBindings }) 
+
+local defaults = GetUpValue( GetDefaultInputValue,   "defaults", 			{ LocateRecurse = true } )
+table.insert(defaults, { "Weapon6", "6" })
+
+local GetBinding = GetUpValue( ConsoleBindingsKeyPressed,   "GetBinding", 			{ LocateRecurse = true } )
+local bindings = GetUpValue( ConsoleBindingsKeyPressed,   "bindings", 			{ LocateRecurse = true } )
+local bindcommand = GetBinding(InputKey.Num6)
+
+if bindcommand and string.gsub(bindcommand, " ", "") == "slot6" then
+	bindings["Num6"] = nil
+	SaveConfigFile("ConsoleBindings.json", bindings)
+end

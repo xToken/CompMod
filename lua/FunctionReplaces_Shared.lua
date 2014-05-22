@@ -284,9 +284,7 @@ function JetpackMarine:ModifyJump(input, velocity, jumpVelocity)
 
 end
 
-local oldLookupTechId = LookupTechId
-function LookupTechId(...)
-	oldLookupTechId(...)
+local function AddCompModTechChanges()
 	// Comp Mod change, add tech crap
 	table.insert(kTechData, { 	[kTechDataId] = kTechId.Return,
 								[kTechDataDisplayName] = "Return",
@@ -371,8 +369,23 @@ function LookupTechId(...)
 		if record[kTechDataId] == kTechId.PrototypeLab then
 			record[kTechDataMaxArmor] = kPrototypeLabArmor
 		end
-    end				
+    end
+end
+
+local oldLookupTechId = LookupTechId
+local oldLookupTechData = LookupTechData
+function LookupTechId(...)
+	local techId = oldLookupTechId(...)
+	AddCompModTechChanges()
 	LookupTechId = oldLookupTechId
+	return techId
+end
+
+function LookupTechData(...)
+	local data = oldLookupTechData(...)
+	AddCompModTechChanges()
+	LookupTechData = oldLookupTechData
+	return data
 end
 
 TeamInfo.kRelevantTechIdsAlien =

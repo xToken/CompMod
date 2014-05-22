@@ -3,5 +3,5 @@ modEntry = [[
 	Predict: lua/CompMod_Predict.lua,
 	Server: lua/CompMod_Server.lua,
 	Shared: lua/CompMod_Shared.lua,
-	Priority: 5
+	Priority: 100
 ]]

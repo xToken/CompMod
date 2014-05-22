@@ -116,8 +116,6 @@ end
 
 Event.Hook("Console_slot6", slot6)
 
-Shared.ConsoleCommand("bind Num6 slot6")
-
 class 'GUIGorgeBuildMenu' (GUIAnimatedScript)
 
 GUIGorgeBuildMenu.kBaseYResolution = 1200
