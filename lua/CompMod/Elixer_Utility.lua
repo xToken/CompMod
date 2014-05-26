@@ -171,7 +171,11 @@ function ELIXER.ReplaceUpValue( func, localname, newval, options )
 	debug.setupvalue( func, i, newval )
 end;
 
-function ELIXER.AppendToEnum( tbl, key )	
+function ELIXER.AppendToEnum( tbl, key )
+	if rawget(tbl,key) ~= nil then
+		return
+	end
+	
 	local maxVal = 0
 	if tbl == kTechId then
 		maxVal = tbl.Max - 1

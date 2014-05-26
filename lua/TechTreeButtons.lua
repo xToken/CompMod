@@ -9,6 +9,8 @@
 //
 // ========= For more information, visit us at http://www.unknownworlds.com =====================
 
+Script.Load("lua/CompMod_TechIds.lua")
+
 // These are the icons that appear next to alerts or as hotkey icons.
 // Icon size should be 20x20. Also used for the alien buy menu.
 function CommanderUI_Icons()

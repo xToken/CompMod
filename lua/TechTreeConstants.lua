@@ -24,7 +24,7 @@ kTechId = enum {
     'AlienMove', 'AlienAttack', 'AlienConstruct', 'Heal', 'AutoHeal',
     
     // Commander menus for selected units
-    'RootMenu', 'BuildMenu', 'AdvancedMenu', 'AssistMenu', 'MarkersMenu', 'UpgradesMenu', 'WeaponsMenu', 'Return',
+    'RootMenu', 'BuildMenu', 'AdvancedMenu', 'AssistMenu', 'MarkersMenu', 'UpgradesMenu', 'WeaponsMenu',
     
     // Robotics factory menus
     'RoboticsFactoryARCUpgradesMenu', 'RoboticsFactoryMACUpgradesMenu', 'UpgradeRoboticsFactory',
@@ -119,7 +119,7 @@ kTechId = enum {
     'LifeFormMenu', 'SkulkMenu', 'GorgeMenu', 'LerkMenu', 'FadeMenu', 'OnosMenu',
 
     // Alien structures 
-    'Hive', 'HiveHeal', 'CragHive', 'ShadeHive', 'ShiftHive','Harvester', 'Egg', 'Embryo', 'Hydra', 'Cyst', 'Clog', 'GorgeTunnel', 'GorgeTunnelEntrance', 'GorgeTunnelExit',
+    'Hive', 'HiveHeal', 'CragHive', 'ShadeHive', 'ShiftHive','Harvester', 'Egg', 'Embryo', 'Hydra', 'Cyst', 'Clog', 'GorgeTunnel',
     'GorgeEgg', 'LerkEgg', 'FadeEgg', 'OnosEgg',
     
     // Infestation upgrades
@@ -135,7 +135,6 @@ kTechId = enum {
     'Whip', 'TwoWhips', 'EvolveBombard', 'WhipBombard', 'WhipBombardCancel', 'WhipBomb', 'Slap',
     'Shift', 'TwoShifts', 'SelectShift', 'EvolveEcho', 'ShiftHatch', 'ShiftEcho', 'ShiftEnergize', 
     'Shade', 'TwoShades', 'EvolveHallucinations', 'ShadeDisorient', 'ShadeCloak', 'ShadePhantomMenu', 'ShadePhantomStructuresMenu',
-	'EvolutionChamber',
     'UpgradeCeleritySpur', 'CeleritySpur', 'UpgradeAdrenalineSpur', 'AdrenalineSpur', 'UpgradeHyperMutationSpur', 'HyperMutationSpur',
     'UpgradeSilenceVeil', 'SilenceVeil', 'UpgradeCamouflageVeil', 'CamouflageVeil', 'UpgradeAuraVeil', 'AuraVeil', 'UpgradeFeintVeil', 'FeintVeil',
     'UpgradeRegenerationShell', 'RegenerationShell', 'UpgradeCarapaceShell', 'CarapaceShell',
@@ -157,7 +156,7 @@ kTechId = enum {
     'LerkBite', 'Cling', 'Spikes', 'Umbra', 'Spores',
 
     // fade abilities   
-    'Swipe', 'Blink', 'ShadowStep', 'Vortex', 'Stab', 'MetabolizeEnergy', 'MetabolizeHealth',
+    'Swipe', 'Blink', 'ShadowStep', 'Vortex', 'Stab', 
     
     // onos abilities
     'Gore', 'Smash', 'Charge', 'BoneShield', 'Stomp', 'Shockwave', 
