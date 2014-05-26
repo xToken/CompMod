@@ -1,7 +1,7 @@
 Script.Load("lua/Hud/GUIEvent.lua")
 Script.Load("lua/AlienTechMap.lua")
 Script.Load( "lua/CompMod/Elixer_Utility.lua" )
-Elixer.UseVersion( 1.3 )
+Elixer.UseVersion( 1.4 )
 
 local function GetUnlockIconParams(unlockId)
 
