@@ -585,7 +585,8 @@ end
 
 // Comp Mod change, decrease weapon time on ground.
 // Set to true for being a world weapon, false for when it's carried by a player
-function Weapon:SetWeaponWorldState(state, preventExpiration)
+Class_ReplaceMethod("Weapon", "SetWeaponWorldState",
+function(self, state, preventExpiration)
 
     if state ~= self.weaponWorldState then
     
@@ -646,7 +647,7 @@ function Weapon:SetWeaponWorldState(state, preventExpiration)
         
     end
     
-end
+end)
 
 //Enhanced Weapon Cleanup
 local lastWeaponScan = 0
