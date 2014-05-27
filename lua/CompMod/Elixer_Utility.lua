@@ -4,7 +4,7 @@
 
 Script.Load( "lua/Class.lua" )
 
-local version = 1.3;
+local version = 1.4;
 
 if not Elixer or Elixer.Version ~= version then
 	Shared.Message( "[Elixer] Loading Utility Scripts v."..string.format("%.1f",version) );
@@ -171,10 +171,17 @@ function ELIXER.ReplaceUpValue( func, localname, newval, options )
 	debug.setupvalue( func, i, newval )
 end;
 
-function ELIXER.AppendToEnum( tbl, key )	
+function ELIXER.AppendToEnum( tbl, key )
+	if rawget(tbl,key) ~= nil then
+		return
+	end
+	
 	local maxVal = 0
-	if rawget( tbl, 'Max' ) then
+	if tbl == kTechId then
 		maxVal = tbl.Max - 1
+		if maxVal == kTechIdMax then
+			error( "Appending another value to the TechId enum would exceed network precision constraints" )
+		end
 		rawset( tbl, 'Max', maxVal+2 )
 		rawset( tbl, maxVal+2, 'Max' )
 	else
@@ -187,23 +194,9 @@ function ELIXER.AppendToEnum( tbl, key )
 	
 	rawset( tbl, key, maxVal+1 )
 	rawset( tbl, maxVal+1, key )
+	
 end
 
 
 ELIXER = nil
 Elixer.UseVersion( version );
-
---[[
-Elixer.Module[version] =
-{
-	Class_AddMethod = Class_AddMethod;
-	upvalues = upvalues;
-	PrintUpValues = PrintUpValues;
-	GetUpValue = GetUpValue;
-	LocateUpValue = LocateUpValue;
-	GetUpValues = GetUpValues;
-	SetUpValues = SetUpValues;
-	CopyUpValues = CopyUpValues;
-	ReplaceUpValue = ReplaceUpValue;
-}
-]]--
