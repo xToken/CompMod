@@ -1,4 +1,5 @@
 //Dont want to always replace random files, so this.
+Script.Load("lua/CompMod_TechIds.lua")
 
 Script.Load("lua/EvolutionChamber.lua")
 Script.Load("lua/FunctionReplaces_Shared.lua")
