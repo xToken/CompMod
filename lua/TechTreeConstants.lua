@@ -6,19 +6,8 @@
 //
 // ========= For more information, visit us at http://www.unknownworlds.com =====================
 
-local gTechIdToString = {}
 
-local function createTechIdEnum(table)
-
-    for i = 1, #table do    
-        gTechIdToString[table[i]] = i  
-    end
-    
-    return enum(table)
-
-end
-
-kTechId = createTechIdEnum({
+local kTechIdTable = {
     
     'None', 'PingLocation',
     
@@ -35,7 +24,7 @@ kTechId = createTechIdEnum({
     'AlienMove', 'AlienAttack', 'AlienConstruct', 'Heal', 'AutoHeal',
     
     // Commander menus for selected units
-    'RootMenu', 'BuildMenu', 'AdvancedMenu', 'AssistMenu', 'MarkersMenu', 'UpgradesMenu', 'WeaponsMenu', 'Return',
+    'RootMenu', 'BuildMenu', 'AdvancedMenu', 'AssistMenu', 'MarkersMenu', 'UpgradesMenu', 'WeaponsMenu',
     
     // Robotics factory menus
     'RoboticsFactoryARCUpgradesMenu', 'RoboticsFactoryMACUpgradesMenu', 'UpgradeRoboticsFactory',
@@ -130,7 +119,7 @@ kTechId = createTechIdEnum({
     'LifeFormMenu', 'SkulkMenu', 'GorgeMenu', 'LerkMenu', 'FadeMenu', 'OnosMenu',
 
     // Alien structures 
-    'Hive', 'HiveHeal', 'CragHive', 'ShadeHive', 'ShiftHive','Harvester', 'Egg', 'Embryo', 'Hydra', 'Cyst', 'Clog', 'GorgeTunnel', 'GorgeTunnelEntrance', 'GorgeTunnelExit',
+    'Hive', 'HiveHeal', 'CragHive', 'ShadeHive', 'ShiftHive','Harvester', 'Egg', 'Embryo', 'Hydra', 'Cyst', 'Clog', 'GorgeTunnel',
     'GorgeEgg', 'LerkEgg', 'FadeEgg', 'OnosEgg',
     
     // Infestation upgrades
@@ -146,7 +135,6 @@ kTechId = createTechIdEnum({
     'Whip', 'TwoWhips', 'EvolveBombard', 'WhipBombard', 'WhipBombardCancel', 'WhipBomb', 'Slap',
     'Shift', 'TwoShifts', 'SelectShift', 'EvolveEcho', 'ShiftHatch', 'ShiftEcho', 'ShiftEnergize', 
     'Shade', 'TwoShades', 'EvolveHallucinations', 'ShadeDisorient', 'ShadeCloak', 'ShadePhantomMenu', 'ShadePhantomStructuresMenu',
-	'EvolutionChamber',
     'UpgradeCeleritySpur', 'CeleritySpur', 'UpgradeAdrenalineSpur', 'AdrenalineSpur', 'UpgradeHyperMutationSpur', 'HyperMutationSpur',
     'UpgradeSilenceVeil', 'SilenceVeil', 'UpgradeCamouflageVeil', 'CamouflageVeil', 'UpgradeAuraVeil', 'AuraVeil', 'UpgradeFeintVeil', 'FeintVeil',
     'UpgradeRegenerationShell', 'RegenerationShell', 'UpgradeCarapaceShell', 'CarapaceShell',
@@ -168,7 +156,7 @@ kTechId = createTechIdEnum({
     'LerkBite', 'Cling', 'Spikes', 'Umbra', 'Spores',
 
     // fade abilities   
-    'Swipe', 'Blink', 'ShadowStep', 'Vortex', 'Stab', 'MetabolizeEnergy', 'MetabolizeHealth',
+    'Swipe', 'Blink', 'ShadowStep', 'Vortex', 'Stab', 
     
     // onos abilities
     'Gore', 'Smash', 'Charge', 'BoneShield', 'Stomp', 'Shockwave', 
@@ -211,14 +199,20 @@ kTechId = createTechIdEnum({
     // Maximum index
     'Max'
     
-    })
-    
-function StringToTechId(string)
-    return gTechIdToString[string] or kTechId.None
-end    
+}
 
 // Increase techNode network precision if more needed
-kTechIdMax  = kTechId.Max
+kTechIdMax  = math.pow(2, math.ceil( math.log( #kTechIdTable )/ math.log(2) ) ) - 1 -- use all the bits
+   
+for i = #kTechIdTable + 1, kTechIdMax do
+	kTechIdTable[i] = 'unused'.. i
+end
+
+kTechId = enum( kTechIdTable )
+    
+function StringToTechId(string)
+    return rawget(kTechId, string) or kTechId.None
+end     
 
 // Tech types
 kTechType = enum({ 'Invalid', 'Order', 'Research', 'Upgrade', 'Action', 'Buy', 'Build', 'EnergyBuild', 'Manufacture', 'Activation', 'Menu', 'EnergyManufacture', 'PlasmaManufacture', 'Special', 'Passive' })

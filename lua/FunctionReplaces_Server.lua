@@ -245,34 +245,34 @@ function NS2Gamerules:JoinTeam(player, newTeamNumber, force)
 				newPlayer.frozen = true
 			end
 			
+			local newPlayerClient = Server.GetOwner(newPlayer)
+			local clientUserId = newPlayerClient and newPlayerClient:GetUserId() or 0
+			local disconnectedPlayerRes = self.disconnectedPlayerResources[clientUserId]
+			if disconnectedPlayerRes then
+			
+				newPlayer:SetResources(disconnectedPlayerRes)
+				self.disconnectedPlayerResources[clientUserId] = nil
+				
+			elseif not player:isa("Commander") then
+			
+				// Give new players starting resources. Mark players as "having played" the game (so they don't get starting res if
+				// they join a team again, etc.) Also, don't award initial resources to any client marked as blockPersonalResources (previous Commanders).
+				local success, played = GetUserPlayedInGame(self, newPlayer)
+				if success and not played and not newPlayerClient.blockPersonalResources then
+					newPlayer:SetResources(ConditionalValue(team.GetIsAlienTeam and team:GetIsAlienTeam(),kAlienInitialIndivRes ,kMarineInitialIndivRes))
+				end
+				
+			end
+			
+			if self:GetGameStarted() then
+				SetUserPlayedInGame(self, newPlayer)
+			end
+			
 		else
 		
 			// Ready room or spectator players should never be frozen
 			newPlayer.frozen = false
 			
-		end
-		
-		local newPlayerClient = Server.GetOwner(newPlayer)
-		local clientUserId = newPlayerClient and newPlayerClient:GetUserId() or 0
-		local disconnectedPlayerRes = self.disconnectedPlayerResources[clientUserId]
-		if disconnectedPlayerRes then
-		
-			newPlayer:SetResources(disconnectedPlayerRes)
-			self.disconnectedPlayerResources[clientUserId] = nil
-			
-		elseif not player:isa("Commander") then
-		
-			// Give new players starting resources. Mark players as "having played" the game (so they don't get starting res if
-			// they join a team again, etc.) Also, don't award initial resources to any client marked as blockPersonalResources (previous Commanders).
-			local success, played = GetUserPlayedInGame(self, newPlayer)
-			if success and not played and not newPlayerClient.blockPersonalResources then
-				newPlayer:SetResources(ConditionalValue(team.GetIsAlienTeam and team:GetIsAlienTeam(),kAlienInitialIndivRes ,kMarineInitialIndivRes))
-			end
-			
-		end
-		
-		if self:GetGameStarted() then
-			SetUserPlayedInGame(self, newPlayer)
 		end
 		
 		newPlayer:TriggerEffects("join_team")

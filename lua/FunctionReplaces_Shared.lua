@@ -536,7 +536,8 @@ function Hive:GetTechButtons(techId)
     
 end
 
-Class_Reload("Hive", {evochamber = "entityid"})
+Shared.LinkClassToMap("Hive", nil, {evochamber = "entityid"})
+//Class_Reload("Hive", {evochamber = "entityid"})
 
 function BabblerEggAbility:IsAllowed(player)
 	return GetHasTech(player, kTechId.BabblerTech)
