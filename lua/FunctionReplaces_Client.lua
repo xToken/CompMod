@@ -106,13 +106,67 @@ end
 
 ReplaceLocals(CommanderUI_MenuButtonOffset, { GetIsMenu = GetIsMenu })
 
-local kTechIdToMaterialOffset = GetUpValue( GetMaterialXYOffset,   "kTechIdToMaterialOffset" )
-kTechIdToMaterialOffset[kTechId.MetabolizeEnergy] = 70
-kTechIdToMaterialOffset[kTechId.MetabolizeHealth] = 70
-kTechIdToMaterialOffset[kTechId.GorgeTunnelEntrance] = 103
-kTechIdToMaterialOffset[kTechId.GorgeTunnelExit] = 103
-kTechIdToMaterialOffset[kTechId.Return] = 133
-kTechIdToMaterialOffset[kTechId.EvolutionChamber] = 136
+/*local kPrettyInputNames = nil
+local function InitInputNames()
+
+	kPrettyInputNames = { }
+	kPrettyInputNames["MouseButton0"] = Locale.ResolveString("LEFT_MOUSE_BUTTON")
+	kPrettyInputNames["MouseButton1"] = Locale.ResolveString("RIGHT_MOUSE_BUTTON")
+	kPrettyInputNames["LeftShift"] = Locale.ResolveString("LEFT_SHIFT")
+	kPrettyInputNames["RightShift"] = Locale.ResolveString("RIGHT_SHIFT")
+	kPrettyInputNames["Weapon6"] = "6"
+	kPrettyInputNames["Weapon7"] = "7"
+	kPrettyInputNames["Weapon8"] = "8"
+	kPrettyInputNames["Weapon9"] = "9"
+	kPrettyInputNames["Weapon10"] = "0"
+	
+end
+
+function GetPrettyInputName(inputName)
+
+	if not kPrettyInputNames then
+		InitInputNames()
+	end
+	
+	local prettyInputName = BindingsUI_GetInputValue(inputName)
+	if prettyInputName == nil then
+		prettyInputName = inputName
+	end
+	local foundPrettyInputName = kPrettyInputNames[prettyInputName]
+	return foundPrettyInputName and foundPrettyInputName or prettyInputName
+	
+end*/
+
+local kOtherTypes = {
+    "CommandStructure",
+    "ResourceTower",
+    -- marine
+    "Armory",
+    "ArmsLab",
+    "Observatory",
+    "PhaseGate",
+    "RoboticsFactory",
+    "PowerPoint",
+    "PrototypeLab",
+    "PowerPack",
+    "Sentry",
+    "SentryBattery",
+    "InfantryPortal",
+    "MAC",
+    "ARC",
+    -- alien
+    "Whip",
+    "Crag",
+    "Shade",
+    "Shift",
+    "Hydra",
+    "Shell",
+    "Veil",
+    "Spur",
+    "Drifter",
+    "TunnelEntrance",
+	"TunnelExit"
+}
 
 local kIndexToUpgrades =
 {
@@ -133,9 +187,7 @@ kGUIPreOverrides["GUIMinimapFrame"] 			= 	function()
 														return "0"
 													end
 kGUIPreOverrides["GUIInsight_OtherHealthbars"] = 	function() 
-														local kOtherTypes 		= GetUpValue( GUIInsight_OtherHealthbars.Update,   "kOtherTypes", 			{ LocateRecurse = true } )
-														table.insert(kOtherTypes, "TunnelExit")
-														return "0"
+														return ReplaceLocals(GUIInsight_OtherHealthbars.Update, { kOtherTypes = kOtherTypes }) 
 													end
 												
 local kGUIPostOverrides = { }
