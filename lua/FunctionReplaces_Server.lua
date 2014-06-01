@@ -303,11 +303,16 @@ function NS2Gamerules:JoinTeam(player, newTeamNumber, force)
 	
 end
 
+local oldHiveOnCreate = Hive.OnCreate
+function Hive:OnCreate()
+	oldHiveOnCreate(self)
+	self.evochamber = Entity.invalidId
+end
+
 // Changes to handle evolution chamber for each Hive.
 local oldHiveOnConstructionComplete = Hive.OnConstructionComplete
 function Hive:OnConstructionComplete()
     oldHiveOnConstructionComplete(self)
-	self.evochamber = Entity.invalidId
 	local evochamber = CreateEntityForTeam(kTechId.EvolutionChamber, self:GetOrigin(), self:GetTeamNumber(), nil)
 	if evochamber then
 		local origin = evochamber:GetOrigin()
@@ -324,10 +329,10 @@ end
 local oldHiveOnKill = Hive.OnKill
 function Hive:OnKill(attacker, doer, point, direction)
 	oldHiveOnKill(self, attacker, doer, point, direction)
-	if self:GetEvolutionChamber() ~= Entity.invalidId then
+	if self:GetEvolutionChamber() ~= Entity.invalidId and self:GetIsBuilt() then
 		local evochamber = Shared.GetEntity(self:GetEvolutionChamber())
 		local techTree = self:GetTeam():GetTechTree()
-		if evochamber then
+		if evochamber and evochamber:isa("EvolutionChamber") then
 			if techTree then
 				evochamber:PerformAction(techTree:GetTechNode(kTechId.Cancel), evochamber:GetOrigin()) // Trigger research abort :S
 			end
