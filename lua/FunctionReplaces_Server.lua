@@ -236,6 +236,8 @@ function NS2Gamerules:JoinTeam(player, newTeamNumber, force)
 			
 		end
 		
+		local newPlayerClient = Server.GetOwner(newPlayer)
+		
 		// Update frozen state of player based on the game state and player team.
 		if team == self.team1 or team == self.team2 then
 		
@@ -245,7 +247,6 @@ function NS2Gamerules:JoinTeam(player, newTeamNumber, force)
 				newPlayer.frozen = true
 			end
 			
-			local newPlayerClient = Server.GetOwner(newPlayer)
 			local clientUserId = newPlayerClient and newPlayerClient:GetUserId() or 0
 			local disconnectedPlayerRes = self.disconnectedPlayerResources[clientUserId]
 			if disconnectedPlayerRes then

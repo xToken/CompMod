@@ -537,7 +537,6 @@ function Hive:GetTechButtons(techId)
 end
 
 Shared.LinkClassToMap("Hive", nil, {evochamber = "entityid"})
-//Class_Reload("Hive", {evochamber = "entityid"})
 
 function BabblerEggAbility:IsAllowed(player)
 	return GetHasTech(player, kTechId.BabblerTech)
@@ -597,7 +596,7 @@ function Alien:ModifyHeal(healTable)
 	else
 		//Not under limit, clear table
 		self.lasthealingtable.time = curtime
-		self.lasthealingtable.healing = 0 
+		self.lasthealingtable.healing = healTable.health
 	end
 	
-end 
+end

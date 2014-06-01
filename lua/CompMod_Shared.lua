@@ -1,6 +1,8 @@
 //Dont want to always replace random files, so this.
-Script.Load("lua/CompMod_TechIds.lua")
+Script.Load( "lua/CompMod/Elixer_Utility.lua" )
+Elixer.UseVersion( 1.5 )
 
+Script.Load("lua/CompMod_TechIds.lua")
 Script.Load("lua/EvolutionChamber.lua")
 Script.Load("lua/FunctionReplaces_Shared.lua")
 
@@ -38,14 +40,12 @@ kUmbraShotgunModifier = 0.75		// Comp Mod change, decreased reduction from .36 t
 kUmbraBulletModifier = 0.75			// Comp Mod change, unchanged.
 kUmbraMinigunModifier = 0.75		// Comp Mod change, decreased reduction from .3 to .25.
 kUmbraRailgunModifier = 0.75		// Comp Mod change, decreased reduction from .32 to .25.
-////////////////////////////////// TEST THE UMBRA CHANGE - might be cached into local causing this to NOT work.
 kMetabolizeEnergyCost = 25			// Comp Mod change, added metabolize.
 kMetabolizeDelay = 2.0				// Comp Mod change, added metabolize.
 kMetabolizeEnergyRegain = 35		// Comp Mod change, added metabolize.
 kMetabolizeHealthRegain = 10		// Comp Mod change, added metabolize.
 kSwipeDamageType = kDamageType.StructuresOnlyLight	// Comp Mod change, changed fade damage type.
 kSwipeDamage = 75					// Comp Mod change, changed to maintain same damage.
-SwipeBlink.kDamage = kSwipeDamage	// Really? Move a global into a Global?
 kBoneShieldDamageReduction = 0.25	// Comp Mod change, bone shield blocks 75% of damage.
 kGoreDamage = 90					// Comp Mod change, decreased from 100.
 kGoreEnergyCost = 10				// Comp Mod change, decreased from 12.
@@ -130,8 +130,23 @@ kStructureLightArmorUseFraction = 0.9	// Comp Mod change, increased from .7
 kFadeAirFriction = 0.14				// Comp Mod change, removed celerity air friction decreases, changed default to match - down from 0.17.
 kHallucinationCloudCooldown = 5		// Comp Mod change, increased from 3 seconds.
 kChargeEnergyCost = 30 				// Comp Mod change, decreased from 38.
-Onos.kChargeEnergyCost = kChargeEnergyCost // Really? Move a global into a global?
+
 kAlienHealRateTimeLimit = 1			// Comp Mod change, added alien healing rate limit.
 kAlienHealRateLimit = 100			// Comp Mod change, added alien healing rate limit.
 kAlienHealRatePercentLimit = .1		// Comp Mod change, added alien healing rate limit.
 kAlienHealRateOverLimitReduction = 1	// Comp Mod change, added alien healing rate limit.
+
+//Apply Umbra Changes
+local kUmbraModifier = GetUpValue( UmbraMixin.ModifyDamageTaken,   "kUmbraModifier", { LocateRecurse = true } )
+kUmbraModifier["Shotgun"] = kUmbraShotgunModifier
+kUmbraModifier["Rifle"] = kUmbraBulletModifier
+kUmbraModifier["Pistol"] = kUmbraBulletModifier
+kUmbraModifier["Sentry"] = kUmbraBulletModifier
+kUmbraModifier["Minigun"] = kUmbraMinigunModifier
+kUmbraModifier["Railgun"] = kUmbraRailgunModifier
+
+//Onos Charge secondary global.
+Onos.kChargeEnergyCost = kChargeEnergyCost // Really? Move a global into a global?
+
+//Fade swipe damage.
+SwipeBlink.kDamage = kSwipeDamage	// Really? Move a global into a Global?
