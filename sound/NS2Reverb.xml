@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReverbDefs>
+    <Def name="Generic">
+        <MasterLevel units="dB" min="-100" max="0" value="0"/>
+        <DecayTime units="ms" min="100" max="20000" value="4000"/>
+        <HFDecayRatio units="ratio" min="0.1" max="2" value="0.5"/>
+        <PreDelay units="ms" min="0" max="300" value="300"/>
+        <LateDelay units="ms" min="0" max="100" value="100"/>
+        <EarlyReflections units="dB" min="-100" max="10" value="-100"/>
+        <LateReflections units="dB" min="-100" max="20" value="1"/>
+        <Diffusion units="percentage" min="0" max="100" value="100"/>
+        <Density units="percentage" min="0" max="100" value="100"/>
+        <HFGain units="dB" min="-100" max="0" value="-1"/>
+        <LFGain units="dB" min="-100" max="0" value="-16"/>
+        <HFCrossover units="Hz" min="20" max="20000" value="5000"/>
+        <LFCrossover units="Hz" min="20" max="1000" value="250"/>
+        <Notes text=""/>
+    </Def>
+    <Def name="vent">
+        <MasterLevel units="dB" min="-100" max="0" value="0"/>
+        <DecayTime units="ms" min="100" max="20000" value="1300"/>
+        <HFDecayRatio units="ratio" min="0.1" max="2" value="0.14"/>
+        <PreDelay units="ms" min="0" max="300" value="14"/>
+        <LateDelay units="ms" min="0" max="100" value="21"/>
+        <EarlyReflections units="dB" min="-100" max="10" value="8"/>
+        <LateReflections units="dB" min="-100" max="20" value="11"/>
+        <Diffusion units="percentage" min="0" max="100" value="80"/>
+        <Density units="percentage" min="0" max="100" value="60"/>
+        <HFGain units="dB" min="-100" max="0" value="-3"/>
+        <LFGain units="dB" min="-100" max="0" value="0"/>
+        <HFCrossover units="Hz" min="20" max="20000" value="6000"/>
+        <LFCrossover units="Hz" min="20" max="1000" value="100"/>
+        <Notes text=""/>
+    </Def>
+    <Def name="hallway">
+        <MasterLevel units="dB" min="-100" max="0" value="-3"/>
+        <DecayTime units="ms" min="100" max="20000" value="3490.1"/>
+        <HFDecayRatio units="ratio" min="0.1" max="2" value="0.3"/>
+        <PreDelay units="ms" min="0" max="300" value="24"/>
+        <LateDelay units="ms" min="0" max="100" value="100"/>
+        <EarlyReflections units="dB" min="-100" max="10" value="8"/>
+        <LateReflections units="dB" min="-100" max="20" value="8"/>
+        <Diffusion units="percentage" min="0" max="100" value="50"/>
+        <Density units="percentage" min="0" max="100" value="100"/>
+        <HFGain units="dB" min="-100" max="0" value="-3"/>
+        <LFGain units="dB" min="-100" max="0" value="0"/>
+        <HFCrossover units="Hz" min="20" max="20000" value="5000"/>
+        <LFCrossover units="Hz" min="20" max="1000" value="250"/>
+        <Notes text=""/>
+    </Def>
+    <Def name="large room">
+        <MasterLevel units="dB" min="-100" max="0" value="0"/>
+        <DecayTime units="ms" min="100" max="20000" value="4300"/>
+        <HFDecayRatio units="ratio" min="0.1" max="2" value="0.53"/>
+        <PreDelay units="ms" min="0" max="300" value="90"/>
+        <LateDelay units="ms" min="0" max="100" value="90"/>
+        <EarlyReflections units="dB" min="-100" max="10" value="-12"/>
+        <LateReflections units="dB" min="-100" max="20" value="5"/>
+        <Diffusion units="percentage" min="0" max="100" value="100"/>
+        <Density units="percentage" min="0" max="100" value="100"/>
+        <HFGain units="dB" min="-100" max="0" value="-2"/>
+        <LFGain units="dB" min="-100" max="0" value="0"/>
+        <HFCrossover units="Hz" min="20" max="20000" value="1800"/>
+        <LFCrossover units="Hz" min="20" max="1000" value="400"/>
+        <Notes text=""/>
+    </Def>
+    <Def name="big hallway">
+        <MasterLevel units="dB" min="-100" max="0" value="0"/>
+        <DecayTime units="ms" min="100" max="20000" value="3490"/>
+        <HFDecayRatio units="ratio" min="0.1" max="2" value="0.4"/>
+        <PreDelay units="ms" min="0" max="300" value="90"/>
+        <LateDelay units="ms" min="0" max="100" value="34"/>
+        <EarlyReflections units="dB" min="-100" max="10" value="-12"/>
+        <LateReflections units="dB" min="-100" max="20" value="5"/>
+        <Diffusion units="percentage" min="0" max="100" value="100"/>
+        <Density units="percentage" min="0" max="100" value="100"/>
+        <HFGain units="dB" min="-100" max="0" value="-3"/>
+        <LFGain units="dB" min="-100" max="0" value="0"/>
+        <HFCrossover units="Hz" min="20" max="20000" value="5000"/>
+        <LFCrossover units="Hz" min="20" max="1000" value="250"/>
+        <Notes text=""/>
+    </Def>
+    <Def name="medium room">
+        <MasterLevel units="dB" min="-100" max="0" value="0"/>
+        <DecayTime units="ms" min="100" max="20000" value="2790"/>
+        <HFDecayRatio units="ratio" min="0.1" max="2" value="0.4"/>
+        <PreDelay units="ms" min="0" max="300" value="55"/>
+        <LateDelay units="ms" min="0" max="100" value="34"/>
+        <EarlyReflections units="dB" min="-100" max="10" value="-12"/>
+        <LateReflections units="dB" min="-100" max="20" value="5"/>
+        <Diffusion units="percentage" min="0" max="100" value="100"/>
+        <Density units="percentage" min="0" max="100" value="100"/>
+        <HFGain units="dB" min="-100" max="0" value="-3"/>
+        <LFGain units="dB" min="-100" max="0" value="0"/>
+        <HFCrossover units="Hz" min="20" max="20000" value="5000"/>
+        <LFCrossover units="Hz" min="20" max="1000" value="250"/>
+        <Notes text=""/>
+    </Def>
+</ReverbDefs>
