@@ -51,7 +51,7 @@ function Armory:GetTechButtons(techId)
 	techButtons[4] = kTechId.FlamethrowerTech
     if self:GetTechId() == kTechId.AdvancedArmory then
         techButtons[5] = kTechId.GrenadeLauncherTech
-		//techButtons[6] = kTechId.HeavyMachineGunTech
+		techButtons[6] = kTechId.HeavyMachineGunTech
     end
 
     return techButtons
@@ -63,7 +63,7 @@ function Armory:OnResearchComplete(researchId)
     if researchId == kTechId.AdvancedArmoryUpgrade then
         self:SetTechId(kTechId.AdvancedArmory)
 		
-		local techTree = self:GetTeam():GetTechTree()
+		/*local techTree = self:GetTeam():GetTechTree()
         local researchNode = techTree:GetTechNode(kTechId.HeavyMachineGunTech)
         
         if researchNode then     
@@ -73,7 +73,7 @@ function Armory:OnResearchComplete(researchId)
             researchNode:SetResearched(true)
             techTree:QueueOnResearchComplete(kTechId.HeavyMachineGunTech, self)
             
-        end
+        end*/
 		
     end
     

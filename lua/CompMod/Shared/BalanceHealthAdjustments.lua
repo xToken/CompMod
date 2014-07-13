@@ -37,11 +37,11 @@ kAlienMaxRegeneration = 80			// Comp Mod change, increased from 40.
 
 //kLerkHealth = 125					// Comp Mod change, currently unchanged.
 //kLerkArmor = 45	    			// Comp Mod change, currently unchanged.
-kLerkHealthPerBioMass = 10			// Comp Mod change, increased from 2.
+kLerkHealthPerBioMass = 5			// Comp Mod change, increased from 2.
 
 //kFadeHealth = 250					// Comp Mod change, currently unchanged.
 //kFadeArmor = 80     				// Comp Mod change, currently unchanged.
-kFadeHealthPerBioMass = 20			// Comp Mod change, increased from 5.
+kFadeHealthPerBioMass = 12			// Comp Mod change, increased from 5.
 
 //kOnosHealth = 900					// Comp Mod change, currently unchanged.
 //kOnosArmor = 450					// Comp Mod change, currently unchanged.

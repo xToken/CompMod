@@ -67,7 +67,7 @@ kXenocideRange = 10					// Comp Mod change, decreased from 10.
 kNanoShieldCost = 3					// Comp Mod change, decreased from 5.
 kAdvancedArmoryUpgradeCost = 20		// Comp Mod change, decreased from 30.
 
-kHeavyMachineGunTechResearchCost = 20	// Comp Mod change, added HMG research.
+kHeavyMachineGunTechResearchCost = 15	// Comp Mod change, added HMG research.
 kHeavyMachineGunTechResearchTime = 30	// Comp Mod change, added HMG research.
 kGrenadeLauncherTechResearchCost = 10	// Comp Mod change, added GL research.
 kGrenadeLauncherTechResearchTime = 30	// Comp Mod change, added GL research.
@@ -87,7 +87,7 @@ kFlamethrowerRange = 8				// Comp Mod change, lowered from 9.
 
 kLayMineWeight = 0.10				// Comp Mod change, decreased from 0.19.
 
-kHeavyMachineGunDamage = 7.5			// Comp Mod change, added HMG.
+kHeavyMachineGunDamage = 6.5			// Comp Mod change, added HMG.
 kHeavyMachineGunDamageType = kDamageType.Puncture	// Comp Mod change, added HMG.
 kHeavyMachineGunClipSize = 80		// Comp Mod change, added HMG.
 kHeavyMachineGunWeight = 0.21		// Comp Mod change, added HMG.
