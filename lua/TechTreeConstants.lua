@@ -29,7 +29,7 @@ local kTechIdTable = {
     // Robotics factory menus
     'RoboticsFactoryARCUpgradesMenu', 'RoboticsFactoryMACUpgradesMenu', 'UpgradeRoboticsFactory',
 
-    'ReadyRoomPlayer', 
+    'ReadyRoomPlayer', 'ReadyRoomEmbryo', 'ReadyRoomExo',
     
     // Doors
     'Door', 'DoorOpen', 'DoorClose', 'DoorLock', 'DoorUnlock',
@@ -95,7 +95,7 @@ local kTechIdTable = {
     'ARCDeploy', 'ARCUndeploy',
     
     // Marine Commander abilities
-    'NanoShieldTech', 'NanoShield', 'PowerSurge', 'Scan', 'AmmoPack', 'MedPack', 'CatPack',
+    'NanoShieldTech', 'NanoShield', 'PowerSurge', 'Scan', 'AmmoPack', 'MedPack', 'CatPack', 'SelectObservatory',
     
     ////////////
     // Aliens //

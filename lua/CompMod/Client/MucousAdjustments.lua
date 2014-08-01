@@ -103,7 +103,7 @@ end
 local kShieldTextYOffset = 75
 local kShieldTextXOffset = -30
 local kShieldTextColor = Color(0, 1, 0.2, 1)
-local kShieldFontName = "fonts/Stamp_medium.fnt"
+local kShieldFontName = Fonts.kStamp_Medium
 
 local function CreateMucousText(self)
 	self.mucousText = GUIManager:CreateTextItem()

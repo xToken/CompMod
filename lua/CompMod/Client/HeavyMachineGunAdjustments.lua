@@ -69,3 +69,13 @@ function PlayerUI_GetCrosshairY()
 	end
 	return oldPlayerUI_GetCrosshairY()
 end
+
+local lookup = GetUpValue( EquipmentOutline_Initialize,   "lookup" )
+local renderMasks = GetUpValue( EquipmentOutline_Initialize,   "renderMasks" )
+local _fullRenderMask = GetUpValue( EquipmentOutline_Initialize,   "_fullRenderMask" )
+local _invRenderMask = GetUpValue( EquipmentOutline_Initialize,   "_invRenderMask" )
+
+_fullRenderMask = 0x7c
+_invRenderMask = bit.bnot(_fullRenderMask)
+table.insert(lookup, "HeavyMachineGun")
+table.insert(renderMasks, 0x40)
