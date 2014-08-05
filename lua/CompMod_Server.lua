@@ -1,4 +1,13 @@
-//Dont want to always replace random files, so this.
+//Loads Server VM changes
 
+//Load shared defs
 Script.Load("lua/CompMod_Shared.lua")
-Script.Load("lua/FunctionReplaces_Server.lua")
+
+//Load server side adjustments
+local MainFiles = { }
+Shared.GetMatchingFileNames( "lua/CompMod/Server/*.lua", true, MainFiles )
+
+//Load function changes
+for i = 1, #MainFiles do
+	Script.Load(MainFiles[i])
+end

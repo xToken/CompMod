@@ -55,29 +55,37 @@ function EvolutionChamber:SetIncludeRelevancyMask(includeMask)
 
 end
 
-local kUpgradeButtons =
-{							 
-	[kTechId.SkulkMenu] = { kTechId.Leap, kTechId.Xenocide, kTechId.None, kTechId.None,
-								kTechId.None, kTechId.None, kTechId.None, kTechId.None },
-							 
-	[kTechId.GorgeMenu] = { kTechId.BabblerTech, kTechId.BileBomb, kTechId.WebTech, kTechId.None,
-								 kTechId.None, kTechId.None, kTechId.None, kTechId.None },
+local kUpgradeButtons = nil
+
+local function UpdateUpgradeButtons()
+	kUpgradeButtons =
+	{							 
+		[kTechId.SkulkMenu] = { kTechId.Leap, kTechId.Xenocide, kTechId.None, kTechId.None,
+									kTechId.None, kTechId.None, kTechId.None, kTechId.None },
 								 
-	[kTechId.LerkMenu] = { kTechId.Umbra, kTechId.Spores, kTechId.None, kTechId.None,
-								 kTechId.None, kTechId.None, kTechId.None, kTechId.None },
-								 
-	[kTechId.FadeMenu] = { kTechId.MetabolizeEnergy, kTechId.MetabolizeHealth, kTechId.Stab, kTechId.None,
-								 kTechId.None, kTechId.None, kTechId.None, kTechId.None },
-								 
-	[kTechId.OnosMenu] = { kTechId.Charge, kTechId.BoneShield, kTechId.Stomp, kTechId.None,
-								 kTechId.None, kTechId.None, kTechId.None, kTechId.None }
-}
+		[kTechId.GorgeMenu] = { kTechId.BileBomb, kTechId.WebTech, kTechId.None, kTechId.None,
+									 kTechId.None, kTechId.None, kTechId.None, kTechId.None },
+									 
+		[kTechId.LerkMenu] = { kTechId.Umbra, kTechId.Spores, kTechId.None, kTechId.None,
+									 kTechId.None, kTechId.None, kTechId.None, kTechId.None },
+									 
+		[kTechId.FadeMenu] = { kTechId.MetabolizeEnergy, kTechId.MetabolizeHealth, kTechId.Stab, kTechId.None,
+									 kTechId.None, kTechId.None, kTechId.None, kTechId.None },
+									 
+		[kTechId.OnosMenu] = { kTechId.Charge, kTechId.BoneShield, kTechId.Stomp, kTechId.None,
+									 kTechId.None, kTechId.None, kTechId.None, kTechId.None }
+	}
+end
 
 function EvolutionChamber:GetTechButtons(techId)
 
     local techButtons = { kTechId.SkulkMenu, kTechId.GorgeMenu, kTechId.LerkMenu, kTechId.FadeMenu,
 								kTechId.OnosMenu, kTechId.None, kTechId.None, kTechId.None }
-						  
+	
+	if kUpgradeButtons == nil then
+		UpdateUpgradeButtons()
+	end
+	
 	if kUpgradeButtons[techId] ~= nil then
 		techButtons = kUpgradeButtons[techId]
 	end

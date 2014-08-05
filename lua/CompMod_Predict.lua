@@ -1,3 +1,4 @@
-//Dont want to always replace random files, so this.
+//Loads Predict VM changes
 
+//Load shared defs
 Script.Load("lua/CompMod_Shared.lua")

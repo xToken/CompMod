@@ -21,7 +21,6 @@ function Metabolize:OnCreate()
     
     self.primaryAttacking = false
     self.lastPrimaryAttackTime = 0
-    self.attackedfromshift = nil
 end
 
 function Metabolize:GetAnimationGraphName()
@@ -64,6 +63,7 @@ function Metabolize:OnPrimaryAttack(player)
 
     if player:GetEnergy() >= self:GetEnergyCost() and not self:GetHasAttackDelay() then
         self.primaryAttacking = true
+		player.timeMetabolize = Shared.GetTime()
     else
         self:OnPrimaryAttackEnd()
     end
@@ -75,10 +75,6 @@ function Metabolize:OnPrimaryAttackEnd()
     Blink.OnPrimaryAttackEnd(self)
     self.primaryAttacking = false
     
-end
-
-function Metabolize:SetAttackedFromShift(weaponMapName)
-    self.attackedfromshift = weaponMapName
 end
 
 function Metabolize:OnHolster(player)
@@ -101,10 +97,6 @@ function Metabolize:OnTag(tagName)
 				player:AddHealth(kMetabolizeHealthRegain, false, false)
 			end	
 			player:AddEnergy(kMetabolizeEnergyRegain)
-			if self.attackedfromshift ~= nil then
-				player:SetActiveWeapon(self.attackedfromshift)
-			end
-			self.attackedfromshift = nil
 			self.lastPrimaryAttackTime = Shared.GetTime()
 			self.primaryAttacking = false
 		end
@@ -125,8 +117,13 @@ function Metabolize:OnUpdateAnimationInput(modelMixin)
     Blink.OnUpdateAnimationInput(self, modelMixin)
     
     modelMixin:SetAnimationInput("ability", "vortex")
-    
-    local activityString = (self.primaryAttacking and "primary") or "none"
+	
+	local player = self:GetParent()
+	local activityString = (self.primaryAttacking and "primary") or "none"
+    if player and player:GetHasMetabolizeAnimationDelay() then
+		activityString = "primary"
+    end
+	
     modelMixin:SetAnimationInput("activity", activityString)
     
 end

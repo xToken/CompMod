@@ -198,7 +198,7 @@ local kDamageMessage =
     posy = string.format("float (%d to %d by 0.05)", -kHitEffectMaxPosition, kHitEffectMaxPosition),
     posz = string.format("float (%d to %d by 0.05)", -kHitEffectMaxPosition, kHitEffectMaxPosition),
     targetId = "entityid",
-    amount = "float",
+    amount = "integer (0 to 4095)",
 }
 
 function BuildDamageMessage(target, amount, hitpos)
@@ -207,7 +207,7 @@ function BuildDamageMessage(target, amount, hitpos)
     t.posx = hitpos.x
     t.posy = hitpos.y
     t.posz = hitpos.z
-    t.amount = amount
+    t.amount = math.min( math.max( amount, 0 ), 4095 )
     t.targetId = (target and target:GetId()) or Entity.invalidId
     return t
     
@@ -218,7 +218,49 @@ function ParseDamageMessage(message)
     return Shared.GetEntity(message.targetId), message.amount, position
 end
 
+function SendDamageMessage( attacker, target, amount, point, overkill )
+    
+    if amount > 0 then
+    
+        local msg = BuildDamageMessage(target, amount, point)
+        
+        // damage reports must always be reliable when not spectating
+        Server.SendNetworkMessage(attacker, "Damage", msg, true)
+        
+        for _, spectator in ientitylist(Shared.GetEntitiesWithClassname("Spectator")) do
+        
+            if attacker == Server.GetOwner(spectator):GetSpectatingPlayer() then
+                Server.SendNetworkMessage(spectator, "Damage", msg, false)
+            end
+            
+        end
+        
+    end
+   
+end
+
 Shared.RegisterNetworkMessage( "Damage", kDamageMessage )
+
+
+local kHitSoundMessage =
+{
+    hitsound = "integer (1 to 3)",
+}
+
+function BuildHitSoundMessage( hitsound )
+    
+    local t = {}
+    t.hitsound = hitsound
+    return t
+    
+end
+
+function ParseHitSoundMessage(message)
+    return message.hitsound
+end
+
+Shared.RegisterNetworkMessage( "HitSound", kHitSoundMessage )
+
 
 /*
 For commander abilities, such as nanoshield
@@ -385,6 +427,7 @@ function ParseSelectAndGotoMessage(message)
 end
 
 Shared.RegisterNetworkMessage("SelectAndGoto", kSelectAndGotoMessage)
+Shared.RegisterNetworkMessage("ComSelect", kSelectAndGotoMessage)
 
 // For taking damage
 local kTakeDamageIndicator =
@@ -793,14 +836,14 @@ end
 
 local kSetNameMessage =
 {
-    name = "string (" .. kMaxNameLength .. ")"
+    name = string.format("string (%d)", kMaxNameLength * 4 )
 }
 Shared.RegisterNetworkMessage("SetName", kSetNameMessage)
 
 local kChatClientMessage =
 {
     teamOnly = "boolean",
-    message = string.format("string (%d)", kMaxChatLength + 1)
+    message = string.format("string (%d)", kMaxChatLength * 4 + 1)
 }
 
 function BuildChatClientMessage(teamOnly, chatMessage)
@@ -810,11 +853,11 @@ end
 local kChatMessage =
 {
     teamOnly = "boolean",
-    playerName = "string (" .. kMaxNameLength .. ")",
+    playerName = string.format("string (%d)", kMaxNameLength * 4 ),
     locationId = "integer (-1 to 1000)",
     teamNumber = "integer (" .. kTeamInvalid .. " to " .. kSpectatorIndex .. ")",
     teamType = "integer (" .. kNeutralTeamType .. " to " .. kAlienTeamType .. ")",
-    message = string.format("string (%d)", kMaxChatLength + 1)
+    message = string.format("string (%d)", kMaxChatLength * 4 + 1)
 }
 
 function BuildChatMessage(teamOnly, playerName, playerLocationId, playerTeamNumber, playerTeamType, chatMessage)
@@ -834,7 +877,7 @@ end
 
 local kVoteConcedeCastMessage =
 {
-    voterName = "string (" .. kMaxNameLength .. ")",
+    voterName = string.format("string (%d)", kMaxNameLength * 4 ),
     votesMoreNeeded = "integer (0 to 64)"
 }
 
@@ -845,7 +888,7 @@ local kTeamConcededMessage =
 
 local kVoteEjectCastMessage =
 {
-    voterName = "string (" .. kMaxNameLength .. ")",
+    voterName = string.format("string (%d)", kMaxNameLength * 4 ),
     votesMoreNeeded = "integer (0 to 64)"
 }
 
@@ -866,7 +909,7 @@ end
 
 local kGameEndMessage =
 {
-    win = "boolean"
+    win = "integer (0 to 2)"
 }
 Shared.RegisterNetworkMessage("GameEnd", kGameEndMessage)
 

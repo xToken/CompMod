@@ -1,6 +1,6 @@
 // ======= Copyright (c) 2003-2011, Unknown Worlds Entertainment, Inc. All rights reserved. =======
 //
-// lua\Weapons\Alien\GorgeTunnelExitAbility.lua
+// lua\Weapons\Alien\GorgeTunnelEntranceAbility.lua
 //
 //    Created by:   Andreas Urwalek (andi@unknownworlds.com)
 //
@@ -10,38 +10,46 @@
 
 Script.Load("lua/Weapons/Alien/StructureAbility.lua")
 
-class 'GorgeTunnelExitAbility' (StructureAbility)
+class 'GorgeTunnelEntranceAbility' (StructureAbility)
 
-function GorgeTunnelExitAbility:GetEnergyCost(player)
+function GorgeTunnelEntranceAbility:GetEnergyCost(player)
     return kDropStructureEnergyCost
 end
 
-function GorgeTunnelExitAbility:GetGhostModelName(ability)
+function GorgeTunnelEntranceAbility:GetGhostModelName(ability)
 
     local player = ability:GetParent()
     if player and player:isa("Gorge") then
     
         local variant = player:GetVariant()
         if variant == kGorgeVariant.shadow then
-            return TunnelExit.kModelNameShadow
+            return TunnelEntrance.kModelNameShadow
         end
         
     end
     
-    return TunnelExit.kModelName
+    return TunnelEntrance.kModelName
     
 end
 
-function GorgeTunnelExitAbility:GetDropStructureId()
-    return kTechId.GorgeTunnelExit
+function GorgeTunnelEntranceAbility:GetDropStructureId()
+    return kTechId.GorgeTunnelEntrance
 end
 
-function GorgeTunnelExitAbility:GetDropClassName()
-    return "TunnelExit"
+function GorgeTunnelEntranceAbility:GetDropClassName()
+    return "TunnelEntrance"
 end
 
-function GorgeTunnelExitAbility:GetDropMapName()
-    return TunnelExit.kMapName
+function GorgeTunnelEntranceAbility:GetDropMapName()
+    return TunnelEntrance.kMapName
+end
+
+function GorgeTunnelEntranceAbility:CreateStructure(coords, player, lastClickedPosition)
+	local structure = CreateEntity(self:GetDropMapName(), coords.origin, player:GetTeamNumber())
+	if structure then
+		structure:SetTechId(self:GetDropStructureId())
+	end
+	return structure
 end
 
 local kUpVector = Vector(0, 1, 0)
@@ -57,7 +65,7 @@ local kCheckDirections =
     Vector(-kCheckDistance, 0, -kCheckDistance),
 }
 
-function GorgeTunnelExitAbility:GetDropRange()
+function GorgeTunnelEntranceAbility:GetDropRange()
     return 1.5
 end
 
@@ -70,7 +78,7 @@ local function IsPathable(position)
     
 end
 
-function GorgeTunnelExitAbility:GetIsPositionValid(position, player, surfaceNormal)
+function GorgeTunnelEntranceAbility:GetIsPositionValid(position, player, surfaceNormal)
 
     local valid = false
 
