@@ -526,33 +526,54 @@ function TunnelExit:OnUpdateRender()
 
 end
 
-local function GetDestinationLocationName(self)
+function TunnelExit:GetDestinationLocationName()
 
-    local location = Shared.GetEntity(self.destLocationId)
-    
+    local location = Shared.GetEntity(self.destLocationId)   
     if location then
         return location:GetName()
     end
-
+    
 end
 
 function TunnelExit:GetUnitNameOverride(viewer)
 
-	local unitName = GetDisplayName(self)
+    local unitName = GetDisplayName(self)    
+    
+    if not GetAreEnemies(self, viewer) and self.ownerId then        
+        local ownerName
+        for _, playerInfo in ientitylist(Shared.GetEntitiesWithClassname("PlayerInfoEntity")) do
+            if playerInfo.playerId == self.ownerId then
+                ownerName = playerInfo.playerName
+                break
+            end
+        end
+        if ownerName then
+            
+            local lastLetter = ownerName:sub(-1)
+            if lastLetter == "s" or lastLetter == "S" then
+                return string.format( Locale.ResolveString( "TUNNEL_ENTRANCE_OWNER_ENDS_WITH_S" ), ownerName )
+            else
+                return string.format( Locale.ResolveString( "TUNNEL_ENTRANCE_OWNER" ), ownerName )
+            end
+        end
+        
+    end
 
-	if not GetAreEnemies(self, viewer) then
-		local destinationName = GetDestinationLocationName(self)        
-		if destinationName then
-			unitName = unitName .. " to " .. destinationName
-			if CHUDGetOption and CHUDGetOption("minnps") then
-				unitName = destinationName
-			end
-		end
-
-	end
-	
     return unitName
 
+end
+
+function TunnelExit:OverrideHintString( hintString, forEntity )
+    
+    if not GetAreEnemies(self, forEntity) then
+        local locationName = self:GetDestinationLocationName()
+        if locationName and locationName~="" then
+            return string.format(Locale.ResolveString( "TUNNEL_ENTRANCE_HINT_TO_LOCATION" ), locationName )
+        end
+    end
+
+    return hintString
+    
 end
 
 Shared.LinkClassToMap("TunnelExit", TunnelExit.kMapName, networkVars)

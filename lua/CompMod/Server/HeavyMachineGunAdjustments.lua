@@ -4,7 +4,7 @@ local kHitSoundEnabledForWeapon = GetUpValue( HitSound_IsEnabledForWeapon,   "kH
 table.insert(kHitSoundEnabledForWeapon, kTechId.HeavyMachineGun)
 kHitSoundEnabledForWeapon[kTechId.HeavyMachineGun] = true
 
-function Marine:InitWeapons()
+/*function Marine:InitWeapons()
 
     Player.InitWeapons(self)
     
@@ -16,4 +16,4 @@ function Marine:InitWeapons()
     self:SetQuickSwitchTarget(Pistol.kMapName)
     self:SetActiveWeapon(HeavyMachineGun.kMapName)
 
-end
+end*/

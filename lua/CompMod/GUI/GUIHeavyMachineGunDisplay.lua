@@ -38,8 +38,8 @@ function GUIHeavyMachineGunDisplay:Initialize()
 
     // Slightly larger copy of the text for a glow effect
     self.ammoTextBg = GUIManager:CreateTextItem()
-    //self.ammoTextBg:SetFontName("fonts/MicrogrammaDMedExt_large.fnt")
-    self.ammoTextBg:SetFontName("fonts/HMGFont.fnt")
+    self.ammoTextBg:SetFontName(Fonts.kMicrogrammaDMedExt_Medium)
+    //self.ammoTextBg:SetFontName("fonts/HMGFont.fnt")
     self.ammoTextBg:SetScale(FontScaleVector * 1.1)
     self.ammoTextBg:SetFontIsBold(true)
     self.ammoTextBg:SetTextAlignmentX(GUIItem.Align_Center)
@@ -49,8 +49,8 @@ function GUIHeavyMachineGunDisplay:Initialize()
 
     // Text displaying the amount of ammo in the clip
     self.ammoText = GUIManager:CreateTextItem()
-    //self.ammoText:SetFontName("fonts/MicrogrammaDMedExt_large.fnt")
-    self.ammoText:SetFontName("fonts/HMGFont.fnt")
+    self.ammoText:SetFontName(Fonts.kMicrogrammaDMedExt_Medium)
+    //self.ammoText:SetFontName("fonts/HMGFont.fnt")
     self.ammoText:SetScale(FontScaleVector)
     self.ammoText:SetFontIsBold(true)
     self.ammoText:SetTextAlignmentX(GUIItem.Align_Center)
@@ -60,7 +60,8 @@ function GUIHeavyMachineGunDisplay:Initialize()
     
         // Slightly larger copy of the text for a glow effect
     self.ammoTextReserveBg = GUIManager:CreateTextItem()
-    self.ammoTextReserveBg:SetFontName("fonts/HMGFont.fnt")
+    //self.ammoTextReserveBg:SetFontName("fonts/HMGFont.fnt")
+	self.ammoTextReserveBg:SetFontName(Fonts.kMicrogrammaDMedExt_Medium)
 	self.ammoTextReserveBg:SetScale(FontScaleReserveVector * 1.1)
     self.ammoTextReserveBg:SetTextAlignmentX(GUIItem.Align_Center)
     self.ammoTextReserveBg:SetTextAlignmentY(GUIItem.Align_Center)
@@ -69,7 +70,8 @@ function GUIHeavyMachineGunDisplay:Initialize()
 
     // Text displaying the amount of ammo in the clip
     self.ammoTextReserve = GUIManager:CreateTextItem()
-    self.ammoTextReserve:SetFontName("fonts/HMGFont.fnt")
+    //self.ammoTextReserve:SetFontName("fonts/HMGFont.fnt")
+	self.ammoTextReserve:SetFontName(Fonts.kMicrogrammaDMedExt_Medium)
     self.ammoTextReserve:SetScale(FontScaleReserveVector)
     self.ammoTextReserve:SetTextAlignmentX(GUIItem.Align_Center)
     self.ammoTextReserve:SetTextAlignmentY(GUIItem.Align_Center)
@@ -87,7 +89,18 @@ function GUIHeavyMachineGunDisplay:Update(deltaTime)
     
     // Update the ammo counter.
     
-    local ammoFormat = string.format("%02d", self.weaponClip) 
+    local ammoFormat = string.format("%02d", self.weaponClip)
+	
+	if self.weaponClip == 100 and not self.smallfont then
+		self.ammoText:SetFontName(Fonts.kAgencyFB_Huge)
+		self.ammoTextBg:SetFontName(Fonts.kAgencyFB_Huge)
+		self.smallfont = true
+	elseif self.weaponClip < 100 and self.smallfont then
+		self.ammoText:SetFontName(Fonts.kMicrogrammaDMedExt_Medium)
+		self.ammoTextBg:SetFontName(Fonts.kMicrogrammaDMedExt_Medium)
+		self.smallfont = false
+	end
+	
     self.ammoText:SetText( ammoFormat )
     self.ammoTextBg:SetText( ammoFormat )
     
@@ -145,7 +158,7 @@ function Initialize()
 
     bulletDisplay = GUIHeavyMachineGunDisplay()
     bulletDisplay:Initialize()
-    bulletDisplay:SetClipSize(80)
+    bulletDisplay:SetClipSize(100)
 
 end
 
