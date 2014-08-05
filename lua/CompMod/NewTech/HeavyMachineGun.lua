@@ -55,7 +55,6 @@ local networkVars =
 }
 
 AddMixinNetworkVars(LiveMixin, networkVars)
-AddMixinNetworkVars(RifleVariantMixin, networkVars)
 
 local function DestroyMuzzleEffect(self)
 
@@ -138,7 +137,6 @@ function HeavyMachineGun:OnCreate()
 	InitMixin(self, PickupableWeaponMixin)
     InitMixin(self, EntityChangeMixin)
     InitMixin(self, LiveMixin)
-    InitMixin(self, RifleVariantMixin)
     
     if Client then
         InitMixin(self, ClientWeaponEffectsMixin)

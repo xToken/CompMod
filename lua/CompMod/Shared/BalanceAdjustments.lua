@@ -87,9 +87,9 @@ kFlamethrowerRange = 8				// Comp Mod change, lowered from 9.
 
 kLayMineWeight = 0.10				// Comp Mod change, decreased from 0.19.
 
-kHeavyMachineGunDamage = 6.5			// Comp Mod change, added HMG.
+kHeavyMachineGunDamage = 7.0		// Comp Mod change, added HMG.
 kHeavyMachineGunDamageType = kDamageType.Puncture	// Comp Mod change, added HMG.
-kHeavyMachineGunClipSize = 80		// Comp Mod change, added HMG.
+kHeavyMachineGunClipSize = 100		// Comp Mod change, added HMG.
 kHeavyMachineGunWeight = 0.21		// Comp Mod change, added HMG.
 kHeavyMachineGunCost = 20			// Comp Mod change, added HMG.
 kHeavyMachineGunDropCost = 25		// Comp Mod change, added HMG.
