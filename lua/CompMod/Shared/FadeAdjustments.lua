@@ -86,6 +86,15 @@ function Fade:GetMovementSpecialTechId()
     return kTechId.MetabolizeEnergy
 end
 
+function Fade:GetMovementSpecialCooldown()
+	local cd = 0
+	local ttm = (Shared.GetTime() - self.timeMetabolize)
+	if ttm < kMetabolizeDelay then
+		return Clamp(ttm / kMetabolizeDelay, 0, 1)
+	end
+	return cd
+end
+
 function Fade:GetCanMetabolizeHealth()
     return self:GetHasTwoHives()
 end

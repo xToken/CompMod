@@ -1,10 +1,20 @@
+// ======= Elixer v.1.72 ========
 //
-// Put this file in a subdirectory of your mod to avoid any conflicts
+//	Put this file in a UNIQUE subdirectory of your mod to avoid any conflicts with other
+//	mods that also include Elixer
 //
+//	Call Elixer.UseVersion( versionNumber ) before trying to call any of these functions 
+//	in your mod to ensure the right versions are loaded into memory
+//
+//	Example usage:
+//		ReplaceUpValue( GUIMinimap.Update, "UpdateStaticBlips", NewUpdateStaticBlips, { LocateRecurse = true; CopyUpValues = true; } )
+//		ReplaceUpValue( GUIMinimap.Initialize, "kBlipInfo", kBlipInfo, { LocateRecurse = true } )
+//
+// ==============================
 
 Script.Load( "lua/Class.lua" )
 
-local version = 1.5;
+local version = 1.72;
 
 Elixer = Elixer or {}
 Elixer.Debug = Elixer.Debug or false  
@@ -12,44 +22,67 @@ Elixer.Module = Elixer.Module or {}
 Elixer.Module[1.4] = Elixer.Module[1.4] or {} -- Backwards Compatibility
 Elixer.Module[1.3] = Elixer.Module[1.3] or {} -- Backwards Compatibility
 
-local function DPrint( string )
-	if Elixer.Debug then
-		Shared.Message( string )
-	end
+local function EPrint( fmt, ... )
+	local domain = Server and "Server" or Predict and "Predict" or Client and "Client" or "Unknown" 
+	Shared.Message( string.format( "[Elixer (%s)] "..tostring(fmt), domain, ... ) )
 end
+local function EPrintDebug( fmt, ... ) if Elixer.Debug then EPrint( fmt, ... ) end end
 
-function Elixer.UseVersion( version ) 
-	if Elixer.Version ~= version then
-		assert( Elixer.Module and Elixer.Module[version], "Elixer Utility v."..string.format("%.1f",version).." could not be found." )
-		Shared.Message( "[Elixer] Using Utility Scripts v."..string.format("%.1f",version) );
-		if Elixer.Version and Elixer.Module and Elixer.Module[Elixer.Version] then
-			for k,v in pairs( Elixer.Module[Elixer.Version] ) do
-				_G[k] = nil;
-			end
-		end
-		for k,v in pairs( Elixer.Module[version] ) do
-			_G[k] = v;
-		end
-		Elixer.Version = version;
-	end
-end
 
--- Already loaded, just apply the loaded version
+
 if Elixer.Module[version] then
-	DPrint( "[Elixer] Skipped Loading Utility Scripts v."..string.format("%.1f",version) )
+	-- Already loaded, just apply the loaded version
+	EPrintDebug( "[Elixer] Skipped Loading Utility Scripts v.%.2f",version )
 	Elixer.UseVersion( version )
 	return
 end
 
-Shared.Message( "[Elixer] Loading Utility Scripts v."..string.format("%.1f",version) );
 
+EPrint( "Loading Utility Scripts v.%.2f", version )
+
+
+-- Replace UseVersion func table if this is a newer version
+if type( Elixer.UseVersion ) ~= "table" or Elixer.UseVersion.Version < version then
+		
+	-- Create read-only func table
+	local readonly = 
+		{ 
+			UseVersion = setmetatable( { Version = version }, 
+			{ 
+				__call = 
+					function( t, version )
+						if Elixer.Version ~= version then
+							assert( Elixer.Module and Elixer.Module[version], string.format( "Elixer Utility v.%.2f could not be found.", version ) )
+							EPrint( "Using Utility Scripts v.%.2f", version )
+							if Elixer.Version and Elixer.Module and Elixer.Module[Elixer.Version] then
+								for k,v in pairs( Elixer.Module[Elixer.Version] ) do
+									_G[k] = nil;
+								end
+							end
+							for k,v in pairs( Elixer.Module[version] ) do
+								_G[k] = v;
+							end
+							Elixer.Version = version;
+						end
+					end;
+			})
+		}
+
+	-- Prevent overwrites from older versions of Elixer
+	setmetatable( Elixer, { __index = readonly; __newindex = function( t, k, v ) if rawget( readonly, k ) == nil then rawset(t,k,v) end end } )
+					
+end
+
+
+-- Begin loading functions for this version
 local ELIXER = {}
 
-function ELIXER.Class_AddMethod( className, methodName, method )
-	if _G[className][methodName] and _G[className][methodName] ~= method then
-		return
-	end
+ELIXER.EPrint = EPrint
+ELIXER.EPrintDebug = EPrintDebug
 
+function ELIXER.Class_AddMethod( className, methodName, method )
+	assert( _G[className][methodName] == nil or _G[className][methodName] == method, "Attempting to add new method when class already has one -- use Class_ReplaceMethod instead" )
+	
 	_G[className][methodName] = method
 
 	local classes = Script.GetDerivedClasses(className)
@@ -85,7 +118,7 @@ function ELIXER.PrintUpValues( func )
 		vals = vals and vals..", "..name or name
 	end
 
-	Shared.Message( "Upvalues for "..tostring(func)..": local "..vals );
+	EPrint( "Upvalues for "..tostring(func)..": local "..vals );
 
 end;
 
@@ -94,12 +127,12 @@ function ELIXER.GetUpValue( func, upname, options )
 	local _,val = LocateUpValue( func, upname, options );
 	return val;
 end;
-
-
+	
+	
 function ELIXER.LocateUpValue( func, upname, options )
 	for i,name,val in upvalues( func ) do
 		if name == upname then
-			DPrint( "LocateUpValue found "..upname )
+			EPrintDebug( "LocateUpValue found "..upname )
 			return func,val,i
 		end
 	end
@@ -109,7 +142,7 @@ function ELIXER.LocateUpValue( func, upname, options )
 			if type( innerfunc ) == "function" then
 				local r = { LocateUpValue( innerfunc, upname, options ) }
 				if #r > 0 then
-					DPrint( "\ttrace: "..name )
+					EPrintDebug( "\ttrace: "..name )
 					return unpack( r )
 				end
 			end
@@ -133,16 +166,16 @@ end;
 
 function ELIXER.SetUpValues( func, source )
 
-	DPrint( "Setting upvalue for "..tostring(func) )
+	EPrintDebug( "Setting upvalue for "..tostring(func) )
 
 	for i,name,val in upvalues( func ) do
 		if source[name] then
 			if val == nil then
-				DPrint( "Setting upvalue "..name.." to "..tostring(source[name]) )
+				EPrintDebug( "Setting upvalue "..name.." to "..tostring(source[name]) )
 				assert( val == nil )
 				debug.setupvalue( func, i, source[name] )
 			else
-				DPrint( "Upvalue "..name.." already overwritten by new function" )
+				EPrintDebug( "Upvalue "..name.." already overwritten by new function" )
 			end
 			source[name] = nil
 		end
@@ -150,7 +183,7 @@ function ELIXER.SetUpValues( func, source )
 
 	for name,v in pairs( source ) do
 		if v then
-			DPrint( "Upvalue "..name.." was not ported to new function. Was this intentional?" )
+			EPrintDebug( "Upvalue "..name.." was not ported to new function. Was this intentional?" )
 		end
 	end
 
@@ -168,7 +201,7 @@ end;
 function ELIXER.ReplaceUpValue( func, localname, newval, options )
 	local val,i;
 
-	DPrint( "Replacing upvalue "..localname )
+	EPrintDebug( "Replacing upvalue "..localname )
 
 	func, val, i = LocateUpValue( func, localname, options );
 
@@ -179,11 +212,12 @@ function ELIXER.ReplaceUpValue( func, localname, newval, options )
 	debug.setupvalue( func, i, newval )
 end;
 
+
 function ELIXER.AppendToEnum( tbl, key )
 	if rawget(tbl,key) ~= nil then
 		return
 	end
-
+	
 	local maxVal = 0
 	if tbl == kTechId then
 		maxVal = tbl.Max - 1
@@ -200,12 +234,47 @@ function ELIXER.AppendToEnum( tbl, key )
 			end
 		end
 	end	
-
+	
 	rawset( tbl, key, maxVal+1 )
 	rawset( tbl, maxVal+1, key )
-
+	
 end
 
-Elixer.Module[version] = ELIXER
-ELIXER = nil
+
+function ELIXER.list ( ... )
+	local argv = {...}
+	local argc = 0
+	for i,v in pairs( {...} ) do
+		if argc < i then
+			argc = i
+		end
+	end
+	
+	local t = {}
+	for i=1,argc do
+		t[i] = tostring(argv[i])
+	end
+	return table.concat( t, ", " )
+end
+
+
+local set_mt = { __index = function() return false; end }
+function ELIXER.set( tbl )
+	local ret = {}
+	for i,v in next,tbl do ret[v] = true end
+	return setmetatable( ret, set_mt )
+end
+
+
+function ELIXER.EPrintCallHook( class, name )
+	local old
+	old = Class_ReplaceMethod( class, name, function(...) 
+		EPrint( "%s.%s(%s) Called\n%s", class, name, list(...), debug.traceback() )
+		
+		return old(...) 
+	end)
+end
+
+
+Elixer.Module[version], ELIXER = ELIXER, nil
 Elixer.UseVersion( version );

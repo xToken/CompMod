@@ -106,7 +106,7 @@ kRailgunDamageType = kDamageType.Structural
 kRailgunCooldown = 1
 kRailgunBulletSize = 0.1			
 
-kCystBuildTime = 4					// Comp Mod change, decreased from 5.
+//kCystBuildTime = 4					// Comp Mod change, decreased from 5.
 
 Rupture.kDuration = 2.5				// Comp Mod change, lowered from 3.
 

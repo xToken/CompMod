@@ -1,26 +1,29 @@
 //Dont want to always replace random files, so this.
+//FJKLDHJFKLSJFKLSDJFLK: this is retarded, but I think it was broken because it was a local and the first one of these to be executed......
 
-local metabolize = 
-    {
-        metabolizeSounds = 
-        {
-            {player_sound = "", silenceupgrade = true, done = true},
-            {player_sound = "sound/compmod.fev/compmod/alien/fade/metabolize"}
-        }
-    }
+kNewWeaponEffects = 
+{
 
-local spores_fire = 
-    {
-        spores_fire = 
-        {
-            {player_sound = "", silenceupgrade = true, done = true},
-            {player_sound = "sound/compmod.fev/compmod/alien/lerk/spore_fire"}
-        }
-    }
+	metabolize = 
+	{
+		metabolize_sounds = 
+		{
+			{player_sound = "", silenceupgrade = true, done = true},
+			{player_sound = "sound/compmod.fev/compmod/alien/fade/metabolize"}
+		}
+	},
 
-table.insert(kAlienWeaponEffects, metabolize)
-table.insert(kAlienWeaponEffects, spores_fire)
+	spores_fire = 
+	{
+		spores_fire = 
+		{
+			{player_sound = "", silenceupgrade = true, done = true},
+			{player_sound = "sound/compmod.fev/compmod/alien/lerk/spore_fire"}
+		}
+	}
+	
+}
 
-GetEffectManager():AddEffectData("kAlienWeaponEffects", kAlienWeaponEffects)
+GetEffectManager():AddEffectData("NewWeaponEffects", kNewWeaponEffects)
 //This could cause havok :D:D
 GetEffectManager():PrecacheEffects()

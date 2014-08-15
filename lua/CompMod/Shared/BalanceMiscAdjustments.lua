@@ -16,16 +16,18 @@ kChargeEnergyCost = 30 				// Comp Mod change, decreased from 38.
 kReplaceUpgradeGestationTime = 4	// Comp Mod change, added this.
 kGrenadeAnimationSpeedIncrease = 2.75	// Comp Mod change, added this.
 
-kAlienHealRateTimeLimit = 1			// Comp Mod change, added alien healing rate limit.
-kAlienHealRateLimit = 100			// Comp Mod change, added alien healing rate limit.
-kAlienHealRatePercentLimit = .1		// Comp Mod change, added alien healing rate limit.
-kAlienHealRateOverLimitReduction = 1	// Comp Mod change, added alien healing rate limit.
-kOnFireHealingScalar = 0.5			// Comp Mod change, added this scalar.
+kAlienHealRateTimeLimit = 2				// Comp Mod change, added alien healing rate limit.  This is the window in which heals are monitored and limited.
+kAlienHealRateLimit = 1000				// Comp Mod change, added alien healing rate limit.  This is a purely numerical limit, not used atm.
+kAlienHealRatePercentLimit = .16		// Comp Mod change, added alien healing rate limit.  This is the limit currently in-place.
+kAlienHealRateOverLimitReduction = 0	// Comp Mod change, added alien healing rate limit.  This is what the healing is scaled against when limited.
+kOnFireHealingScalar = 0.5				// Comp Mod change, added this scalar.
 
 kCommanderResourceBlockTime = 0		// Comp Mod change, remove commander pres penalty.
 kResBlockTimer = 60					// Comp Mod change, will adjust res accordingly on team switch within this window of gamestart.
 
 Marine.kRunMaxSpeed = 5.75			// Comp Mod change, decreased from 6.
+kLerkFlapFrictionTime = 2			// Comp Mod change, time period which air friction slowly increases after last flap.
+kLerkFlapFrictionMod = 0.1			// Comp Mod change, amount of air friction to slowly add after last flap.
 
 Grenade.kMinLifeTime = 0			// Comp Mod change, lowered from 0.15
 
