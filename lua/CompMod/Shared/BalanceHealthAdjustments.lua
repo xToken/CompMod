@@ -26,6 +26,7 @@ kBabblerHealth = 5					// Comp Mod change, decreased from 10.
 kAlienRegenerationPercentage = 0.07	// Comp Mod change, increased from 4%
 //kAlienMinRegeneration = 6			// Comp Mod change, currently unchanged.
 kAlienMaxRegeneration = 80			// Comp Mod change, increased from 40.
+kAlienRegenBlockonDamage = 2		// Comp Mod change, taking damage disables regen.
 
 //kSkulkHealth = 70					// Comp Mod change, currently unchanged.
 //kSkulkArmor = 10					// Comp Mod change, currently unchanged.

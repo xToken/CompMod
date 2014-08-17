@@ -10,13 +10,16 @@ originalAlienGetIsHealableOverride = Class_ReplaceMethod("Alien", "UpdateAutoHea
 	function(self)
 	
 		PROFILE("Alien:UpdateAutoHeal")
-
-		if self:GetIsHealable() and ( not self.timeLastAlienAutoHeal or self.timeLastAlienAutoHeal + kAlienRegenerationTime <= Shared.GetTime() ) then
+		local stime = Shared.GetTime()
+		
+		if self:GetIsHealable() and ( not self.timeLastAlienAutoHeal or self.timeLastAlienAutoHeal + kAlienRegenerationTime <= stime ) then
 
 			local healRate = 1
-			local hasRegenUpgrade = GetHasRegenerationUpgrade(self) and not self:GetIsInCombat()
+			local hasRegenUpgrade = GetHasRegenerationUpgrade(self)
 			local shellLevel = GetShellLevel(self:GetTeamNumber())
 			local maxHealth = self:GetBaseHealth()
+			
+			hasRegenUpgrade = hasRegenUpgrade and (self.lastTakenDamageTime == nil or stime > self.lastTakenDamageTime + kAlienRegenBlockonDamage)
 			
 			if hasRegenUpgrade and shellLevel > 0 then
 				healRate = Clamp(kAlienRegenerationPercentage * maxHealth, kAlienMinRegeneration, kAlienMaxRegeneration) * (shellLevel/3)
@@ -29,7 +32,7 @@ originalAlienGetIsHealableOverride = Class_ReplaceMethod("Alien", "UpdateAutoHea
 			end
 
 			self:AddHealth(healRate, false, false, not hasRegenUpgrade)  
-			self.timeLastAlienAutoHeal = Shared.GetTime()
+			self.timeLastAlienAutoHeal = stime
 		
 		end 
 

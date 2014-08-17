@@ -26,8 +26,8 @@ kCommanderResourceBlockTime = 0		// Comp Mod change, remove commander pres penal
 kResBlockTimer = 60					// Comp Mod change, will adjust res accordingly on team switch within this window of gamestart.
 
 Marine.kRunMaxSpeed = 5.75			// Comp Mod change, decreased from 6.
-kLerkFlapFrictionTime = 2			// Comp Mod change, time period which air friction slowly increases after last flap.
-kLerkFlapFrictionMod = 0.1			// Comp Mod change, amount of air friction to slowly add after last flap.
+kLerkFlySoundUpdateRate = 0.1		// Comp Mod change, how often lerk glide sound updates.
+kLerkFlySoundMinSpeed = 5			// Comp Mod change, minimum speed for sound.
 
 Grenade.kMinLifeTime = 0			// Comp Mod change, lowered from 0.15
 
