@@ -10,6 +10,7 @@ local kUnlockIconParams = GetUpValue( GetUnlockIconParams,   "kUnlockIconParams"
 //Make adjustments
 kUnlockIconParams[kTechId.HeavyMachineGunTech] = { description = "Heavy Machine Gun Researched" }
 
+/*
 kUnlockIconParams[kTechId.BabblerTech] = { description = "Babblers Researched" }
 kUnlockIconParams[kTechId.WebTech] = { description = "Webs Researched" }
 
@@ -19,3 +20,4 @@ kUnlockIconParams[kTechId.Stab] = { description = "Stab Researched" }
 
 kUnlockIconParams[kTechId.Charge] = { description = "Charge Researched" }
 kUnlockIconParams[kTechId.BoneShield] = { description = "Boneshield Researched" }
+*/

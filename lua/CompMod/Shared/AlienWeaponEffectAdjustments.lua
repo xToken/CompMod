@@ -4,15 +4,6 @@
 kNewWeaponEffects = 
 {
 
-	metabolize = 
-	{
-		metabolize_sounds = 
-		{
-			{player_sound = "", silenceupgrade = true, done = true},
-			{player_sound = "sound/compmod.fev/compmod/alien/fade/metabolize"}
-		}
-	},
-
 	spores_fire = 
 	{
 		spores_fire = 

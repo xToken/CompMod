@@ -1,21 +1,5 @@
 //Dont want to always replace random files, so this.
 
-local function SetUserPlayedInGame(self, player)
-    
-	local owner = Server.GetOwner(player)
-	if owner then
-	
-		local userId = tonumber(owner:GetUserId())
-		
-		// Could be invalid if we're still connecting to Steam.
-		return table.insertunique(self.userIdsInGame, userId)
-		
-	end
-	
-	return false
-	
-end
-
 local relevantResearchIds = nil
 local function GetIsResearchRelevant(techId)
 
@@ -71,43 +55,3 @@ local function GetIsResearchRelevant(techId)
 end
 
 ReplaceLocals(PlayingTeam.OnResearchComplete, { GetIsResearchRelevant = GetIsResearchRelevant })
-
-// Comp Mod change, lower starting Pres to 15 for Aliens.
-function PlayingTeam:ResetTeam()
-    local initialTechPoint = self:GetInitialTechPoint()
-    local tower, commandStructure = self:SpawnInitialStructures(initialTechPoint)
-    self.conceded = false
-    return commandStructure
-end
-
-local oldMarineTeamResetTeam = MarineTeam.ResetTeam
-function MarineTeam:ResetTeam()
-	local commandStructure = oldMarineTeamResetTeam(self)
-	local players = GetEntitiesForTeam("Player", self:GetTeamNumber())
-	local initialTechPoint = self:GetInitialTechPoint()
-	local gamerules = GetGamerules()
-    for p = 1, #players do
-        local player = players[p]
-        player:OnInitialSpawn(initialTechPoint:GetOrigin())
-        player:SetResources(kMarineInitialIndivRes)
-		SetUserPlayedInGame(gamerules, player)
-    end
-	return commandStructure
-end
-
-function AlienTeam:ResetTeam()
-	local commandStructure = PlayingTeam.ResetTeam(self)
-	local players = GetEntitiesForTeam("Player", self:GetTeamNumber())
-	local initialTechPoint = self:GetInitialTechPoint()
-	local gamerules = GetGamerules()
-    for p = 1, #players do
-        local player = players[p]
-        player:OnInitialSpawn(initialTechPoint:GetOrigin())
-        player:SetResources(kAlienInitialIndivRes)
-		SetUserPlayedInGame(gamerules, player)
-    end
-	if commandStructure then
-        commandStructure:SetHotGroupNumber(1)
-    end 
-	return commandStructure
-end

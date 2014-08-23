@@ -1,25 +1,25 @@
 //BalanceHealth.lua changes
 
-kObservatoryHealth = 700			// Comp Mod change, lowered from 1700.
-kObservatoryArmor = 500				// Comp Mod change, increased from 0.
+//kObservatoryHealth = 700			// Comp Mod change, unchanged.
+//kObservatoryArmor = 500			// Comp Mod change, unchanged.
 kPhaseGateHealth = 1500				// Comp Mod change, lowered from 3100.
 kPhaseGateArmor = 800				// Comp Mod change, increased from 0.
-kInfantryPortalHealth = 1525		// Comp Mod change, lowered from 2250.
-kInfantryPortalArmor = 500			// Comp Mod change, increased from 125.
-kArmsLabHealth = 1650				// Comp Mod change, lowered from 2200.
-kArmsLabArmor = 500					// Comp Mod change, increased from 225.
-kPrototypeLabHealth = 3000			// Comp Mod change, decreased from 3200.
-kPrototypeLabArmor = 500			// Comp Mod change, increased from 400 and fixed bug preventing this from applying.
+//kInfantryPortalHealth = 1525		// Comp Mod change, unchanged.
+//kInfantryPortalArmor = 500		// Comp Mod change, unchanged.
+//kArmsLabHealth = 1650				// Comp Mod change, unchanged.
+//kArmsLabArmor = 500				// Comp Mod change, unchanged.
+//kPrototypeLabHealth = 3000		// Comp Mod change, unchanged.
+//kPrototypeLabArmor = 500			// Comp Mod change, unchanged.
 
-kMatureCystHealth = 450 			// Comp Mod change, lowered Cyst HP from 550.
+//kMatureCystHealth = 450 			// Comp Mod change, unchanged.
 kTunnelEntranceHealth = 900			// Comp Mod change, lowered tunnels cost and HP.
 kTunnelEntranceArmor = 0			// Comp Mod change, lowered tunnels cost and HP.
 kMatureTunnelEntranceHealth = 1000	// Comp Mod change, lowered tunnels cost and HP.
 kMatureTunnelEntranceArmor = 125	// Comp Mod change, lowered tunnels cost and HP.
-kBoneWallHealth = 100				// Comp Mod change, lowered from 300.
-kBoneWallArmor = 0					// Comp Mod change, lowered from 300.
-kBoneWallHealthPerBioMass = 100		// Comp Mod change, added this value.
-kContaminationHealth = 1000			// Comp Mod change, decreased from 2000.
+//kBoneWallHealth = 100				// Comp Mod change, unchanged.
+//kBoneWallArmor = 0				// Comp Mod change, unchanged.
+//kBoneWallHealthPerBioMass = 100	// Comp Mod change, unchanged.
+//kContaminationHealth = 1000		// Comp Mod change, unchanged.
 kBabblerHealth = 5					// Comp Mod change, decreased from 10.
 //kBabblerArmor = 0					// Comp Mod change, unchanged.
 
@@ -47,3 +47,5 @@ kFadeHealthPerBioMass = 12			// Comp Mod change, increased from 5.
 //kOnosHealth = 900					// Comp Mod change, currently unchanged.
 //kOnosArmor = 450					// Comp Mod change, currently unchanged.
 kOnosHealtPerBioMass = 35			// Comp Mod change, increased from 25.
+
+kExosuitArmor = 280					// Comp Mod change, decreased from 320.

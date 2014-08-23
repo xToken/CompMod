@@ -98,8 +98,8 @@ function BuildConnectMessage(isMale, marineVariant, skulkVariant, gorgeVariant, 
     t.gorgeVariant = gorgeVariant
     t.lerkVariant = lerkVariant
     t.shoulderPadIndex = shoulderPadIndex
-	t.exoVariant = exoVariant
-	t.rifleVariant = rifleVariant
+    t.exoVariant = exoVariant
+    t.rifleVariant = rifleVariant
     return t
     
 end
@@ -112,8 +112,8 @@ local kConnectMessage =
     gorgeVariant = "enum kGorgeVariant",
     lerkVariant = "enum kLerkVariant",
     shoulderPadIndex = string.format("integer (0 to %d)",  #kShoulderPad2ProductId),
-	exoVariant = "enum kExoVariant",
-	rifleVariant = "enum kRifleVariant"
+    exoVariant = "enum kExoVariant",
+    rifleVariant = "enum kRifleVariant"
 }
 Shared.RegisterNetworkMessage("ConnectMessage", kConnectMessage)
 
@@ -348,7 +348,7 @@ local kMaxPing = 999
 
 local kPingMessage = 
 {
-    clientIndex = "integer (-1 to 4000)",
+    clientIndex = "entityid",
     ping = "integer (0 to " .. kMaxPing .. ")"
 }
 
@@ -626,7 +626,7 @@ end
 
 local kMutePlayerMessage = 
 {
-    muteClientIndex = "integer (-1 to 4000)",
+    muteClientIndex = "entityid",
     setMute = "boolean"
 }
 
@@ -1049,7 +1049,7 @@ Shared.RegisterNetworkMessage("ScoreUpdate", kScoreUpdate)
 Shared.RegisterNetworkMessage("SpectatePlayer", { entityId = "entityid"})
 Shared.RegisterNetworkMessage("SwitchFromFirstPersonSpectate", { mode = "enum kSpectatorMode" })
 Shared.RegisterNetworkMessage("SwitchFirstPersonSpectatePlayer", { forward = "boolean" })
-Shared.RegisterNetworkMessage("SetClientIndex", { clientIndex = "integer (-1 to 4000)" })
+Shared.RegisterNetworkMessage("SetClientIndex", { clientIndex = "entityid" })
 Shared.RegisterNetworkMessage("ServerHidden", { hidden = "boolean" })
 Shared.RegisterNetworkMessage("SetClientTeamNumber", { teamNumber = string.format("integer (-1 to %d)", kRandomTeamType) })
 Shared.RegisterNetworkMessage("WaitingForAutoTeamBalance", { waiting = "boolean" })

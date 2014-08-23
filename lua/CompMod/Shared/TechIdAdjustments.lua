@@ -1,6 +1,5 @@
 
-for _, v in ipairs( { 'Return', 'GorgeTunnelEntrance', 'GorgeTunnelExit', 'EvolutionChamber', 
-					  'MetabolizeEnergy', 'MetabolizeHealth', 'HeavyMachineGunTech', 'HeavyMachineGun', 'DropHeavyMachineGun', 'ExoWelder' } ) do
+for _, v in ipairs( { 'GorgeTunnelEntrance', 'GorgeTunnelExit', 'HeavyMachineGunTech', 'HeavyMachineGun', 'DropHeavyMachineGun', 'ExoWelder' } ) do
 	AppendToEnum( kTechId, v )
 end
 
@@ -15,33 +14,6 @@ local function AddCompModTechChanges(techData)
 	table.insert(techData, { 	[kTechDataId] = kTechId.Return,
 								[kTechDataDisplayName] = "Return",
 								[kTechDataTooltipInfo] = "Returns to previous menu."})
-								
-	table.insert(techData, { 	[kTechDataId] = kTechId.MetabolizeEnergy,           
-								[kTechDataCategory] = kTechId.Fade,
-								[kTechDataMapName] = Metabolize.kMapName,
-								[kTechDataCostKey] = kMetabolizeEnergyResearchCost, 
-								[kTechDataResearchTimeKey] = kMetabolizeEnergyResearchTime,        
-								[kTechDataDisplayName] = "Metabolize", 
-								[kTechDataTooltipInfo] = "Allows fades to regen energy faster."})
-
-	table.insert(techData, { 	[kTechDataId] = kTechId.MetabolizeHealth,           
-								[kTechDataCategory] = kTechId.Fade,        
-								[kTechDataCostKey] = kMetabolizeHealthResearchCost, 
-								[kTechDataResearchTimeKey] = kMetabolizeHealthResearchTime,          
-								[kTechDataDisplayName] = "Advanced Metabolize", 
-								[kTechDataTooltipInfo] = "Allows fades to regen health and energy."})
-								
-	table.insert(techData, { 	[kTechDataId] = kTechId.EvolutionChamber,    
-								[kTechDataHint] = "Evolution Chamber", 
-								[kTechDataGhostModelClass] = "AlienGhostModel",    
-								[kTechDataMapName] = EvolutionChamber.kMapName,                         
-								[kTechDataDisplayName] = "Evolution Chamber",  
-								[kTechDataCostKey] = 0,         
-								[kTechDataBuildTime] = 0, 
-								[kTechDataModel] = EvolutionChamber.kModelName,           
-								[kTechDataMaxHealth] = 0, 
-								[kTechDataMaxArmor] = 0,    
-								[kTechDataTooltipInfo] = "Evolution Chamber"})
 								
 	table.insert(techData, { 	[kTechDataId] = kTechId.GorgeTunnelEntrance,
 								[kTechDataCategory] = kTechId.Gorge,
