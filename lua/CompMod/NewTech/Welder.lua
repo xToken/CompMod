@@ -142,7 +142,12 @@ function Welder:OnPrimaryAttack(player)
     
         self:TriggerEffects("welder_start")
         self.timeWeldStarted = Shared.GetTime()
-        
+		
+		if self.timeLastWeld + kWelderFireDelay < Shared.GetTime() then
+			//Doh.
+			self.timeLastWeld = Shared.GetTime() - kWelderFireDelay - 0.001
+		end
+        		
         if Server then
             self.loopingFireSound:Start()
         end
@@ -152,7 +157,7 @@ function Welder:OnPrimaryAttack(player)
     self.welding = true
     local hitPoint = nil
     
-    if self.timeLastWeld + kWelderFireDelay < Shared.GetTime () then
+    if self.timeLastWeld + kWelderFireDelay < Shared.GetTime() then
     
         hitPoint = self:PerformWeld(player)
 		
@@ -296,10 +301,10 @@ function Welder:PerformWeld(player)
 
     local attackDirection = player:GetViewCoords().zAxis
     local success = false
-	local endpoint
-	success, endpoint = CheckForTeammatesToWeld(self, player, attackDirection)
+	local endPoint
+	success, endPoint = CheckForTeammatesToWeld(self, player, attackDirection)
 	if not success then
-		success, endpoint = CheckForEnemiesToDamage(self, player, attackDirection)
+		success, endPoint = CheckForEnemiesToDamage(self, player, attackDirection)
 	end    
     if success then
 		self.lasthitcoords = Coords.GetTranslation(endPoint - attackDirection * .1)
