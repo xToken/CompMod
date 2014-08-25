@@ -143,7 +143,7 @@ kBabblersResearchTime = 45				// Comp Mod change, added this.
 //kStompResearchTime = 60				// Comp Mod change, unchanged.
 
 //Apply Umbra Changes
-local kUmbraModifier = GetUpValue( UmbraMixin.ModifyDamageTaken,   "kUmbraModifier", { LocateRecurse = true } )
+local kUmbraModifier = GetUpValue( UmbraMixin.ModifyDamageTaken,   "kUmbraModifier" )
 kUmbraModifier["Shotgun"] = kUmbraShotgunModifier
 kUmbraModifier["Rifle"] = kUmbraBulletModifier
 kUmbraModifier["Pistol"] = kUmbraBulletModifier

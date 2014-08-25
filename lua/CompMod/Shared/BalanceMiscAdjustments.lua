@@ -26,6 +26,7 @@ Marine.kRunMaxSpeed = 5.75				// Comp Mod change, decreased from 6.
 kLerkFlySoundUpdateRate = 0.1			// Comp Mod change, how often lerk glide sound updates.
 kLerkFlySoundMinSpeed = 6				// Comp Mod change, minimum speed for sound.
 kLerkAirBrakeSpeedDecrease = 8			// Comp Mod change, added lerk air brake.
+kLerkWallGripMaxSpeed = 2				// Comp Mod change, maximum speed for WallGrip.
 
 Grenade.kMinLifeTime = 0				// Comp Mod change, lowered from 0.15
 

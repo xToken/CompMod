@@ -107,6 +107,43 @@ originalLerkModifyVelocity = Class_ReplaceMethod("Lerk", "ModifyVelocity",
 	end
 )
 
+function Lerk:PreUpdateMove(input, runningPrediction)
+
+    PROFILE("Lerk:PreUpdateMove")
+
+    local wallGripPressed = bit.band(input.commands, Move.MovementModifier) ~= 0 and bit.band(input.commands, Move.Jump) == 0
+    local wallGripDesired = self:GetVelocityLength() <= kLerkWallGripMaxSpeed and input.move.z == 0
+	
+    if not self:GetIsWallGripping() and wallGripPressed and self.wallGripAllowed and wallGripDesired then
+
+        // check if we can grab anything around us
+        local wallNormal = self:GetAverageWallWalkingNormal(Lerk.kWallGripRange, Lerk.kWallGripFeelerSize)
+        
+        if wallNormal then
+        
+            self.wallGripTime = Shared.GetTime()
+            self.wallGripNormalGoal = wallNormal
+            self:SetVelocity(Vector(0,0,0))
+            
+        end
+    
+    else
+        
+        // we always abandon wall gripping if we flap (even if we are sliding to a halt)
+        local breakWallGrip = bit.band(input.commands, Move.Jump) ~= 0 or input.move:GetLength() > 0 or self:GetCrouching()
+        
+        if breakWallGrip then
+        
+            self.wallGripTime = 0
+            self.wallGripNormal = nil
+            self.wallGripAllowed = false
+            
+        end
+        
+    end
+    
+end
+
 local networkVars = { flySoundId = "entityid" }
 
 Shared.LinkClassToMap("Lerk", Lerk.kMapName, networkVars, true)

@@ -1,4 +1,7 @@
 //Dont want to always replace random files, so this.
+//fffffffffffffffffff
+
+local kUmbraModifier = GetUpValue( UmbraMixin.ModifyDamageTaken,   "kUmbraModifier" )
 
 function UmbraMixin:ModifyDamageTaken(damageTable, attacker, doer, damageType)
 
