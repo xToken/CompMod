@@ -92,7 +92,7 @@ kFlamethrowerRange = 8				// Comp Mod change, lowered from 9.
 kWelderStructureDamagePerSecond = 50	// Comp Mod change, added this for adjusted welder.
 kWelderDamagePerSecond = 30			// Comp Mod change, unchanged.
 kWelderFriendlyRange = 2.4			// Comp Mod change, unchanged.
-kWelderAttackRange = 1				// Comp Mod change, added this.
+kWelderAttackRange = 1.7				// Comp Mod change, added this.
 
 kHeavyMachineGunDamage = 14.0		// Comp Mod change, added HMG.
 kHeavyMachineGunDamageType = kDamageType.Normal	// Comp Mod change, added HMG.
