@@ -157,7 +157,7 @@ function Welder:OnPrimaryAttack(player)
         hitPoint = self:PerformWeld(player)
 		
 		//This prevents drift.
-        self.timeLastWeld = self.timeLastWeld - kWelderFireDelay
+        self.timeLastWeld = self.timeLastWeld + kWelderFireDelay
         
     end
     
@@ -211,7 +211,7 @@ function Welder:Dropped(prevOwner)
 end
 
 function Welder:GetRange()
-	return kWelderRange
+	return kWelderFriendlyRange
 end
 
 // repair rate increases over time
@@ -268,6 +268,7 @@ local function CheckForTeammatesToWeld(self, player, attackDirection)
                 target:Construct(kWelderFireDelay, player)
 				success = true
             end
+			self.lasthitclassName = target:GetClassName()
 		end
 	end
 	self.friendlies = false
@@ -285,6 +286,7 @@ local function CheckForEnemiesToDamage(self, player, attackDirection)
 				self:DoDamage(kWelderDamagePerSecond * kWelderFireDelay, target, endPoint, attackDirection)
 			end
             success = true
+			self.lasthitclassName = target:GetClassName()
 		end
 	end
 	return success, endPoint
@@ -299,10 +301,14 @@ function Welder:PerformWeld(player)
 	if not success then
 		success, endpoint = CheckForEnemiesToDamage(self, player, attackDirection)
 	end    
-    if success then    
-        return endPoint
+    if success then
+		self.lasthitcoords = Coords.GetTranslation(endPoint - attackDirection * .1)
+	else
+		self.lasthitcoords = nil
+		self.lasthitclassName = nil
     end
-    
+    return endPoint
+	
 end
 
 function Welder:GetShowDamageIndicator()
@@ -352,20 +358,15 @@ function Welder:OnUpdateRender()
     if parent and self.welding then
 
         if (not self.timeLastWeldHitEffect or self.timeLastWeldHitEffect + 0.06 < Shared.GetTime()) then
-        
-            local viewCoords = parent:GetViewCoords()
-        
-            local trace = Shared.TraceRay(viewCoords.origin, viewCoords.origin + viewCoords.zAxis * self:GetRange(), CollisionRep.Damage, PhysicsMask.Flame, EntityFilterTwo(self, parent))
-            if trace.fraction ~= 1 then
+         
+            if self.lasthitcoords then
             
-                local coords = Coords.GetTranslation(trace.endPoint - viewCoords.zAxis * .1)
-                
                 local className = nil
-                if trace.entity then
-                    className = trace.entity:GetClassName()
+                if self.lasthitclassName then
+                    className = self.lasthitclassName
                 end
                 
-                self:TriggerEffects("welder_hit", { classname = className, effecthostcoords = coords})
+                self:TriggerEffects("welder_hit", { classname = className, effecthostcoords = self.lasthitcoords})
                 
             end
             
