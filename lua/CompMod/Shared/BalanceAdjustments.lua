@@ -88,7 +88,11 @@ kFlamethrowerClipSize = 30			// Comp Mod change, lowered from 50.
 kFlamethrowerDamage = 10			// Comp Mod change, lowered to 10.
 kFlamethrowerRange = 8				// Comp Mod change, lowered from 9.
 
-//kLayMineWeight = 0.10				// Comp Mod change, unchanged.
+//kLayMineWeight = 0.10					// Comp Mod change, unchanged.
+kWelderStructureDamagePerSecond = 30	// Comp Mod change, added this for adjusted welder.
+kWelderDamagePerSecond = 30			// Comp Mod change, unchanged.
+kWelderFriendlyRange = 2.4			// Comp Mod change, unchanged.
+kWelderAttackRange = 1				// Comp Mod change, added this.
 
 kHeavyMachineGunDamage = 14.0		// Comp Mod change, added HMG.
 kHeavyMachineGunDamageType = kDamageType.Normal	// Comp Mod change, added HMG.

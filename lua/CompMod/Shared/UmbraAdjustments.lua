@@ -9,10 +9,11 @@ function UmbraMixin:ModifyDamageTaken(damageTable, attacker, doer, damageType)
     
         local modifier = 1
         if doer then
+			local umbraDR = kUmbraModifier[doer:GetClassName()] or 1
 			if HasMixin(self, "Fire") and self:GetIsOnFire() then
-				modifier = 1 - ((1 - kUmbraModifier[doer:GetClassName()] or 1) * kUmbraOnFireReduction)
+				modifier = 1 - ((1 - umbraDR) * kUmbraOnFireReduction)
 			else
-				modifier = kUmbraModifier[doer:GetClassName()] or 1
+				modifier = umbraDR
 			end
         end
     
