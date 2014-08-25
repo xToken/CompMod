@@ -112,7 +112,7 @@ function Lerk:PreUpdateMove(input, runningPrediction)
     PROFILE("Lerk:PreUpdateMove")
 
     local wallGripPressed = bit.band(input.commands, Move.MovementModifier) ~= 0 and bit.band(input.commands, Move.Jump) == 0
-    local wallGripDesired = self:GetVelocity():GetLengthXZ() <= kLerkWallGripMaxSpeed and input.move.z == 0
+    local wallGripDesired = self:GetVelocity():GetLengthXZ() <= kLerkWallGripMaxSpeed or input.move.z == 0
 	
     if not self:GetIsWallGripping() and wallGripPressed and self.wallGripAllowed and wallGripDesired then
 
