@@ -89,7 +89,7 @@ kFlamethrowerDamage = 10			// Comp Mod change, lowered to 10.
 kFlamethrowerRange = 8				// Comp Mod change, lowered from 9.
 
 //kLayMineWeight = 0.10					// Comp Mod change, unchanged.
-kWelderStructureDamagePerSecond = 30	// Comp Mod change, added this for adjusted welder.
+kWelderStructureDamagePerSecond = 50	// Comp Mod change, added this for adjusted welder.
 kWelderDamagePerSecond = 30			// Comp Mod change, unchanged.
 kWelderFriendlyRange = 2.4			// Comp Mod change, unchanged.
 kWelderAttackRange = 1				// Comp Mod change, added this.
