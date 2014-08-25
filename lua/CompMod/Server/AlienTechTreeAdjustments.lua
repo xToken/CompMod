@@ -183,7 +183,8 @@ function AlienTeam:InitTechTree()
     
     // gorge researches
     self.techTree:AddBuyNode(kTechId.BabblerAbility,        kTechId.None)
-	self.techTree:AddBuyNode(kTechId.BabblerEgg,            	kTechId.None)
+	self.techTree:AddBuyNode(kTechId.BabblerEgg,            kTechId.None)
+	self.techTree:AddBuyNode(kTechId.Web,        			kTechId.WebTech)
 	//self.techTree:AddResearchNode(kTechId.BabblerTech,            	kTechId.BioMassOne, kTechId.None, kTechId.AllAliens)
     self.techTree:AddResearchNode(kTechId.BileBomb,              kTechId.BioMassThree, kTechId.None, kTechId.AllAliens)
     self.techTree:AddResearchNode(kTechId.WebTech,                   kTechId.BioMassSeven, kTechId.None, kTechId.AllAliens)

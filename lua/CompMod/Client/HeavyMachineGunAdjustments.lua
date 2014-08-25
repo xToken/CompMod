@@ -1,4 +1,5 @@
 //Dont want to always replace random files, so this.
+Script.Load("lua/Hud/GUIEvent.lua")
 
 local function SetupGUIMarineBuymenu()
 	local GetSmallIconPixelCoordinates 		= GetUpValue( GUIMarineBuyMenu._InitializeEquipped,   "GetSmallIconPixelCoordinates", 			{ LocateRecurse = true } )
@@ -19,6 +20,15 @@ MarineBuy_GetWeaponDescription(kTechId.Rifle)
 local gWeaponDescription = GetUpValue( MarineBuy_GetWeaponDescription,   "gWeaponDescription" )
 //Add HMG
 gWeaponDescription[kTechId.HeavyMachineGun] = "Heavy Machine Gun"
+
+//This isnt actually loaded as a GUIScript, more as a resource.
+local GetUnlockIconParams = GetUpValue( GUIEvent.UpdateUnlockDisplay,   "GetUnlockIconParams" )
+//Build table
+GetUnlockIconParams(kTechId.Armor1)
+//Get the table
+local kUnlockIconParams = GetUpValue( GetUnlockIconParams,   "kUnlockIconParams" )
+//Make adjustments
+kUnlockIconParams[kTechId.HeavyMachineGunTech] = { description = "Heavy Machine Gun Researched" }
 
 //Build table
 local GetDisplayTechId = GetUpValue( MarineBuy_GetEquipped,   "GetDisplayTechId")

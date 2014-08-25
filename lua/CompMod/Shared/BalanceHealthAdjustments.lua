@@ -37,15 +37,15 @@ kAlienRegenBlockonDamage = 2		// Comp Mod change, taking damage disables regen.
 //kGorgeHealthPerBioMass = 2		// Comp Mod change, currently unchanged.
 
 //kLerkHealth = 125					// Comp Mod change, currently unchanged.
-//kLerkArmor = 45	    			// Comp Mod change, currently unchanged.
-kLerkHealthPerBioMass = 5			// Comp Mod change, increased from 2.
+kLerkArmor = 40	    				// Comp Mod change, decreased from 45.
+kLerkHealthPerBioMass = 3			// Comp Mod change, increased from 2.
 
 //kFadeHealth = 250					// Comp Mod change, currently unchanged.
 //kFadeArmor = 80     				// Comp Mod change, currently unchanged.
-kFadeHealthPerBioMass = 12			// Comp Mod change, increased from 5.
+//kFadeHealthPerBioMass = 5			// Comp Mod change, currently unchanged.
 
 //kOnosHealth = 900					// Comp Mod change, currently unchanged.
 //kOnosArmor = 450					// Comp Mod change, currently unchanged.
-kOnosHealtPerBioMass = 35			// Comp Mod change, increased from 25.
+kOnosHealtPerBioMass = 30			// Comp Mod change, increased from 25.
 
 kExosuitArmor = 280					// Comp Mod change, decreased from 320.

@@ -1,5 +1,5 @@
 
-for _, v in ipairs( { 'GorgeTunnelEntrance', 'GorgeTunnelExit', 'HeavyMachineGunTech', 'HeavyMachineGun', 'DropHeavyMachineGun', 'ExoWelder' } ) do
+for _, v in ipairs( { 'GorgeTunnelEntrance', 'GorgeTunnelExit', 'HeavyMachineGunTech', 'HeavyMachineGun', 'DropHeavyMachineGun' } ) do
 	AppendToEnum( kTechId, v )
 end
 
@@ -10,11 +10,7 @@ AppendToEnum( kPlayerStatus, 'HMG' )
 //Tables, functions, threads, and (full) userdata values are objects: variables do not actually contain these values, only references to them.
 
 local function AddCompModTechChanges(techData)
-	// Comp Mod change, add tech crap
-	table.insert(techData, { 	[kTechDataId] = kTechId.Return,
-								[kTechDataDisplayName] = "Return",
-								[kTechDataTooltipInfo] = "Returns to previous menu."})
-								
+	// Comp Mod change, add tech crap								
 	table.insert(techData, { 	[kTechDataId] = kTechId.GorgeTunnelEntrance,
 								[kTechDataCategory] = kTechId.Gorge,
 								[kTechDataMaxExtents] = Vector(1.2, 1.2, 1.2),
@@ -81,27 +77,12 @@ local function AddCompModTechChanges(techData)
 								[kTechDataDisplayName] = "Research Heavy Machine Gun", 
 								[kTechDataTooltipInfo] =  "Heavy Machine Gun"})
 								
-	table.insert(techData, { 	[kTechDataId] = kTechId.ExoWelder,
-								[kTechDataMapName] = ExoWelder.kMapName,  
-								[kTechDataDamageType] = kWelderDamageType,
-								[kTechDataDisplayName] = "Exo Welder", 
-								[kTechDataTooltipInfo] =  "Exo Welder"})
-								
 	for index, record in ipairs(techData) do 
         if record[kTechDataId] == kTechId.BabblerTech then
 			record[kTechDataCostKey] = kBabblersResearchCost	
 			record[kTechDataResearchTimeKey] = kBabblersResearchTime
 			record[kTechDataDisplayName] = "Babblers"
 			record[kTechDataTooltipInfo] = "Allows gorges to create babblers."
-		end
-		if record[kTechDataId] == kTechId.WebTech then
-			record[kTechDataCostKey] = kWebResearchCost	
-			record[kTechDataResearchTimeKey] = kWebResearchTime
-			record[kTechDataDisplayName] = "Webs"
-			record[kTechDataTooltipInfo] = "Allows gorges to create webs."
-		end
-		if record[kTechDataId] == kTechId.PrototypeLab then
-			record[kTechDataMaxArmor] = kPrototypeLabArmor
 		end
 		if record[kTechDataId] == kTechId.DropFlamethrower then
 			record[kStructureAttachId] = { kTechId.Armory, kTechId.AdvancedArmory }

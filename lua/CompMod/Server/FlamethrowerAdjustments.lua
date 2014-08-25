@@ -60,24 +60,6 @@ function Whip:UpdateOrders(deltaTime)
 	self.BlockFireState = false
 end
 
-/*local oldAiSlapAttackTypeIsValid = AiSlapAttackType.IsValid
-function AiSlapAttackType:IsValid()
-	local isValid
-    self.BlockFireState = true
-    isValid = oldAiSlapAttackTypeIsValid(self)
-	self.BlockFireState = false
-	return isValid
-end
-
-local oldAiBombardAttackTypeIsValid = AiBombardAttackType.IsValid
-function AiBombardAttackType:IsValid()
-	local isValid
-    self.BlockFireState = true
-    isValid = oldAiBombardAttackTypeIsValid(self)
-	self.BlockFireState = false
-	return isValid
-end*/
-
 local oldHydraOnUpdate = Hydra.OnUpdate
 function Hydra:OnUpdate(deltaTime)
     self.BlockFireState = true

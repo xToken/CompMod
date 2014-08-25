@@ -7,58 +7,6 @@ function Egg:GetTechButtons(techId)
     return techButtons
 end
 
-TeamInfo.kRelevantTechIdsAlien =
-{
-    
-    kTechId.GorgeTunnelTech,
-    
-    kTechId.CragHive,
-    kTechId.UpgradeToCragHive,
-    kTechId.Shell,
-    kTechId.TwoShells,
-    kTechId.ThreeShells,
-    
-    kTechId.ShadeHive,
-    kTechId.UpgradeToShadeHive,
-    kTechId.Veil,
-    kTechId.TwoVeils,
-    kTechId.ThreeVeils,
-    
-    kTechId.ShiftHive,
-    kTechId.UpgradeToShiftHive,
-    kTechId.Spur,
-    kTechId.TwoSpurs,
-    kTechId.ThreeSpurs,
-    
-    kTechId.ResearchBioMassOne,
-    kTechId.ResearchBioMassTwo,
-    
-    kTechId.BabblerTech,
-	
-	kTechId.MetabolizeEnergy,
-	
-	kTechId.Charge,
-	
-	kTechId.BileBomb,
-	
-	kTechId.Leap,
-	
-	kTechId.Umbra,
-	
-	kTechId.MetabolizeHealth,
-	
-	kTechId.BoneShield,
-	
-	kTechId.Spores,
-	
-	kTechId.Stab,
-	
-	kTechId.WebTech,
-	
-	kTechId.Stomp,
-	
-	kTechId.Xenocide	
-}
 /*
 function BabblerEggAbility:IsAllowed(player)
 	return GetHasTech(player, kTechId.BabblerTech)
@@ -69,9 +17,10 @@ function Babbler:GetCanBeHealedOverride()
     return false
 end
 
+/*
 function WebsAbility:IsAllowed(player)
 	return GetHasTech(player, kTechId.WebTech)
-end
+end*/
 
 local oldBuildClassToGrid = BuildClassToGrid
 function BuildClassToGrid()

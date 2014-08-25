@@ -1,11 +1,5 @@
 //Dont want to always replace random files, so this.
 
-local function SetupFlamethrowerGUI()
-	local oldGUIFlamethrowerDisplayInitialize = GUIFlamethrowerDisplay.Initialize
-	function GUIFlamethrowerDisplay:Initialize()
-		oldGUIFlamethrowerDisplayInitialize(self)
-		self.maxClip = kFlamethrowerClipSize
-	end
+function Flamethrower:GetUIDisplaySettings()
+	return { xSize = 128, ySize = 256, script = "lua/CompMod/GUI/GUIFlamethrowerDisplay.lua" }
 end
-
-AddPreInitOverride("GUIFlamethrowerDisplay", SetupGUIMarineBuymenu)

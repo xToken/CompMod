@@ -24,8 +24,9 @@
 //kFadeCost = 35						// Comp Mod change, unchanged.
 //kOnosCost = 55						// Comp Mod change, unchanged.
 
-kExosuitCost = 25					// Comp Mod change, lowered pres cost from 40.
-kExosuitScale = 0.85				// Comp Mod change, scaled down exos a bit.
+kDualExosuitCost = 35				// Comp Mod change, lowered pres cost from 60.
+kDualRailgunExosuitCost = 35		// Comp Mod change, lowered pres cost from 60.
+kExosuitTechResearchCost = 25		// Comp Mod change, increased from 20 tres.
 
 kGorgeTunnelCost = 3				// Comp Mod change, lowered tunnels cost and HP.
 kNumBabblerEggsPerGorge = 2			// Comp Mod change, adjusted babblers per egg and cost, down from 3.
@@ -40,6 +41,7 @@ kUmbraShotgunModifier = 0.75		// Comp Mod change, decreased reduction from .36 t
 kUmbraBulletModifier = 0.75			// Comp Mod change, unchanged.
 kUmbraMinigunModifier = 0.75		// Comp Mod change, decreased reduction from .3 to .25.
 kUmbraRailgunModifier = 0.75		// Comp Mod change, decreased reduction from .32 to .25.
+kUmbraOnFireReduction = 0.50		// Comp Mod change, added this.
 
 //kMetabolizeEnergyCost = 25			// Comp Mod change, unchanged.
 //kMetabolizeDelay = 2.0				// Comp Mod change, unchanged.
@@ -68,7 +70,7 @@ kNanoShieldCost = 3					// Comp Mod change, decreased from 5.
 //kAdvancedArmoryUpgradeCost = 20		// Comp Mod change, unchanged.
 kArmsLabCost = 20			// Comp Mod change, increased to 20.
 
-kHeavyMachineGunTechResearchCost = 15	// Comp Mod change, added HMG research.
+kHeavyMachineGunTechResearchCost = 10	// Comp Mod change, added HMG research.
 kHeavyMachineGunTechResearchTime = 30	// Comp Mod change, added HMG research.
 kGrenadeLauncherTechResearchCost = 10	// Comp Mod change, added GL research.
 kGrenadeLauncherTechResearchTime = 30	// Comp Mod change, added GL research.
@@ -77,19 +79,19 @@ kFlamethrowerTechResearchTime = 30	// Comp Mod change, added FT research.
 
 kFlamethrowerCost = 10				// Comp Mod change, decreased from 25.
 
-kFlamethrowerAttackCone = 0.10		// Comp Mod change, lowered from 0.17.
+kFlamethrowerAttackCone = 0.15		// Comp Mod change, lowered from 0.17.
 kBurnDamagePerSecond = 0			// Comp Mod change, lowered from 2.
 kFlameThrowerEnergyDamage = 0		// Comp Mod change, lowered from 3. 
 kOnFireEnergyRecuperationScalar = 0.5	// Comp Mod change, lowered from 1.
 kFlamethrowerBurnDuration = 5		// Comp Mod change, lowered from 6.
-kFlamethrowerClipSize = 40			// Comp Mod change, lowered from 50.
-kFlamethrowerDamage = 15			// Comp Mod change, unchanged.
+kFlamethrowerClipSize = 30			// Comp Mod change, lowered from 50.
+kFlamethrowerDamage = 10			// Comp Mod change, lowered to 10.
 kFlamethrowerRange = 8				// Comp Mod change, lowered from 9.
 
 //kLayMineWeight = 0.10				// Comp Mod change, unchanged.
 
-kHeavyMachineGunDamage = 7.0		// Comp Mod change, added HMG.
-kHeavyMachineGunDamageType = kDamageType.Puncture	// Comp Mod change, added HMG.
+kHeavyMachineGunDamage = 14.0		// Comp Mod change, added HMG.
+kHeavyMachineGunDamageType = kDamageType.Normal	// Comp Mod change, added HMG.
 kHeavyMachineGunClipSize = 100		// Comp Mod change, added HMG.
 kHeavyMachineGunWeight = 0.21		// Comp Mod change, added HMG.
 kHeavyMachineGunCost = 20			// Comp Mod change, added HMG.
@@ -97,17 +99,13 @@ kHeavyMachineGunDropCost = 25		// Comp Mod change, added HMG.
 kHeavyMachineGunPointValue = 7		// Comp Mod change, added HMG.
 kHeavyMachineGunSpread = Math.Radians(3.8)	// Comp Mod, added this for HMG.
 
-kMinigunDamage = 10
-kMinigunDamageType = kDamageType.Heavy
-kMinigunSpread = Math.Radians(5)	// Comp Mod, added this for minigun, decreased from 5.
-
-kRailgunDamage = 75
-kRailgunChargeDamage = 0
-kRailgunDamageType = kDamageType.Structural
-kRailgunCooldown = 1
-kRailgunBulletSize = 0.1			
+kMinigunDamage = 20						// Comp Mod change, decreased from 22.
+kRailgunDamage = 30						// Comp Mod change, decreased from 33.
+kRailgunChargeDamage = 130				// Comp Mod change, decreased from 140.
 
 //kCystBuildTime = 4					// Comp Mod change, decreased from 5.
+kCatPackDuration = 8					// Comp Mod change, decreased from 12.
+kCatPackCooldown = 8					// Comp Mod change, added this.  Note - this includes the catpacks duration, so effectivly no CD currently.
 
 Rupture.kDuration = 2.5					// Comp Mod change, lowered from 3.
 

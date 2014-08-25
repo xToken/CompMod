@@ -19,12 +19,13 @@ kReplaceUpgradeGestationTime = 4		// Comp Mod change, added this.
 kAlienHealRateTimeLimit = 2				// Comp Mod change, added alien healing rate limit.  This is the window in which heals are monitored and limited.
 //kAlienHealRateLimit = 1000			// Comp Mod change, added alien healing rate limit.  This is a purely numerical limit, not used atm.
 kAlienHealRatePercentLimit = .16		// Comp Mod change, added alien healing rate limit.  This is the limit currently in-place.
-kAlienHealRateOverLimitReduction = 0	// Comp Mod change, added alien healing rate limit.  This is what the healing is scaled against when limited.
+kAlienHealRateOverLimitReduction = 0.2	// Comp Mod change, added alien healing rate limit.  This is what the healing is scaled against when limited.
 //kOnFireHealingScalar = 0.5			// Comp Mod change, unchanged.
 
 Marine.kRunMaxSpeed = 5.75				// Comp Mod change, decreased from 6.
 kLerkFlySoundUpdateRate = 0.1			// Comp Mod change, how often lerk glide sound updates.
-kLerkFlySoundMinSpeed = 5				// Comp Mod change, minimum speed for sound.
+kLerkFlySoundMinSpeed = 6				// Comp Mod change, minimum speed for sound.
+kLerkAirBrakeSpeedDecrease = 8			// Comp Mod change, added lerk air brake.
 
 Grenade.kMinLifeTime = 0				// Comp Mod change, lowered from 0.15
 

@@ -80,6 +80,33 @@ originalLerkOnProcessMove = Class_ReplaceMethod("Lerk", "OnProcessMove",
 	end
 )
 
+local function UpdateAirBrake(self, input, velocity, deltaTime)
+
+    // more control when moving forward
+    local holdingShift = bit.band(input.commands, Move.MovementModifier) ~= 0
+    if input.move.z ~= 0 and holdingShift then
+        
+        if velocity:GetLengthXZ() > kLerkFlySoundMinSpeed then
+            local yVel = velocity.y
+			local newScale = math.max(velocity:GetLengthXZ() - (kLerkAirBrakeSpeedDecrease * deltaTime), kLerkFlySoundMinSpeed)
+            velocity.y = 0
+            velocity:Normalize()
+            velocity:Scale(newScale)
+            velocity.y = yVel
+        end
+
+    end
+
+end
+
+local originalLerkModifyVelocity
+originalLerkModifyVelocity = Class_ReplaceMethod("Lerk", "ModifyVelocity",
+	function(self, input, velocity, deltaTime)
+		originalLerkModifyVelocity(self, input, velocity, deltaTime)
+		UpdateAirBrake(self, input, velocity, deltaTime)
+	end
+)
+
 local networkVars = { flySoundId = "entityid" }
 
 Shared.LinkClassToMap("Lerk", Lerk.kMapName, networkVars, true)

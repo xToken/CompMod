@@ -38,3 +38,8 @@ originalAlienGetIsHealableOverride = Class_ReplaceMethod("Alien", "UpdateAutoHea
 
 	end
 )
+
+function PlayerHallucinationMixin:OnKill()
+   self:TriggerEffects("death_hallucination")
+   self:SetBypassRagdoll(true)
+end

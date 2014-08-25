@@ -1,9 +1,10 @@
 //Dont want to always replace random files, so this.
 
 local function TriggerBlinkOutEffects(self, player)
-	player:TriggerEffects("blink_out", {effecthostcoords = Coords.GetTranslation(player:GetOrigin())})
-	if Client and player:GetIsLocalPlayer() and not Shared.GetIsRunningPrediction() then
+	if Client and not Shared.GetIsRunningPrediction() then
 		player:TriggerEffects("blink_out_local", { effecthostcoords = Coords.GetTranslation(player:GetOrigin()) })
+	else
+		player:TriggerEffects("blink_out", {effecthostcoords = Coords.GetTranslation(player:GetOrigin())})
 	end
 end
 

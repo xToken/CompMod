@@ -19,14 +19,13 @@ local function BurnSporesAndUmbra(self, startPoint, endPoint)
         end
     
         local checkAtPoint = startPoint + toTarget * i * stepLength
-        local umbras = GetEntitiesWithinRange("CragUmbra", checkAtPoint, CragUmbra.kRadius)
+        local bombs = GetEntitiesWithinRange("Bomb", checkAtPoint, 1.6)
+        table.copy(GetEntitiesWithinRange("WhipBomb", checkAtPoint, 1.6), bombs, true)
         
-		if umbras then
-			for index, umbra in ipairs(umbras) do
-				self:TriggerEffects("burn_umbra", { effecthostcoords = Coords.GetTranslation(umbra:GetOrigin()) } )
-				DestroyEntity(umbra)
-			end
-		end
+        for index, bomb in ipairs(bombs) do
+            bomb:TriggerEffects("burn_bomb", { effecthostcoords = Coords.GetTranslation(bomb:GetOrigin()) } )
+            DestroyEntity(bomb)
+        end
 		
     end
 
@@ -38,6 +37,10 @@ ReplaceUpValue( Flamethrower.FirePrimary, "BurnSporesAndUmbra", BurnSporesAndUmb
 
 function Flamethrower:GetRange()
     return kFlamethrowerRange
+end
+
+function Flamethrower:GetHUDSlot()
+    return kSecondaryWeaponSlot
 end
 
 local oldFireMixinGetIsOnFire = FireMixin.GetIsOnFire
