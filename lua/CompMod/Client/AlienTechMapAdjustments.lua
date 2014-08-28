@@ -21,9 +21,9 @@ kAlienTechMap =
   
   { kTechId.BioMassFive, 7, 7, nil, "5" },  {kTechId.MetabolizeHealth, 7, 8}, {kTechId.Umbra, 7, 9},
   
-  { kTechId.BioMassSix, 8, 7, nil, "6" },  {kTechId.Spores, 8, 8},
+  { kTechId.BioMassSix, 8, 7, nil, "6" }, 
   
-  { kTechId.BioMassSeven, 9, 7, nil, "7" }, {kTechId.Stab, 9, 8}, {kTechId.Web, 9, 9},
+  { kTechId.BioMassSeven, 9, 7, nil, "7" }, {kTechId.Stab, 9, 8}, {kTechId.Web, 9, 9}, {kTechId.Spores, 8, 8},
   
   { kTechId.BioMassEight, 10, 7, nil, "8" },  {kTechId.Stomp, 10, 8}, 
   

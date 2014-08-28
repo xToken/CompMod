@@ -17,11 +17,6 @@ function Babbler:GetCanBeHealedOverride()
     return false
 end
 
-/*
-function WebsAbility:IsAllowed(player)
-	return GetHasTech(player, kTechId.WebTech)
-end*/
-
 local oldBuildClassToGrid = BuildClassToGrid
 function BuildClassToGrid()
 	local ClassToGrid = oldBuildClassToGrid()
