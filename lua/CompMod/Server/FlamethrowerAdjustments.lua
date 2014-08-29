@@ -28,6 +28,9 @@ function UmbraMixin:SetHasUmbra(state, umbraTime, force)
 	self.BlockFireState = false
 end
 
+function UmbraMixin:SetOnFire()
+end
+
 local oldCragUpdateHealing = Crag.UpdateHealing
 function Crag:UpdateHealing()
 	self.BlockFireState = true
