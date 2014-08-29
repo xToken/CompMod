@@ -146,7 +146,8 @@ kBabblersResearchTime = 45				// Comp Mod change, added this.
 //kStompResearchCost = 25				// Comp Mod change, unchanged.
 //kStompResearchTime = 60				// Comp Mod change, unchanged.
 
-//Apply Umbra Changes
+//Apply Umbra Changes - Since also modding Umbra DR now, DONT do this.
+[[-
 local kUmbraModifier = GetUpValue( UmbraMixin.ModifyDamageTaken,   "kUmbraModifier" )
 kUmbraModifier["Shotgun"] = kUmbraShotgunModifier
 kUmbraModifier["Rifle"] = kUmbraBulletModifier
@@ -155,6 +156,6 @@ kUmbraModifier["Sentry"] = kUmbraBulletModifier
 kUmbraModifier["HeavyMachineGun"] = kUmbraBulletModifier
 kUmbraModifier["Minigun"] = kUmbraMinigunModifier
 kUmbraModifier["Railgun"] = kUmbraRailgunModifier
-
+-]]
 //Fade swipe damage.
 //SwipeBlink.kDamage = kSwipeDamage		// Really? Move a global into a Global?

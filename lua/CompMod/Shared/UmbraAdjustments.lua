@@ -1,7 +1,14 @@
 //Dont want to always replace random files, so this.
 //fffffffffffffffffff
 
-local kUmbraModifier = GetUpValue( UmbraMixin.ModifyDamageTaken,   "kUmbraModifier" )
+local kUmbraModifier = { }
+kUmbraModifier["Shotgun"] = kUmbraShotgunModifier
+kUmbraModifier["Rifle"] = kUmbraBulletModifier
+kUmbraModifier["Pistol"] = kUmbraBulletModifier
+kUmbraModifier["Sentry"] = kUmbraBulletModifier
+kUmbraModifier["HeavyMachineGun"] = kUmbraBulletModifier
+kUmbraModifier["Minigun"] = kUmbraMinigunModifier
+kUmbraModifier["Railgun"] = kUmbraRailgunModifier
 
 function UmbraMixin:ModifyDamageTaken(damageTable, attacker, doer, damageType)
 
