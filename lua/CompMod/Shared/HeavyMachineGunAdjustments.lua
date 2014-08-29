@@ -3,7 +3,7 @@
 // Call this once to generate the basics
 GetTexCoordsForTechId(kTechId.Rifle)
 // Add HMG
-gTechIdPosition[kTechId.HeavyMachineGun] = kDeathMessageIcon.Rifle
+gTechIdPosition[kTechId.HeavyMachineGun] = kDeathMessageIcon.HeavyMachineGun
 
 local originalMarineGetPlayerStatusDesc
 originalMarineGetPlayerStatusDesc = Class_ReplaceMethod("Marine", "GetPlayerStatusDesc",
