@@ -14,7 +14,7 @@ Script.Load("lua/VoiceOver.lua")
 Script.Load("lua/InsightNetworkMessages.lua")
 Script.Load("lua/SharedDecal.lua")
 Script.Load("lua/Balance.lua")
-Script.Load("lua/DeathMessageIcon.lua")
+//Script.Load("lua/DeathMessageIcon.lua")
 
 local kCameraShakeMessage =
 {
