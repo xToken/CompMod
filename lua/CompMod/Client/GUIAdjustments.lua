@@ -67,3 +67,7 @@ origGUIManagerCreateGUIScript = Class_ReplaceMethod("GUIManager", "CreateGUIScri
 		return script
 	end
 )
+
+PrecacheAsset("ui/drop_icons.dds")
+PrecacheAsset("ui/marine_buy_bigicons.dds")
+Textures.kInventoryIcons = PrecacheAsset("ui/inventory_icons.dds")
