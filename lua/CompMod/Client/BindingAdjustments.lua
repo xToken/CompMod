@@ -22,9 +22,15 @@ for i = 1, #origControlBindings do
 		table.insert(newGlobalControlBindings, "input")
 		table.insert(newGlobalControlBindings, "Weapon #6")
 		table.insert(newGlobalControlBindings, "6")
+	elseif origControlBindings[i] == "LeftShift" then
+		table.insert(newGlobalControlBindings, "SecondaryMovementModifier")
+		table.insert(newGlobalControlBindings, "input")
+		table.insert(newGlobalControlBindings, "Secondary Movement Modifier")
+		table.insert(newGlobalControlBindings, "Capital")
 	end	
 end
 ReplaceLocals(BindingsUI_GetBindingsData, { globalControlBindings = newGlobalControlBindings }) 
 
 local defaults = GetUpValue( GetDefaultInputValue,   "defaults", 			{ LocateRecurse = true } )
 table.insert(defaults, { "Weapon6", "6" })
+table.insert(defaults, { "SecondaryMovementModifier", "Capital" })
