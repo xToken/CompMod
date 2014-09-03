@@ -8,10 +8,8 @@ local function SetupGUIMarineBuymenu()
 	GetBigIconPixelCoords(kTechId.Rifle)
 	local gSmallIconIndex 		= GetUpValue( GetSmallIconPixelCoordinates,   "gSmallIconIndex" )
 	local gBigIconIndex 		= GetUpValue( GetBigIconPixelCoords,   "gBigIconIndex" )
-	gBigIconIndex[kTechId.HeavyMachineGun] = 2
-	gSmallIconIndex[kTechId.HeavyMachineGun] = 1
-	//gBigIconIndex[kTechId.HeavyMachineGun] = 15
-	//gSmallIconIndex[kTechId.HeavyMachineGun] = 48
+	gBigIconIndex[kTechId.HeavyMachineGun] = 15
+	gSmallIconIndex[kTechId.HeavyMachineGun] = 48
 end
 
 AddPostInitOverride("GUIMarineBuyMenu", SetupGUIMarineBuymenu)
@@ -51,8 +49,7 @@ end
 
 local function SetupActionIcons()
 	local kIconOffsets = GetUpValue( GUIActionIcon.ShowIcon,   "kIconOffsets")
-	kIconOffsets["HeavyMachineGun"] = 0
-	//kIconOffsets["HeavyMachineGun"] = 9
+	kIconOffsets["HeavyMachineGun"] = 9
 end
 
 AddPostInitOverride("GUIActionIcon", SetupActionIcons)
@@ -66,8 +63,7 @@ AddPostInitOverride("GUIInsight_PlayerHealthbars", SetupAmmoColor)
 
 local function SetupPickupOffset()
 	local kPickupTextureYOffsets = GetUpValue( GUIPickups.Update,   "kPickupTextureYOffsets", 			{ LocateRecurse = true } )
-	kPickupTextureYOffsets["HeavyMachineGun"] = 2
-	//kPickupTextureYOffsets["HeavyMachineGun"] = 12
+	kPickupTextureYOffsets["HeavyMachineGun"] = 12
 end
 
 AddPostInitOverride("GUIPickups", SetupPickupOffset)
