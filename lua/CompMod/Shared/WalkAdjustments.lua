@@ -1,4 +1,3 @@
-Move.SecondaryMovementModifier = bit.lshift(1, 31)
 
 local originalMarineOnCreate
 originalMarineOnCreate = Class_ReplaceMethod("Marine", "OnCreate",
