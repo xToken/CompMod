@@ -1,94 +1,14 @@
 //Dont want to always replace random files, so this.
 
-local flying3DSound = PrecacheAsset("sound/NS2.fev/alien/lerk/flying_3D")
-
-local originalLerkOnCreate
-originalLerkOnCreate = Class_ReplaceMethod("Lerk", "OnCreate",
-	function(self)
-		originalLerkOnCreate(self)
-		
-		self.flySoundId = Entity.invalidId
-		
-		if Client then
-			if self.flySound then
-				Client.DestroySoundEffect(self.flySound)
-				self.flySound = nil
-			end
-		end
-		
-		if Server then
-			self.flySound = Server.CreateEntity(SoundEffect.kMapName)
-			self.flySound:SetAsset(flying3DSound)
-			self.flySound:SetParent(self)
-			self.flySoundState = false
-			self.flySoundId = self.flySound:GetId()
-		end
-	end
-)
-
-local function UpdateFlySound(self, deltaTime)
-	if self.flySoundId ~= Entity.invalidId then
-		if self.lastflySoundUpdate == nil or self.lastflySoundUpdate > kLerkFlySoundUpdateRate then
-			local flySound = Shared.GetEntity(self.flySoundId)
-			if flySound then
-				if Server then
-					if self.silenceLevel == 3 and self.flySoundState then
-						self.flySound:Stop()
-						self.flySoundState = false
-					elseif self.silenceLevel < 3 and not self.flySoundState then
-						self.flySound:Start()
-						self.flySoundState = true
-					end
-				end
-				if Client then
-					local currentSpeed = self:GetVelocityLength()
-					if currentSpeed > kLerkFlySoundMinSpeed then
-						//This says volume, but thats really a lie... it just controls the speed parameter on the sound.. which sorta scales up the sound volume indirectly.
-						local volume = Clamp(((currentSpeed / self:GetMaxSpeed()) * 1.3), 0, 1)
-						if self.silenceLevel > 0 then
-							volume = volume / self.silenceLevel
-						end
-						if Client.GetLocalPlayer() == self then
-							volume = volume * 0.45
-						end
-						flySound:SetParameter("speed", volume, 10)
-					else
-						flySound:SetParameter("speed", 0, 10)
-					end
-				end
-			end
-			self.lastflySoundUpdate = (self.lastflySoundUpdate or kLerkFlySoundUpdateRate) - kLerkFlySoundUpdateRate
-		else
-			self.lastflySoundUpdate = (self.lastflySoundUpdate or 0) + deltaTime
-		end
-	end
-end
-
-local originalLerkOnUpdate
-originalLerkOnUpdate = Class_ReplaceMethod("Lerk", "OnUpdate",
-	function(self, deltaTime)
-		originalLerkOnUpdate(self, deltaTime)
-		UpdateFlySound(self, deltaTime)
-	end
-)
-
-local originalLerkOnProcessMove
-originalLerkOnProcessMove = Class_ReplaceMethod("Lerk", "OnProcessMove",
-	function(self, input)
-		originalLerkOnProcessMove(self, input)
-		UpdateFlySound(self, input.time)
-	end
-)
-
 local function UpdateAirBrake(self, input, velocity, deltaTime)
 
     // more control when moving forward
     local holdingShift = bit.band(input.commands, Move.MovementModifier) ~= 0
     if input.move.z ~= 0 and holdingShift then
         
-        if velocity:GetLengthXZ() > kLerkFlySoundMinSpeed then
+        if velocity:GetLengthXZ() > kLerkAirFrictionMinSpeed then
             local yVel = velocity.y
-			local newScale = math.max(velocity:GetLengthXZ() - (kLerkAirBrakeSpeedDecrease * deltaTime), kLerkFlySoundMinSpeed)
+			local newScale = math.max(velocity:GetLengthXZ() - (8 * deltaTime), kLerkAirFrictionMinSpeed)
             velocity.y = 0
             velocity:Normalize()
             velocity:Scale(newScale)
@@ -99,11 +19,70 @@ local function UpdateAirBrake(self, input, velocity, deltaTime)
 
 end
 
-local originalLerkModifyVelocity
-originalLerkModifyVelocity = Class_ReplaceMethod("Lerk", "ModifyVelocity",
-	function(self, input, velocity, deltaTime)
-		originalLerkModifyVelocity(self, input, velocity, deltaTime)
-		UpdateAirBrake(self, input, velocity, deltaTime)
+local kGlideAccel = GetUpValue( Lerk.ModifyVelocity,   "kGlideAccel", { LocateRecurse = true } )
+local kMaxSpeed = GetUpValue( Lerk.GetMaxSpeed,   "kMaxSpeed" )
+
+local function UpdateGlide(self, input, velocity, deltaTime)
+
+    // more control when moving forward
+    local holdingGlide = bit.band(input.commands, Move.Jump) ~= 0 and self.glideAllowed
+    if input.move.z == 1 and holdingGlide then
+    
+        local useMove = Vector(input.move)
+        useMove.x = useMove.x * 0.5
+        
+        local wishDir = GetNormalizedVector(self:GetViewCoords():TransformVector(useMove))
+        // slow down when moving in another XZ direction, accelerate when falling down
+        local currentDir = GetNormalizedVector(velocity)
+        local glideAccel = -currentDir.y * deltaTime * (kGlideAccel - self:GetFrictionMod() * kLerkGlideFrictionBleedAmount)
+		
+        local maxSpeedTable = { maxSpeed = kMaxSpeed }
+        self:ModifyMaxSpeed(maxSpeedTable, input)
+        
+        local speed = velocity:GetLength() // velocity:DotProduct(wishDir) * 0.1 + velocity:GetLength() * 0.9
+        local useSpeed = math.min(maxSpeedTable.maxSpeed, speed + glideAccel)
+        
+        // when speed falls below 1, set horizontal speed to 1, and vertical speed to zero, but allow dive to regain speed
+        if useSpeed < 4 then
+            useSpeed = 4
+            local newY = math.min(wishDir.y, 0)
+            wishDir.y = newY
+            wishDir = GetNormalizedVector(wishDir)
+        end
+        
+        // when gliding we always have 100% control
+        local redirectVelocity = wishDir * useSpeed
+        VectorCopy(redirectVelocity, velocity)
+        
+        self.gliding = not self:GetIsOnGround()
+
+    else
+        self.gliding = false
+    end
+	
+	UpdateAirBrake(self, input, velocity, deltaTime)
+
+end
+
+ReplaceLocals(Lerk.ModifyVelocity, { UpdateGlide = UpdateGlide })
+
+function Lerk:GetSpeedMod()
+	local speed = self:GetVelocity():GetLengthXZ()
+	if speed < kLerkAirFrictionMinSpeed then
+		return 0
+	end
+	//Whoa, call the cops on this clown
+	return Clamp( (speed - kLerkAirFrictionMinSpeed) / (kMaxSpeed - kLerkAirFrictionMinSpeed), 0, 1)
+end
+
+function Lerk:GetFrictionMod()
+	return Clamp(Shared.GetTime() - self:GetTimeOfLastFlap() / kLerkAirFrictionBleedTime, 0, 1) * self:GetSpeedMod()
+end
+
+local originalLerkGetAirFriction
+originalLerkGetAirFriction = Class_ReplaceMethod("Lerk", "GetAirFriction",
+	function(self)
+		return self:GetFrictionMod() * kLerkAirFrictionBleedAmount + 0.1 - (GetHasCelerityUpgrade(self) and GetSpurLevel(self:GetTeamNumber()) or 0) * 0.02
 	end
 )
 

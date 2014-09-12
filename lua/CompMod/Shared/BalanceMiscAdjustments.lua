@@ -24,10 +24,11 @@ kAlienHealRateOverLimitReduction = 0.2	// Comp Mod change, added alien healing r
 
 Marine.kRunMaxSpeed = 5.75				// Comp Mod change, decreased from 6.
 kMarineMaxSlowWalkSpeed = 2.5			// Comp Mod change, added this.
-kLerkFlySoundUpdateRate = 0.1			// Comp Mod change, how often lerk glide sound updates.
-kLerkFlySoundMinSpeed = 6				// Comp Mod change, minimum speed for sound.
-kLerkAirBrakeSpeedDecrease = 8			// Comp Mod change, added lerk air brake.
 kLerkWallGripMaxSpeed = 2				// Comp Mod change, maximum speed for WallGrip.
+kLerkAirFrictionMinSpeed = 7			// Comp Mod change, added increasing air friction.	Minimum speed to still have below bleeds applied.
+kLerkAirFrictionBleedTime = 1.25		// Comp Mod change, added increasing air friction.  Friction scales up over this period of time after last flap.
+kLerkAirFrictionBleedAmount = 0.3		// Comp Mod change, added increasing air friction.	Max amount of increased air friction to apply.
+kLerkGlideFrictionBleedAmount = 5		// Comp Mod change, added increasing air friction.	Max amount of glide accel to bleed.
 
 Grenade.kMinLifeTime = 0				// Comp Mod change, lowered from 0.15
 

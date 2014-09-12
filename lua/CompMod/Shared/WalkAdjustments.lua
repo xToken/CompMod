@@ -49,6 +49,6 @@ end
 
 local networkVars = { }
 
-AddMixinNetworkVars(MucousableMixin, WalkMixin)
+AddMixinNetworkVars(WalkMixin, networkVars)
 
 Shared.LinkClassToMap("Marine", Marine.kMapName, networkVars, true)

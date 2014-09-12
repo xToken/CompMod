@@ -23,10 +23,6 @@ function WalkMixin:GetIsWalking()
     return self.walking
 end
 
-function WalkMixin:GetSprintingScalar()
-    return self.sprintingScalar
-end
-
 function WalkMixin:UpdateWalkMode(input)
 
     local walkState = bit.band(input.commands, Move.SecondaryMovementModifier) ~= 0
