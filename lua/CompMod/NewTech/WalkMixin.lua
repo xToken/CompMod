@@ -5,11 +5,6 @@
 WalkMixin = CreateMixin( WalkMixin )
 WalkMixin.type = "Walk"
 
-WalkMixin.optionalCallbacks =
-{
-    OnWalkStateChanged = "Invoked when walk state is changed.",
-}
-
 WalkMixin.networkVars =
 {
     walking = "boolean"
@@ -26,11 +21,18 @@ end
 function WalkMixin:UpdateWalkMode(input)
 
     local walkState = bit.band(input.commands, Move.SecondaryMovementModifier) ~= 0
+	local canWalk = not self.crouching and self:GetIsOnGround() and not self.sprinting
+	
     if walkState ~= self.walking then
-        if self.OnWalkStateChanged then
-			self:OnWalkStateChanged(walkState, input)
+		if walkState and canWalk then
+			self.walking = true
+		else
+			self.walking = false
 		end
-		self.walking = walkState
     end
+	
+	if self.walking and not canWalk then
+		self.walking = false
+	end
     
 end
