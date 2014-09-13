@@ -358,7 +358,7 @@ local function GenerateMove()
             move.commands = bit.bor(move.commands, Move.MovementModifier)
         end
 		if _keyState[ _keyBinding.SecondaryMovementModifier ] then
-            move.commands = bit.bor(move.commands, Move.SecondaryMovementModifier)
+            move.commands = bit.bor(move.commands, Move.ReadyRoom)
         end 
         
         if _keyState[ _keyBinding.ScrollForward ] then
