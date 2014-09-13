@@ -7,13 +7,13 @@ originalMarineOnCreate = Class_ReplaceMethod("Marine", "OnCreate",
 	end
 )
 
-local originalMarineHandleButtons
-originalMarineHandleButtons = Class_ReplaceMethod("Marine", "HandleButtons",
-	function(self, input)
-		originalMarineHandleButtons(self, input)
-		self:UpdateWalkMode(input)
-	end
-)
+//Tap into this because NS2+ hooks the normal handlebuttons for marines
+
+local originalSprintMixinUpdateSprintingState = SprintMixin.UpdateSprintingState
+function SprintMixin:UpdateSprintingState(input)
+	originalSprintMixinUpdateSprintingState(self, input)
+	self:UpdateWalkMode(input)
+end
 
 function Marine:GetMaxSpeed(possible)
 
