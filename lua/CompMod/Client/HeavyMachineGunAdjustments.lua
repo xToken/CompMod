@@ -97,3 +97,11 @@ function EquipmentOutline_Initialize()
 	oldEquipmentOutline_Initialize()
 	EquipmentOutline_Initialize = oldEquipmentOutline_Initialize
 end
+
+local function SetupInsightShit()
+	local iconSize = Vector(32,32,0)
+	local kIconCoords = GetUpValue( GUIInsight_PlayerFrames.UpdatePlayer,   "kIconCoords" )
+	kIconCoords["HMG"] = { 4*iconSize.x, 0, 5*iconSize.x, iconSize.y }
+end
+
+AddPostInitOverride("GUIInsight_PlayerFrames", SetupInsightShit)

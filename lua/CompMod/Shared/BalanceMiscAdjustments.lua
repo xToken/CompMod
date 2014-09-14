@@ -26,9 +26,9 @@ Marine.kRunMaxSpeed = 5.75				// Comp Mod change, decreased from 6.
 kMarineMaxSlowWalkSpeed = 2.5			// Comp Mod change, added this.
 kLerkWallGripMaxSpeed = 2				// Comp Mod change, maximum speed for WallGrip.
 kLerkAirFrictionMinSpeed = 7			// Comp Mod change, added increasing air friction.	Minimum speed to still have below bleeds applied.
-kLerkAirFrictionBleedTime = 1.25		// Comp Mod change, added increasing air friction.  Friction scales up over this period of time after last flap.
-kLerkAirFrictionBleedAmount = 0.3		// Comp Mod change, added increasing air friction.	Max amount of increased air friction to apply.
-kLerkGlideFrictionBleedAmount = 6		// Comp Mod change, added increasing air friction.	Max amount of glide accel to bleed.
+kLerkAirFrictionBleedAmount = 0.2		// Comp Mod change, added increasing air friction.	Max amount of increased air friction to apply.
+kLerkGlideAccelBleedTime = 1.0			// Comp Mod change, added increasing air friction.  Glide accel is lowered over this period of time after last flap.
+kLerkGlideAccelBleedAmount = 4			// Comp Mod change, added increasing air friction.	Max amount of glide accel to bleed.
 
 Grenade.kMinLifeTime = 0				// Comp Mod change, lowered from 0.15
 

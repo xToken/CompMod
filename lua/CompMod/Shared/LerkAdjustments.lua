@@ -34,7 +34,7 @@ local function UpdateGlide(self, input, velocity, deltaTime)
         local wishDir = GetNormalizedVector(self:GetViewCoords():TransformVector(useMove))
         // slow down when moving in another XZ direction, accelerate when falling down
         local currentDir = GetNormalizedVector(velocity)
-        local glideAccel = -currentDir.y * deltaTime * (kGlideAccel - self:GetFrictionMod() * kLerkGlideFrictionBleedAmount)
+        local glideAccel = -currentDir.y * deltaTime * (kGlideAccel - self:GetAccelerationModifier() * kLerkGlideAccelBleedAmount)
 		
         local maxSpeedTable = { maxSpeed = kMaxSpeed }
         self:ModifyMaxSpeed(maxSpeedTable, input)
@@ -66,7 +66,7 @@ end
 
 ReplaceLocals(Lerk.ModifyVelocity, { UpdateGlide = UpdateGlide })
 
-function Lerk:GetSpeedMod()
+function Lerk:GetAccelerationModifier()
 	local speed = self:GetVelocity():GetLengthXZ()
 	if speed < kLerkAirFrictionMinSpeed then
 		return 0
@@ -75,14 +75,21 @@ function Lerk:GetSpeedMod()
 	return Clamp( (speed - kLerkAirFrictionMinSpeed) / (kMaxSpeed - kLerkAirFrictionMinSpeed), 0, 1)
 end
 
-function Lerk:GetFrictionMod()
-	return Clamp(Shared.GetTime() - self:GetTimeOfLastFlap() / kLerkAirFrictionBleedTime, 0, 1) * self:GetSpeedMod()
+function Lerk:GetFrictionModifier()
+	local speed = self:GetVelocity():GetLengthXZ()
+	if speed < kLerkAirFrictionMinSpeed then
+		return 0
+	end
+	return math.pow(Clamp((Shared.GetTime() - self:GetTimeOfLastFlap()) / kLerkGlideAccelBleedTime, 0, 1), 3)
 end
 
 local originalLerkGetAirFriction
 originalLerkGetAirFriction = Class_ReplaceMethod("Lerk", "GetAirFriction",
 	function(self)
-		return self:GetFrictionMod() * kLerkAirFrictionBleedAmount + 0.1 - (GetHasCelerityUpgrade(self) and GetSpurLevel(self:GetTeamNumber()) or 0) * 0.02
+		local celerityMod = (GetHasCelerityUpgrade(self) and GetSpurLevel(self:GetTeamNumber()) or 0)
+		local frictionMod = self:GetFrictionModifier()
+		SetSpeedDebugText("Friction increased by %s", ToString(frictionMod * (kLerkAirFrictionBleedAmount - (celerityMod * 0.01))), true)
+		return frictionMod * (kLerkAirFrictionBleedAmount - (celerityMod * 0.01)) + 0.1 - (celerityMod * 0.02)
 	end
 )
 
@@ -126,3 +133,14 @@ end
 local networkVars = { flySoundId = "entityid" }
 
 Shared.LinkClassToMap("Lerk", Lerk.kMapName, networkVars, true)
+
+function SetSpeedDebugText(text, parm, set)
+
+    if gSpeedDebug and set then
+    
+        local result = string.format(text, parm)
+    
+        gSpeedDebug:SetDebugText(result)
+    end
+    
+end
