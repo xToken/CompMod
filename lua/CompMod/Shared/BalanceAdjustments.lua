@@ -94,8 +94,8 @@ kWelderDamagePerSecond = 30			// Comp Mod change, unchanged.
 kWelderFriendlyRange = 2.4			// Comp Mod change, unchanged.
 kWelderAttackRange = 1.7				// Comp Mod change, added this.
 
-kHeavyMachineGunDamage = 14.0		// Comp Mod change, added HMG.
-kHeavyMachineGunDamageType = kDamageType.Normal	// Comp Mod change, added HMG.
+kHeavyMachineGunDamage = 7.0		// Comp Mod change, added HMG.
+kHeavyMachineGunDamageType = kDamageType.Puncture	// Comp Mod change, added HMG.
 kHeavyMachineGunClipSize = 100		// Comp Mod change, added HMG.
 kHeavyMachineGunWeight = 0.21		// Comp Mod change, added HMG.
 kHeavyMachineGunCost = 20			// Comp Mod change, added HMG.
