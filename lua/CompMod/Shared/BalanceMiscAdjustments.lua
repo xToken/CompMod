@@ -15,6 +15,7 @@ kHallucinationCloudCooldown = 5			// Comp Mod change, increased from 3 seconds.
 //kChargeEnergyCost = 30 				// Comp Mod change, unchanged.
 kReplaceUpgradeGestationTime = 4		// Comp Mod change, added this.
 //kGrenadeAnimationSpeedIncrease = 2.75	// Comp Mod change, added this.
+kTunnelEntranceMaturationTime = 120		// Comp Mod change, lowered this from 135 seconds.
 
 kAlienHealRateTimeLimit = 2				// Comp Mod change, added alien healing rate limit.  This is the window in which heals are monitored and limited.
 //kAlienHealRateLimit = 1000			// Comp Mod change, added alien healing rate limit.  This is a purely numerical limit, not used atm.
