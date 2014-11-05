@@ -196,7 +196,7 @@ function HeavyMachineGun:GetViewModelName(sex, variant)
 end
 
 function HeavyMachineGun:GetDeathIconIndex()
-    return kDeathMessageIcon.HeavyMachineGun
+    return kDeathMessageIcon.Crush
 end
 
 function HeavyMachineGun:GetHUDSlot()
