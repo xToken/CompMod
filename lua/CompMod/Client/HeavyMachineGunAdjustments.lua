@@ -80,24 +80,6 @@ function PlayerUI_GetCrosshairY()
 	return oldPlayerUI_GetCrosshairY()
 end
 
-local oldEquipmentOutline_Initialize = EquipmentOutline_Initialize
-function EquipmentOutline_Initialize()
-	
-	local _fullRenderMask = 0x7c
-	local _invRenderMask = bit.bnot(_fullRenderMask)
-	//Dont insert, redefine.
-	local lookup = { "GrenadeLauncher", "Shotgun", "Flamethrower", "HeavyMachineGun" }
-	local renderMasks = { [0] = 0x04, 0x08, 0x10, 0x20, 0x40 }
-	
-	ReplaceUpValue( oldEquipmentOutline_Initialize, "lookup", lookup )
-	ReplaceUpValue( oldEquipmentOutline_Initialize, "renderMasks", renderMasks )
-	ReplaceUpValue( EquipmentOutline_RemoveModel, "_invRenderMask", _invRenderMask )
-	ReplaceUpValue( EquipmentOutline_SetEnabled, "_fullRenderMask", _fullRenderMask )
-	
-	oldEquipmentOutline_Initialize()
-	EquipmentOutline_Initialize = oldEquipmentOutline_Initialize
-end
-
 local function SetupInsightShit()
 	local iconSize = Vector(32,32,0)
 	local kIconCoords = GetUpValue( GUIInsight_PlayerFrames.UpdatePlayer,   "kIconCoords" )

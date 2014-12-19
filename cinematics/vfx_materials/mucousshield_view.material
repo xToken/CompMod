@@ -1,3 +1,0 @@
-shader = "cinematics/vfx_materials/mucousshield_view.surface_shader"
-
-noiseMap = "materials/effects/mesh_effects/enzyme_tile_01.dds"

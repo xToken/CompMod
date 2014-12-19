@@ -1,4 +1,5 @@
 //Dont want to always replace random files, so this.
+
 DropStructureAbility.kSupportedStructures = { HydraStructureAbility, ClogAbility, BabblerEggAbility, WebsAbility, GorgeTunnelEntranceAbility, GorgeTunnelExitAbility }
 
 local originalDropStructureAbilityOnCreate
