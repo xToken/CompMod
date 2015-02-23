@@ -67,26 +67,33 @@ kSporesTravelSpeed = 60				// Comp Mod change, ranged spores cloud speed.
 kXenocideRange = 10					// Comp Mod change, decreased from 10.
 
 kNanoShieldCost = 3					// Comp Mod change, decreased from 5.
-//kAdvancedArmoryUpgradeCost = 20		// Comp Mod change, unchanged.
-kArmsLabCost = 20			// Comp Mod change, increased to 20.
+//kAdvancedArmoryUpgradeCost = 20	// Comp Mod change, unchanged.
+kPrototypeLabCost = 30				// Comp Mod change, lowered from 40.
+kArmsLabCost = 20					// Comp Mod change, increased to 20.
 
-kHeavyMachineGunTechResearchCost = 10	// Comp Mod change, added HMG research.
-kHeavyMachineGunTechResearchTime = 30	// Comp Mod change, added HMG research.
+kHeavyMachineGunTechResearchCost = 15	// Comp Mod change, increased from 15.
+kHeavyMachineGunTechResearchTime = 60	// Comp Mod change, increased from 30.
 kGrenadeLauncherTechResearchCost = 10	// Comp Mod change, added GL research.
 kGrenadeLauncherTechResearchTime = 30	// Comp Mod change, added GL research.
-kFlamethrowerTechResearchCost = 10	// Comp Mod change, added FT research.
-kFlamethrowerTechResearchTime = 30	// Comp Mod change, added FT research.
+kFlamethrowerTechResearchCost = 10		// Comp Mod change, added FT research.
+kFlamethrowerTechResearchTime = 30		// Comp Mod change, added FT research.
+
+//kGrenadeTechResearchCost = 10			// Comp Mod change, unchanged.
+kGrenadeTechResearchTime = 30			// Comp Mod change, lowered from 45.
 
 kFlamethrowerCost = 10				// Comp Mod change, decreased from 25.
+kClusterGrenadeCost = 3				// Comp Mod change, lowered from 3.
+kGasGrenadeCost = 3					// Comp Mod change, lowered from 3.
+kPulseGrenadeCost = 3				// Comp Mod change, lowered from 3.
 
-kFlamethrowerAttackCone = 0.15		// Comp Mod change, lowered from 0.17.
-kBurnDamagePerSecond = 0			// Comp Mod change, lowered from 2.
-kFlameThrowerEnergyDamage = 0		// Comp Mod change, lowered from 3. 
-kOnFireEnergyRecuperationScalar = 0.5	// Comp Mod change, lowered from 1.
-kFlamethrowerBurnDuration = 5		// Comp Mod change, lowered from 6.
-kFlamethrowerClipSize = 30			// Comp Mod change, lowered from 50.
-kFlamethrowerDamage = 10			// Comp Mod change, lowered to 10.
-kFlamethrowerRange = 8				// Comp Mod change, lowered from 9.
+//kFlamethrowerAttackCone = 0.15		// Comp Mod change, lowered from 0.17.
+//kBurnDamagePerSecond = 0			// Comp Mod change, lowered from 2.
+//kFlameThrowerEnergyDamage = 0		// Comp Mod change, lowered from 3. 
+//kOnFireEnergyRecuperationScalar = 0.5	// Comp Mod change, lowered from 1.
+//kFlamethrowerBurnDuration = 5		// Comp Mod change, lowered from 6.
+//kFlamethrowerClipSize = 30			// Comp Mod change, lowered from 50.
+//kFlamethrowerDamage = 10			// Comp Mod change, lowered to 10.
+//kFlamethrowerRange = 8				// Comp Mod change, lowered from 9.
 
 //kLayMineWeight = 0.10					// Comp Mod change, unchanged.
 kWelderStructureDamagePerSecond = 50	// Comp Mod change, added this for adjusted welder.
@@ -112,6 +119,11 @@ kCatPackDuration = 8					// Comp Mod change, decreased from 12.
 kCatPackCooldown = 8					// Comp Mod change, added this.  Note - this includes the catpacks duration, so effectivly no CD currently.
 
 Rupture.kDuration = 2.5					// Comp Mod change, lowered from 3.
+
+kCystRedeployRange = 7					// Comp Mod change, increased from 6.
+kCystBuildTimePerMeter = 0.25			// Comp Mod change, cysts build slower further from hive.
+kMinCystBuildTime = 5					// Comp Mod change, cysts build slower further from hive.
+kMaxCystBuildTime = 20					// Comp Mod change, cysts build slower further from hive.
 
 // Comp Mod changes to alien tech tree below, cost and new additions.
 

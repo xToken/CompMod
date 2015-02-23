@@ -187,7 +187,7 @@ function AlienTeam:InitTechTree()
 	self.techTree:AddBuyNode(kTechId.Web,        			kTechId.WebTech)
 	//self.techTree:AddResearchNode(kTechId.BabblerTech,            	kTechId.BioMassOne, kTechId.None, kTechId.AllAliens)
     self.techTree:AddResearchNode(kTechId.BileBomb,              kTechId.BioMassThree, kTechId.None, kTechId.AllAliens)
-    self.techTree:AddResearchNode(kTechId.WebTech,                   kTechId.BioMassSeven, kTechId.None, kTechId.AllAliens)
+    self.techTree:AddResearchNode(kTechId.WebTech,                   kTechId.BioMassFive, kTechId.None, kTechId.AllAliens)
     
     // lerk researches
     self.techTree:AddResearchNode(kTechId.Umbra,               kTechId.BioMassFive, kTechId.None, kTechId.AllAliens) 

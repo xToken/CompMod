@@ -117,6 +117,7 @@ function MarineTeam:InitTechTree()
     self.techTree:AddManufactureNode(kTechId.ARC,    kTechId.ARCRoboticsFactory,     kTechId.None, true)        
     self.techTree:AddActivation(kTechId.ARCDeploy)
     self.techTree:AddActivation(kTechId.ARCUndeploy)
+	self.techTree:AddActivation(kTechId.ARCSpeedBoost)     
     
     // Robotics factory menus
     self.techTree:AddMenu(kTechId.RoboticsFactoryARCUpgradesMenu)

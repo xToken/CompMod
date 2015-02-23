@@ -16,6 +16,8 @@ kHallucinationCloudCooldown = 5			// Comp Mod change, increased from 3 seconds.
 kReplaceUpgradeGestationTime = 4		// Comp Mod change, added this.
 //kGrenadeAnimationSpeedIncrease = 2.75	// Comp Mod change, added this.
 kTunnelEntranceMaturationTime = 120		// Comp Mod change, lowered this from 135 seconds.
+kNumWebsPerGorge = 4					// Comp Mod change, lowered this from 10.
+kWebHardenTime = 1.5					// Comp Mod change, added this.
 
 kAlienHealRateTimeLimit = 2				// Comp Mod change, added alien healing rate limit.  This is the window in which heals are monitored and limited.
 //kAlienHealRateLimit = 1000			// Comp Mod change, added alien healing rate limit.  This is a purely numerical limit, not used atm.
@@ -32,6 +34,11 @@ kLerkGlideAccelBleedTime = 1.0			// Comp Mod change, added increasing air fricti
 kLerkGlideAccelBleedAmount = 4			// Comp Mod change, added increasing air friction.	Max amount of glide accel to bleed.
 
 Grenade.kMinLifeTime = 0				// Comp Mod change, lowered from 0.15
+
+kARCSpeedBoostCost = 2					// Comp Mod change, added ARC Speed Boost.
+kARCSpeedBoostDuration = 4				// Comp Mod change, added ARC Speed Boost.
+kARCSpeedBoostIncrease = 1.15			// Comp Mod change, added ARC Speed Boost.
+kARCSpeedBoostCooldown = 15				// Comp Mod change, added ARC Speed Boost.
 
 //Onos Charge secondary global.
 //Onos.kChargeEnergyCost = kChargeEnergyCost // Really? Move a global into a global?

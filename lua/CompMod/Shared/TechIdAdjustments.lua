@@ -1,5 +1,5 @@
 
-for _, v in ipairs( { 'GorgeTunnelEntrance', 'GorgeTunnelExit', 'HeavyMachineGunTech', 'HeavyMachineGun', 'DropHeavyMachineGun' } ) do
+for _, v in ipairs( { 'GorgeTunnelEntrance', 'GorgeTunnelExit', 'HeavyMachineGunTech', 'HeavyMachineGun', 'DropHeavyMachineGun', 'ARCSpeedBoost' } ) do
 	AppendToEnum( kTechId, v )
 end
 
@@ -8,6 +8,9 @@ AppendToEnum( kPlayerStatus, 'HMG' )
 
 //This is relevant, not only to this but to any functions - it explains Reference/Value in lua function calls
 //Tables, functions, threads, and (full) userdata values are objects: variables do not actually contain these values, only references to them.
+
+kTechDataCustomBuildTime = "custombuildtime"
+kTechDataCustomBuildTimeFunction = "custombuildtimefunc"
 
 local function AddCompModTechChanges(techData)
 	// Comp Mod change, add tech crap								
@@ -77,6 +80,12 @@ local function AddCompModTechChanges(techData)
 								[kTechDataDisplayName] = "Research Heavy Machine Gun", 
 								[kTechDataTooltipInfo] =  "Heavy Machine Gun"})
 								
+	table.insert(techData, { 	[kTechDataId] = kTechId.ARCSpeedBoost,      
+								[kTechDataCostKey] = kARCSpeedBoostCost,
+								[kTechDataCooldown] = kARCSpeedBoostCooldown,  
+								[kTechDataDisplayName] = "ARC Speed Boost",
+								[kTechDataTooltipInfo] =  [[ARC Speed Boost:  Temporarily increases the movement speed of this ARC by 15% for %]] .. ToString(kARCSpeedBoostDuration) .. "s seconds, also makes ARC immune to damage slowdown." })
+								
 	for index, record in ipairs(techData) do 
         if record[kTechDataId] == kTechId.BabblerTech then
 			record[kTechDataCostKey] = kBabblersResearchCost	
@@ -86,6 +95,10 @@ local function AddCompModTechChanges(techData)
 		end
 		if record[kTechDataId] == kTechId.DropFlamethrower then
 			record[kStructureAttachId] = { kTechId.Armory, kTechId.AdvancedArmory }
+		end
+		if record[kTechDataId] == kTechId.Cyst then
+			record[kTechDataCustomBuildTime] = true
+			record[kTechDataCustomBuildTimeFunction] = GetCystConstructionTime
 		end
     end
 end
