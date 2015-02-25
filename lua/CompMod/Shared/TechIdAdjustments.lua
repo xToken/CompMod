@@ -81,10 +81,9 @@ local function AddCompModTechChanges(techData)
 								[kTechDataTooltipInfo] =  "Heavy Machine Gun"})
 								
 	table.insert(techData, { 	[kTechDataId] = kTechId.ARCSpeedBoost,      
-								[kTechDataCostKey] = kARCSpeedBoostCost,
-								[kTechDataCooldown] = kARCSpeedBoostCooldown,  
+								[kTechDataCostKey] = kARCSpeedBoostCost,  
 								[kTechDataDisplayName] = "ARC Speed Boost",
-								[kTechDataTooltipInfo] =  [[ARC Speed Boost:  Temporarily increases the movement speed of this ARC by 15% for %]] .. ToString(kARCSpeedBoostDuration) .. "s seconds, also makes ARC immune to damage slowdown." })
+								[kTechDataTooltipInfo] =  [[ARC Speed Boost:  Temporarily increases the movement speed of this ARC by 20% for ]] .. ToString(kARCSpeedBoostDuration) .. "s seconds, also makes ARC immune to damage slowdown." })
 								
 	for index, record in ipairs(techData) do 
         if record[kTechDataId] == kTechId.BabblerTech then

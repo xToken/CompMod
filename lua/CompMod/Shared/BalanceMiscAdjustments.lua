@@ -36,9 +36,9 @@ kLerkGlideAccelBleedAmount = 4			// Comp Mod change, added increasing air fricti
 Grenade.kMinLifeTime = 0				// Comp Mod change, lowered from 0.15
 
 kARCSpeedBoostCost = 2					// Comp Mod change, added ARC Speed Boost.
-kARCSpeedBoostDuration = 4				// Comp Mod change, added ARC Speed Boost.
-kARCSpeedBoostIncrease = 1.15			// Comp Mod change, added ARC Speed Boost.
-kARCSpeedBoostCooldown = 15				// Comp Mod change, added ARC Speed Boost.
+kARCSpeedBoostDuration = 6				// Comp Mod change, added ARC Speed Boost.
+kARCSpeedBoostIncrease = 1.2			// Comp Mod change, added ARC Speed Boost.
+kARCSpeedBoostCooldown = 12				// Comp Mod change, added ARC Speed Boost.
 
 //Onos Charge secondary global.
 //Onos.kChargeEnergyCost = kChargeEnergyCost // Really? Move a global into a global?

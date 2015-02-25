@@ -5,4 +5,4 @@ kTechIdToMaterialOffset[kTechId.GorgeTunnelExit] = 103
 kTechIdToMaterialOffset[kTechId.HeavyMachineGunTech] = 171
 kTechIdToMaterialOffset[kTechId.HeavyMachineGun] = 171
 kTechIdToMaterialOffset[kTechId.DropHeavyMachineGun] = 171
-kTechIdToMaterialOffset[kTechId.ARCSpeedBoost] = 73
+kTechIdToMaterialOffset[kTechId.ARCSpeedBoost] = 111

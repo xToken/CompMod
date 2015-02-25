@@ -1,9 +1,18 @@
 //Dont want to always replace random files, so this.
 
+local oldARCOnCreate
+oldARCOnCreate = Class_ReplaceMethod("ARC", "OnCreate",
+	function(self)
+		oldARCOnCreate(self)
+		self.speedboost = false
+		self.oncooldown = false		
+    end
+)
+
 local oldARCPerformActivation
 oldARCPerformActivation = Class_ReplaceMethod("ARC", "PerformActivation",
 	function(self, techId, position, normal, commander)
-		if techId == kTechId.ARCSpeedBoost then
+		if techId == kTechId.ARCSpeedBoost and not self.oncooldown then
 			self:TriggerSpeedBoost()
 			return true, true
 		else
@@ -16,7 +25,7 @@ local oldARCGetActivationTechAllowed
 oldARCGetActivationTechAllowed = Class_ReplaceMethod("ARC", "GetActivationTechAllowed",
 	function(self, techId)
 		if techId == kTechId.ARCSpeedBoost then
-			return self.deployMode == ARC.kDeployMode.Undeployed
+			return self.deployMode == ARC.kDeployMode.Undeployed and not self.oncooldown
 		else
 			return oldARCGetActivationTechAllowed(self, techId)
 		end
@@ -38,13 +47,25 @@ function ARC:HasSpeedBoost()
 	return self.speedboost
 end
 
+function ARC:SpeedBoostOnCooldown()
+	return self.oncooldown
+end
+
+local function SpeedBoostOffCooldown(self)
+	self.speedboost = false
+	self.oncooldown = false
+	return false
+end
+
 local function DisableSpeedBoost(self)
 	self.speedboost = false
+	self:AddTimedCallback(SpeedBoostOffCooldown, kARCSpeedBoostCooldown)
 	return false
 end
 
 function ARC:TriggerSpeedBoost()
 	self.speedboost = true
+	self.oncooldown = true
 	self.speedboosttime = Shared.GetTime()
 	self:AddTimedCallback(DisableSpeedBoost, kARCSpeedBoostDuration)
 end
@@ -55,4 +76,4 @@ function ARC:ModifyMaxSpeed(maxSpeedTable)
 	end
 end
 
-Shared.LinkClassToMap("ARC", ARC.kMapName, { speedboost = "boolean" }, true)
+Shared.LinkClassToMap("ARC", ARC.kMapName, { speedboost = "boolean", oncooldown = "boolean" }, true)

@@ -121,9 +121,9 @@ kCatPackCooldown = 8					// Comp Mod change, added this.  Note - this includes t
 Rupture.kDuration = 2.5					// Comp Mod change, lowered from 3.
 
 kCystRedeployRange = 7					// Comp Mod change, increased from 6.
-kCystBuildTimePerMeter = 0.25			// Comp Mod change, cysts build slower further from hive.
+kMaxCystBuildTimeDistance = 150			// Comp Mod change, cysts build slower further from hive.
 kMinCystBuildTime = 5					// Comp Mod change, cysts build slower further from hive.
-kMaxCystBuildTime = 20					// Comp Mod change, cysts build slower further from hive.
+kMaxCystBuildTime = 15					// Comp Mod change, cysts build slower further from hive.
 
 // Comp Mod changes to alien tech tree below, cost and new additions.
 
