@@ -82,9 +82,9 @@ kFlamethrowerTechResearchTime = 30		// Comp Mod change, added FT research.
 kGrenadeTechResearchTime = 30			// Comp Mod change, lowered from 45.
 
 kFlamethrowerCost = 10				// Comp Mod change, decreased from 25.
-kClusterGrenadeCost = 3				// Comp Mod change, lowered from 3.
-kGasGrenadeCost = 3					// Comp Mod change, lowered from 3.
-kPulseGrenadeCost = 3				// Comp Mod change, lowered from 3.
+kClusterGrenadeCost = 2				// Comp Mod change, lowered from 3.
+kGasGrenadeCost = 2					// Comp Mod change, lowered from 3.
+kPulseGrenadeCost = 2				// Comp Mod change, lowered from 3.
 
 //kFlamethrowerAttackCone = 0.15		// Comp Mod change, lowered from 0.17.
 //kBurnDamagePerSecond = 0			// Comp Mod change, lowered from 2.

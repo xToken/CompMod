@@ -6,74 +6,53 @@ local function ToggleCystDistance(enabled)
 end
 Event.Hook("Console_cystdistance", ToggleCystDistance)
 
-function GetCystDistanceToConnectedHive(cyst)
+function GetClosestHive(origin)
 	
-	local distance, cysts, hdistance
-	local child, parent
-	child = cyst
-	distance = 0
-	cysts = 0
-	hdistance = 0
-	
-	parent = child:GetCystParent()
-	
-	if parent then
-		while not parent:isa("Hive") do
-					
-			local path = CreateBetweenEntities(child, parent)
-			if path then
-				distance = distance + GetPointDistance(path)
-			end
-			
-			cysts = cysts + 1
-			child = parent
-			parent = child:GetCystParent()
-			if not parent then
-				break
-			end
-			
-		end
-		
-		if parent:isa("Hive") then
-			local path = CreateBetweenEntities(cyst, parent)
-			if path then
-				hdistance = GetPointDistance(path)
-			end
-		end			
-		
-	end
-	
-	return distance, cysts, hdistance
+	local ents = GetEntitiesForTeam("Hive", kAlienTeamType)
+    Shared.SortEntitiesByDistance(origin, ents)
+    
+    return ents[1]
 	
 end
 
-function GetCystConstructionTime(cyst)
+function GetPathingDistance(origin1, origin2)
+	local points = PointArray()
+    Pathing.GetPathPoints(origin1, origin2, points)
+    return points
+end
 
-	if not cyst.cachedbuildTime then
-		local distance, cysts, hdistance = GetCystDistanceToConnectedHive(cyst)
-		distance = math.min(distance, kMaxCystBuildTimeDistance)
-		local dScale = distance / kMaxCystBuildTimeDistance
-		if dScale == 0 then
-			//Parent might not be updated yet, just return default time for now
-			//Shared.Message("Cyst parent not yet valid, or invalid distance returned")
-			return kCystBuildTime
-		end
-		local buildTime = math.max(dScale * kMaxCystBuildTime, kMinCystBuildTime) 
-		cyst.cachedbuildTime = buildTime
-		if debugCystDistance then
-			Shared.Message(string.format("Cyst build time set to %s, distance %s, hive distance %s, cysts %s", buildTime, distance, hdistance, cysts))
+function GetPathingDistanceToClosestHive(origin)
+	local hive = GetClosestHive(origin)
+	if hive then
+		local path = GetPathingDistance(origin, hive:GetOrigin())
+		if path then
+			return GetPointDistance(path)
 		end
 	end
-	return cyst.cachedbuildTime
+	return 0
+end
+
+function GetCystConstructionTime(origin)
+
+	local distance =  math.min(GetPathingDistanceToClosestHive(origin), kMaxCystBuildTimeDistance)
+	if distance == 0 then
+		return kCystBuildTime
+	end
+	local buildTime = math.max((distance / kMaxCystBuildTimeDistance) * kMaxCystBuildTime, kMinCystBuildTime) 
+	if debugCystDistance then
+		Shared.Message(string.format("Cyst build time set to %s, distance %s", buildTime, distance))
+	end
+	return buildTime
 	
 end
 
 function ConstructMixin:GetTotalConstructionTime()
 	if LookupTechData(self:GetTechId(), kTechDataCustomBuildTime, false) then
 		local method = LookupTechData(self:GetTechId(), kTechDataCustomBuildTimeFunction, nil)
-		if method then
-			return method(self)
+		if method and not self.cachedbuildTime then
+			self.cachedbuildTime = method(self:GetOrigin())
 		end
+		return self.cachedbuildTime
 	end
 	return LookupTechData(self:GetTechId(), kTechDataBuildTime, kDefaultBuildTime)
 end

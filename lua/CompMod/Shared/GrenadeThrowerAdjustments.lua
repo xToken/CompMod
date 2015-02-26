@@ -1,5 +1,51 @@
 //Dont want to always replace random files, so this.
 
-function GrenadeThrower:GetIsDroppable()
+local oldGrenadeThrowerOnCreate
+oldGrenadeThrowerOnCreate = Class_ReplaceMethod("GrenadeThrower", "OnCreate",
+	function(self)
+		oldGrenadeThrowerOnCreate(self)
+		InitMixin(self, PickupableWeaponMixin)
+		InitMixin(self, LiveMixin)
+    end
+)
+
+function GrenadeThrower:ModifyDamageTaken(damageTable, attacker, doer, damageType)
+    if damageType ~= kDamageType.Corrode then
+        damageTable.damage = 0
+    end
+end
+
+function GrenadeThrower:GetCanTakeDamageOverride()
+    return self:GetParent() == nil
+end
+
+if Server then
+
+    function GrenadeThrower:OnKill()
+        DestroyEntity(self)
+    end
+    
+    function GrenadeThrower:GetSendDeathMessageOverride()
+        return false
+    end    
+    
+end
+
+local networkVars = { }
+
+AddMixinNetworkVars(LiveMixin, networkVars)
+
+Shared.LinkClassToMap("GrenadeThrower", GrenadeThrower.kMapName, networkVars)
+
+//Maybe?
+function GasGrenadeThrower:GetIsDroppable()
+    return true
+end
+
+function ClusterGrenadeThrower:GetIsDroppable()
+    return true
+end
+
+function PulseGrenadeThrower:GetIsDroppable()
     return true
 end

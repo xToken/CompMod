@@ -4,15 +4,14 @@ local oldARCOnCreate
 oldARCOnCreate = Class_ReplaceMethod("ARC", "OnCreate",
 	function(self)
 		oldARCOnCreate(self)
-		self.speedboost = false
-		self.oncooldown = false		
+		InitMixin(self, ArcSpeedBoostMixin)
     end
 )
 
 local oldARCPerformActivation
 oldARCPerformActivation = Class_ReplaceMethod("ARC", "PerformActivation",
 	function(self, techId, position, normal, commander)
-		if techId == kTechId.ARCSpeedBoost and not self.oncooldown then
+		if techId == kTechId.ARCSpeedBoost and not self:SpeedBoostOnCooldown() then
 			self:TriggerSpeedBoost()
 			return true, true
 		else
@@ -25,7 +24,7 @@ local oldARCGetActivationTechAllowed
 oldARCGetActivationTechAllowed = Class_ReplaceMethod("ARC", "GetActivationTechAllowed",
 	function(self, techId)
 		if techId == kTechId.ARCSpeedBoost then
-			return self.deployMode == ARC.kDeployMode.Undeployed and not self.oncooldown
+			return self.deployMode == ARC.kDeployMode.Undeployed and not self:SpeedBoostOnCooldown()
 		else
 			return oldARCGetActivationTechAllowed(self, techId)
 		end
@@ -43,37 +42,32 @@ oldARCGetTechButtons = Class_ReplaceMethod("ARC", "GetTechButtons",
 	end
 )
 
-function ARC:HasSpeedBoost()
-	return self.speedboost
-end
+local networkVars = { }
 
-function ARC:SpeedBoostOnCooldown()
-	return self.oncooldown
-end
+AddMixinNetworkVars(ArcSpeedBoostMixin, networkVars)
 
-local function SpeedBoostOffCooldown(self)
-	self.speedboost = false
-	self.oncooldown = false
-	return false
-end
+Shared.LinkClassToMap("ARC", ARC.kMapName, networkVars, true)
 
-local function DisableSpeedBoost(self)
-	self.speedboost = false
-	self:AddTimedCallback(SpeedBoostOffCooldown, kARCSpeedBoostCooldown)
-	return false
-end
+//Cooldown hacks
+function MarineCommander:GetCooldownFraction(techId)
 
-function ARC:TriggerSpeedBoost()
-	self.speedboost = true
-	self.oncooldown = true
-	self.speedboosttime = Shared.GetTime()
-	self:AddTimedCallback(DisableSpeedBoost, kARCSpeedBoostDuration)
-end
-
-function ARC:ModifyMaxSpeed(maxSpeedTable)
-	if self.speedboost then
-		maxSpeedTable.maxSpeed = ARC.kMoveSpeed * kARCSpeedBoostIncrease
+	if techId == kTechId.ARCSpeedBoost then
+		local selection = self:GetSelection()
+		local cooldown = 1
+		if #selection > 0 then
+			//Look through arcs, look for any arcs that are off cooldown, otherwise take furthest along cooldown.
+			for i = 1, #selection do
+				local entity = selection[i]
+				if entity and entity:isa("ARC") then
+					if entity:SpeedBoostCooldown() < cooldown then
+						cooldown = entity:SpeedBoostCooldown()
+					end
+				end
+			end
+		end
+		return cooldown
 	end
-end
+	
+	return Commander.GetCooldownFraction(self, techId)
 
-Shared.LinkClassToMap("ARC", ARC.kMapName, { speedboost = "boolean", oncooldown = "boolean" }, true)
+end
