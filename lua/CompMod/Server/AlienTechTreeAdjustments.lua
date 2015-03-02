@@ -217,3 +217,21 @@ function AlienTeam:InitTechTree()
     self.techTree:SetComplete()
     
 end
+
+local oldAlienTeamOnHiveConstructed
+oldAlienTeamOnHiveConstructed = Class_ReplaceMethod("AlienTeam", "OnHiveConstructed",
+	function(self, newHive)
+		oldAlienTeamOnHiveConstructed(self, newHive)
+		//all da cysts...
+		UpdateEveryCystMaxHP()
+	end
+)
+
+local oldAlienTeamOnHiveDestroyed
+oldAlienTeamOnHiveDestroyed = Class_ReplaceMethod("AlienTeam", "OnHiveDestroyed",
+	function(self, destroyedHive)
+		oldAlienTeamOnHiveDestroyed(self, destroyedHive)
+		//all da cysts...
+		UpdateEveryCystMaxHP()
+	end
+)

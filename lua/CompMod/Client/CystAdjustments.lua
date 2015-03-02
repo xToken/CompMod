@@ -97,20 +97,6 @@ local function ApplyCystGhostModelChanges()
 				self.costDisplay.Frame:SetPosition( Client.WorldToScreen(modelCoords.origin) - kHalfFrameSize )
 				self.costDisplay.Text:SetText(ToString(math.max(0, cost)))
 				
-				if not self.costDisplay.bText then
-					self.costDisplay.bText, self.costDisplay.bIcon = CreateBuildTimeStuff(self)
-				end
-				
-				local totalBuildTime = 0
-				
-				if #cystPoints >= 2 then
-					for i = 2, #cystPoints do
-						totalBuildTime = totalBuildTime + GetCystConstructionTime(cystPoints[i])
-					end
-				end
-
-				self.costDisplay.bText:SetText(string.format("%s", ToString(math.max(0, math.ceil(totalBuildTime)))))
-				
 				self.costDisplay.Frame:SetIsVisible(cost > 0 and self.isVisible)
 
 			end

@@ -4,6 +4,7 @@ local oldGrenadeThrowerOnCreate
 oldGrenadeThrowerOnCreate = Class_ReplaceMethod("GrenadeThrower", "OnCreate",
 	function(self)
 		oldGrenadeThrowerOnCreate(self)
+		self.grenadesLeft = kPurchasedHandGrenades
 		InitMixin(self, PickupableWeaponMixin)
 		InitMixin(self, LiveMixin)
     end
@@ -17,6 +18,14 @@ end
 
 function GrenadeThrower:GetCanTakeDamageOverride()
     return self:GetParent() == nil
+end
+
+function GrenadeThrower:AddGrenades(amount)
+	self.grenadesLeft = Clamp(self.grenadesLeft + amount, 0, kMaxHandGrenades)
+end
+
+function GrenadeThrower:GetRemainingGrenades()
+	return self.grenadesLeft
 end
 
 if Server then

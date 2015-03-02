@@ -9,9 +9,6 @@ AppendToEnum( kPlayerStatus, 'HMG' )
 //This is relevant, not only to this but to any functions - it explains Reference/Value in lua function calls
 //Tables, functions, threads, and (full) userdata values are objects: variables do not actually contain these values, only references to them.
 
-kTechDataCustomBuildTime = "custombuildtime"
-kTechDataCustomBuildTimeFunction = "custombuildtimefunc"
-
 local function AddCompModTechChanges(techData)
 	// Comp Mod change, add tech crap								
 	table.insert(techData, { 	[kTechDataId] = kTechId.GorgeTunnelEntrance,
@@ -94,10 +91,6 @@ local function AddCompModTechChanges(techData)
 		end
 		if record[kTechDataId] == kTechId.DropFlamethrower then
 			record[kStructureAttachId] = { kTechId.Armory, kTechId.AdvancedArmory }
-		end
-		if record[kTechDataId] == kTechId.Cyst then
-			record[kTechDataCustomBuildTime] = true
-			record[kTechDataCustomBuildTimeFunction] = GetCystConstructionTime
 		end
     end
 end

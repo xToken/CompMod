@@ -82,9 +82,11 @@ kFlamethrowerTechResearchTime = 30		// Comp Mod change, added FT research.
 kGrenadeTechResearchTime = 30			// Comp Mod change, lowered from 45.
 
 kFlamethrowerCost = 10				// Comp Mod change, decreased from 25.
-kClusterGrenadeCost = 2				// Comp Mod change, lowered from 3.
-kGasGrenadeCost = 2					// Comp Mod change, lowered from 3.
-kPulseGrenadeCost = 2				// Comp Mod change, lowered from 3.
+kClusterGrenadeCost = 1				// Comp Mod change, lowered from 3.
+kGasGrenadeCost = 1					// Comp Mod change, lowered from 3.
+kPulseGrenadeCost = 1				// Comp Mod change, lowered from 3.
+kMaxHandGrenades = 2				// Comp Mod change, 2 max grenades.
+kPurchasedHandGrenades = 1			// Comp Mod change, 1 grenade from armory.
 
 //kFlamethrowerAttackCone = 0.15		// Comp Mod change, lowered from 0.17.
 //kBurnDamagePerSecond = 0			// Comp Mod change, lowered from 2.
@@ -121,9 +123,9 @@ kCatPackCooldown = 8					// Comp Mod change, added this.  Note - this includes t
 Rupture.kDuration = 2.5					// Comp Mod change, lowered from 3.
 
 kCystRedeployRange = 7					// Comp Mod change, increased from 6.
-kMaxCystBuildTimeDistance = 150			// Comp Mod change, cysts build slower further from hive.
-kMinCystBuildTime = 5					// Comp Mod change, cysts build slower further from hive.
-kMaxCystBuildTime = 15					// Comp Mod change, cysts build slower further from hive.
+kMaxCystScalingDistance = 175			// Comp Mod change, cysts have less HP further from hive.
+kMinCystScalingDistance = 25			// Comp Mod change, cysts have less HP further from hive.
+kMinCystMatureHealth = 200				// Comp Mod change, cysts have less HP further from hive.
 
 // Comp Mod changes to alien tech tree below, cost and new additions.
 

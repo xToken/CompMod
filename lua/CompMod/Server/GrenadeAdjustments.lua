@@ -31,3 +31,24 @@ function ClusterGrenade:Detonate(targetHit)
 	IgniteNearbyPlayers(self, kClusterGrenadeDamageRadius)
 	oldClusterGrenadeDetonate(self, targetHit)
 end
+
+
+local GrenadeThrowers = { ClusterGrenadeThrower.kMapName, GasGrenadeThrower.kMapName, PulseGrenadeThrower.kMapName }
+
+local oldMarineGiveItem
+oldMarineGiveItem = Class_ReplaceMethod("Marine", "GiveItem",
+	function(self, itemMapName)
+		
+		if itemMapName then
+			if table.contains(GrenadeThrowers, itemMapName) then
+				local grenadeWeapon = self:GetWeapon(itemMapName)
+				if grenadeWeapon then
+					grenadeWeapon:AddGrenades(kPurchasedHandGrenades)
+					self:AddResources(0 - GetCostForTech(grenadeWeapon:GetTechId()))
+					return
+				end
+			end
+		end
+		return oldMarineGiveItem(self, itemMapName)
+    end
+)

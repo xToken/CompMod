@@ -1,27 +1,29 @@
 //Dont want to always replace random files, so this.
 
-local debugCystDistance = false
-local function ToggleCystDistance(enabled)
-    debugCystDistance = enabled ~= "false"
-end
-Event.Hook("Console_cystdistance", ToggleCystDistance)
-
-function GetClosestHive(origin)
+local function GetClosestHive(origin)
 	
 	local ents = GetEntitiesForTeam("Hive", kAlienTeamType)
+	local hive
     Shared.SortEntitiesByDistance(origin, ents)
+	
+	for i = 1, #ents do
+		if ents and ents[i]:GetIsAlive() and ents[i]:GetIsBuilt() then
+			hive = ents[i]
+			break
+		end
+	end
     
-    return ents[1]
+    return hive
 	
 end
 
-function GetPathingDistance(origin1, origin2)
+local function GetPathingDistance(origin1, origin2)
 	local points = PointArray()
     Pathing.GetPathPoints(origin1, origin2, points)
     return points
 end
 
-function GetPathingDistanceToClosestHive(origin)
+local function GetPathingDistanceToClosestHive(origin)
 	local hive = GetClosestHive(origin)
 	if hive then
 		local path = GetPathingDistance(origin, hive:GetOrigin())
@@ -32,27 +34,45 @@ function GetPathingDistanceToClosestHive(origin)
 	return 0
 end
 
-function GetCystConstructionTime(origin)
+function GetCystHealthScalar(origin)
 
-	local distance =  math.min(GetPathingDistanceToClosestHive(origin), kMaxCystBuildTimeDistance)
+	local distance =  Clamp(GetPathingDistanceToClosestHive(origin), kMinCystScalingDistance, kMaxCystScalingDistance)
 	if distance == 0 then
-		return kCystBuildTime
+		return 1
 	end
-	local buildTime = math.max((distance / kMaxCystBuildTimeDistance) * kMaxCystBuildTime, kMinCystBuildTime) 
-	if debugCystDistance then
-		Shared.Message(string.format("Cyst build time set to %s, distance %s", buildTime, distance))
-	end
-	return buildTime
+	return 1 - Clamp(((distance - kMinCystScalingDistance) / kMaxCystScalingDistance), 0, 1)
 	
 end
 
-function ConstructMixin:GetTotalConstructionTime()
-	if LookupTechData(self:GetTechId(), kTechDataCustomBuildTime, false) then
-		local method = LookupTechData(self:GetTechId(), kTechDataCustomBuildTimeFunction, nil)
-		if method and not self.cachedbuildTime then
-			self.cachedbuildTime = method(self:GetOrigin())
+local oldCystOnCreate
+oldCystOnCreate = Class_ReplaceMethod("Cyst", "OnCreate",
+	function(self)
+		oldCystOnCreate(self)
+		if Server then
+			self:AddTimedCallback(Cyst.UpdateMaxMatureHealth, 0.1)     
 		end
-		return self.cachedbuildTime
-	end
-	return LookupTechData(self:GetTechId(), kTechDataBuildTime, kDefaultBuildTime)
+    end
+)
+
+function Cyst:GetMatureMaxHealth()
+    return math.max(self.hpscalar * kMatureCystHealth, kMinCystMatureHealth)
 end
+
+function Cyst:UpdateMaxMatureHealth()
+    self.hpscalar = GetCystHealthScalar(self:GetOrigin())
+end
+
+function Cyst:GetMatureMaxArmor()
+    return kMatureCystArmor
+end
+
+function UpdateEveryCystMaxHP()
+	local cysts = GetEntitiesForTeam("Cyst", kAlienTeamType)
+	for i = 1, #cysts do
+		if cysts[i] and cysts[i]:GetIsAlive() then
+			cysts[i]:UpdateMaxMatureHealth()
+		end
+	end
+end
+
+Shared.LinkClassToMap("Cyst", Cyst.kMapName, { hpscalar = "float (0 to 1 by 0.01)" })
