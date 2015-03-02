@@ -42,6 +42,16 @@ oldARCGetTechButtons = Class_ReplaceMethod("ARC", "GetTechButtons",
 	end
 )
 
+local oldARCGetTurnSpeedOverride
+oldARCGetTurnSpeedOverride = Class_ReplaceMethod("ARC", "GetTurnSpeedOverride",
+	function(self)
+		if self:HasSpeedBoost() then
+			return kARCSpeedBoostTurnRate
+		end
+		return ARC.kTurnSpeed
+	end
+)
+
 local networkVars = { }
 
 AddMixinNetworkVars(ArcSpeedBoostMixin, networkVars)
