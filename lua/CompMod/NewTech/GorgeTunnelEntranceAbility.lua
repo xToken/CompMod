@@ -1,12 +1,9 @@
-// ======= Copyright (c) 2003-2011, Unknown Worlds Entertainment, Inc. All rights reserved. =======
-//
-// lua\Weapons\Alien\GorgeTunnelEntranceAbility.lua
-//
-//    Created by:   Andreas Urwalek (andi@unknownworlds.com)
-//
-// Gorge builds hydra.
-//
-// ========= For more information, visit us at http://www.unknownworlds.com =====================
+// Natural Selection 2 Competitive Mod
+// Source located at - https://github.com/xToken/CompMod
+// Detailed breakdown of changes at https://docs.google.com/document/d/1YOnjJz6_GhioysLaWiRfc17xnrmw6AEJIb6gq7TX3Qg/edit?pli=1
+// lua\CompMod\NewTech\GorgeTunnelEntranceAbility.lua
+// Originally Created by 'Andreas Urwalek' for Natural Selection 2 - Unknown Worlds Entertainment, Inc. (http://www.unknownworlds.com)
+// - Dragon
 
 Script.Load("lua/Weapons/Alien/StructureAbility.lua")
 

@@ -1,4 +1,8 @@
-//Dont want to always replace random files, so this.
+// Natural Selection 2 Competitive Mod
+// Source located at - https://github.com/xToken/CompMod
+// Detailed breakdown of changes at https://docs.google.com/document/d/1YOnjJz6_GhioysLaWiRfc17xnrmw6AEJIb6gq7TX3Qg/edit?pli=1
+// lua\CompMod\Server\HiveAdjustments.lua
+// - Dragon
 
 local function UpdateHealing(self)
 
@@ -31,3 +35,16 @@ local function UpdateHealing(self)
 end
 
 ReplaceLocals(Hive.OnUpdate, { UpdateHealing = UpdateHealing })
+
+//Fix hive death not cancelling researches/destroying evo chamber
+local originalHiveOnKill
+originalHiveOnKill = Class_ReplaceMethod("Hive", "OnKill",
+	function(self, attacker, doer, point, direction)
+		originalHiveOnKill(self, attacker, doer, point, direction)
+		local evoChamber = self:GetEvolutionChamber()
+		if evoChamber then
+			evoChamber:OnKill()
+			DestroyEntity(evoChamber)
+		end
+	end
+)

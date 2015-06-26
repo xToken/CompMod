@@ -1,4 +1,8 @@
-//BalanceMisc.lua changes
+// Natural Selection 2 Competitive Mod
+// Source located at - https://github.com/xToken/CompMod
+// Detailed breakdown of changes at https://docs.google.com/document/d/1YOnjJz6_GhioysLaWiRfc17xnrmw6AEJIb6gq7TX3Qg/edit?pli=1
+// lua\CompMod\Shared\BalanceMiscAdjustments.lua
+// - Dragon
 
 kCystMaturationTime = 90 				// Comp Mod change, decreased from 180.
 kPhaseGateDepartureRate = 0.5	   		// Comp Mod change, added this value to control phase gate departures.
