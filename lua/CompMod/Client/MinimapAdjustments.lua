@@ -9,7 +9,11 @@ local function SetupGUIMinimap()
 	local kBlipColorType 	= GetUpValue( GUIMinimap.Initialize,   "kBlipColorType", 		{ LocateRecurse = true } )
 	local kBlipSizeType 	= GetUpValue( GUIMinimap.Initialize,   "kBlipSizeType", 		{ LocateRecurse = true } )
 	local kStaticBlipsLayer = GetUpValue( GUIMinimap.Initialize,   "kStaticBlipsLayer", 	{ LocateRecurse = true } )
-	kBlipInfo[kMinimapBlipType.TunnelEntrance] = { kBlipColorType.MAC, kBlipSizeType.Normal, kStaticBlipsLayer }
+	if kBlipInfo then
+		kBlipInfo[kMinimapBlipType.TunnelEntrance] = { kBlipColorType.MAC, kBlipSizeType.Normal, kStaticBlipsLayer }
+	else
+		Shared.Message("CompMod failed to register TunnelEntrance Minimap Icon.")
+	end
 end
 
 AddPreInitOverride("GUIMinimapFrame", SetupGUIMinimap)
