@@ -9,7 +9,6 @@ for _, v in ipairs( { 'GorgeTunnelEntrance', 'GorgeTunnelExit', 'HeavyMachineGun
 end
 
 AppendToEnum( kMinimapBlipType, 'TunnelExit' )
-AppendToEnum( kPlayerStatus, 'HMG' )
 
 //This is relevant, not only to this but to any functions - it explains Reference/Value in lua function calls
 //Tables, functions, threads, and (full) userdata values are objects: variables do not actually contain these values, only references to them.
