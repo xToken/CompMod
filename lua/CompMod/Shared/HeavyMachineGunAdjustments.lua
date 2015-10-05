@@ -15,7 +15,7 @@ originalMarineGetPlayerStatusDesc = Class_ReplaceMethod("Marine", "GetPlayerStat
 		local weapon = self:GetWeaponInHUDSlot(1)
 		if (weapon) and self:GetIsAlive() then
 			if (weapon:isa("HeavyMachineGun")) then
-				return kPlayerStatus.HMG
+				return kPlayerStatus.Embryo
 			end
 		end
 		return originalMarineGetPlayerStatusDesc(self)

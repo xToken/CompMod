@@ -92,3 +92,25 @@ local function SetupInsightShit()
 end
 
 AddPostInitOverride("GUIInsight_PlayerFrames", SetupInsightShit)
+
+local oldOnCommandScores = OnCommandScores
+function OnCommandScores(scoreTable)
+
+    local status = kPlayerStatus[scoreTable.status]
+    if scoreTable.status == kPlayerStatus.Embryo then
+        status = "HMG"
+		
+		 Scoreboard_SetPlayerData(scoreTable.clientId, scoreTable.entityId, scoreTable.playerName, scoreTable.teamNumber, scoreTable.score,
+                             scoreTable.kills, scoreTable.deaths, math.floor(scoreTable.resources), scoreTable.isCommander, scoreTable.isRookie,
+                             status, scoreTable.isSpectator, scoreTable.assists, scoreTable.clientIndex)
+							 
+    else
+		oldOnCommandScores(scoreTable)
+    end
+    
+end
+
+local kStatusTranslationStringMap = GetUpValue( Scoreboard_ReloadPlayerData,   "kStatusTranslationStringMap", { LocateRecurse = true })
+if kStatusTranslationStringMap then
+	kStatusTranslationStringMap[kPlayerStatus.Embryo] = "HMG"
+end
