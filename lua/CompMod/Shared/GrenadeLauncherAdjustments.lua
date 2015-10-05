@@ -10,6 +10,7 @@ local kGrenadeGravity = 1
 local kGrenadeSpeed = 25
 local kFullGravity = 9.81
 
+/*
 function Grenade:OnAdjustModelCoords(modelCoords)
 
     local coords = modelCoords
@@ -18,7 +19,7 @@ function Grenade:OnAdjustModelCoords(modelCoords)
     coords.zAxis = coords.zAxis * kGrenadeScale
     return coords
 	
-end
+end*/
 
 function Grenade:OnInitialized()
 
