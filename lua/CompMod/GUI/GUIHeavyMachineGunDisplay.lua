@@ -42,7 +42,7 @@ function GUIHeavyMachineGunDisplay:Initialize()
     self.ammoTextBg = GUIManager:CreateTextItem()
     self.ammoTextBg:SetFontName(Fonts.kMicrogrammaDMedExt_Medium)
     //self.ammoTextBg:SetFontName("fonts/HMGFont.fnt")
-    self.ammoTextBg:SetScale(FontScaleVector * 1.1)
+    self.ammoTextBg:SetFontSize(130)
     self.ammoTextBg:SetFontIsBold(true)
     self.ammoTextBg:SetTextAlignmentX(GUIItem.Align_Center)
     self.ammoTextBg:SetTextAlignmentY(GUIItem.Align_Center)
@@ -53,7 +53,7 @@ function GUIHeavyMachineGunDisplay:Initialize()
     self.ammoText = GUIManager:CreateTextItem()
     self.ammoText:SetFontName(Fonts.kMicrogrammaDMedExt_Medium)
     //self.ammoText:SetFontName("fonts/HMGFont.fnt")
-    self.ammoText:SetScale(FontScaleVector)
+    self.ammoText:SetFontSize(120)
     self.ammoText:SetFontIsBold(true)
     self.ammoText:SetTextAlignmentX(GUIItem.Align_Center)
     self.ammoText:SetTextAlignmentY(GUIItem.Align_Center)
@@ -64,7 +64,7 @@ function GUIHeavyMachineGunDisplay:Initialize()
     self.ammoTextReserveBg = GUIManager:CreateTextItem()
     //self.ammoTextReserveBg:SetFontName("fonts/HMGFont.fnt")
 	self.ammoTextReserveBg:SetFontName(Fonts.kMicrogrammaDMedExt_Medium)
-	self.ammoTextReserveBg:SetScale(FontScaleReserveVector * 1.1)
+	self.ammoTextReserveBg:SetFontSize(130)
     self.ammoTextReserveBg:SetTextAlignmentX(GUIItem.Align_Center)
     self.ammoTextReserveBg:SetTextAlignmentY(GUIItem.Align_Center)
     self.ammoTextReserveBg:SetPosition(Vector(120, 310, 0))
@@ -74,7 +74,7 @@ function GUIHeavyMachineGunDisplay:Initialize()
     self.ammoTextReserve = GUIManager:CreateTextItem()
     //self.ammoTextReserve:SetFontName("fonts/HMGFont.fnt")
 	self.ammoTextReserve:SetFontName(Fonts.kMicrogrammaDMedExt_Medium)
-    self.ammoTextReserve:SetScale(FontScaleReserveVector)
+    self.ammoTextReserve:SetFontSize(120)
     self.ammoTextReserve:SetTextAlignmentX(GUIItem.Align_Center)
     self.ammoTextReserve:SetTextAlignmentY(GUIItem.Align_Center)
     self.ammoTextReserve:SetPosition(Vector(120, 310, 0))
@@ -92,17 +92,7 @@ function GUIHeavyMachineGunDisplay:Update(deltaTime)
     // Update the ammo counter.
     
     local ammoFormat = string.format("%02d", self.weaponClip)
-	
-	if self.weaponClip == 100 and not self.smallfont then
-		self.ammoText:SetFontName(Fonts.kAgencyFB_Huge)
-		self.ammoTextBg:SetFontName(Fonts.kAgencyFB_Huge)
-		self.smallfont = true
-	elseif self.weaponClip < 100 and self.smallfont then
-		self.ammoText:SetFontName(Fonts.kMicrogrammaDMedExt_Medium)
-		self.ammoTextBg:SetFontName(Fonts.kMicrogrammaDMedExt_Medium)
-		self.smallfont = false
-	end
-	
+		
     self.ammoText:SetText( ammoFormat )
     self.ammoTextBg:SetText( ammoFormat )
     

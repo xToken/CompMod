@@ -9,7 +9,6 @@ local function ApplyCystGhostModelChanges()
 	local CreateLine = GetUpValue( CystGhostModel.Update, "CreateLine", { LocateRecurse = true } )
 	local UpdateLine = GetUpValue( CystGhostModel.Update, "UpdateLine", { LocateRecurse = true } )
 	local UpdateCystModels = GetUpValue( CystGhostModel.Update, "UpdateCystModels", { LocateRecurse = true } )
-	local kHalfFrameSize = GetUpValue( CystGhostModel.Update, "kHalfFrameSize" )
 
 	local function UpdateConnectionLines(self, cystPoints, connected)
 
@@ -98,7 +97,7 @@ local function ApplyCystGhostModelChanges()
 			
 				local cost = (#cystPoints - 1) * kCystCost
 			
-				self.costDisplay.Frame:SetPosition( Client.WorldToScreen(modelCoords.origin) - kHalfFrameSize )
+				self.costDisplay.Frame:SetPosition( Client.WorldToScreen(modelCoords.origin) - GUIScale(Vector(45, 65, 0) ))
 				self.costDisplay.Text:SetText(ToString(math.max(0, cost)))
 				
 				self.costDisplay.Frame:SetIsVisible(cost > 0 and self.isVisible)
