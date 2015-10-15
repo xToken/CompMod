@@ -85,10 +85,6 @@ kFlamethrowerTechResearchTime = 30		// Comp Mod change, added FT research.
 //kGrenadeTechResearchCost = 10			// Comp Mod change, unchanged.
 kGrenadeTechResearchTime = 30			// Comp Mod change, lowered from 45.
 
-//For testing mainly, these values suck a bit.
-kGrenadeLauncherGrenadeDamage = 148.5	// Comp Mod change, lowered from 165.
-kGLPlayerDamageReduction = 0.889		// Comp Mod change, increased from 0.8
-
 kFlamethrowerCost = 10				// Comp Mod change, decreased from 25.
 kClusterGrenadeCost = 1				// Comp Mod change, lowered from 3.
 kGasGrenadeCost = 1					// Comp Mod change, lowered from 3.
