@@ -390,7 +390,7 @@ if Client then
     end
 
 	function HeavyMachineGun:GetTriggerPrimaryEffects()
-        return not self:GetIsReloading() and self.shooting
+        return not self:GetIsReloading() and self.primaryAttacking
     end
     
     function HeavyMachineGun:GetBarrelPoint()
