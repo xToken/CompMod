@@ -24,9 +24,10 @@
 //kMarineInitialIndivRes = 20 			// Comp Mod change, unchanged.
 //kAlienInitialIndivRes = 15			// Comp Mod change, unchanged.
 
-//kLerkCost = 20						// Comp Mod change, unchanged.
-//kFadeCost = 35						// Comp Mod change, unchanged.
-//kOnosCost = 55						// Comp Mod change, unchanged.
+kGorgeCost = 7						// Comp Mod change, lowered by 1.
+kLerkCost = 18						// Comp Mod change, lowered by 2.
+kFadeCost = 32						// Comp Mod change, lowered by 3.
+kOnosCost = 50						// Comp Mod change, lowered by 5.
 
 kDualExosuitCost = 65				// Comp Mod change, lowered pres cost from 60.
 kDualRailgunExosuitCost = 65		// Comp Mod change, lowered pres cost from 60.

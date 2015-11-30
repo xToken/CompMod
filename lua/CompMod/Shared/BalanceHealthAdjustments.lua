@@ -16,10 +16,10 @@ kPhaseGateArmor = 800				// Comp Mod change, increased from 0.
 //kPrototypeLabArmor = 500			// Comp Mod change, unchanged.
 
 //kMatureCystHealth = 450 			// Comp Mod change, unchanged.
-kTunnelEntranceHealth = 900			// Comp Mod change, lowered tunnels cost and HP.
-kTunnelEntranceArmor = 0			// Comp Mod change, lowered tunnels cost and HP.
-kMatureTunnelEntranceHealth = 1000	// Comp Mod change, lowered tunnels cost and HP.
-kMatureTunnelEntranceArmor = 125	// Comp Mod change, lowered tunnels cost and HP.
+//kTunnelEntranceHealth = 900			// Comp Mod change, lowered tunnels cost and HP.
+//kTunnelEntranceArmor = 0			// Comp Mod change, lowered tunnels cost and HP.
+//kMatureTunnelEntranceHealth = 1000	// Comp Mod change, lowered tunnels cost and HP.
+//kMatureTunnelEntranceArmor = 125	// Comp Mod change, lowered tunnels cost and HP.
 //kBoneWallHealth = 100				// Comp Mod change, unchanged.
 //kBoneWallArmor = 0				// Comp Mod change, unchanged.
 //kBoneWallHealthPerBioMass = 100	// Comp Mod change, unchanged.
