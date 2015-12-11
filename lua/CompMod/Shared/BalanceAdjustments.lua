@@ -26,8 +26,9 @@
 
 kGorgeCost = 7						// Comp Mod change, lowered by 1.
 kLerkCost = 18						// Comp Mod change, lowered by 2.
-kFadeCost = 32						// Comp Mod change, lowered by 3.
-kOnosCost = 50						// Comp Mod change, lowered by 5.
+kFadeCost = 34						// Comp Mod change, lowered by 1.
+//kOnosCost = 55					// Comp Mod change, unchanged.
+kFadeUpgradeCost = 4				// Comp Mod change, lowered by 1.
 
 kDualExosuitCost = 65				// Comp Mod change, lowered pres cost from 60.
 kDualRailgunExosuitCost = 65		// Comp Mod change, lowered pres cost from 60.
