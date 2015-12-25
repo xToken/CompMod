@@ -114,3 +114,12 @@ local kStatusTranslationStringMap = GetUpValue( Scoreboard_ReloadPlayerData,   "
 if kStatusTranslationStringMap then
 	kStatusTranslationStringMap[kPlayerStatus.Embryo] = "HMG"
 end
+
+local function SetupHMGOutlineColors()
+	kEquipmentOutlineColor = enum { [0]='TSFBlue', 'Green', 'Fuchsia', 'Yellow', 'Red' }
+	local _lookup = GetUpValue( EquipmentOutline_UpdateModel, "lookup" )
+	table.insert(_lookup, "HeavyMachineGun")
+	ReplaceLocals(EquipmentOutline_UpdateModel, { lookup = _lookup })
+end
+
+SetupHMGOutlineColors()
