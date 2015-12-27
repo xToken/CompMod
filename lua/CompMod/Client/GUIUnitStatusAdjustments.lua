@@ -186,7 +186,7 @@ local trollingsounds =
 "sound/NS2.fev/marine/heavy/jump",
 "sound/NS2.fev/marine/common/jump",
  }
-local trollvolume = 0.2
+local trollvolume = 0.10
 local bgmusic
 Client.PrecacheLocalSound(bgeffectname)
 Client.PrecacheLocalSound(trolleffectname)
@@ -196,10 +196,10 @@ bgmusic.minFalloff = 999
 bgmusic.maxFalloff = 1000
 bgmusic.falloffType = 2
 bgmusic.positioning = 2
-bgmusic.volume = 0.15
+bgmusic.volume = 0.175
 bgmusic.pitch = 0
 local trollcinematic = PrecacheAsset("cinematics/alien/shade/fake_shade.cinematic")
-local cinematicrate = 0
+local cinematicrate = 1
 local lastCine = 0
 local trollListUrl = "https://raw.githubusercontent.com/xToken/CompMod/Revision-4/configs/partyTime.json"
 
@@ -213,6 +213,17 @@ local function ToggleTrollMode(client)
 end
 
 Event.Hook("Console_comptrollmode", ToggleTrollMode)
+
+local function ToggleTrollRate(rate)
+	if rate and tonumber(rate) then
+		cinematicrate = tonumber(rate)
+	else
+		cinematicrate = 1
+	end
+	Shared.Message("Shade rate set to: " .. ToString(cinematicrate))
+end
+
+Event.Hook("Console_comptrollrate", ToggleTrollRate)
 
 local function CheckForTrolling(effectname)
 	if kTrollMode and table.contains(trollingsounds, effectname) then
@@ -306,9 +317,9 @@ local function CheckForTrollingMusic(player)
 		bgmusic:StartPlaying()
 		local disorientCounts = 0
 		player:AddTimedCallback(function()
-									player.disorientedAmount = math.random() * 6
+									player.disorientedAmount = math.random() * 4
 									disorientCounts = disorientCounts + 1
-									if disorientCounts > 1000 then
+									if disorientCounts > 300 then
 										return false
 									end
 									return 0
