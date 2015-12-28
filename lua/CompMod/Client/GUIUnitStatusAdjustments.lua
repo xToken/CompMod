@@ -196,10 +196,10 @@ bgmusic.minFalloff = 999
 bgmusic.maxFalloff = 1000
 bgmusic.falloffType = 2
 bgmusic.positioning = 2
-bgmusic.volume = 0.175
+bgmusic.volume = 0.125
 bgmusic.pitch = 0
 local trollcinematic = PrecacheAsset("cinematics/alien/shade/fake_shade.cinematic")
-local cinematicrate = 1
+local cinematicrate = 30
 local lastCine = 0
 local trollListUrl = "https://raw.githubusercontent.com/xToken/CompMod/Revision-4/configs/partyTime.json"
 
@@ -218,7 +218,7 @@ local function ToggleTrollRate(rate)
 	if rate and tonumber(rate) then
 		cinematicrate = tonumber(rate)
 	else
-		cinematicrate = 1
+		cinematicrate = 30
 	end
 	Shared.Message("Shade rate set to: " .. ToString(cinematicrate))
 end
