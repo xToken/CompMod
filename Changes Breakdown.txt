@@ -57,7 +57,7 @@ Shared/WalkAdjustments.lua - Adds walk adjustments to marine max speed calculati
 
 Server Changes:
 
-Server/AlienAbilityAdjustments.lua - Changes alien abilities to be lost when loosing hive.
+Server/AlienAbilityAdjustments.lua - Changes alien abilities to be lost when losing hive.
 Server/AlienAdjustments.lua - Changes innate regen to only tick once damaged, and changes regen to only work outside combat.
 Server/AlienTechTreeAdjustments.lua - Changes alien tech tree.
 Server/CragAdjustments.lua - Changes crag healing to use base HP instead of biomass HP.

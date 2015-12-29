@@ -63,9 +63,8 @@ local function DestroyMuzzleEffect(self)
     if self.muzzleCinematic then
         Client.DestroyCinematic(self.muzzleCinematic)            
     end
-    
+    self.muzzleCinematicDestroyed = true
     self.muzzleCinematic = nil
-    self.activeCinematicName = nil
 
 end
 
@@ -74,7 +73,7 @@ local function DestroyShellEffect(self)
     if self.shellsCinematic then
         Client.DestroyCinematic(self.shellsCinematic)            
     end
-    
+	self.shellsCinematicDestroyed = true
     self.shellsCinematic = nil
 
 end
@@ -82,14 +81,9 @@ end
 local function CreateMuzzleEffect(self)
 
     local player = self:GetParent()
-
     if player then
-
-        local cinematicName = kMuzzleEffect
-        self.activeCinematicName = cinematicName
-        self.muzzleCinematic = CreateMuzzleCinematic(self, cinematicName, cinematicName, kMuzzleAttachPoint, nil, Cinematic.Repeat_Endless)
-        self.firstPersonLoaded = player:GetIsLocalPlayer() and player:GetIsFirstPerson()
-    
+        self.muzzleCinematic = CreateMuzzleCinematic(self, kMuzzleEffect, kMuzzleEffect, kMuzzleAttachPoint, nil, Cinematic.Repeat_Endless)
+		self.muzzleCinematicDestroyed = false
     end
 
 end
@@ -129,6 +123,7 @@ local function CreateShellCinematic(self)
     end    
 
     self.shellsCinematic:SetIsActive(false)
+	self.shellsCinematicDestroyed = false
 
 end
 
@@ -149,7 +144,6 @@ end
 function HeavyMachineGun:OnDestroy()
 
     ClipWeapon.OnDestroy(self)
-    
     DestroyMuzzleEffect(self)
     DestroyShellEffect(self)
     
@@ -158,9 +152,7 @@ end
 function HeavyMachineGun:OnPrimaryAttack(player)
 
     if not self:GetIsReloading() then
-    
         ClipWeapon.OnPrimaryAttack(self, player)
-        
     end    
 
 end
@@ -315,23 +307,11 @@ if Client then
         local player = self:GetParent()
         
         if not self.muzzleCinematic then            
-            CreateMuzzleEffect(self)                
-        elseif player then
-        
-            local cinematicName = kMuzzleEffect
-            local useFirstPerson = player:GetIsLocalPlayer() and player:GetIsFirstPerson()
-            
-            if cinematicName ~= self.activeCinematicName or self.firstPersonLoaded ~= useFirstPerson then
-            
-                DestroyMuzzleEffect(self)
-                CreateMuzzleEffect(self)
-                
-            end
-            
+            CreateMuzzleEffect(self)
         end
             
         // CreateMuzzleCinematic() can return nil in case there is no parent or the parent is invisible (for alien commander for example)
-        if self.muzzleCinematic then
+        if self.muzzleCinematic and not self.muzzleCinematicDestroyed then
             self.muzzleCinematic:SetIsVisible(true)
         end
         
@@ -375,11 +355,11 @@ if Client then
 		//Shared.StopSound(self, kLoopingSound)
         Shared.PlaySound(self, kEndSound)
         
-		if self.muzzleCinematic then
+		if self.muzzleCinematic and not self.muzzleCinematicDestroyed then
             self.muzzleCinematic:SetIsVisible(false)
         end
         
-        if self.shellsCinematic then
+        if self.shellsCinematic and not self.shellsCinematicDestroyed then
             self.shellsCinematic:SetIsActive(false)
         end
         
