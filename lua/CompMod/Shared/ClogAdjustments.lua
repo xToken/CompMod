@@ -1,14 +1,15 @@
 // Natural Selection 2 Competitive Mod
 // Source located at - https://github.com/xToken/CompMod
 // Detailed breakdown of changes at https://docs.google.com/document/d/1YOnjJz6_GhioysLaWiRfc17xnrmw6AEJIb6gq7TX3Qg/edit?pli=1
-// lua\CompMod\Shared\CystAdjustments.lua
+// lua\CompMod\Shared\ClogAdjustments.lua
 // - Dragon
 
 local kFallenTimeWindow = 1
 
 function Clog:OnClogFallDone(isAttached, normal)
 	//Epic Hack time.  Seems the predict VM collision object doesnt get updated after the clog falls.  Forcing the clients to update improves it, but will not fully resolve the problem.
-	//Clogs dont seem to have a way to interact with the predict V
+	//Clogs dont seem to have a way to interact with the predict VM.  Using Player OnUpdatePlayer in Predict VM to update all relevant clogs.  Caching and stepping to avoid
+	//Updating every clog every tick, and doing an ent lookup every tick.
 	self.hasFallen = true
 	self.fallenWindow = kFallenTimeWindow
 end
