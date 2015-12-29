@@ -123,12 +123,11 @@ end
 
 AddPostInitOverride("GUIUnitStatus", SetupExtraUnitStatusBars)
 
-local oldPlayerUI_GetUnitStatusInfo = PlayerUI_GetUnitStatusInfo
-function PlayerUI_GetUnitStatusInfo()
+local oldPlayerUI_GetStatusInfoForUnit = PlayerUI_GetStatusInfoForUnit
+function PlayerUI_GetStatusInfoForUnit(player, unit)
 
-    local unitStates = oldPlayerUI_GetUnitStatusInfo()
-	for i = 1, #unitStates do
-		local unitState = unitStates[i]
+    local unitState = oldPlayerUI_GetStatusInfoForUnit(player, unit)
+	if unitState then
 		if unitState.AbilityFraction ~= nil and type(unitState.AbilityFraction) == "table" then
 			//I approve this hack.
 			local extraInfo = unitState.AbilityFraction
@@ -141,6 +140,6 @@ function PlayerUI_GetUnitStatusInfo()
 			end
 		end
 	end
-	return unitStates
+	return unitState
 	
 end
