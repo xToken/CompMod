@@ -6,6 +6,7 @@
 
 //Base 'Shared' changes which apply to all VMs
 
+Script.Load( "lua/Class.lua" )
 Script.Load( "lua/CompMod/Elixer_Utility.lua" )
 Elixer.UseVersion( 1.72 )
 
