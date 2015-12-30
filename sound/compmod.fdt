@@ -138,7 +138,7 @@
 <car_rpmsmooth>0.075</car_rpmsmooth>
 <car_loadsmooth>0.05</car_loadsmooth>
 <car_loadscale>6</car_loadscale>
-<volume_db>-2.1</volume_db>
+<volume_db>-9</volume_db>
 <pitch>0</pitch>
 <pitch_units>Octaves</pitch_units>
 <pitch_randomization>0</pitch_randomization>
@@ -151,8 +151,8 @@
 <mode>x_3d</mode>
 <ignoregeometry>No</ignoregeometry>
 <rolloff>Logarithmic</rolloff>
-<mindistance>2.5</mindistance>
-<maxdistance>10000</maxdistance>
+<mindistance>10</mindistance>
+<maxdistance>4700</maxdistance>
 <auto_distance_filtering>Off</auto_distance_filtering>
 <distance_filter_centre_freq>1500</distance_filter_centre_freq>
 <headrelative>World_relative</headrelative>
@@ -188,7 +188,7 @@
 <spawn_intensity_randomization>0</spawn_intensity_randomization>
 <TEMPLATE_PROP_LAYERS>1</TEMPLATE_PROP_LAYERS>
 <TEMPLATE_PROP_KEEP_EFFECTS_PARAMS>1</TEMPLATE_PROP_KEEP_EFFECTS_PARAMS>
-<TEMPLATE_PROP_VOLUME>0</TEMPLATE_PROP_VOLUME>
+<TEMPLATE_PROP_VOLUME>1</TEMPLATE_PROP_VOLUME>
 <TEMPLATE_PROP_PITCH>1</TEMPLATE_PROP_PITCH>
 <TEMPLATE_PROP_PITCH_RANDOMIZATION>1</TEMPLATE_PROP_PITCH_RANDOMIZATION>
 <TEMPLATE_PROP_VOLUME_RANDOMIZATION>1</TEMPLATE_PROP_VOLUME_RANDOMIZATION>

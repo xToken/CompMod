@@ -97,7 +97,7 @@ local oldOnCommandScores = OnCommandScores
 function OnCommandScores(scoreTable)
 
     local status = kPlayerStatus[scoreTable.status]
-    if scoreTable.status == kPlayerStatus.Embryo then
+    if scoreTable.status == kPlayerStatus.HeavyMachineGun then
         status = "HMG"
 		
 		 Scoreboard_SetPlayerData(scoreTable.clientId, scoreTable.entityId, scoreTable.playerName, scoreTable.teamNumber, scoreTable.score,
@@ -112,7 +112,7 @@ end
 
 local kStatusTranslationStringMap = GetUpValue( Scoreboard_ReloadPlayerData,   "kStatusTranslationStringMap", { LocateRecurse = true })
 if kStatusTranslationStringMap then
-	kStatusTranslationStringMap[kPlayerStatus.Embryo] = "HMG"
+	kStatusTranslationStringMap[kPlayerStatus.HeavyMachineGun] = "HMG"
 end
 
 local function SetupHMGOutlineColors()

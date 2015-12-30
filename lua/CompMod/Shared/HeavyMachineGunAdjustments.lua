@@ -7,7 +7,7 @@
 // Call this once to generate the basics
 GetTexCoordsForTechId(kTechId.Rifle)
 // Add HMG
-gTechIdPosition[kTechId.HeavyMachineGun] = kDeathMessageIcon.Crush
+gTechIdPosition[kTechId.HeavyMachineGun] = kDeathMessageIcon.HeavyMachineGun
 
 local originalMarineGetPlayerStatusDesc
 originalMarineGetPlayerStatusDesc = Class_ReplaceMethod("Marine", "GetPlayerStatusDesc",
@@ -15,7 +15,7 @@ originalMarineGetPlayerStatusDesc = Class_ReplaceMethod("Marine", "GetPlayerStat
 		local weapon = self:GetWeaponInHUDSlot(1)
 		if (weapon) and self:GetIsAlive() then
 			if (weapon:isa("HeavyMachineGun")) then
-				return kPlayerStatus.Embryo
+				return kPlayerStatus.HeavyMachineGun
 			end
 		end
 		return originalMarineGetPlayerStatusDesc(self)
