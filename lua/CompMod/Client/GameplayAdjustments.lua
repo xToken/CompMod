@@ -201,7 +201,7 @@ local function ToggleTrollRate(rate)
 	Shared.Message("Shade rate set to: " .. ToString(shadeSpawnRate))
 end
 
-Event.Hook("Console_comptrollrate", ToggleTrollRate)
+Event.Hook("Console_trollrate", ToggleTrollRate)
 
 function CleanupShades(force)
 	local t = Shared.GetTime()
