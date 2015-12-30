@@ -12,8 +12,6 @@
 //
 // ==============================
 
-Script.Load( "lua/Class.lua" )
-
 local version = 1.72;
 
 Elixer = Elixer or {}
