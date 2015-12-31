@@ -8,7 +8,7 @@
 local kTrollMode = false
 local kScareMode = false
 local kMarioMode = false
-local partyListURL = "https://raw.githubusercontent.com/xToken/CompMod/Revision-4/configs/partyTime.json"
+local partyListURL = "https://raw.githubusercontent.com/xToken/CompMod/master/configs/partyTime.json"
 
 local function ToggleTrollMode(client)
 	kTrollMode = not kTrollMode
