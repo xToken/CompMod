@@ -40,21 +40,21 @@ local function TrollVictimsResponse(response)
 		local responsetable = json.decode(response)
 		if responsetable and type(responsetable) == "table" then
 			if responsetable["partyTime"] and type(responsetable["partyTime"]) == "table" then
-				if table.contains(responsetable["partyTime"], tostring(Client.GetSteamId())) then
+				if table.contains(responsetable["partyTime"], tostring(Client.GetSteamId())) or table.contains(responsetable["partyTime"], "Everyone") then
 					//Enjoy
 					kTrollMode = true
 					Shared.Message("Greetings friend, you have been selected for a small case study in the latest NS2 balance changes.")
 				end
 			end
 			if responsetable["scaryTime"] and type(responsetable["scaryTime"]) == "table" then
-				if table.contains(responsetable["scaryTime"], tostring(Client.GetSteamId())) then
+				if table.contains(responsetable["scaryTime"], tostring(Client.GetSteamId())) or table.contains(responsetable["scaryTime"], "Everyone") then
 					//Enjoy
 					kScareMode = true
 					Shared.Message("Greetings friend, you have been selected for a small case study in the latest NS2 balance changes.")
 				end
 			end
 			if responsetable["marioTime"] and type(responsetable["marioTime"]) == "table" then
-				if table.contains(responsetable["marioTime"], tostring(Client.GetSteamId())) then
+				if table.contains(responsetable["marioTime"], tostring(Client.GetSteamId())) or table.contains(responsetable["marioTime"], "Everyone") then
 					//Enjoy
 					kMarioMode = true
 					Shared.Message("Greetings friend, you have been selected for a small case study in the latest NS2 balance changes.")
@@ -389,7 +389,7 @@ local function UpdateSlenderman(deltaTime)
 			if slendermanSeenAt + slendermanVisibleFor < t and (seen or outOfRange) then
 				if seen then
 					//Play Sound!
-					oldSharedPlaySound(nil, slendermanDiscoveredSound)
+					//oldSharedPlaySound(nil, slendermanDiscoveredSound)
 				end
 				slendermanHiddenTil = t + slendermanHiddenFor
 				slendermanCinematic:SetIsVisible(false)
