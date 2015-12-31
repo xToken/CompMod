@@ -143,3 +143,17 @@ function PlayerUI_GetStatusInfoForUnit(player, unit)
 	return unitState
 	
 end
+
+//I stole this from mendasp, and totally dont give a fuck.
+local function SetupBuildVersionTags()
+
+	local originalFeedbackInit
+	originalFeedbackInit = Class_ReplaceMethod("GUIFeedback", "Initialize",
+	function(self)
+		originalFeedbackInit(self)
+		self.buildText:SetText(self.buildText:GetText() .. " (" .. kCompModString .. " v"  .. kCompModVersion .. ")")
+	end)
+	
+end
+
+AddPreInitOverride("GUIFeedback", SetupBuildVersionTags)
