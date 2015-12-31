@@ -37,6 +37,11 @@ kLerkAirFrictionBleedAmount = 0.2		// Comp Mod change, added increasing air fric
 kLerkGlideAccelBleedTime = 1.0			// Comp Mod change, added increasing air friction.  Glide accel is lowered over this period of time after last flap.
 kLerkGlideAccelBleedAmount = 4			// Comp Mod change, added increasing air friction.	Max amount of glide accel to bleed.
 kSkulkMaxGroundSpeed = 7.25				// Comp Mod change, increased from 7.0
+kExoThrustersCooldownTime = 4			// Comp Mod change, increased from 2.5.
+kExoThrusterDuration = 0.5				// Comp Mod change, decreased from 1.5.
+kExoThrusterUpwardsAcceleration = 20	// Comp Mod change, increased from 2.
+kExoThrusterHorizontalAcceleration = 50 // Comp Mod change, increased from 23.
+kExoHorizontalThrusterAddSpeed = 5		// Comp Mod change, increased from 2.5.
 
 Grenade.kMinLifeTime = 0				// Comp Mod change, lowered from 0.15
 
