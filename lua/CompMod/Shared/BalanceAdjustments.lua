@@ -124,10 +124,11 @@ kHeavyMachineGunSpread = Math.Radians(3.8)	// Comp Mod, added this for HMG.
 
 kMinigunDamage = 6.0						// Comp Mod change, decreased from 22.
 kMinigunDamageType = kDamageType.Puncture	// Comp Mod change, changed from Heavy.
-kRailgunDamage = 30							// Comp Mod change, decreased from 33.
-kRailgunChargeDamage = 130					// Comp Mod change, decreased from 140.
+kRailgunDamage = 0							// Comp Mod change, decreased from 33.
+kModRailgunDamage = 30						// Comp Mod change, added this.
+kRailgunChargeDamage = 0					// Comp Mod change, decreased from 140.
+kModRailgunChargeDamage	= 130				// Comp Mod change, added this.
 kRailgunSplashRadius = 3					// Comp Mod change, added this.
-kRailgunSplashesStructures = true			// Comp Mod change, added this.
 
 //kCystBuildTime = 4					// Comp Mod change, decreased from 5.
 kCatPackDuration = 8					// Comp Mod change, decreased from 12.
