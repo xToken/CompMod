@@ -14,7 +14,7 @@ local function SetupGUIMarineBuymenu()
 	local gSmallIconIndex 		= GetUpValue( GetSmallIconPixelCoordinates, "gSmallIconIndex" )
 	local gBigIconIndex 		= GetUpValue( GetBigIconPixelCoords, "gBigIconIndex" )
 	gBigIconIndex[kTechId.HeavyMachineGun] = 15
-	gSmallIconIndex[kTechId.HeavyMachineGun] = 48
+	gSmallIconIndex[kTechId.HeavyMachineGun] = 49
 end
 
 AddPostInitOverride("GUIMarineBuyMenu", SetupGUIMarineBuymenu)
