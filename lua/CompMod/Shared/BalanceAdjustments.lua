@@ -24,16 +24,13 @@
 //kMarineInitialIndivRes = 20 			// Comp Mod change, unchanged.
 //kAlienInitialIndivRes = 15			// Comp Mod change, unchanged.
 
-kGorgeCost = 7						// Comp Mod change, lowered by 1.
-kLerkCost = 18						// Comp Mod change, lowered by 2.
-kFadeCost = 34						// Comp Mod change, lowered by 1.
-//kOnosCost = 55					// Comp Mod change, unchanged.
-kFadeUpgradeCost = 4				// Comp Mod change, lowered by 1.
+//kLerkCost = 20						// Comp Mod change, unchanged.
+//kFadeCost = 35						// Comp Mod change, unchanged.
+//kOnosCost = 55						// Comp Mod change, unchanged.
 
-kDualExosuitCost = 65				// Comp Mod change, lowered pres cost from 60.
-kDualRailgunExosuitCost = 65		// Comp Mod change, lowered pres cost from 60.
-kExosuitTechResearchCost = 45		// Comp Mod change, increased from 20 tres.
-kMaximumExosuitsActive = 4			// Comp Mod change, added exo cap.
+kDualExosuitCost = 35				// Comp Mod change, lowered pres cost from 60.
+kDualRailgunExosuitCost = 35		// Comp Mod change, lowered pres cost from 60.
+kExosuitTechResearchCost = 25		// Comp Mod change, increased from 20 tres.
 
 kGorgeTunnelCost = 3				// Comp Mod change, lowered tunnels cost and HP.
 kNumBabblerEggsPerGorge = 2			// Comp Mod change, adjusted babblers per egg and cost, down from 3.
