@@ -139,6 +139,7 @@ function PlayerUI_GetStatusInfoForUnit(player, unit)
 				unitState.MucousShield = extraInfo.Shield
 			end
 		end
+		unitState.IsSteamFriend = (unit:isa("Player") and not GetAreEnemies(player, unit) and unit:GetIsSteamFriend()) or false
 	end
 	return unitState
 	

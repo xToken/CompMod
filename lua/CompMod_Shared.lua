@@ -10,7 +10,7 @@ Script.Load( "lua/Class.lua" )
 Script.Load( "lua/CompMod/Elixer_Utility.lua" )
 Elixer.UseVersion( 1.72 )
 
-kCompModVersion = 1
+kCompModVersion = 2
 kCompModString = "CompMod"
 
 local ModFiles = { }
