@@ -35,16 +35,3 @@ local function UpdateHealing(self)
 end
 
 ReplaceLocals(Hive.OnUpdate, { UpdateHealing = UpdateHealing })
-
-//Fix hive death not cancelling researches/destroying evo chamber
-local originalHiveOnKill
-originalHiveOnKill = Class_ReplaceMethod("Hive", "OnKill",
-	function(self, attacker, doer, point, direction)
-		originalHiveOnKill(self, attacker, doer, point, direction)
-		local evoChamber = self:GetEvolutionChamber()
-		if evoChamber then
-			evoChamber:OnKill()
-			DestroyEntity(evoChamber)
-		end
-	end
-)
