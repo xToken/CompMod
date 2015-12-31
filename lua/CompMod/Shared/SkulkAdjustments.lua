@@ -70,3 +70,22 @@ originalSkulkPreUpdateMove = Class_ReplaceMethod("Skulk", "PreUpdateMove",
 	
 	end
 )
+
+local originalSkulkGetMaxSpeed
+originalSkulkGetMaxSpeed = Class_ReplaceMethod("Skulk", "GetMaxSpeed",
+	function(self, possible)
+	
+		if possible then
+			return kSkulkMaxGroundSpeed
+		end
+
+		local maxspeed = kSkulkMaxGroundSpeed
+		
+		if self.movementModiferState then
+			maxspeed = maxspeed * 0.5
+		end
+		
+		return maxspeed
+		
+	end
+)

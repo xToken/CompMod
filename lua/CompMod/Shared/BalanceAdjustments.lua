@@ -42,6 +42,9 @@ kHydraCost = 2						// Comp Mod change, lowered hydra cost from 3.
 
 kWebBuildCost = 0					// Comp Mod change, lowered web cost from 1.
 
+kSpikeMaxDamage = 6					// Comp Mod change, lowered damage from 7 to 6.
+kSpikeMinDamage = 6					// Comp Mod change, lowered damage from 7 to 6.
+
 kUmbraDuration = 4					// Comp Mod change, lowered duration to 4 from 5.
 kUmbraRadius = 4					// Comp Mod change, lowered radius from 6 to 4.
 kUmbraShotgunModifier = 0.75		// Comp Mod change, decreased reduction from .36 to .25.
@@ -119,9 +122,12 @@ kHeavyMachineGunDropCost = 25		// Comp Mod change, added HMG.
 kHeavyMachineGunPointValue = 7		// Comp Mod change, added HMG.
 kHeavyMachineGunSpread = Math.Radians(3.8)	// Comp Mod, added this for HMG.
 
-kMinigunDamage = 20						// Comp Mod change, decreased from 22.
-kRailgunDamage = 30						// Comp Mod change, decreased from 33.
-kRailgunChargeDamage = 130				// Comp Mod change, decreased from 140.
+kMinigunDamage = 6.0						// Comp Mod change, decreased from 22.
+kMinigunDamageType = kDamageType.Puncture	// Comp Mod change, changed from Heavy.
+kRailgunDamage = 30							// Comp Mod change, decreased from 33.
+kRailgunChargeDamage = 130					// Comp Mod change, decreased from 140.
+kRailgunSplashRadius = 3					// Comp Mod change, added this.
+kRailgunSplashesStructures = true			// Comp Mod change, added this.
 
 //kCystBuildTime = 4					// Comp Mod change, decreased from 5.
 kCatPackDuration = 8					// Comp Mod change, decreased from 12.
