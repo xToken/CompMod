@@ -245,7 +245,9 @@ local function CreateCysts(hive, harvester, teamNumber)
 
 	local hiveOrigin = hive:GetOrigin()
 	local harvesterOrigin = harvester:GetOrigin()
-	
+	//This shouldnt go here, but it works.  If the map doesnt have an RT it wont, but then it cant get damaged so... :D
+	hive:UpdateInfestation()
+		
 	// Spawn all the Cyst spawn points close to the hive.
 	local dist = (hiveOrigin - harvesterOrigin):GetLength()
 	for c = 1, #Server.cystSpawnPoints do
