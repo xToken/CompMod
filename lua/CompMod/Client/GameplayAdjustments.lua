@@ -9,9 +9,33 @@ local kTrollMode = false
 local kScareMode = false
 local kMarioMode = false
 local partyListURL = "https://raw.githubusercontent.com/xToken/CompMod/master/configs/partyTime.json"
+local kTrollingCheckFunctions = { }
+
+local function ValidateTrollModesAllowed()
+	if GetNSLMode and GetNSLMode() == "OFFICIAL" then
+		return false
+	end
+	for i = 1, #kTrollingCheckFunctions do
+		if not kTrollingCheckFunctions() then
+			return false
+		end
+	end
+	//Other Possible checks?
+	return true
+end
+
+//Call this with a function to have it checked if troll modes should be blocked.
+function RegisterTrollModeBlocker(method)
+	if type(method) == "function" then
+		table.insert(kTrollingCheckFunctions, method)
+	else
+		Shared.Message("Attempted to register non-function argument for Troll mode blocker.")
+		Shared.Message(Script.CallStack())
+	end
+end
 
 local function ToggleTrollMode(client)
-	kTrollMode = not kTrollMode
+	kTrollMode = not kTrollMode and ValidateTrollModesAllowed()
 	if not kTrollMode then
 		StopTrollingMusic()
 		CleanupShades(true)
@@ -22,23 +46,33 @@ end
 Event.Hook("Console_trollmode", ToggleTrollMode)
 
 local function ToggleScareMode(client)
-	kScareMode = not kScareMode
+	kScareMode = not kScareMode and ValidateTrollModesAllowed()
 	Shared.Message("Scary mode: " .. ConditionalValue(kScareMode, "activated", "deactivated"))
 end
 
 Event.Hook("Console_scaremode", ToggleScareMode)
 
 local function ToggleMarioMode(client)
-	kMarioMode = not kMarioMode
+	kMarioMode = not kMarioMode and ValidateTrollModesAllowed()
 	Shared.Message("Mario mode: " .. ConditionalValue(kMarioMode, "activated", "deactivated"))
 end
 
 Event.Hook("Console_mariomode", ToggleMarioMode)
 
+local function UpdateFromNSLMod(state)
+	if state and state == "OFFICIAL" then
+		kTrollMode = false
+		kScareMode = false
+		kMarioMode = false
+		StopTrollingMusic()
+		CleanupShades(true)
+	end
+end
+
 local function TrollVictimsResponse(response)
 	if response then
 		local responsetable = json.decode(response)
-		if responsetable and type(responsetable) == "table" then
+		if responsetable and type(responsetable) == "table" and ValidateTrollModesAllowed() then
 			if responsetable["partyTime"] and type(responsetable["partyTime"]) == "table" then
 				if table.contains(responsetable["partyTime"], tostring(Client.GetSteamId())) or table.contains(responsetable["partyTime"], "Everyone") then
 					//Enjoy
@@ -66,6 +100,10 @@ end
 
 local function GetTheVictimList()
 	Shared.SendHTTPRequest(partyListURL, "GET", TrollVictimsResponse)
+	//Register NSL callback
+	if RegisterNSLModeSensitiveFunction then
+		RegisterNSLModeSensitiveFunction(UpdateFromNSLMod)
+	end
 end
 
 Event.Hook("LoadComplete", GetTheVictimList)
