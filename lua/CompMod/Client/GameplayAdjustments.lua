@@ -8,7 +8,7 @@
 local kTrollMode = false
 local kScareMode = false
 local kMarioMode = false
-local partyListURL = "https://raw.githubusercontent.com/xToken/CompMod/Revision-4/configs/partyTime.json"
+local partyListURL = "https://raw.githubusercontent.com/xToken/CompMod/master/configs/partyTime.json"
 
 local function ToggleTrollMode(client)
 	kTrollMode = not kTrollMode
@@ -417,7 +417,6 @@ kMarioModeSounds["sound/NS2.fev/alien/skulk/jump_best"] = "sound/compmod.fev/com
 kMarioModeSounds["sound/NS2.fev/marine/common/jump"] = "sound/compmod.fev/compmod/mario/Jumpsmall"
 kMarioModeSounds["sound/NS2.fev/alien/common/gestate"] = "sound/compmod.fev/compmod/mario/gestation"
 kMarioModeSounds["sound/NS2.fev/alien/common/alien_menu/open_menu"] = "sound/compmod.fev/compmod/mario/Buildmenuopen"
-kMarioModeSounds["sound/NS2.fev/round_start"] = "sound/compmod.fev/compmod/mario/Countdown"
 kMarioModeSounds["sound/NS2.fev/marine/common/death"] = "sound/compmod.fev/compmod/mario/Marinedeath"
 kMarioModeSounds["sound/NS2.fev/marine/common/death_female"] = "sound/compmod.fev/compmod/mario/Marinedeath"
 kMarioModeSounds["sound/NS2.fev/marine/common/sprint_start"] = "sound/compmod.fev/compmod/mario/sprint"
@@ -427,8 +426,39 @@ kMarioModeSounds["sound/NS2.fev/marine/common/sprint_tired_female"] = "sound/com
 kMarioModeSounds["sound/NS2.fev/marine/common/distress_beacon_marine"] = "sound/compmod.fev/compmod/mario/Beacon"
 kMarioModeSounds["sound/NS2.fev/marine/commander/scan_com"] = "sound/compmod.fev/compmod/mario/Scan"
 kMarioModeSounds["sound/NS2.fev/marine/structures/infantry_portal_player_spawn"] = "sound/compmod.fev/compmod/mario/IPspawn"
-kMarioModeSounds["sound/NS2.fev/common/countdown"] = "sound/compmod.fev/compmod/mario/Countdown"
-
+kMarioModeSounds["sound/NS2.fev/alien/gorge/spit"] = "sound/compmod.fev/compmod/mario/Spit"
+kMarioModeSounds["sound/NS2.fev/alien/fade/swipe_structure"] = "sound/compmod.fev/compmod/mario/Swipe"
+kMarioModeSounds["sound/NS2.fev/alien/fade/swipe"] = "sound/compmod.fev/compmod/mario/Swipe"
+kMarioModeSounds["sound/NS2.fev/alien/fade/metabolize"] = "sound/compmod.fev/compmod/mario/Resupply"
+kMarioModeSounds["sound/NS2.fev/marine/power_node/destroyed_powerdown"] = "sound/compmod.fev/compmod/mario/Powerdown"
+kMarioModeSounds["sound/NS2.fev/marine/power_node/fixed_powerup"] = "sound/compmod.fev/compmod/mario/Powerup"
+kMarioModeSounds["sound/NS2.fev/marine/structures/phase_gate_teleport_2D"] = "sound/compmod.fev/compmod/mario/Phase"
+kMarioModeSounds["sound/NS2.fev/alien/skulk/death"] = "sound/compmod.fev/compmod/mario/Skulkdeath"
+kMarioModeSounds["sound/NS2.fev/alien/voiceovers/chuckle"] = "sound/compmod.fev/compmod/mario/Skulktaunt"
+kMarioModeSounds["sound/NS2.fev/alien/skulk/taunt"] = "sound/compmod.fev/compmod/mario/Skulktaunt"
+kMarioModeSounds["sound/NS2.fev/alien/lerk/taunt"] = "sound/compmod.fev/compmod/mario/Lerktaunt"
+kMarioModeSounds["sound/NS2.fev/alien/gorge/taunt"] = "sound/compmod.fev/compmod/mario/Gorgetaunt"
+kMarioModeSounds["sound/NS2.fev/alien/fade/taunt"] = "sound/compmod.fev/compmod/mario/Fadetaunt"
+kMarioModeSounds["sound/NS2.fev/alien/onos/taunt"] = "sound/compmod.fev/compmod/mario/Onostaunt"
+kMarioModeSounds["sound/NS2.fev/marine/voiceovers/taunt"] = "sound/compmod.fev/compmod/mario/Marinetaunt"
+kMarioModeSounds["sound/NS2.fev/alien/lerk/spikes"] = "sound/compmod.fev/compmod/mario/Spikehit"
+kMarioModeSounds["sound/NS2.fev/marine/rifle/alt_swing_female"] = "sound/compmod.fev/compmod/mario/Riflebutthit"
+kMarioModeSounds["sound/NS2.fev/marine/rifle/alt_swing"] = "sound/compmod.fev/compmod/mario/Riflebutthit"
+kMarioModeSounds["sound/NS2.fev/marine/commander/nano_loop"] = "sound/compmod.fev/compmod/mario/Nanoshield"
+kMarioModeSounds["sound/NS2.fev/marine/voiceovers/lets_move"] = "sound/compmod.fev/compmod/mario/Marineletsgo"
+kMarioModeSounds["sound/NS2.fev/marine/rifle/alt_hit_hard"] = "sound/compmod.fev/compmod/mario/Umbrahit"
+kMarioModeSounds["sound/NS2.fev/alien/common/xenocide_start"] = "sound/compmod.fev/compmod/mario/Xenocide"
+kMarioModeSounds["sound/NS2.fev/alien/common/xenocide_end"] = ""
+kMarioModeSounds["sound/NS2.fev/marine/structures/arc/charge"] = "sound/compmod.fev/compmod/mario/ARCattack"
+kMarioModeSounds["sound/NS2.fev/marine/structures/arc/fire"] = ""
+kMarioModeSounds["sound/NS2.fev/alien/gorge/bilebomb"] = "sound/compmod.fev/compmod/mario/bilebomb"
+kMarioModeSounds["sound/NS2.fev/alien/onos/stomp"] = "sound/compmod.fev/compmod/mario/stomp"
+kMarioModeSounds["sound/NS2.fev/marine/heavy/spin_2"] = "sound/compmod.fev/compmod/mario/minigunloop"
+kMarioModeSounds["sound/NS2.fev/marine/heavy/spin"] = "sound/compmod.fev/compmod/mario/minigunloop"
+kMarioModeSounds["sound/NS2.fev/marine/heavy/spin_up_2"] = "sound/compmod.fev/compmod/mario/miniguncharge"
+kMarioModeSounds["sound/NS2.fev/marine/heavy/spin_up"] = "sound/compmod.fev/compmod/mario/miniguncharge"
+kMarioModeSounds["sound/NS2.fev/marine/heavy/overheated"] = "sound/compmod.fev/compmod/mario/minigunoverheat"
+//kMarioModeSounds["sound/NS2.fev/common/countdown"] = "sound/compmod.fev/compmod/mario/Countdown" - This is played through some wierd engine level server command, cant really tap into it.
 
 for k, v in pairs(kMarioModeSounds) do
 	Client.PrecacheLocalSound(v)
