@@ -4,5 +4,6 @@
 	"scaryTime": [
 				],
 	"marioTime": [
-				]
+				],
+	"enabled":false
 }
