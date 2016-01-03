@@ -55,12 +55,16 @@ function Clog:OnUpdate(deltaTime)
 	
 end
 
-function Clog:OnKill()
+if Server then
 
-    //Insure that an OnUpdate called after destroy doesnt re-create the physics.
-	self:SetSimplePhysicsEnabled(false)
-	self:TriggerEffects("death")
-	DestroyEntity(self)
+	function Clog:OnKill()
+
+		//Insure that an OnUpdate called after destroy doesnt re-create the physics.
+		self:SetSimplePhysicsEnabled(false)
+		self:TriggerEffects("death")
+		DestroyEntity(self)
+		
+	end
 	
 end
 
