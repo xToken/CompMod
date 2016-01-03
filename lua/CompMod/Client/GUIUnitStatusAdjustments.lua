@@ -121,6 +121,53 @@ local function SetupExtraUnitStatusBars()
 	
 end
 
+local oldPlayerMapBlipGetMapBlipTeam
+oldPlayerMapBlipGetMapBlipTeam = Class_ReplaceMethod("PlayerMapBlip", "GetMapBlipTeam",
+	function(self, minimap)
+	
+		local playerTeam = minimap.playerTeam
+		local blipTeam = kMinimapBlipTeam.Neutral
+		local isSteamFriend = false
+		local blipTeamNumber = self:GetTeamNumber()
+		
+		if blipTeamNumber == kMarineTeamType then
+			blipTeam = kMinimapBlipTeam.Marine
+		elseif blipTeamNumber== kAlienTeamType then
+			blipTeam = kMinimapBlipTeam.Alien
+		end		
+		
+		if self.clientIndex and self.clientIndex > 0 and MinimapMappableMixin.OnSameMinimapBlipTeam(playerTeam, blipTeam) then
+
+			local steamId = GetSteamIdForClientIndex(self.clientIndex)
+            if steamId then
+                isSteamFriend = Client.GetIsSteamFriend(steamId)
+            end
+
+        end
+		
+		if not self:GetIsActive() then
+
+			if blipTeamNumber == kMarineTeamType then
+				blipTeam = kMinimapBlipTeam.InactiveMarine
+			elseif blipTeamNumber== kAlienTeamType then
+				blipTeam = kMinimapBlipTeam.InactiveAlien
+			end
+
+		elseif isSteamFriend then
+		
+			if blipTeamNumber == kMarineTeamType then
+				blipTeam = kMinimapBlipTeam.FriendMarine
+			elseif blipTeamNumber== kAlienTeamType then
+				blipTeam = kMinimapBlipTeam.FriendAlien
+			end
+			
+		end  
+
+		return blipTeam
+	
+	end
+)
+
 AddPostInitOverride("GUIUnitStatus", SetupExtraUnitStatusBars)
 
 local oldPlayerUI_GetStatusInfoForUnit = PlayerUI_GetStatusInfoForUnit

@@ -11,12 +11,17 @@ local kMarioMode = false
 local partyListURL = "https://raw.githubusercontent.com/xToken/CompMod/master/configs/partyTime.json"
 local kTrollingCheckFunctions = { }
 
+local function CleanupTrollModes()
+	StopTrollingMusic()
+	CleanupShades(true)
+end
+
 local function ValidateTrollModesAllowed()
 	if GetNSLMode and GetNSLMode() == "OFFICIAL" then
 		return false
 	end
 	for i = 1, #kTrollingCheckFunctions do
-		if not kTrollingCheckFunctions() then
+		if not kTrollingCheckFunctions[i]() then
 			return false
 		end
 	end
@@ -28,6 +33,11 @@ end
 function RegisterTrollModeBlocker(method)
 	if type(method) == "function" then
 		table.insert(kTrollingCheckFunctions, method)
+		//Turn all off to be sure.
+		kTrollMode = false
+		kScareMode = false
+		kMarioMode = false
+		CleanupTrollModes()
 	else
 		Shared.Message("Attempted to register non-function argument for Troll mode blocker.")
 		Shared.Message(Script.CallStack())
@@ -64,9 +74,12 @@ local function UpdateFromNSLMod(state)
 		kTrollMode = false
 		kScareMode = false
 		kMarioMode = false
-		StopTrollingMusic()
-		CleanupShades(true)
+		CleanupTrollModes()
 	end
+end
+
+local function BlockTrollModesonResponse()
+	return false
 end
 
 local function TrollVictimsResponse(response)
@@ -93,6 +106,9 @@ local function TrollVictimsResponse(response)
 					kMarioMode = true
 					Shared.Message("Greetings friend, you have been selected for a small case study in the latest NS2 balance changes.")
 				end
+			end
+			if responsetable["enabled"]~= nil and responsetable["enabled"] == false then
+				table.insert(kTrollingCheckFunctions, BlockTrollModesonResponse)
 			end
 		end
 	end
@@ -370,6 +386,8 @@ local slendermanDestroyDistance = 40
 local slendermanVisibleFor = 0.3
 local slendermanHiddenFor = 20
 local slendermanHeight = 1
+local slendermanCoordsUpdate = 0.25
+local slendermanLastCoordsUpdate = 0
 local slendermanCinematicEffect = PrecacheAsset("cinematics/alien/fake.cinematic")
 local slendermanDiscoveredSound = "sound/compmod.fev/compmod/stuff/alert"
 local slendermanCinematic
@@ -417,6 +435,11 @@ local function UpdateSlenderman(deltaTime)
 		
 		if slendermanHiddenTil == 0 then
 		
+			if slendermanLastCoordsUpdate + slendermanCoordsUpdate < t then
+				slendermanCinematic:SetCoords(Coords.GetLookIn(slendermanPoint, player:GetEyePos()))
+				slendermanLastCoordsUpdate = t
+			end
+			
 			local seen = CheckPlayerHasLOS(player, slendermanEyePoint)    
 			local outOfRange = ((player:GetOrigin() - slendermanPoint):GetLength() >= slendermanDestroyDistance)
 			

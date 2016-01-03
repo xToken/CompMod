@@ -6,12 +6,13 @@
 
 //Base 'Shared' changes which apply to all VMs
 
+kCompModPubVersion = 6
+
 Script.Load( "lua/Class.lua" )
 Script.Load( "lua/CompMod/Elixer_Utility.lua" )
 Elixer.UseVersion( 1.72 )
 
-kCompModPubVersion = 6
-kCompModVersion = 5
+kCompModVersion = 6
 
 local ModFiles = { }
 Shared.GetMatchingFileNames( "lua/CompMod/NewTech/*.lua", true, ModFiles )
