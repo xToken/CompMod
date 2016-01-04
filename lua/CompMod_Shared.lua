@@ -6,7 +6,7 @@
 
 //Base 'Shared' changes which apply to all VMs
 
-kCompModPubVersion = 6
+kCompModPubVersion = 7
 
 Script.Load( "lua/Class.lua" )
 Script.Load( "lua/CompMod/Elixer_Utility.lua" )
