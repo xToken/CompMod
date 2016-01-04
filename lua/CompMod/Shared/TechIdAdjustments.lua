@@ -10,9 +10,21 @@ end
 
 AppendToEnum( kMinimapBlipType, 'TunnelExit' )
 
+local InfestationBlocksRemovedOn = { kTechId.TeleportCrag, kTechId.TeleportShade, kTechId.TeleportShift,
+									kTechId.TeleportVeil, kTechId.TeleportSpur, kTechId.TeleportShell,
+									kTechId.TeleportEgg, kTechId.TeleportHarvester, kTechId.Shade,
+									kTechId.Shell, kTechId.Spur, kTechId.Veil, kTechId.Shift,
+									kTechId.Whip, kTechId.Crag, kTechId.Harvester, kTechId.Egg }
+									
+local SetNewEnergyConstraintsOn = { kTechId.Extractor, kTechId.InfantryPortal, kTechId.Armory, kTechId.ArmsLab,
+									kTechId.AdvancedArmory, kTechId.Observatory, kTechId.RoboticsFactory, kTechId.PhaseGate,
+									kTechId.PrototypeLab }
+									
+//Lets see, whips/hydras/tunnels should probably be excluded here.  Whips need infestation to attack,
+//Hydras still need them to place.
+
 //This is relevant, not only to this but to any functions - it explains Reference/Value in lua function calls
 //Tables, functions, threads, and (full) userdata values are objects: variables do not actually contain these values, only references to them.
-
 local function AddCompModTechChanges(techData)
 	// Comp Mod change, add tech crap								
 	table.insert(techData, { 	[kTechDataId] = kTechId.GorgeTunnelEntrance,
@@ -95,6 +107,13 @@ local function AddCompModTechChanges(techData)
 		end
 		if record[kTechDataId] == kTechId.DropFlamethrower then
 			record[kStructureAttachId] = { kTechId.Armory, kTechId.AdvancedArmory }
+		end
+		if table.contains(InfestationBlocksRemovedOn, record[kTechDataId]) then
+			record[kTechDataRequiresInfestation] = false
+		end
+		if table.contains(SetNewEnergyConstraintsOn, record[kTechDataId]) then
+			record[kTechDataMaxEnergy] = kMarineStructureMaxEnergy
+			record[kTechDataInitialEnergy] = kMarineStartingEnergy
 		end
     end
 end

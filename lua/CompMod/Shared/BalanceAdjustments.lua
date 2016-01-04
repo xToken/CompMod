@@ -7,13 +7,14 @@
 //kResearchBioMassOneCost = 15 			// Comp Mod change, unchanged.
 //kResearchBioMassTwoCost = 20 			// Comp Mod change, unchanged.
 
+kHarvesterCost = 12						// Comp Mod change, increased from 8.
 //kShellCost = 15 						// Comp Mod change, unchanged.
-//kCragCost = 13 						// Comp Mod change, unchanged.
+//kCragCost = 15 						// Comp Mod change, increased from 13.
 //kSpurCost = 15 						// Comp Mod change, unchanged.
-//kShiftCost = 13 						// Comp Mod change, unchanged.
+//kShiftCost = 15 						// Comp Mod change, increased from 13.
 //kVeilCost = 15 						// Comp Mod change, unchanged.
-//kShadeCost = 13 						// Comp Mod change, unchanged.
-//kWhipCost = 13 						// Comp Mod change, unchanged.
+//kShadeCost = 15 						// Comp Mod change, increased from 15.
+//kWhipCost = 15 						// Comp Mod change, increased from 15.
 
 //kNutrientMistCost = 2 				// Comp Mod change, increased from 1.
 
@@ -177,3 +178,7 @@ kUmbraModifier["Railgun"] = kUmbraRailgunModifier
 
 //Fade swipe damage.
 //SwipeBlink.kDamage = kSwipeDamage		// Really? Move a global into a Global?
+
+kEnergyRegenRate = 1					// Comp Mod change, added energy - 1/s.
+kMarineStartingEnergy = 20				// Comp Mod change, added energy
+kMarineStructureMaxEnergy = 40			// Comp Mod change, added energy

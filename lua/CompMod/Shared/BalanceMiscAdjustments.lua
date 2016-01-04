@@ -45,5 +45,10 @@ kARCSpeedBoostIncrease = 1.2			// Comp Mod change, added ARC Speed Boost.
 kARCSpeedBoostTurnRate = math.pi * 1.2	// Comp Mod change, added ARC Speed Boost.
 kARCSpeedBoostCooldown = 12				// Comp Mod change, added ARC Speed Boost.
 
+kInfestationBuildModifier = 1			// Comp Mod change, removed infestation build penalty.
+kCorrodeMarineStructureArmorOnInfestation = false	// Comp Mod change, dont corrode structure armor on infestation.
+kStructureInfestationRadius = 12		// Comp Mod change, added this.
+kHarvesterInfestationRadius = 15		// Comp Mod change, added this.
+
 //Onos Charge secondary global.
 //Onos.kChargeEnergyCost = kChargeEnergyCost // Really? Move a global into a global?
