@@ -30,10 +30,10 @@ kFadeCost = 34						// Comp Mod change, lowered by 1.
 //kOnosCost = 55					// Comp Mod change, unchanged.
 kFadeUpgradeCost = 4				// Comp Mod change, lowered by 1.
 
-kDualExosuitCost = 65				// Comp Mod change, lowered pres cost from 60.
-kDualRailgunExosuitCost = 65		// Comp Mod change, lowered pres cost from 60.
-kExosuitTechResearchCost = 45		// Comp Mod change, increased from 20 tres.
-kMaximumExosuitsActive = 4			// Comp Mod change, added exo cap.
+kDualExosuitCost = 60				// Comp Mod change, lowered pres cost from 60.
+kDualRailgunExosuitCost = 60		// Comp Mod change, lowered pres cost from 60.
+kExosuitTechResearchCost = 35		// Comp Mod change, increased from 20 tres.
+//kMaximumExosuitsActive = 4			// Comp Mod change, added exo cap.
 
 kGorgeTunnelCost = 3				// Comp Mod change, lowered tunnels cost and HP.
 kNumBabblerEggsPerGorge = 2			// Comp Mod change, adjusted babblers per egg and cost, down from 3.

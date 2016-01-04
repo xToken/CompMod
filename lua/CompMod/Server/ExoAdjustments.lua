@@ -5,6 +5,7 @@
 // - Dragon
 
 //Cap Maximum 'Active' Exos
+/*
 local function GetActiveExos(player)
 	local exos = GetEntitiesForTeam("Exo", player:GetTeamNumber())
 	return #exos or 0
@@ -29,3 +30,4 @@ originalMarineAttemptToBuy = Class_ReplaceMethod("Marine", "AttemptToBuy",
 		return originalMarineAttemptToBuy(self, techIds)
 	end
 )
+*/
