@@ -52,7 +52,7 @@ local oldMucousableMixinComputeDamageOverrideMixin = MucousableMixin.ComputeDama
 function MucousableMixin:ComputeDamageOverrideMixin(attacker, damage, damageType, hitPoint)
 	local ogdamage = damage
 	damage = oldMucousableMixinComputeDamageOverrideMixin(self, attacker, damage, damageType, hitPoint)
-	if damage == 0 and ogdamage > 0 then
+	if damage == 0 and ogdamage > 0 and weapon then
 		local weapon = attacker:GetActiveWeapon()
 		local techId
 		if attacker:isa("Alien") and ( weapon.secondaryAttacking or weapon.shootingSpikes) then
