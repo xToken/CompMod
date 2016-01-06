@@ -4,37 +4,8 @@
 // lua\CompMod\Shared\ConstructAdjustments.lua
 // - Dragon
 
-local function CreateBuildEffect(self)
-
-    if not self.buildMaterial then
-        
-        local model = self:GetRenderModel()
-        if model then
-        
-            local material = Client.CreateRenderMaterial()
-            material:SetMaterial(kBuildMaterial)
-            model:AddMaterial(material)
-            self.buildMaterial = material
-        
-        end
-        
-    end    
-    
-end
-
-local function RemoveBuildEffect(self)
-
-    if self.buildMaterial then
-      
-        local model = self:GetRenderModel()  
-        local material = self.buildMaterial
-        model:RemoveMaterial(material)
-        Client.DestroyRenderMaterial(material)
-        self.buildMaterial = nil
-                    
-    end            
-
-end
+local CreateBuildEffect = GetUpValue( ConstructMixin.OnConstructUpdate, "CreateBuildEffect")
+local RemoveBuildEffect = GetUpValue( ConstructMixin.OnConstructUpdate, "RemoveBuildEffect")
 
 function ConstructMixin:OnConstructUpdate(deltaTime)
         
