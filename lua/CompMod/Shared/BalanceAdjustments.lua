@@ -9,12 +9,12 @@
 
 kHarvesterCost = 12						// Comp Mod change, increased from 8.
 //kShellCost = 15 						// Comp Mod change, unchanged.
-//kCragCost = 15 						// Comp Mod change, increased from 13.
+kCragCost = 15 							// Comp Mod change, increased from 13.
 //kSpurCost = 15 						// Comp Mod change, unchanged.
-//kShiftCost = 15 						// Comp Mod change, increased from 13.
+kShiftCost = 15 						// Comp Mod change, increased from 13.
 //kVeilCost = 15 						// Comp Mod change, unchanged.
-//kShadeCost = 15 						// Comp Mod change, increased from 15.
-//kWhipCost = 15 						// Comp Mod change, increased from 15.
+kShadeCost = 15 						// Comp Mod change, increased from 15.
+kWhipCost = 15 							// Comp Mod change, increased from 15.
 
 //kNutrientMistCost = 2 				// Comp Mod change, increased from 1.
 
