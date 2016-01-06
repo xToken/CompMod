@@ -6,6 +6,8 @@
 
 //Base 'Shared' changes which apply to all VMs
 
+kCompModExperimentalVersion = 1
+
 Script.Load( "lua/Class.lua" )
 
 kCompModVersion = 9
