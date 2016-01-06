@@ -5,7 +5,7 @@
 // - Dragon
 
 Script.Load( "lua/CompMod/Elixer_Utility.lua" )
-Elixer.UseVersion( 1.72 )
+Elixer.UseVersion( 1.8 )
 
 //Add HMG to DeathMessage Enum
 AppendToEnum( kDeathMessageIcon, 'HeavyMachineGun' )
