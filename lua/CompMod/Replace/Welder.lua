@@ -276,7 +276,6 @@ local function CheckForTeammatesToWeld(self, player, attackDirection)
                 target:Construct(kWelderFireDelay, player)
 				success = true
             end
-			self.lasthitclassName = target:GetClassName()
 		end
 	end
 	self.friendlies = false
@@ -294,7 +293,6 @@ local function CheckForEnemiesToDamage(self, player, attackDirection)
 				self:DoDamage(kWelderDamagePerSecond * kWelderFireDelay, target, endPoint, attackDirection)
 			end
             success = true
-			self.lasthitclassName = target:GetClassName()
 		end
 	end
 	return success, endPoint
@@ -308,13 +306,7 @@ function Welder:PerformWeld(player)
 	success, endPoint = CheckForTeammatesToWeld(self, player, attackDirection)
 	if not success then
 		success, endPoint = CheckForEnemiesToDamage(self, player, attackDirection)
-	end    
-    if success then
-		self.lasthitcoords = Coords.GetTranslation(endPoint - attackDirection * .1)
-	else
-		self.lasthitcoords = nil
-		self.lasthitclassName = nil
-    end
+	end
     return endPoint
 	
 end
@@ -367,14 +359,19 @@ function Welder:OnUpdateRender()
 
         if (not self.timeLastWeldHitEffect or self.timeLastWeldHitEffect + 0.06 < Shared.GetTime()) then
          
-            if self.lasthitcoords then
+            local viewCoords = parent:GetViewCoords()
+        
+            local trace = Shared.TraceRay(viewCoords.origin, viewCoords.origin + viewCoords.zAxis * self:GetRange(), CollisionRep.Damage, PhysicsMask.Flame, EntityFilterTwo(self, parent))
+            if trace.fraction ~= 1 then
             
+                local coords = Coords.GetTranslation(trace.endPoint - viewCoords.zAxis * .1)
+                
                 local className = nil
-                if self.lasthitclassName then
-                    className = self.lasthitclassName
+                if trace.entity then
+                    className = trace.entity:GetClassName()
                 end
                 
-                self:TriggerEffects("welder_hit", { classname = className, effecthostcoords = self.lasthitcoords})
+                self:TriggerEffects("welder_hit", { classname = className, effecthostcoords = coords})
                 
             end
             

@@ -28,3 +28,18 @@ function Builder:OnUpdateAnimationInput(modelMixin)
     self:SetPoseParam("welder", 0)
     
 end
+
+if Client then
+
+	local oldRifleUpdateAttackEffects = Rifle.UpdateAttackEffects
+	function Rifle:UpdateAttackEffects(deltaTime)
+    end
+	
+	//This seems wierd, but updating in the above callback isnt really the 'best' way.  Its the same function as the mixin, so call orders are messy.
+	function Rifle:OnClientPrimaryAttacking()
+		oldRifleUpdateAttackEffects(self, deltaTime)
+    end
+	
+	Class_Reload("Rifle")
+	
+end

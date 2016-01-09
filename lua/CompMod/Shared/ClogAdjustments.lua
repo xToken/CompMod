@@ -68,59 +68,6 @@ if Server then
 	
 end
 
-if Predict then
-
-	local kPredictClogTable = { }
-	local kPredictClogUpdateRate = 0.5
-	
-	local function RemoveOldClogId(entId)
-		for i = #kPredictClogTable, 1, -1 do
-			if kPredictClogTable[i] then
-				if kPredictClogTable[i].i == entId then
-					kPredictClogTable[i] = nil
-				end
-			end		
-		end
-	end
-	
-	local oldClogOnCreate
-	oldClogOnCreate = Class_ReplaceMethod("Clog", "OnCreate",
-		function(self)
-			oldClogOnCreate(self)
-			table.insert(kPredictClogTable, {i = self:GetId(), t = kPredictClogUpdateRate})
-		end
-	)
-
-	local oldClogOnDestroy
-	oldClogOnDestroy = Class_ReplaceMethod("Clog", "OnDestroy",
-		function(self)
-			RemoveOldClogId(self:GetId())
-			oldClogOnDestroy(self)
-		end
-	)
-	
-	local oldPlayerOnUpdatePlayer
-	oldPlayerOnUpdatePlayer = Class_ReplaceMethod("Player", "OnUpdatePlayer",
-		function(self, deltaTime)
-			for i = #kPredictClogTable, 1, -1 do
-				if kPredictClogTable[i] then
-					kPredictClogTable[i].t = math.max(kPredictClogTable[i].t - deltaTime, 0)
-					if kPredictClogTable[i].t == 0 then
-						local clog = Shared.GetEntity(kPredictClogTable[i].i)
-						if clog and clog:isa("Clog") then
-							clog:OnUpdate(deltaTime)
-							kPredictClogTable[i].t = kPredictClogUpdateRate
-						else
-							kPredictClogTable[i] = nil
-						end
-					end
-				end
-			end
-		end
-	)
-	
-end
-
 local networkVars = { hasFallen = "boolean" }
 
 Shared.LinkClassToMap("Clog", Clog.kMapName, networkVars)
