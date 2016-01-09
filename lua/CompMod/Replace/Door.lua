@@ -1,13 +1,14 @@
 // Natural Selection 2 Competitive Mod
 // Source located at - https://github.com/xToken/CompMod
 // Detailed breakdown of changes at https://docs.google.com/document/d/1YOnjJz6_GhioysLaWiRfc17xnrmw6AEJIb6gq7TX3Qg/edit?pli=1
-// lua\CompMod\Replace\DoorAdjustments.lua
+// lua\CompMod\Replace\Door.lua
 // - Dragon
 
 Script.Load("lua/ScriptActor.lua")
 Script.Load("lua/Mixins/ClientModelMixin.lua")
 Script.Load("lua/PathingMixin.lua")
 Script.Load("lua/MapBlipMixin.lua")
+Script.Load("lua/CompMod/Predict/PredictAdjustments.lua")
 
 class 'Door' (ScriptActor)
 
@@ -266,6 +267,10 @@ if not Server then
 		
 	end
 	
+end
+
+if Predict then
+	AddClassToPredictionUpdate("Door", function(ent) return true end, kUpdateAutoOpenRate)
 end
 
 Shared.LinkClassToMap("Door", Door.kMapName, networkVars)
