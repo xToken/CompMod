@@ -1,6 +1,6 @@
 // Natural Selection 2 'Tweaks' Mod
 // Source located at - https://github.com/xToken/NS2-Tweaks
-// lua\Shared\PredictAdjustments.lua
+// lua\CompMod\Shared\PredictAdjustments.lua
 // - Dragon
 
 if Predict then
