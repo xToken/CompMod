@@ -32,6 +32,7 @@ Script.Load("lua/ObstacleMixin.lua")
 Script.Load("lua/DigestMixin.lua")
 Script.Load("lua/InfestationMixin.lua")
 Script.Load("lua/TeleportMixin.lua")
+Script.Load("lua/CompMod/Predict/PredictAdjustments.lua")
 
 Script.Load("lua/Tunnel.lua")
 
@@ -577,6 +578,10 @@ function TunnelExit:OverrideHintString( hintString, forEntity )
 
     return hintString
     
+end
+
+if Predict then
+	AddClassToPredictionUpdate("TunnelExit")
 end
 
 Shared.LinkClassToMap("TunnelExit", TunnelExit.kMapName, networkVars)

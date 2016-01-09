@@ -62,3 +62,10 @@ function PhaseGateUserMixin:GetCanPhase()
 	end*/
     return self:GetIsAlive() and Shared.GetTime() > self.timeOfLastPhase + kPhaseDelay and Shared.GetTime() > (self.timeOfLastPhaseClient or 0) + kPhaseDelay
 end
+
+if Client then
+	//Phasing not-predicted anymore - doesnt really make sense.  The client has no idea what is on the other side anyways.
+	function PhaseGateUserMixin:OnProcessMove(input)
+	end
+	
+end

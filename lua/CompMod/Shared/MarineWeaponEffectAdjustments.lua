@@ -14,8 +14,3 @@ GetEffectManager():AddEffectData("kMarineWeaponEffects", kMarineWeaponEffects)
 GetEffectManager():AddEffectData("DamageEffects", kDamageEffects)
 //This could cause havok :D:D
 GetEffectManager():PrecacheEffects()
-
-//Female sounds are backwards in vanilla
-local oldMarinekSprintStartFemale = Marine.kSprintStartFemale
-Marine.kSprintStartFemale = Marine.kSprintTiredEndFemale
-Marine.kSprintTiredEndFemale = oldMarinekSprintStartFemale
