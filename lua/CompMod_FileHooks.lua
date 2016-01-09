@@ -6,6 +6,12 @@
 
 if not string.find(Script.CallStack(), "Main.lua") then
 	ModLoader.SetupFileHook( "lua/Globals.lua", "lua/CompMod_Globals.lua", "post" )
+	//BetterDoors
+	ModLoader.SetupFileHook( "lua/Door.lua", "lua/CompMod/Replace/Door.lua", "replace" )
+	//Better Welders
+	ModLoader.SetupFileHook( "lua/Weapons/Marine/Welder.lua", "lua/CompMod/Replace/Welder.lua", "replace" )
+	//Predict Collision fixes 'lib' needs to know when Predict VM is fully loaded.  No such callback exists afaik.
+	if Predict then
+		ModLoader.SetupFileHook( "lua/PostLoadMod.lua", "lua/CompMod/Predict/predict_loaded.lua", "post" )
+	end
 end
-//BetterDoors
-ModLoader.SetupFileHook( "lua/Door.lua", "lua/Replace/DoorAdjustments.lua", "replace" )
