@@ -7,3 +7,5 @@
 if not string.find(Script.CallStack(), "Main.lua") then
 	ModLoader.SetupFileHook( "lua/Globals.lua", "lua/CompMod_Globals.lua", "post" )
 end
+//BetterDoors
+ModLoader.SetupFileHook( "lua/Door.lua", "lua/Replace/DoorAdjustments.lua", "replace" )
