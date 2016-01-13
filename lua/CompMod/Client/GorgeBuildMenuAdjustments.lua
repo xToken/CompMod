@@ -51,27 +51,7 @@ local function SetupGUIGorgeBuildMenu()
 		button.description:SetColor(color)
 		button.costIcon:SetColor(color)
 		button.costText:SetColor(color)
-		
-		local numLeft = GorgeBuild_GetNumStructureBuilt(button.techId)
-		if numLeft == -1 then
-			button.structuresLeft:SetIsVisible(false)
-		else
-			button.structuresLeft:SetIsVisible(true)
-			local amountString = ToString(numLeft)
-			local maxNum = GorgeBuild_GetMaxNumStructure(button.techId)
-			
-			if maxNum > 0 then
-				amountString = amountString .. "/" .. ToString(maxNum)
-			end
-			
-			if numLeft >= maxNum then
-				color = GUIGorgeBuildMenu.kTooExpensiveColor
-			end
-			
-			button.structuresLeft:SetColor(color)
-			button.structuresLeft:SetText(amountString)
-        
-		end    
+		button.structuresLeft:SetColor(color)
 		
 	end
 
