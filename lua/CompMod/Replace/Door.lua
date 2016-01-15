@@ -101,7 +101,7 @@ local function ClientUpdateAutoOpen(self)
             local opensForEntity, openDistance = entity:GetCanDoorInteract(self)
 
             if opensForEntity then
-            
+				
                 local distSquared = self:GetDistanceSquared(entity)
                 if (not HasMixin(entity, "Live") or entity:GetIsAlive()) and distSquared < (openDistance * openDistance) then
                     desiredOpenState = true
@@ -262,7 +262,9 @@ if not Server then
 		ScriptActor.OnUpdate(self, deltaTime)
 		if not self.lastUpdated or self.lastUpdated + kUpdateAutoOpenRate < Shared.GetTime() then
 			ClientUpdateAutoOpen(self)
-			self.lastUpdated = Shared.GetTime()
+			if Client then
+				self.lastUpdated = Shared.GetTime()
+			end
 		end
 		
 	end
