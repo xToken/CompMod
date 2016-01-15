@@ -62,16 +62,16 @@ if Predict then
 			function(self, deltaTime)
 				for i = #kPredictTable, 1, -1 do
 					if kPredictTable[i] then
-						kPredictTable[i].t = math.max(kPredictTable[i].t - deltaTime, 0)
-						if kPredictTable[i].t == 0 then
+						kPredictTable[i].t = kPredictTable[i].t - deltaTime
+						if kPredictTable[i].t <= 0 then
 							local ent = Shared.GetEntity(kPredictTable[i].i)
 							if ent and table.contains(kPredictUpdateClasses, ent:GetClassName()) then
 								ent:OnUpdate(deltaTime)
 								local fUf = kPredictFullUpdateClasses[ent:GetClassName()]
 								if fUf and fUf.method and fUf.method(ent) then
-									kPredictTable[i].t = fUf.rate
+									kPredictTable[i].t = kPredictTable[i].t + fUf.rate
 								else
-									kPredictTable[i].t = kPredictUpdateRate
+									kPredictTable[i].t = kPredictTable[i].t + kPredictUpdateRate
 								end
 							else
 								kPredictTable[i] = nil
