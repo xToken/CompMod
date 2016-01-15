@@ -82,3 +82,14 @@ function Armory:OnResearchComplete(researchId)
     end
     
 end
+
+//Setting a global when the armory upgrades... impacts all armories...
+local kArmoryHealthbarHeight = gArmoryHealthHeight
+local kAdvancedArmoryHealthbarHeight = 1.7
+
+function Armory:GetHealthbarOffset()
+	if self:GetTechId() == kTechId.AdvancedArmory then
+		return kAdvancedArmoryHealthbarHeight
+	end
+    return kArmoryHealthbarHeight
+end
