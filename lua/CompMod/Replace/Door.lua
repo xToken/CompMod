@@ -26,6 +26,7 @@ Door.kStateSound = { [Door.kState.Open] = Door.kOpenSound,
 
 local kUpdateAutoUnlockRate = 1
 local kUpdateAutoOpenRate = 0.3
+local kPredictUpdateAutoOpenRate = 0.1
 local kWeldPercentagePerSecond = 1 / kDoorWeldTime
 local kHealthPercentagePerSecond = 0.9 / kDoorWeldTime
 
@@ -255,16 +256,14 @@ function Door:OnUpdateAnimationInput(modelMixin)
     
 end
 
-if not Server then
+if Client then
 	
 	function Door:OnUpdate(deltaTime)
 	
 		ScriptActor.OnUpdate(self, deltaTime)
 		if not self.lastUpdated or self.lastUpdated + kUpdateAutoOpenRate < Shared.GetTime() then
 			ClientUpdateAutoOpen(self)
-			if Client then
-				self.lastUpdated = Shared.GetTime()
-			end
+			self.lastUpdated = Shared.GetTime()
 		end
 		
 	end
@@ -272,7 +271,19 @@ if not Server then
 end
 
 if Predict then
-	AddClassToPredictionUpdate("Door", function(ent) return true end, kUpdateAutoOpenRate)
+	
+	function Door:OnUpdate(deltaTime)
+	
+		ScriptActor.OnUpdate(self, deltaTime)
+		if not self.lastUpdated or self.lastUpdated + kPredictUpdateAutoOpenRate < Shared.GetTime() then
+			ClientUpdateAutoOpen(self)
+			self.lastUpdated = Shared.GetTime()
+		end
+		
+	end
+	
+	AddClassToPredictionUpdate("Door", function(ent) return true end)
+	
 end
 
 Shared.LinkClassToMap("Door", Door.kMapName, networkVars)
