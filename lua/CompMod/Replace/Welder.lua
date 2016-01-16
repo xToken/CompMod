@@ -134,45 +134,36 @@ end
 
 // don't play 'welder_attack' and 'welder_attack_end' too often, would become annoying with the sound effects and also client fps
 function Welder:OnPrimaryAttack(player)
-
+    
+    PROFILE("Welder:OnPrimaryAttack")
+	
     if GetIsVortexed(player) or not self.deployed then
         return
     end
-    
-    PROFILE("Welder:OnPrimaryAttack")
-    
-    if not self.welding then
-    
-        self:TriggerEffects("welder_start")
-        self.timeWeldStarted = Shared.GetTime()
+	
+	local t = Shared.GetTime()
+    if self.timeLastWeld + kWelderFireDelay < t then
 		
-		if self.timeLastWeld + kWelderFireDelay < Shared.GetTime() then
-			//Doh.
-			self.timeLastWeld = Shared.GetTime() - kWelderFireDelay - 0.001
+		local dt = t - self.timeLastWeld
+		if not self.welding then
+			self:TriggerEffects("welder_start")
+			self.timeWeldStarted = t
+			dt = kWelderFireDelay
+			if Server then
+				self.loopingFireSound:Start()
+			end
 		end
-        		
-        if Server then
-            self.loopingFireSound:Start()
-        end
-        
+    
+        self:PerformWeld(player, dt)
+        self.timeLastWeld = t
     end
+	
+	self.welding = true
     
-    self.welding = true
-    local hitPoint = nil
-    
-    if self.timeLastWeld + kWelderFireDelay < Shared.GetTime() then
-    
-        hitPoint = self:PerformWeld(player)
-		
-		//This prevents drift.
-        self.timeLastWeld = self.timeLastWeld + kWelderFireDelay
-        
-    end
-    
-    if not self.timeLastWeldEffect or self.timeLastWeldEffect + kWelderEffectRate < Shared.GetTime() then
+    if not self.timeLastWeldEffect or self.timeLastWeldEffect + kWelderEffectRate < t then
     
         self:TriggerEffects("welder_muzzle")
-        self.timeLastWeldEffect = Shared.GetTime()
+        self.timeLastWeldEffect = t
         
     end
     
@@ -245,7 +236,7 @@ local function PrioritizeDamagedFriends(weapon, player, newTarget, oldTarget)
     return not oldTarget or (HasMixin(newTarget, "Team") and newTarget:GetTeamNumber() == player:GetTeamNumber() and (HasMixin(newTarget, "Weldable") and newTarget:GetCanBeWelded(weapon)))
 end
 
-local function CheckForTeammatesToWeld(self, player, attackDirection)
+local function CheckForTeammatesToWeld(self, player, attackDirection, weldTime)
 	//This kinda sucks, but its the easiest way.
 	local success
 	self.friendlies = true
@@ -257,7 +248,7 @@ local function CheckForTeammatesToWeld(self, player, attackDirection)
                 local prevHealthScalar = target:GetHealthScalar()
                 local prevHealth = target:GetHealth()
                 local prevArmor = target:GetArmor()
-                target:OnWeld(self, kWelderFireDelay, player)
+                target:OnWeld(self, weldTime, player)
                 success = prevHealthScalar ~= target:GetHealthScalar()
                 
                 if success then
@@ -266,14 +257,14 @@ local function CheckForTeammatesToWeld(self, player, attackDirection)
                     player:AddContinuousScore("WeldHealth", addAmount, kAmountHealedForPoints, kHealScoreAdded)
                     
                     // weld owner as well
-                    player:SetArmor(player:GetArmor() + kWelderFireDelay * kSelfWeldAmount)
+                    player:SetArmor(player:GetArmor() + weldTime * kSelfWeldAmount)
                     
                 end
                 
             end
             
             if HasMixin(target, "Construct") and target:GetCanConstruct(player) then
-                target:Construct(kWelderFireDelay, player)
+                target:Construct(weldTime, player)
 				success = true
             end
 		end
@@ -282,15 +273,15 @@ local function CheckForTeammatesToWeld(self, player, attackDirection)
 	return success, endPoint
 end
 
-local function CheckForEnemiesToDamage(self, player, attackDirection)
+local function CheckForEnemiesToDamage(self, player, attackDirection, weldTime)
 	local success
 	local didHit, target, endPoint, direction, surface = CheckMeleeCapsule(self, player, 0, kWelderAttackRange, nil, true, 1, nil, nil, PhysicsMask.Flame)
 	if didHit and target and HasMixin(target, "Live") then
         if GetAreEnemies(player, target) then
 			if target.GetReceivesStructuralDamage and target:GetReceivesStructuralDamage() then
-				self:DoDamage(kWelderStructureDamagePerSecond * kWelderFireDelay, target, endPoint, attackDirection)
+				self:DoDamage(kWelderStructureDamagePerSecond * weldTime, target, endPoint, attackDirection)
 			else
-				self:DoDamage(kWelderDamagePerSecond * kWelderFireDelay, target, endPoint, attackDirection)
+				self:DoDamage(kWelderDamagePerSecond * weldTime, target, endPoint, attackDirection)
 			end
             success = true
 		end
@@ -298,12 +289,12 @@ local function CheckForEnemiesToDamage(self, player, attackDirection)
 	return success, endPoint
 end
 
-function Welder:PerformWeld(player)
+function Welder:PerformWeld(player, weldTime)
 
     local attackDirection = player:GetViewCoords().zAxis
     local success = false
 	local endPoint
-	success, endPoint = CheckForTeammatesToWeld(self, player, attackDirection)
+	success, endPoint = CheckForTeammatesToWeld(self, player, attackDirection, weldTime)
 	if not success then
 		success, endPoint = CheckForEnemiesToDamage(self, player, attackDirection)
 	end
