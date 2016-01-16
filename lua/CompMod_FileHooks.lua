@@ -5,7 +5,8 @@
 // - Dragon
 
 if not string.find(Script.CallStack(), "Main.lua") then
-	ModLoader.SetupFileHook( "lua/Globals.lua", "lua/CompMod_Globals.lua", "post" )
+	ModLoader.SetupFileHook( "lua/Globals.lua", "lua/CompMod/Post/Globals.lua", "post" )
+	ModLoader.SetupFileHook( "lua/ConstructMixin.lua", "lua/CompMod/Post/ConstructMixin.lua", "post" )
 	//BetterDoors
 	ModLoader.SetupFileHook( "lua/Door.lua", "lua/CompMod/Replace/Door.lua", "replace" )
 	//Better Welders
