@@ -39,7 +39,7 @@ local function AttemptToUse(self, timePassed)
         end
         
 		local dt = t - self.timeOfLastUse
-		if self.timeOfLastUse == 0 then
+		if not self.isUsing then
 			dt = kUseInterval
 		end
         -- Use it.
@@ -56,19 +56,6 @@ local function AttemptToUse(self, timePassed)
 end
 
 ReplaceLocals(Player.HandleButtons, { AttemptToUse = AttemptToUse })
-
-local originalMarineOnUseEnd
-originalMarineOnUseEnd = Class_ReplaceMethod("Marine", "OnUseEnd",
-	function(self)
-		originalMarineOnUseEnd(self)
-		self.timeOfLastUse = 0
-	end
-)
-
-//just in case
-function Player:OnUseEnd()
-	self.timeOfLastUse = 0
-end
 
 function ConstructMixin:OnUse(player, elapsedTime, useSuccessTable)
 
