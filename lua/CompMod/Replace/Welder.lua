@@ -296,7 +296,7 @@ function Welder:PerformWeld(player, weldTime)
 	local endPoint
 	success, endPoint = CheckForTeammatesToWeld(self, player, attackDirection, weldTime)
 	if not success then
-		success, endPoint = CheckForEnemiesToDamage(self, player, attackDirection)
+		success, endPoint = CheckForEnemiesToDamage(self, player, attackDirection, weldTime)
 	end
     return endPoint
 	
