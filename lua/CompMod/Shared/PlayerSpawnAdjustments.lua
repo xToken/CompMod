@@ -45,9 +45,10 @@ if Server then
 			local success = false
 			local initialTechPoint = Shared.GetEntity(self.initialTechPointId)
 			
-			if origin ~= nil and angles ~= nil then
-				success = Team.RespawnPlayer(self, player, origin, angles)
-			elseif initialTechPoint ~= nil then
+			if origin then
+				//If we were provided valid origin already, pass it along.  Discard angles as we dont care unless its facing the TP for initial join, or RR spawn using fixed points.
+				success = Team.RespawnPlayer(self, player, origin)
+			elseif initialTechPoint then
 			
 				// Compute random spawn location
 				local capsuleHeight, capsuleRadius = player:GetTraceCapsule()
@@ -58,7 +59,7 @@ if Server then
 				end
 				
 				// Orient player towards tech point
-				// 5 Meters above TP is alot, lets try 2.
+				// 5 Meters above TP is alot, lets try 1.
 				local lookAtPoint = initialTechPoint:GetOrigin() + Vector(0, 1, 0)
 				local toTechPoint = GetNormalizedVector(lookAtPoint - spawnOrigin)
 				success = Team.RespawnPlayer(self, player, spawnOrigin, Angles(GetPitchFromVector(toTechPoint), GetYawFromVector(toTechPoint), 0))
@@ -72,123 +73,50 @@ if Server then
 		end
 	)
 	
-	local function SpawnPlayer(self)
+	local originalTeamRespawnPlayer
+	originalPlayingTeamRespawnPlayer = Class_ReplaceMethod("Team", "RespawnPlayer",
+		function(self, player, origin, angles)
 
-		if self.queuedPlayerId ~= Entity.invalidId then
-		
-			local queuedPlayer = Shared.GetEntity(self.queuedPlayerId)
-			local team = queuedPlayer:GetTeam()
+			assert(self:GetIsPlayerOnTeam(player), "Player isn't on team!")
 			
-			// Spawn player on top of IP
-			local spawnOrigin = self:GetAttachPointOrigin("spawn_point")
-			
-			//Marine specs have no model, so no angles.  Need view angles here i guess.
-			local success, player = team:ReplaceRespawnPlayer(queuedPlayer, spawnOrigin, queuedPlayer:GetViewAngles())
-			if success then
-			
-				player:SetCameraDistance(0)
+			if origin == nil then
+				//Only care if origin is invalid.
+				// Randomly choose unobstructed spawn points to respawn the player
+				local spawnPoint = nil
+				local spawnPoints = Server.readyRoomSpawnList
+				local numSpawnPoints = table.maxn(spawnPoints)
 				
-				if HasMixin( player, "Controller" ) and HasMixin( player, "AFKMixin" ) then
+				if numSpawnPoints > 0 then
+				
+					local spawnPoint = GetRandomClearSpawnPoint(player, spawnPoints)
+					if spawnPoint ~= nil then
 					
-					if player:GetAFKTime() > self:GetSpawnTime() - 1 then
-						
-						player:DisableGroundMove(0.1)
-						player:SetVelocity( Vector( GetSign( math.random() - 0.5) * 2.25, 3, GetSign( math.random() - 0.5 ) * 2.25 ) )
+						origin = spawnPoint:GetOrigin()
+						angles = spawnPoint:GetAngles()
 						
 					end
 					
 				end
 				
-				self.queuedPlayerId = Entity.invalidId
-				self.queuedPlayerStartTime = nil
+			end
+			
+			// Move origin up and drop it to floor to prevent stuck issues with floating errors or slightly misplaced spawns
+			if origin then
+			
+				SpawnPlayerAtPoint(player, origin, angles)
 				
-				player:ProcessRallyOrder(self)
-
-				self:TriggerEffects("infantry_portal_spawn")            
+				player:ClearEffects()
 				
 				return true
 				
 			else
-				Print("Warning: Infantry Portal failed to spawn the player")
+				DebugPrint("Team:RespawnPlayer(player, %s, %s) - Must specify origin.", ToString(origin), ToString(angles))
 			end
 			
-		end
-		
-		return false
-
-	end
-	
-	local function StopSpinning(self)
-
-		self:TriggerEffects("infantry_portal_stop_spin")
-		self.timeSpinUpStarted = nil
-		
-	end
-	
-	local originalInfantryPortalFinishSpawn
-	originalInfantryPortalFinishSpawn = Class_ReplaceMethod("InfantryPortal", "FinishSpawn",
-		function(self)
-			SpawnPlayer(self)
-			StopSpinning(self)
-			self.timeSpinUpStarted = nil		
+			return false
+			
 		end
 	)
-	
-	// Grab player out of respawn queue unless player passed in (for test framework)
-	function Egg:SpawnPlayer(player)
-
-		PROFILE("Egg:SpawnPlayer")
-
-		local queuedPlayer = player
-		
-		if not queuedPlayer or self.queuedPlayerId ~= nil then
-			queuedPlayer = Shared.GetEntity(self.queuedPlayerId)
-		end
-		
-		if queuedPlayer ~= nil then
-		
-			local queuedPlayer = player
-			if not queuedPlayer then
-				queuedPlayer = Shared.GetEntity(self.queuedPlayerId)
-			end
-		
-			// Spawn player on top of egg
-			local spawnOrigin = Vector(self:GetOrigin())
-			// Move down to the ground.
-			local _, normal = GetSurfaceAndNormalUnderEntity(self)
-			if normal.y < 1 then
-				spawnOrigin.y = spawnOrigin.y - (self:GetExtents().y / 2) + 1
-			else
-				spawnOrigin.y = spawnOrigin.y - (self:GetExtents().y / 2)
-			end
-
-			local gestationClass = self:GetClassToGestate()
-			
-			// We must clear out queuedPlayerId BEFORE calling ReplaceRespawnPlayer
-			// as this will trigger OnEntityChange() which would requeue this player.
-			self.queuedPlayerId = nil
-			
-			local team = queuedPlayer:GetTeam()
-			local success, player = team:ReplaceRespawnPlayer(queuedPlayer, spawnOrigin, queuedPlayer:GetViewAngles(), gestationClass)                
-			player:SetCameraDistance(0)
-			player:SetHatched()
-			// It is important that the player was spawned at the spot we specified.
-			assert(player:GetOrigin() == spawnOrigin)
-			
-			if success then
-			
-				self:TriggerEffects("egg_death")
-				DestroyEntity(self) 
-				
-				return true, player
-				
-			end
-				
-		end
-		
-		return false, nil
-
-	end
 
 end
 
