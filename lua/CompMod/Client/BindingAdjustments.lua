@@ -20,22 +20,20 @@ origPlayerSendKeyEvent = Class_ReplaceMethod("Player", "SendKeyEvent",
 )
 
 local origControlBindings = GetUpValue( BindingsUI_GetBindingsData,   "globalControlBindings", 			{ LocateRecurse = true } )
-local newGlobalControlBindings = { }
 for i = 1, #origControlBindings do
-	table.insert(newGlobalControlBindings, origControlBindings[i])
-	if origControlBindings[i] == "5" then
-		table.insert(newGlobalControlBindings, "Weapon6")
-		table.insert(newGlobalControlBindings, "input")
-		table.insert(newGlobalControlBindings, "Weapon #6")
-		table.insert(newGlobalControlBindings, "6")
-	elseif origControlBindings[i] == "LeftShift" then
-		table.insert(newGlobalControlBindings, "SecondaryMovementModifier")
-		table.insert(newGlobalControlBindings, "input")
-		table.insert(newGlobalControlBindings, "Secondary Movement Modifier")
-		table.insert(newGlobalControlBindings, "Capital")
-	end	
+	if origControlBindings[i] == "Weapon5" then
+		table.insert(origControlBindings, i + 4, "Weapon6")
+		table.insert(origControlBindings, i + 5, "input")
+		table.insert(origControlBindings, i + 6, "Weapon #6")
+		table.insert(origControlBindings, i + 7, "6")
+	elseif origControlBindings[i] == "MovementModifier" then
+		table.insert(origControlBindings, i + 4, "SecondaryMovementModifier")
+		table.insert(origControlBindings, i + 5, "input")
+		table.insert(origControlBindings, i + 6, "Secondary Movement Modifier")
+		table.insert(origControlBindings, i + 7, "Capital")
+	end
 end
-ReplaceLocals(BindingsUI_GetBindingsData, { globalControlBindings = newGlobalControlBindings }) 
+ReplaceLocals(BindingsUI_GetBindingsData, { globalControlBindings = origControlBindings }) 
 
 local defaults = GetUpValue( GetDefaultInputValue,   "defaults", 			{ LocateRecurse = true } )
 table.insert(defaults, { "Weapon6", "6" })
