@@ -1,9 +1,11 @@
 {
 	"partyTime": [
+				"39261963",
+				"5176141"
 				],
 	"scaryTime": [
 				],
 	"marioTime": [
 				],
-	"enabled":false
+	"enabled":true
 }
