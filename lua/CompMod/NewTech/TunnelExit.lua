@@ -406,7 +406,15 @@ if Server then
     
     end
 
-    function TunnelExit:UpdateConnectedTunnel()
+    local function AddExitToTunnel(tunnelexit, tunnel)
+		tunnel:AddExit(tunnelexit)
+		tunnelexit.tunnelId = tunnel:GetId()
+		tunnel:SetOwnerClientId(tunnelexit:GetOwnerClientId())
+	end
+	
+	//Tunnels nil their clientId when both exits are destroyed.  This can lead to a valid tunnel existing for our client
+	//but finding a nil clientId tunnel here because it is first in the entlist returned.
+	function TunnelExit:UpdateConnectedTunnel()
 
         local hasValidTunnel = self.tunnelId ~= nil and Shared.GetEntity(self.tunnelId) ~= nil
 
@@ -415,18 +423,25 @@ if Server then
         end
 
         // register if a tunnel entity already exists or a free tunnel has been found
+		local foundTunnel
         for index, tunnel in ientitylist( Shared.GetEntitiesWithClassname("Tunnel") ) do
         
-            if tunnel:GetOwnerClientId() == self:GetOwnerClientId() or tunnel:GetOwnerClientId() == nil then
-                
-                tunnel:AddExit(self)
-                self.tunnelId = tunnel:GetId()
-                tunnel:SetOwnerClientId(self:GetOwnerClientId())
+            if tunnel:GetOwnerClientId() == self:GetOwnerClientId() then
+				//If we find our tunnel, set it now and exit
+                AddExitToTunnel(self, tunnel)
                 return
                 
-            end
+            elseif tunnel:GetOwnerClientId() == nil then
+				foundTunnel = tunnel
+			end
             
         end
+		
+		//We found an un-used tunnel, use that instead of creating a new one.
+		if foundTunnel then
+			AddExitToTunnel(self, foundTunnel)
+			return
+		end
         
         // no tunnel entity present, check if there is another tunnel entrance to connect with
         local tunnel = CreateEntity(Tunnel.kMapName, nil, self:GetTeamNumber())
@@ -435,6 +450,7 @@ if Server then
         self.tunnelId = tunnel:GetId()
 
     end
+
 
     function TunnelExit:OnConstructionComplete()
         self:UpdateConnectedTunnel()
