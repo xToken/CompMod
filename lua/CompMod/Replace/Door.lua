@@ -90,29 +90,23 @@ end
 local function ClientUpdateAutoOpen(self)
 
     local state = self:GetClientState()
-    
-    if state == Door.kState.Open or state == Door.kState.Close then
+    local player
+	if Client then
+		player = Client.GetLocalPlayer()
+	elseif Predict then
+		player = Predict.GetLocalPlayer()
+	end
+    if (state == Door.kState.Open or state == Door.kState.Close) and player then
     
         local desiredOpenState = false
+		local opensForEntity, openDistance = player:GetCanDoorInteract(self)
 
-        local entities = GetEntitiesWithMixinWithinRange("Door", self:GetOrigin(), DoorMixin.kMaxOpenDistance)
-        for index = 1, #entities do
-            
-            local entity = entities[index]
-            local opensForEntity, openDistance = entity:GetCanDoorInteract(self)
-
-            if opensForEntity then
-				
-                local distSquared = self:GetDistanceSquared(entity)
-                if (not HasMixin(entity, "Live") or entity:GetIsAlive()) and distSquared < (openDistance * openDistance) then
-                    desiredOpenState = true
-                    break
-                
-                end
-            
-            end
-            
-        end
+		if opensForEntity then
+			local distSquared = self:GetDistanceSquared(player)
+			if (not HasMixin(player, "Live") or player:GetIsAlive()) and distSquared < (openDistance * openDistance) then
+				desiredOpenState = true			
+			end
+		end
         
         if desiredOpenState and state == Door.kState.Close then
             self.clientstate = Door.kState.Open
@@ -248,11 +242,14 @@ function Door:OnUpdateAnimationInput(modelMixin)
 
     PROFILE("Door:OnUpdateAnimationInput")
     
-    local open = self.state == Door.kState.Open or self.clientstate == Door.kState.Open
-    local lock = false
-    
+    local open = self.state == Door.kState.Open
+	//Predict always open?
+	if Predict then
+		open = true
+	end
+
     modelMixin:SetAnimationInput("open", open)
-    modelMixin:SetAnimationInput("lock", lock)
+    modelMixin:SetAnimationInput("lock", false)
     
 end
 
@@ -261,9 +258,9 @@ if Client then
 	function Door:OnUpdate(deltaTime)
 	
 		ScriptActor.OnUpdate(self, deltaTime)
-		if not self.lastUpdated or self.lastUpdated + kUpdateAutoOpenRate < Shared.GetTime() then
+		if not self.lastUpdatedClient or self.lastUpdatedClient + kPredictUpdateAutoOpenRate < Shared.GetTime() then
 			ClientUpdateAutoOpen(self)
-			self.lastUpdated = Shared.GetTime()
+			self.lastUpdatedClient = Shared.GetTime()
 		end
 		
 	end
@@ -273,13 +270,7 @@ end
 if Predict then
 	
 	function Door:OnUpdate(deltaTime)
-	
-		ScriptActor.OnUpdate(self, deltaTime)
-		if not self.lastUpdated or self.lastUpdated + kPredictUpdateAutoOpenRate < Shared.GetTime() then
-			ClientUpdateAutoOpen(self)
-			self.lastUpdated = Shared.GetTime()
-		end
-		
+		ScriptActor.OnUpdate(self, deltaTime)	
 	end
 	
 	AddClassToPredictionUpdate("Door", function(ent) return true end)
