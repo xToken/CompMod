@@ -41,3 +41,5 @@ TeamInfo.kRelevantTechIdsMarine =
     kTechId.NanoShieldTech,
     
 }
+
+Shared.LinkClassToMap("Minigun", Minigun.kMapName, { heatAmount = "float (0 to 1 by 0.001)" })
