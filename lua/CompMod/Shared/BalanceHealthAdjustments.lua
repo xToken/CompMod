@@ -24,7 +24,7 @@ kMatureTunnelEntranceArmor = 125	// Comp Mod change, lowered tunnels cost and HP
 //kBoneWallArmor = 0				// Comp Mod change, unchanged.
 //kBoneWallHealthPerBioMass = 100	// Comp Mod change, unchanged.
 //kContaminationHealth = 1000		// Comp Mod change, unchanged.
-kBabblerHealth = 5					// Comp Mod change, decreased from 10.
+kBabblerHealth = 11					// Comp Mod change, increased from 10.
 //kBabblerArmor = 0					// Comp Mod change, unchanged.
 
 kAlienRegenerationPercentage = 0.07	// Comp Mod change, increased from 4%
