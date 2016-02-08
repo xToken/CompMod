@@ -17,4 +17,4 @@ function Gorge:GetAirFriction()
     return math.max(0.15 * speedFraction, 0.12)
 end
 
-//ReplaceUpValue( GroundMoveMixin.UpdateMove, "kMaxAirAccel", Player.GetMaxAirAccel, { LocateRecurse = true } )
+ReplaceUpValue( Gorge.ModifyVelocity, "kStartSlideSpeed", kGorgeBellySlideStartSpeed, { LocateRecurse = true } )
