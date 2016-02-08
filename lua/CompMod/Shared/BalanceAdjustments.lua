@@ -33,8 +33,10 @@ kDualRailgunExosuitCost = 35		// Comp Mod change, lowered pres cost from 60.
 kExosuitTechResearchCost = 25		// Comp Mod change, increased from 20 tres.
 
 kGorgeTunnelCost = 3				// Comp Mod change, lowered tunnels cost and HP.
+kBabblerCost = 0.5					// Comp Mod change, lowered from 1.
 kNumBabblerEggsPerGorge = 2			// Comp Mod change, adjusted babblers per egg and cost, down from 3.
 kNumBabblersPerEgg = 5				// Comp Mod change, adjusted babblers per egg and cost, up from 3.
+kBabblerMinDamage = 20				// Comp Mod change, increased from 5.
 kHydraCost = 2						// Comp Mod change, lowered hydra cost from 3.
 
 kWebBuildCost = 0					// Comp Mod change, lowered web cost from 1.
@@ -91,6 +93,8 @@ kGasGrenadeCost = 1					// Comp Mod change, lowered from 3.
 kPulseGrenadeCost = 1				// Comp Mod change, lowered from 3.
 kMaxHandGrenades = 2				// Comp Mod change, 2 max grenades.
 kPurchasedHandGrenades = 1			// Comp Mod change, 1 grenade from armory.
+ClusterGrenade.kDetonateRadius = nil	//Comp Mod change, changed to match other hand grenades (was 0.17)
+Grenade.kDetonateRadius = 0.085		// Comp Mod change, lowered from 0.17
 
 //kFlamethrowerAttackCone = 0.15		// Comp Mod change, lowered from 0.17.
 //kBurnDamagePerSecond = 0			// Comp Mod change, lowered from 2.
@@ -116,7 +120,8 @@ kHeavyMachineGunDropCost = 25		// Comp Mod change, added HMG.
 kHeavyMachineGunPointValue = 7		// Comp Mod change, added HMG.
 kHeavyMachineGunSpread = Math.Radians(3.8)	// Comp Mod, added this for HMG.
 
-kMinigunDamage = 20						// Comp Mod change, decreased from 22.
+kMinigunDamage = 10						// Comp Mod change, decreased from 22. (ROF is Doubled)
+kMinigunDamageType = kDamageType.Normal	// Comp Mod change, changed from Heavy.
 kRailgunDamage = 30						// Comp Mod change, decreased from 33.
 kRailgunChargeDamage = 130				// Comp Mod change, decreased from 140.
 
