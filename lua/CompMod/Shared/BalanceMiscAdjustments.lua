@@ -31,7 +31,8 @@ kAlienHealRateOverLimitReduction = 0.2	// Comp Mod change, added alien healing r
 
 Marine.kRunMaxSpeed = 5.75				// Comp Mod change, decreased from 6.
 kMarineMaxSlowWalkSpeed = 2.5			// Comp Mod change, added this.
-kGorgeBellySlideStartSpeed = 7.75		// Comp Mod change, lowered from 8.9
+kGorgeBellySlideStartSpeed = 7.75		// Comp Mod change, lowered from 8.9.
+kFadeBlinkAddedAccel = 2				// Comp Mod change, increased from 1.
 kLerkWallGripMaxSpeed = 2				// Comp Mod change, maximum speed for WallGrip.
 kLerkAirFrictionMinSpeed = 7			// Comp Mod change, added increasing air friction.	Minimum speed to still have below bleeds applied.
 kLerkAirFrictionBleedAmount = 0.2		// Comp Mod change, added increasing air friction.	Max amount of increased air friction to apply.

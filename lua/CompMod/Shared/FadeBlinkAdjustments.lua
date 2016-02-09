@@ -4,9 +4,6 @@
 // lua\CompMod\Shared\FadeBlinkAdjustments.lua
 // - Dragon
 
-local kBlinkSpeed = GetUpValue( Fade.ModifyVelocity, "kBlinkSpeed", { LocateRecurse = true } )
-local kBlinkAcceleration = GetUpValue( Fade.ModifyVelocity, "kBlinkAcceleration", { LocateRecurse = true } )
-local kBlinkAddAcceleration = GetUpValue( Fade.ModifyVelocity, "kBlinkAddAcceleration", { LocateRecurse = true } )
 local kOffsetUpdate = 0 //Full Speed
 local kFadeOffsetRange = 1
 local kFadeOffsetScalar = 5
@@ -21,63 +18,45 @@ originalFadeOnCreate = Class_ReplaceMethod("Fade", "OnCreate",
 	end
 )
 
-function Fade:ModifyVelocity(input, velocity, deltaTime)
-
-	PROFILE("Fade:ModifyVelocity")
-
-    if self:GetIsBlinking() then
-    
-        local wishDir = self:GetViewCoords().zAxis
-        local maxSpeedTable = { maxSpeed = kBlinkSpeed }
-        self:ModifyMaxSpeed(maxSpeedTable, input)  
-        local prevSpeed = velocity:GetLengthXZ()
-        local maxSpeed = math.max(prevSpeed, maxSpeedTable.maxSpeed)
-        local maxSpeed = math.min(25, maxSpeed)    
-        
-        velocity:Add(wishDir * kBlinkAcceleration * deltaTime)
-        
-        if velocity:GetLengthXZ() > maxSpeed then
-            velocity:Normalize()
-            velocity:Scale(maxSpeed)
-        end 
-        
-        // additional acceleration when holding down blink to exceed max speed
-        velocity:Add(wishDir * kBlinkAddAcceleration * deltaTime)
-        
-    end
+local originalFadeModifyVelocity
+originalFadeModifyVelocity = Class_ReplaceMethod("Fade", "ModifyVelocity",
+	function(self, input, velocity, deltaTime)
 	
-	//Model offset for crouching blinking fades
-	if self.lastOffsetTime + kOffsetUpdate < Shared.GetTime() then
-		local origin = self:GetOrigin()
-		//Trace up to make sure we are against the ceiling.
-		//Default to no updates
-		self.updateOffset = false
-		local upTrace = Shared.TraceRay(origin, origin + Vector(0, Fade.YExtents + kFadeCrouchModelOffset, 0), CollisionRep.Move, PhysicsMask.AllButPCs, EntityFilterOneAndIsa(self, "Babbler"))
-		if upTrace.fraction > 0 and upTrace.fraction < 1 then
-			//The ceiling is here.
-			//Trace down to make sure we are not against the floor.
-			local downTrace = Shared.TraceRay(origin, origin - Vector(0, kFadeCrouchModelOffset, 0), CollisionRep.Move, PhysicsMask.AllButPCs, EntityFilterOne(self))
-			if downTrace.fraction <= 0 or downTrace.fraction >= 1 then
-				self.updateOffset = true
+		originalFadeModifyVelocity(self, input, velocity, deltaTime)
+		
+		//Model offset for crouching blinking fades
+		if self.lastOffsetTime + kOffsetUpdate < Shared.GetTime() then
+			local origin = self:GetOrigin()
+			//Trace up to make sure we are against the ceiling.
+			//Default to no updates
+			self.updateOffset = false
+			local upTrace = Shared.TraceRay(origin, origin + Vector(0, Fade.YExtents + kFadeCrouchModelOffset, 0), CollisionRep.Move, PhysicsMask.AllButPCs, EntityFilterOneAndIsa(self, "Babbler"))
+			if upTrace.fraction > 0 and upTrace.fraction < 1 then
+				//The ceiling is here.
+				//Trace down to make sure we are not against the floor.
+				local downTrace = Shared.TraceRay(origin, origin - Vector(0, kFadeCrouchModelOffset, 0), CollisionRep.Move, PhysicsMask.AllButPCs, EntityFilterOne(self))
+				if downTrace.fraction <= 0 or downTrace.fraction >= 1 then
+					self.updateOffset = true
+				end
+			end
+			self.lastOffsetTime = Shared.GetTime()
+		end
+		
+		local crouchoffset = self:GetCrouchAmount() 
+		local modelcrouchoffset = self:ModifyCrouchAnimation(crouchoffset)
+		local maxoffset = (crouchoffset - modelcrouchoffset) * kFadeCrouchModelOffset
+		if crouchoffset > 0 and self.updateOffset then
+			if self.modelOffset < maxoffset then
+				self.modelOffset = math.min(maxoffset, self.modelOffset + (input.time * kFadeOffsetScalar))
+			end
+		else
+			if self.modelOffset > 0 then
+				self.modelOffset = math.max(0, self.modelOffset - (input.time * kFadeOffsetScalar))
 			end
 		end
-		self.lastOffsetTime = Shared.GetTime()
-	end
-	
-	local crouchoffset = self:GetCrouchAmount() 
-	local modelcrouchoffset = self:ModifyCrouchAnimation(crouchoffset)
-	local maxoffset = (crouchoffset - modelcrouchoffset) * kFadeCrouchModelOffset
-    if crouchoffset > 0 and self.updateOffset then
-        if self.modelOffset < maxoffset then
-            self.modelOffset = math.min(maxoffset, self.modelOffset + (input.time * kFadeOffsetScalar))
-        end
-    else
-        if self.modelOffset > 0 then
-            self.modelOffset = math.max(0, self.modelOffset - (input.time * kFadeOffsetScalar))
-        end
-    end
 
-end
+	end
+)
 
 function Fade:OnAdjustModelCoords(modelCoords)
     modelCoords.origin = modelCoords.origin - Vector(0, self.modelOffset, 0)
@@ -88,7 +67,6 @@ local TriggerBlinkOutEffects = GetUpValue( Blink.SetEthereal, "TriggerBlinkOutEf
 local TriggerBlinkInEffects = GetUpValue( Blink.SetEthereal, "TriggerBlinkInEffects", { LocateRecurse = true } )
 local kEtherealForce = GetUpValue( Blink.SetEthereal, "kEtherealForce", { LocateRecurse = true } )
 local kEtherealVerticalForce = GetUpValue( Blink.SetEthereal, "kEtherealVerticalForce", { LocateRecurse = true } )
-local kBlinkAddForce = GetUpValue( Blink.SetEthereal, "kBlinkAddForce", { LocateRecurse = true } )
 
 local originalBlinkSetEthereal
 originalBlinkSetEthereal = Class_ReplaceMethod("Blink", "SetEthereal",
@@ -111,6 +89,7 @@ originalBlinkSetEthereal = Class_ReplaceMethod("Blink", "SetEthereal",
 				local celerityMultiplier = 1 + celerityLevel * 0.3
 
 				local newVelocity = player:GetViewCoords().zAxis * (kEtherealForce + celerityLevel * 0.5) + oldVelocity
+				player:SetVelocity(newVelocity)
 				if newVelocity:GetLength() > newSpeed then
 					newVelocity:Scale(newSpeed / newVelocity:GetLength())
 				end
@@ -119,7 +98,7 @@ originalBlinkSetEthereal = Class_ReplaceMethod("Blink", "SetEthereal",
 					newVelocity.y = math.max(newVelocity.y, kEtherealVerticalForce)
 				end
 				
-				newVelocity:Add(player:GetViewCoords().zAxis * kBlinkAddForce * celerityMultiplier)
+				newVelocity:Add(player:GetViewCoords().zAxis * kFadeBlinkAddedAccel * celerityMultiplier)
 				player:SetVelocity(newVelocity)
 				player.onGround = false
 				player.jumping = true
