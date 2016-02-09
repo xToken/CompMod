@@ -42,4 +42,9 @@ TeamInfo.kRelevantTechIdsMarine =
     
 }
 
+//Lower this a bit
+function Minigun:GetTracerEffectFrequency()
+    return 0.75
+end
+
 Shared.LinkClassToMap("Minigun", Minigun.kMapName, { heatAmount = "float (0 to 1 by 0.001)" })
