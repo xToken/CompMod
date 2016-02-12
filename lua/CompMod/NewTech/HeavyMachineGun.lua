@@ -63,7 +63,6 @@ local function DestroyMuzzleEffect(self)
     if self.muzzleCinematic then
         Client.DestroyCinematic(self.muzzleCinematic)            
     end
-    self.muzzleCinematicDestroyed = true
     self.muzzleCinematic = nil
 
 end
@@ -73,7 +72,6 @@ local function DestroyShellEffect(self)
     if self.shellsCinematic then
         Client.DestroyCinematic(self.shellsCinematic)            
     end
-	self.shellsCinematicDestroyed = true
     self.shellsCinematic = nil
 
 end
@@ -83,7 +81,6 @@ local function CreateMuzzleEffect(self)
     local player = self:GetParent()
     if player then
         self.muzzleCinematic = CreateMuzzleCinematic(self, kMuzzleEffect, kMuzzleEffect, kMuzzleAttachPoint, nil, Cinematic.Repeat_Endless)
-		self.muzzleCinematicDestroyed = false
     end
 
 end
@@ -305,15 +302,15 @@ if Client then
 		//Shared.PlaySound(self, kLoopingSound)
         
         local player = self:GetParent()
-        
-        if not self.muzzleCinematic then            
-            CreateMuzzleEffect(self)
-        end
-            
-        // CreateMuzzleCinematic() can return nil in case there is no parent or the parent is invisible (for alien commander for example)
-        if self.muzzleCinematic and not self.muzzleCinematicDestroyed then
-            self.muzzleCinematic:SetIsVisible(true)
-        end
+		
+		if not self.muzzleCinematic then            
+			CreateMuzzleEffect(self)
+		end
+			
+		// CreateMuzzleCinematic() can return nil in case there is no parent or the parent is invisible (for alien commander for example)
+		if self.muzzleCinematic then
+			self.muzzleCinematic:SetIsVisible(true)
+		end
         
         if player then
         
@@ -355,11 +352,11 @@ if Client then
 		//Shared.StopSound(self, kLoopingSound)
         Shared.PlaySound(self, kEndSound)
         
-		if self.muzzleCinematic and not self.muzzleCinematicDestroyed then
+		if self.muzzleCinematic then
             self.muzzleCinematic:SetIsVisible(false)
         end
         
-        if self.shellsCinematic and not self.shellsCinematicDestroyed then
+        if self.shellsCinematic then
             self.shellsCinematic:SetIsActive(false)
         end
         
@@ -370,7 +367,7 @@ if Client then
     end
 
 	function HeavyMachineGun:GetTriggerPrimaryEffects()
-        return not self:GetIsReloading() and self.primaryAttacking
+        return not self:GetIsReloading() and self.shooting
     end
     
     function HeavyMachineGun:GetBarrelPoint()
