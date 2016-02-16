@@ -86,7 +86,7 @@ originalBlinkSetEthereal = Class_ReplaceMethod("Blink", "SetEthereal",
 				local newSpeed = math.max(oldSpeed, kEtherealForce + celerityLevel * 0.5)
 
 				// need to handle celerity different for the fade. blink is a big part of the basic movement, celerity wont be significant enough if not considered here
-				local celerityMultiplier = 1 + celerityLevel * 0.3
+				local celerityMultiplier = 1 + celerityLevel * 0.10
 
 				local newVelocity = player:GetViewCoords().zAxis * (kEtherealForce + celerityLevel * 0.5) + oldVelocity
 				player:SetVelocity(newVelocity)
