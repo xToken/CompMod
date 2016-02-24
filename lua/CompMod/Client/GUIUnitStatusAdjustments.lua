@@ -199,7 +199,7 @@ local function SetupBuildVersionTags()
 	originalFeedbackInit = Class_ReplaceMethod("GUIFeedback", "Initialize",
 	function(self)
 		originalFeedbackInit(self)
-		self.buildText:SetText(self.buildText:GetText() .. " (" .. "CompMod" .. " v"  .. kCompModVersion .. "R4 )")
+		self.buildText:SetText(self.buildText:GetText() .. " (" .. "CompMod" .. " v"  .. kCompModVersion .. "r4 )")
 	end)
 	
 end
