@@ -56,26 +56,3 @@ local function AttemptToUse(self, timePassed)
 end
 
 ReplaceLocals(Player.HandleButtons, { AttemptToUse = AttemptToUse })
-
-function ConstructMixin:OnUse(player, elapsedTime, useSuccessTable)
-
-    local used = false
-
-    if not GetIsAlienUnit(self) and self:GetCanConstruct(player) then
-		
-		//If interpolation of fields works in a logical way, you actually
-		//would want to pass the correct time delta here.  Passing a constant time
-		//regardless of actual elapsed time would lead to slight fluxuations in the prediction.
-        local success, playAV = self:Construct(elapsedTime, player)
-        
-        if success then
-
-            used = true
-        
-        end
-                
-    end
-    
-    useSuccessTable.useSuccess = useSuccessTable.useSuccess or used
-    
-end
