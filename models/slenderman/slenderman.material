@@ -1,5 +1,0 @@
-shader = "models/marine/marine.surface_shader"
-albedoMap = "models/slenderman/slenderman.dds"
-specularMap = "models/slenderman/slenderman.dds"
-normalMap = "models/slenderman/slenderman_norm.dds"
-emissiveMap = "models/slenderman/slenderman.dds"
