@@ -406,14 +406,6 @@ if Server then
     
     end
 
-    local function AddExitToTunnel(tunnelexit, tunnel)
-		tunnel:AddExit(tunnelexit)
-		tunnelexit.tunnelId = tunnel:GetId()
-		tunnel:SetOwnerClientId(tunnelexit:GetOwnerClientId())
-	end
-	
-	//Tunnels nil their clientId when both exits are destroyed.  This can lead to a valid tunnel existing for our client
-	//but finding a nil clientId tunnel here because it is first in the entlist returned.
 	function TunnelExit:UpdateConnectedTunnel()
 
         local hasValidTunnel = self.tunnelId ~= nil and Shared.GetEntity(self.tunnelId) ~= nil
@@ -422,35 +414,35 @@ if Server then
             return
         end
 
-        // register if a tunnel entity already exists or a free tunnel has been found
-		local foundTunnel
+        local foundTunnel = nil
+        
+        -- register if a tunnel entity already exists or a free tunnel has been found
         for index, tunnel in ientitylist( Shared.GetEntitiesWithClassname("Tunnel") ) do
         
             if tunnel:GetOwnerClientId() == self:GetOwnerClientId() then
-				//If we find our tunnel, set it now and exit
-                AddExitToTunnel(self, tunnel)
-                return
                 
-            elseif tunnel:GetOwnerClientId() == nil then
-				foundTunnel = tunnel
-			end
+                foundTunnel = tunnel
+                break
+                
+            elseif not foundTunnel and not tunnel:GetOwnerClientId() then
+                
+                foundTunnel = tunnel
+                
+            end
             
         end
-		
-		//We found an un-used tunnel, use that instead of creating a new one.
-		if foundTunnel then
-			AddExitToTunnel(self, foundTunnel)
-			return
-		end
         
-        // no tunnel entity present, check if there is another tunnel entrance to connect with
-        local tunnel = CreateEntity(Tunnel.kMapName, nil, self:GetTeamNumber())
-        tunnel:SetOwnerClientId(self:GetOwnerClientId()) 
-        tunnel:AddExit(self)
-        self.tunnelId = tunnel:GetId()
+        if not foundTunnel then
+            -- no tunnel entity present
+            foundTunnel = CreateEntity(Tunnel.kMapName, nil, self:GetTeamNumber())
+        end
+        
+        -- check if there is another tunnel entrance to connect with
+        foundTunnel:SetOwnerClientId(self:GetOwnerClientId()) 
+        foundTunnel:AddExit(self)
+        self.tunnelId = foundTunnel:GetId()
 
     end
-
 
     function TunnelExit:OnConstructionComplete()
         self:UpdateConnectedTunnel()
