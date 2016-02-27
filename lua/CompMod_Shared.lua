@@ -10,7 +10,7 @@ kCompModExperimentalVersion = 1
 
 Script.Load( "lua/Class.lua" )
 
-kCompModVersion = 20
+kCompModVersion = 21
 
 local ModFiles = { }
 Shared.GetMatchingFileNames( "lua/CompMod/NewTech/*.lua", true, ModFiles )
