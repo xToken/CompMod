@@ -106,10 +106,10 @@ Grenade.kDetonateRadius = 0.085		// Comp Mod change, lowered from 0.17
 //kFlamethrowerRange = 8				// Comp Mod change, lowered from 9.
 
 //kLayMineWeight = 0.10					// Comp Mod change, unchanged.
-//kWelderStructureDamagePerSecond = 50	// Comp Mod change, added this for adjusted welder.
-//kWelderDamagePerSecond = 30			// Comp Mod change, unchanged.
-//kWelderFriendlyRange = 2.4			// Comp Mod change, unchanged.
-//kWelderAttackRange = 1.7				// Comp Mod change, added this.
+kWelderStructureDamagePerSecond = 50	// Comp Mod change, added this for adjusted welder.
+kWelderDamagePerSecond = 30			// Comp Mod change, unchanged.
+kWelderFriendlyRange = 2.4			// Comp Mod change, unchanged.
+kWelderAttackRange = 1.7				// Comp Mod change, added this.
 
 kHeavyMachineGunDamage = 7.0		// Comp Mod change, added HMG.
 kHeavyMachineGunDamageType = kDamageType.Puncture	// Comp Mod change, added HMG.
