@@ -88,7 +88,7 @@ local kTechIdTable = {
     'Jetpack', 'JetpackFuelTech', 'JetpackArmorTech', 'Exosuit', 'ExosuitLockdownTech', 'ExosuitUpgradeTech',
     
     // Marine upgrades
-    'Weapons1', 'Weapons2', 'Weapons3', 'CatPackTech',
+    'Weapons1', 'Weapons2', 'Weapons3', 'CatPackTech', 'PowerSurgeTech',
     'Armor1', 'Armor2', 'Armor3', 'NanoArmor',
     
     // Activations
