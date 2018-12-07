@@ -1,5 +1,0 @@
-shader = "models/marine/marine.surface_shader"
-albedoMap = "models/marine/rifle/rifle.dds"
-emissiveMap = "models/marine/rifle/rifle_illum.dds"
-normalMap = "models/marine/rifle/rifle_normal.dds"
-specularMap = "models/marine/rifle/rifle_spec.dds"
