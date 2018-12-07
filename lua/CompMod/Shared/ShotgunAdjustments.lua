@@ -23,10 +23,6 @@ Shotgun.kSpreadVectors =
 
 local kBulletSize = 0.016
 
-function Shotgun:GetRange()
-    return kShotgunMaxRange
-end
-
 function Shotgun:GetBulletDamage(player, endPoint)
 	local distanceTo = (player:GetEyePos() - endPoint):GetLength()
 	if distanceTo > kShotgunMaxRange then
