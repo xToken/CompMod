@@ -1,20 +1,16 @@
-// Natural Selection 2 Competitive Mod
-// Source located at - https://github.com/xToken/CompMod
-// Detailed breakdown of changes at https://docs.google.com/document/d/1YOnjJz6_GhioysLaWiRfc17xnrmw6AEJIb6gq7TX3Qg/edit?pli=1
-// lua\CompMod\Shared\GorgeMovementAdjustments.lua
-// - Dragon
+-- Natural Selection 2 Competitive Mod
+-- Source located at - https://github.com/xToken/CompMod
+-- Detailed breakdown of changes at https://docs.google.com/document/d/1YOnjJz6_GhioysLaWiRfc17xnrmw6AEJIb6gq7TX3Qg/edit?pli=1
+-- lua\CompMod\Shared\GorgeMovementAdjustments.lua
+-- - Dragon
 
-//I dont know if I should be happy about this.
-//Or sad.
-//Why do you play with my emotions like this, its not fair.
-
+-- Give gorges some more mobility (Default is 6)
 function Gorge:GetAirControl()
-    return 30
+    return 18
 end
 
+-- Slow down gorges going over the max speed from slidejumping (Default is 0.2)
 function Gorge:GetAirFriction()
 	local speedFraction = self:GetVelocity():GetLengthXZ() / self:GetMaxSpeed()
     return math.max(0.15 * speedFraction, 0.12)
 end
-
-//ReplaceUpValue( GroundMoveMixin.UpdateMove, "kMaxAirAccel", Player.GetMaxAirAccel, { LocateRecurse = true } )

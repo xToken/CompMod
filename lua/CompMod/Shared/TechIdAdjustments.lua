@@ -1,100 +1,24 @@
-// Natural Selection 2 Competitive Mod
-// Source located at - https://github.com/xToken/CompMod
-// Detailed breakdown of changes at https://docs.google.com/document/d/1YOnjJz6_GhioysLaWiRfc17xnrmw6AEJIb6gq7TX3Qg/edit?pli=1
-// lua\CompMod\Shared\TechIdAdjustments.lua
-// - Dragon
+-- Natural Selection 2 Competitive Mod
+-- Source located at - https://github.com/xToken/CompMod
+-- Detailed breakdown of changes at https://docs.google.com/document/d/1YOnjJz6_GhioysLaWiRfc17xnrmw6AEJIb6gq7TX3Qg/edit?pli=1
+-- lua\CompMod\Shared\TechIdAdjustments.lua
+-- - Dragon
 
-for _, v in ipairs( { 'GorgeTunnelEntrance', 'GorgeTunnelExit', 'HeavyMachineGunTech', 'HeavyMachineGun', 'DropHeavyMachineGun', 'ARCSpeedBoost' } ) do
-	AppendToEnum( kTechId, v )
-end
+-- This is relevant, not only to this but to any functions - it explains Reference/Value in lua function calls
+-- Tables, functions, threads, and (full) userdata values are objects: variables do not actually contain these values, only references to them.
+local InfestationRequirementRemovedIDs = { }
+table.insert(InfestationRequirementRemovedIDs, kTechId.Harvester)
+table.insert(InfestationRequirementRemovedIDs, kTechId.Crag)
+table.insert(InfestationRequirementRemovedIDs, kTechId.Shift)
+table.insert(InfestationRequirementRemovedIDs, kTechId.Shade)
+table.insert(InfestationRequirementRemovedIDs, kTechId.Veil)
+table.insert(InfestationRequirementRemovedIDs, kTechId.Spur)
+table.insert(InfestationRequirementRemovedIDs, kTechId.Shell)
 
-AppendToEnum( kMinimapBlipType, 'TunnelExit' )
-
-//This is relevant, not only to this but to any functions - it explains Reference/Value in lua function calls
-//Tables, functions, threads, and (full) userdata values are objects: variables do not actually contain these values, only references to them.
-
-local function AddCompModTechChanges(techData)
-	// Comp Mod change, add tech crap								
-	table.insert(techData, { 	[kTechDataId] = kTechId.GorgeTunnelEntrance,
-								[kTechDataCategory] = kTechId.Gorge,
-								[kTechDataMaxExtents] = Vector(1.2, 1.2, 1.2),
-								[kTechDataTooltipInfo] = "GORGE_TUNNEL_TOOLTIP",
-								[kTechDataGhostModelClass] = "AlienGhostModel",
-								[kTechDataAllowConsumeDrop] = true,
-								[kTechDataAllowStacking] = false,
-								[kTechDataMaxAmount] = 1,
-								[kTechDataMapName] = TunnelEntrance.kMapName,
-								[kTechDataDisplayName] = "Gorge Tunnel Entrance",
-								[kTechDataCostKey] = kGorgeTunnelCost,
-								[kTechDataMaxHealth] = kTunnelEntranceHealth,
-								[kTechDataMaxArmor] = kTunnelEntranceArmor,
-								[kTechDataBuildTime] = kGorgeTunnelBuildTime,
-								[kTechDataModel] = TunnelEntrance.kModelName,
-								[kTechDataRequiresInfestation] = false,
-								[kTechDataPointValue] = kTunnelEntrancePointValue })
-								
-	table.insert(techData, { 	[kTechDataId] = kTechId.GorgeTunnelExit,
-								[kTechDataCategory] = kTechId.Gorge,
-								[kTechDataMaxExtents] = Vector(1.2, 1.2, 1.2),
-								[kTechDataTooltipInfo] = "GORGE_TUNNEL_TOOLTIP",
-								[kTechDataGhostModelClass] = "AlienGhostModel",
-								[kTechDataAllowConsumeDrop] = true,
-								[kTechDataAllowStacking] = false,
-								[kTechDataMaxAmount] = 1,
-								[kTechDataMapName] = TunnelExit.kMapName,
-								[kTechDataDisplayName] = "Gorge Tunnel Exit",
-								[kTechDataCostKey] = kGorgeTunnelCost,
-								[kTechDataMaxHealth] = kTunnelEntranceHealth,
-								[kTechDataMaxArmor] = kTunnelEntranceArmor,
-								[kTechDataBuildTime] = kGorgeTunnelBuildTime,
-								[kTechDataModel] = TunnelExit.kModelName,
-								[kTechDataRequiresInfestation] = false,
-								[kTechDataPointValue] = kTunnelEntrancePointValue })
-								
-	table.insert(techData, { 	[kTechDataId] = kTechId.HeavyMachineGun,     
-								[kTechDataMaxHealth] = kMarineWeaponHealth,    
-								[kTechDataPointValue] = kHeavyMachineGunPointValue,      
-								[kTechDataMapName] = HeavyMachineGun.kMapName,
-								[kTechDataDisplayName] = "HeavyMachineGun",            
-								[kTechDataTooltipInfo] =  "HeavyMachineGun",
-								[kTechDataModel] = HeavyMachineGun.kModelName,
-								[kTechDataDamageType] = kHeavyMachineGunDamageType,
-								[kTechDataCostKey] = kHeavyMachineGunCost,
-								[kStructureAttachId] = kTechId.AdvancedArmory,
-								[kStructureAttachRange] = kArmoryWeaponAttachRange, 
-								[kStructureAttachRequiresPower] = true })
-								
-	table.insert(techData, { 	[kTechDataId] = kTechId.DropHeavyMachineGun,   
-								[kTechDataMapName] = HeavyMachineGun.kMapName, 
-								[kTechDataDisplayName] = "HeavyMachineGun", 
-								[kTechIDShowEnables] = false,  
-								[kTechDataTooltipInfo] =  "Drop HeavyMachineGun", 
-								[kTechDataModel] = HeavyMachineGun.kModelName, 
-								[kTechDataCostKey] = kHeavyMachineGunDropCost, 
-								[kStructureAttachId] = kTechId.AdvancedArmory,
-								[kStructureAttachRange] = kArmoryWeaponAttachRange, 
-								[kStructureAttachRequiresPower] = true })
-								
-	table.insert(techData, { 	[kTechDataId] = kTechId.HeavyMachineGunTech,      
-								[kTechDataCostKey] = kHeavyMachineGunTechResearchCost,     
-								[kTechDataResearchTimeKey] = kHeavyMachineGunTechResearchTime, 
-								[kTechDataDisplayName] = "Research Heavy Machine Gun", 
-								[kTechDataTooltipInfo] =  "Heavy Machine Gun"})
-								
-	table.insert(techData, { 	[kTechDataId] = kTechId.ARCSpeedBoost,      
-								[kTechDataCostKey] = kARCSpeedBoostCost,  
-								[kTechDataDisplayName] = "ARC Speed Boost",
-								[kTechDataTooltipInfo] =  [[ARC Speed Boost:  Temporarily increases the movement speed of this ARC by 20% for ]] .. ToString(kARCSpeedBoostDuration) .. "s seconds, also makes ARC immune to damage slowdown." })
-								
+local function AddCompModTechChanges(techData)					
 	for index, record in ipairs(techData) do 
-        if record[kTechDataId] == kTechId.BabblerTech then
-			record[kTechDataCostKey] = kBabblersResearchCost	
-			record[kTechDataResearchTimeKey] = kBabblersResearchTime
-			record[kTechDataDisplayName] = "Babblers"
-			record[kTechDataTooltipInfo] = "Allows gorges to create babblers."
-		end
-		if record[kTechDataId] == kTechId.DropFlamethrower then
-			record[kStructureAttachId] = { kTechId.Armory, kTechId.AdvancedArmory }
+        if table.contains(InfestationRequirementRemovedIDs, record[kTechDataId]) then
+			record[kTechDataRequiresInfestation] = false	
 		end
     end
 end
