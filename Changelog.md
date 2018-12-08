@@ -1,5 +1,20 @@
 # Changelog
 
+### CompMod R6 B2 (8-12-18)
+
+##### Marine Team Changes:
+- Removed power node impulse and render effects from field players
+- Removed power nodes from minimap
+- Removed power nodes unit status tooltips
+- Extractor build time increased to 15 from 11
+- Increased SG rate of fire by ~6.5%
+- Shotgun damage falloff starting range increased to 5m from 4m
+- Fixed issue preventing extractors from being placed right after harvester was killed
+
+##### Alien Team Changes:
+- Drifters now build 35% slower (Increases harvester build time from ~38 seconds to ~60 seconds)
+- Harvester cost increased to 10
+
 ### CompMod R6 B1 (7-12-18)
 
 ##### Alien Team Changes:
