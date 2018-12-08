@@ -34,6 +34,10 @@ function Shotgun:GetBulletDamage(player, endPoint)
 	end
 end
 
+function Shotgun:GetBaseAttackSpeed()
+    return self.primaryAttacking and kShotgunBaseROF or 1
+end
+
 function Shotgun:FirePrimary(player)
 
     local viewAngles = player:GetViewAngles()
