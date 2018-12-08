@@ -9,7 +9,9 @@ kShotgunBulletsPerShot = 10					-- Lowered from 17
 kShotgunSpreadDistance = 7					-- Lowered from 8.5 (See other adjustments in ShotgunAdjustments)
 kShotgunDamage = 17							-- Increased from 10
 kShotgunMaxRange = 16						-- Added max range (Damage drops to 1)
-kShotgunDropOffStartRange = 4				-- Min range where damage falloff begins
+kShotgunDropOffStartRange = 5				-- Min range where damage falloff begins
+kShotgunBaseROF	= 1.1						-- Increased SG base rate of fire
+kShotgunFireRate = 0.82						-- To prevent fire rate cap from triggering
 
 -- SKULK
 Skulk.kMaxSpeed = 8.0						-- Increased from 7.25
@@ -38,3 +40,9 @@ kJetpackFlySpeed = 10						-- Increased from 9.0
 
 -- EXOS
 kExoMaxSpeed = 6.00							-- Increased from 5.75
+
+-- Harvester Cost
+kHarvesterCost = 10							-- Increased from 8
+
+-- Extractor Build Time
+kExtractorBuildTime = 15					-- Increased from 11
