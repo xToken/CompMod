@@ -4,7 +4,7 @@
 -- lua\CompMod\Shared\ConstructAdjustments.lua
 -- - Dragon
 
-local kDrifterBuildRate = 1
+local kDrifterBuildRate = 0.65
 
 function ConstructMixin:OnConstructUpdate(deltaTime)
         
