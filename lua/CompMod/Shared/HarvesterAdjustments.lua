@@ -46,6 +46,11 @@ if Server then
 
 	function Harvester:OnKill(attacker, doer, point, direction)
 		self:SetModel(nil)
+		local attached = self:GetAttached()
+		if attached then
+			attached:ClearAttached()
+		end
+		self:ClearAttached()
 	end
 	
 	function Harvester:GetPassiveBuild()
