@@ -14,6 +14,8 @@
 ##### Alien Team Changes:
 - Drifters now build 35% slower (Increases harvester build time from ~38 seconds to ~60 seconds)
 - Harvester cost increased to 10
+- Harvester base armor lowered by 100 (200 less effective health)
+- Harvester health when fully matured lowered by 100, armor lowered by 70 (240 less effective health)
 
 ### CompMod R6 B1 (7-12-18)
 
