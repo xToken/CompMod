@@ -4,9 +4,6 @@
 -- lua\CompMod\Shared\InfestationAdjustments.lua
 -- - Dragon
 
-Script.Load( "lua/CompMod/Elixer_Utility.lua" )
-Elixer.UseVersion( 1.8 )
-
 -- InfestationMixing enhancements
 function InfestationMixin:CleanupInfestation()
 

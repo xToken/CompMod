@@ -15,31 +15,30 @@ kShotgunFireRate = 0.82						-- To prevent fire rate cap from triggering
 
 -- SKULK
 Skulk.kMaxSpeed = 8.0						-- Increased from 7.25
-Skulk.kWallJumpMaxSpeed = 11				-- No Change
-Skulk.kWallJumpMaxSpeedCelerityBonus = 1.2	-- No Change
+Skulk.kWallJumpMaxSpeed = 11.5				-- Increased from 11
 
 -- GORGE
 Gorge.kMaxGroundSpeed = 6.75				-- Increased from 6
 
 -- LERK
-kLerkMaxSpeed = 13.25						-- Increased from 13
+kLerkMaxSpeed = 13.5						-- Increased from 13
 
 -- FADE
 kFadeMaxSpeed = 6.5							-- Increased from 6.2
-kFadeBlinkSpeed = 14.5						-- Increased from 14
+kFadeBlinkSpeed = 15						-- Increased from 14
 
 -- ONOS
 Onos.kMaxSpeed = 7.0						-- Increased from 6.6
 Onos.kChargeSpeed = 13.0					-- Increased from 12.5
 
 -- Marine
-Marine.kWalkMaxSpeed = 5.6					-- Increased from 5.0
+Marine.kWalkMaxSpeed = 5.5					-- Increased from 5.0
 
 -- JetpackMarine
 kJetpackFlySpeed = 10						-- Increased from 9.0
 
 -- EXOS
-kExoMaxSpeed = 6.00							-- Increased from 5.75
+kExoMaxSpeed = 6.0							-- Increased from 5.75
 
 -- Harvester Cost
 kHarvesterCost = 10							-- Increased from 8

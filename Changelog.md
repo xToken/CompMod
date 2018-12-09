@@ -1,5 +1,10 @@
 # Changelog
 
+### CompMod R6 B3 (8-12-18)
+
+##### Alien Team Changes:
+- Adjusted skulk wallhop to allow better chaining of jumps
+
 ### CompMod R6 B2 (8-12-18)
 
 ##### Marine Team Changes:
