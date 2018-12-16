@@ -3,17 +3,21 @@
 -- lua\CompMod\Shared\Marine.lua
 -- - Dragon
 
+Script.Load( "lua/CompMod/Shared/WalkMixin.lua" )
+
 local networkVars =
 {
     utilitySlot4 = "enum kTechId",
 	utilitySlot5 = "enum kTechId",
 }
 
+AddMixinNetworkVars(WalkMixin, networkVars)
+
 local originalMarineOnInitialized
 originalMarineOnInitialized = Class_ReplaceMethod("Marine", "OnInitialized",
 	function(self)
 		originalMarineOnInitialized(self)
-		
+		InitMixin(self, WalkMixin)
 		self.utilitySlot4 = kTechId.None
 		self.utilitySlot5 = kTechId.None
 	end
@@ -97,36 +101,49 @@ originalMarineGetWeaponLevel = Class_ReplaceMethod("Marine", "GetWeaponLevel",
 
 -- Disable Sprint
 function SprintMixin:UpdateSprintingState(input)
+	self:UpdateWalkMode(input)
 end
 
-function Marine:GetInventorySpeedScalar()
-    return Clamp(math.cos(self:GetWeaponsWeight()), 0.5, 1)
-end
+local originalMarineGetPlayFootsteps
+originalMarineGetPlayFootsteps = Class_ReplaceMethod("Marine", "GetPlayFootsteps",
+	function(self)
+		return originalMarineGetPlayFootsteps(self) and not self:GetIsWalking()
+	end
+)
 
-function Marine:GetMaxSpeed(possible)
+local originalMarineGetInventorySpeedScalar
+originalMarineGetInventorySpeedScalar = Class_ReplaceMethod("Marine", "GetInventorySpeedScalar",
+	function(self)
+		return Clamp(math.cos(self:GetWeaponsWeight()), 0.5, 1)
+	end
+)
 
-    if possible then
-        return Marine.kRunMaxSpeed
-    end
+local originalMarineGetMaxSpeed
+originalMarineGetMaxSpeed = Class_ReplaceMethod("Marine", "GetMaxSpeed",
+	function(self, possible)
+		if possible then
+			return Marine.kRunMaxSpeed
+		end
 
-    local maxSpeed = Marine.kWalkMaxSpeed
-    
-    -- Take into account our weapon inventory and current weapon. Assumes a vanilla marine has a scalar of around .8.
-    local inventorySpeedScalar = self:GetInventorySpeedScalar()  
-    local useModifier = 1
+		local maxSpeed = Marine.kWalkMaxSpeed
+		maxSpeed = ConditionalValue(self:GetIsWalking(), kMarineMaxSlowWalkSpeed, maxSpeed)
+		
+		-- Take into account our weapon inventory and current weapon. Assumes a vanilla marine has a scalar of around .8.
+		local inventorySpeedScalar = self:GetInventorySpeedScalar()
+		local useModifier = 1
 
-    local activeWeapon = self:GetActiveWeapon()
-    if activeWeapon and self.isUsing and activeWeapon:GetMapName() == Builder.kMapName then
-        useModifier = 0.5
-    end
+		local activeWeapon = self:GetActiveWeapon()
+		if activeWeapon and self.isUsing and activeWeapon:GetMapName() == Builder.kMapName then
+			useModifier = 0.5
+		end
 
-    if self.catpackboost then
-        maxSpeed = maxSpeed + kCatPackMoveAddSpeed
-    end
-    
-    return maxSpeed * self:GetSlowSpeedModifier() * inventorySpeedScalar  * useModifier
-    
-end
+		if self.catpackboost then
+			maxSpeed = maxSpeed + kCatPackMoveAddSpeed
+		end
+		
+		return maxSpeed * self:GetSlowSpeedModifier() * inventorySpeedScalar  * useModifier
+	end
+)
 
 -- Set updated speed
 Marine.kWalkMaxSpeed = kMarineWalkMaxSpeed

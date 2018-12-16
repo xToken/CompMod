@@ -23,6 +23,7 @@ kOnosMaxChargeSpeed = 13.0					-- Increased from 12.5
 
 -- Marine
 kMarineWalkMaxSpeed = 5.8					-- Increased from 5.0
+kMarineMaxSlowWalkSpeed = 2.5
 
 -- JetpackMarine
 kJetpackFlySpeed = 13						-- Increased from 9.0
