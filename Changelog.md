@@ -1,5 +1,300 @@
 # Changelog
 
+### CompMod R6 B4 (15-12-18)
+
+##### Global Changes:
+- Starting tRes is now 50 per team
+- Starting pRes is now 10 per team
+- pRes income rate is 1 per minute per RT (0.1 per interval, 6 second interval).  Rate was 1.25 previously (0.125 per 6 second interval)
+
+##### Marine Class Changes:
+- Jetpack cost decreased from 15 to 5
+- Jetpack flight speed increased from 9 to 13
+- Jetpack initially performs as a 'jump-jet'
+	- Base accel increased from 28 to 55
+	- Base fuel use rate increased from .21 to 4
+	- Replenish rate is .2
+- Upgraded jetpack functions more like current vanilla jetpack
+	- Acceleration is 30
+	- Fuel usage is .35
+	- Replenish rate is .25
+
+- Exo model size decreased by 10%
+
+##### Alien Lifeform Changes:
+- Skulks will respawn with their last evolved upgrades.
+- Skulk bite cone width lowered from 1.2 to 1
+
+- Gorge cost increased from 8 to 10
+- Lerk cost decreased from 21 to 15
+- Fade cost decreased from 37 to 20
+- Onos cost decreased from 62 to 25
+- Gorge upgrade cost decreased from 1 to 0
+- Lerk upgrade cost decreased from 3 to 0
+- Fade upgrade cost decreased from 5 to 0
+- Onos upgrade cost decreased from 8 to 0
+
+- Skulk carapace armor increased from 30 to 40
+
+- Gorge health increased from 160 to 250
+- Gorge base armor decreased from 75 to 30
+- Gorge carapace armor decreased from 100 to 90
+
+- Lerk health increased from 150 to 200
+- Lerk base armor decreased from 45 to 20
+- Lerk carapace armor increased from 60 to 80
+
+- Fade health increased from 250 to 300
+- Fade base armor unchanged
+- Fade carapace armor increased from 120 to 200
+
+- Onos health decreased from 900 to 800
+- Onos base armor decreased from 450 to 300
+- Onos carapace armor increased from 650 to 750
+
+- Drifter armor decreased from 20 to 0 
+
+- Drifter height lowered from 1.2 to 1
+
+##### Marine Weapon Changes:
+- You will always respawn with utility upgrades (Welders, Grenades, Mines).
+
+- Welder cost increased from 3 to 10
+- Grenades (Pulse, Gas, Cluster) cost increased from 2 to 10
+
+- Mines cost increased from 10 to 15
+- You now start with 3 Mines
+- You can only have 3 active mines.  Newly placed mines will delete oldest if over the cap.
+- Mine health increased from 30 to 80
+- Mine armor increased from 0 to 10
+- Mines now 'Arm' in 0.03 seconds, exploding almost instantly
+- Mines can be destroyed before they fully deploy (~4 seconds) without exploding
+
+- Shotgun cost decreased from 20 to 15
+
+- Flamethrower cost decreased from 20 to 10
+
+- MG damage increased from 9 to 13
+- MG damage type changed to do full damage to players, 50% damage to structures. (Previously it did bonus damage to players)
+
+- GL damage lowered from 165 to 80
+- GL does double damage to Flameable structures
+
+- Weight has been adjusted, weapon weights listed below:
+	- Pistol Weight = 0.05
+	- Rifle Weight = 0.175
+	- GrenadeLauncher Weight = 0.3
+	- Flamethrower Weight = 0.2
+	- Shotgun Weight = 0.225
+	- MG Weight = 0.4
+	- MG Upgraded Weight = 0.25
+	- HandGrenade Weight = 0.05
+	- LayMine Weight = 0.075
+	- Welder Weight = 0.05
+	
+- Exos are now purchased from Robotics Factories
+
+##### Alien Ability Changes:
+- Spikes minimum damage decreased from 7 to 5
+- Spike damage falloff maximum range decreased from 9 to 7
+
+- Gorge Tunnel pRes cost increased from 3 to 4
+- Gorge Tunnel build time increased from 18.5 to 25
+
+- Hydra cost decreased from 3 to 0
+- Hydra build time decreased from 13 to 10
+- Hydra health increased from 350 base, 450 matured to 450 base, 650 matured
+- Hydra armor increased from 10 base, 50 matured to 50 base, 100 matured
+- Hydra model scaled up by 40%
+
+- Babbler cost decreased from 1 to 0
+- Babbler egg build time increased from 8 to 15
+- Babblers per egg decreased from 6 to 5
+
+- Regeneration always works in combat, up to 12% health per tick
+
+##### Marine Team Changes:
+- Mine research cost increased from 10 to 15
+- Mine research time increased from 20 to 45
+
+- Grenade research time increased from 10 to 15
+- CatPack research requires prototype lab
+- Jetpack research cost decreased from 25 to 15
+
+- Welder attack range slightly lowered.
+- Welder damage type changed from flame to structural
+
+- Exosuit cost decreased from 55 to 30 (Minigun & Railgun)
+
+- Flamethrower Upgrade 1 added:
+	- Cost: 15 tRes
+	- Research Time: 60 seconds
+	- Requires: Armory
+	- Grants: Increases range from 7 to 10
+	
+- Shotgun Upgrade 1 added:
+	- Cost: 15 tRes
+	- Research Time: 60 seconds
+	- Requires: Advanced Armory
+	- Grants: Increases damage falloff minimum range from 5 to 6.5
+	
+- Shotgun Upgrade 2 added:
+	- Cost: 30 tRes
+	- Research Time: 120 seconds
+	- Requires: Prototype Lab
+	- Grants: Increases RoF by ~10%, increases reload speed by 20%
+	
+- MG Upgrade 1 added:
+	- Cost: 15 tRes
+	- Research Time: 60 seconds
+	- Requires: Advanced Armory
+	- Grants: Decreases weapon weight from 0.4 to 0.25
+	
+- MG Upgrade 2 added:
+	- Cost: 30 tRes
+	- Research Time: 120 seconds
+	- Requires: Prototype Lab
+	- Grants: Increases clip size from 75 to 100, increases reload speed by 40%
+	
+- GL Upgrade 1 added:
+	- Cost: 15 tRes
+	- Research Time: 60 seconds
+	- Requires: Advanced Armory
+	- Grants: Adds a fragmentation effect, 4 fragments are triggered when a grenade explodes dealing 20 additional damage each
+	
+- Jetpack Upgrade 1 added:
+	- Cost: 30 tRes
+	- Research Time: 120 seconds
+	- Requires: Prototype Lab
+	- Grants: Increases damage falloff minimum range from 4 to 6.5
+
+- ARC Upgrade 1 added:
+	- Cost: 15 tRes
+	- Research Time: 60 seconds
+	- Requires: Robotics Factory
+	- Grants: Increases movement speed from 2.0 to 3.0, and from 0.8 to 1.8 when in combat/on infestation
+	
+- ARC Upgrade 2 added:
+	- Cost: 30 tRes
+	- Research Time: 120 seconds
+	- Requires: ARC Robotics Factory
+	- Grants: Increases damage from 450 to 550.
+	
+- Nano Armor Upgrade added:
+	- Cost: 30 tRes
+	- Research Time: 120 seconds
+	- Requires: Prototype Lab
+	- Grants: Heals 1 armor per second when out of combat.
+
+- Weapons 2 & Armor 2 now require Advanced Armory
+- Weapons 3 & Armor 3 now require Prototype Lab
+
+- Arms Lab build time decreased from 17 to 12
+- Arms Lab health decreased from 1650 to 1500
+- Arms Lab armor decreased from 500 to 250
+- Each Arms Lab can only be upgraded once, additional must be built to get all 3 levels of weapons & armor upgrades
+- If an Arms Lab is lost, it must be re-built then re-upgraded!
+
+- Armory cost increased from 10 to 15
+- Observatory cost increased from 10 to 15
+
+- MAC cost increased from 5 to 8
+- MAC armor decreased from 50 to 0
+
+- Shotgun drop cost increased from 20 to 25
+- Shotgun drop requires prototype lab
+- MG drop cost increased from 20 to 25
+- MG drop requires prototype lab
+- GL drop cost increased from 20 to 25
+- GL drop requires prototype lab
+- Flamethrower drop cost decreased from 20 to 15
+- Flamethrower drop requires Advanced Armory
+- Welder drop cost increased from 5 to 15
+- Welder drop requires Armory
+- Jetpack drop cost increased from 15 to 20
+- Jetpack drop requires prototype lab
+- Mines drop requires Advanced Armory
+
+##### Alien Team Changes:
+- Biomass is no longer researchable
+
+- Harvester cost increased to 10
+- Crag cost increased from 13 to 15
+- Shift cost increased from 13 to 15
+- Shade cost increased from 13 to 15
+- Whip cost increased from 13 to 15
+
+- Crag, Shift, Shade, Whip, Spur, Shell, Veil are all now 'flameable'.  They take extra damage from Flamethrowers and cluster grenades.
+
+- Two Shells cost increased from 15 to 25
+- Three Shells cost increased from 15 to 35
+- Two Spurs cost increased from 15 to 25
+- Three Spurs cost increased from 15 to 35
+- Two Veils cost increased from 15 to 25
+- Three Veils cost increased from 15 to 35
+
+- Energize range decreased from 17 to 12
+
+- Shade Cloak/Ink ranges decreased from 17 to 15
+
+- Crag healing ranges decreased from 14 to 12
+- Crag healing wave cost increased from 3 to 5
+- Crag healing wave cooldown increased from 6 to 10
+- Crag healing wave 
+
+- Leap research cost increased from 15 to 20
+- Leap research time increased from 40 to 60
+- Leap research requires two hives
+
+- Xenocide research cost increased from 25 to 35
+- Xenocide research time increased from 60 to 120
+- Xenocide research requires three hives
+
+- GorgeTunnels research cost increased from 15 to 20
+- GorgeTunnels research time increased from 40 to 60
+- GorgeTunnels research required to build gorge tunnels.
+- GorgeTunnels research requires one hive
+
+- BileBomb research cost increased from 15 to 25
+- BileBomb research time increased from 40 to 90
+- BileBomb research requires two hives
+
+- Umbra research cost increased from 20 to 25
+- Umbra research time increased from 45 to 90
+- Umbra research requires two hives
+
+- Spores research cost increased from 20 to 35
+- Spores research time increased from 60 to 120
+- Spores research requires three hives
+
+- MetabolizeEnergy research time increased from 40 to 60
+- MetabolizeEnergy research requires one hive
+
+- MetabolizeHealth research cost increased from 20 to 25
+- MetabolizeHealth research time increased from 45 to 90
+- MetabolizeHealth research requires two hives
+
+- Stab research cost increased from 25 to 35
+- Stab research time increased from 60 to 120
+- Stab research requires three hives
+
+- Charge research cost increased from 15 to 30
+- Charge research time increased from 40 to 60
+- Charge research requires one hive
+
+- BoneShield research cost increased from 20 to 25
+- BoneShield research time increased from 40 to 90
+- BoneShield research requires two hives
+
+- Stomp research cost increased from 25 to 35
+- Stomp research time increased from 60 to 120
+- Stomp research requires three hives
+
+- Drifter abilities removed from drifter and are now directly castable anywhere by Khamm.
+- Mucous Membrane radius decreased from 8 to 2
+- Enzyme radius decreased from 6.5 to 2
+- Hallucination Cloud radius decreased from 8 to 1
+
 ### CompMod R6 B3 (8-12-18)
 
 ##### Alien Team Changes:
