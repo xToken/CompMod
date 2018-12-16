@@ -8,6 +8,7 @@
 - pRes income rate is 1 per minute per RT (0.1 per interval, 6 second interval).  Rate was 1.25 previously (0.125 per 6 second interval)
 
 ##### Marine Class Changes:
+- Marine weight calculation adjusted, higher weights are required for larger impacts on movement speed
 - Jetpack cost decreased from 15 to 5
 - Jetpack flight speed increased from 9 to 13
 - Jetpack initially performs as a 'jump-jet'
@@ -23,7 +24,7 @@
 
 ##### Alien Lifeform Changes:
 - Skulks will respawn with their last evolved upgrades.
-- Skulk bite cone width lowered from 1.2 to 1
+- Skulk bite cone width lowered from 1.2 to 1 (For reference, Onos Gore also is 1.0)
 
 - Gorge cost increased from 8 to 10
 - Lerk cost decreased from 21 to 15
@@ -58,6 +59,7 @@
 
 ##### Marine Weapon Changes:
 - You will always respawn with utility upgrades (Welders, Grenades, Mines).
+*Nades and Mines share the same utility slot and you can only spawn with 1 type at a time
 
 - Welder cost increased from 3 to 10
 - Grenades (Pulse, Gas, Cluster) cost increased from 2 to 10
@@ -73,22 +75,24 @@
 - Shotgun cost decreased from 20 to 15
 
 - Flamethrower cost decreased from 20 to 10
+- Flamethrower now benefits from weapon upgrades
 
 - MG damage increased from 9 to 13
 - MG damage type changed to do full damage to players, 50% damage to structures. (Previously it did bonus damage to players)
 
-- GL damage lowered from 165 to 80
-- GL does double damage to Flameable structures
+- GL damage lowered from 165 to 80 (Double vs structure)
+- GL does double damage to Flammable structures
+- GL now benefits from weapon upgrades
 
 - Weight has been adjusted, weapon weights listed below:
 	- Pistol Weight = 0.05
 	- Rifle Weight = 0.175
-	- GrenadeLauncher Weight = 0.3
+	- Grenade Launcher Weight = 0.3
 	- Flamethrower Weight = 0.2
 	- Shotgun Weight = 0.225
 	- MG Weight = 0.4
 	- MG Upgraded Weight = 0.25
-	- HandGrenade Weight = 0.05
+	- Hand Grenades Weight = 0.05
 	- LayMine Weight = 0.075
 	- Welder Weight = 0.05
 	
@@ -97,6 +101,8 @@
 ##### Alien Ability Changes:
 - Spikes minimum damage decreased from 7 to 5
 - Spike damage falloff maximum range decreased from 9 to 7
+
+- Lerk poison effect on bite removed.
 
 - Gorge Tunnel pRes cost increased from 3 to 4
 - Gorge Tunnel build time increased from 18.5 to 25
@@ -136,7 +142,7 @@
 	- Cost: 15 tRes
 	- Research Time: 60 seconds
 	- Requires: Advanced Armory
-	- Grants: Increases damage falloff minimum range from 5 to 6.5
+	- Grants: Increases damage falloff minimum range from 4 to 6.5
 	
 - Shotgun Upgrade 2 added:
 	- Cost: 30 tRes
@@ -216,6 +222,11 @@
 - Mines drop requires Advanced Armory
 
 ##### Alien Team Changes:
+- Drifter abilities removed from drifter and are now directly castable anywhere by Khamm.
+- Mucous Membrane radius decreased from 8 to 2
+- Enzyme radius decreased from 6.5 to 2
+- Hallucination Cloud radius decreased from 8 to 1
+
 - Biomass is no longer researchable
 
 - Harvester cost increased to 10
@@ -224,7 +235,7 @@
 - Shade cost increased from 13 to 15
 - Whip cost increased from 13 to 15
 
-- Crag, Shift, Shade, Whip, Spur, Shell, Veil are all now 'flameable'.  They take extra damage from Flamethrowers and cluster grenades.
+- Crag, Shift, Shade, Whip, Spur, Shell, Veil are all now 'flammable'.  They take extra damage from Flamethrowers and cluster grenades.
 
 - Two Shells cost increased from 15 to 25
 - Three Shells cost increased from 15 to 35
@@ -289,11 +300,6 @@
 - Stomp research cost increased from 25 to 35
 - Stomp research time increased from 60 to 120
 - Stomp research requires three hives
-
-- Drifter abilities removed from drifter and are now directly castable anywhere by Khamm.
-- Mucous Membrane radius decreased from 8 to 2
-- Enzyme radius decreased from 6.5 to 2
-- Hallucination Cloud radius decreased from 8 to 1
 
 ### CompMod R6 B3 (8-12-18)
 
