@@ -172,7 +172,7 @@
 	- Cost: 30 tRes
 	- Research Time: 120 seconds
 	- Requires: Prototype Lab
-	- Grants: Increases damage falloff minimum range from 4 to 6.5
+	- Grants: Increases fuel regeneration rate, decreases fuel usage rate.  Slightly lowers accel, but overall allows much longer flight
 
 - ARC Upgrade 1 added:
 	- Cost: 15 tRes
