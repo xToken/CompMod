@@ -1,5 +1,17 @@
 # Changelog
 
+### CompMod R6 B5 (15-12-18)
+- Shotgun base RoF increased by ~8%
+- MG base damage increased to 15
+
+- Fixed grenades only costing 2 pRes
+- Fixed marine weapons not costing any pRes
+
+- Added walk ability back for Marines (uses shift)
+
+- Only 1 hallucination will be created per use
+- Hallucination lifetime decreased from 30 to 15 seconds
+
 ### CompMod R6 B4 (15-12-18)
 
 ##### Global Changes:
