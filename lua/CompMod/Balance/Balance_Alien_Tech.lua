@@ -55,3 +55,5 @@ kBoneWallCooldown = 10						-- Default is 10
 kMucousMembraneRadius = 2					-- Decreased from 8!!!
 kEnzymeCloudRadius = 2						-- Decreased from 6.5
 kHallucinationCloudRadius = 1				-- Decreased from 8!!!
+kMaxHallucinations = 1
+kHallucinationLifeTime = 15					-- Decreased from 30
