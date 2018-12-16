@@ -90,6 +90,7 @@ originalMarineAttemptToBuy = Class_ReplaceMethod("Marine", "AttemptToBuy",
 				self.utilitySlot5 = techIds[1]
 			end
 		end
+		return success
 	end
 )
 

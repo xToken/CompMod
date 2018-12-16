@@ -28,10 +28,10 @@ kClawWeight = 0.01							-- Default is 0.01
 kMinigunWeight = 0.06						-- Default is 0.06
 kRailgunWeight = 0.045						-- Default is 0.045
 
-kClusterGrenadeCost = 2						-- Increased from 10
-kGasGrenadeCost = 2							-- Increased from 10
-kPulseGrenadeCost = 2						-- Increased from 10
-kMineCost = 15								-- Increased from 10
+kClusterGrenadeCost = 10					-- Increased from 2
+kGasGrenadeCost = 10						-- Increased from 2
+kPulseGrenadeCost = 10						-- Increased from 2
+kMineCost = 15								-- Increased from 2
 
 -- SHOTGUN
 kShotgunBulletsPerShot = 10					-- Decreased from 17
@@ -40,13 +40,14 @@ kShotgunDamage = 17							-- Increased from 10
 kShotgunMaxRange = 16						-- Added max range (Damage drops to 1)
 kShotgunDropOffStartRange = 5				-- Min range where damage falloff begins
 kShotgunUpg1DropOffStartRange = 6.5			-- Upgraded min range where damage falloff begins
-kShotgunBaseROF	= 1.1						-- Increased SG base rate of fire
-kShotgunFireRate = 0.82						-- To prevent fire rate cap from triggering
+kShotgunBaseROF	= 1.08						-- Increased SG base rate of fire
+kShotgunUpgradedROF	= 1.16					-- Increased SG base rate of fire from upgrades
+kShotgunFireRate = 0.70						-- To prevent fire rate cap from triggering
 kShotgunClipSize = 6						-- Default is 6
 kShotgunUpgradedReloadSpeed = 1.2
 
 -- MG
-kHeavyMachineGunDamage = 13					-- Default is 9 (*)
+kHeavyMachineGunDamage = 15					-- Default is 9 (*)
 kHeavyMachineGunStructureDamageScalar = 0.5
 kHeavyMachineGunStructureUpgradedDamageScalar = 0.5
 kHeavyMachineGunClipSize = 75				-- Default is 125
