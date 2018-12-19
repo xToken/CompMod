@@ -31,7 +31,7 @@ originalLayMinesOnInitialized = Class_ReplaceMethod("LayMines", "OnInitialized",
 )
 
 function LayMines:GetHUDSlot()
-    return 5
+    return 4
 end
 
 function LayMines:GetDeployedMines()

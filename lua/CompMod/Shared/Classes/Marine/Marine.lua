@@ -7,7 +7,7 @@ Script.Load( "lua/CompMod/Shared/WalkMixin.lua" )
 
 local networkVars =
 {
-    utilitySlot4 = "enum kTechId",
+    utilitySlot3 = "enum kTechId",
 	utilitySlot5 = "enum kTechId",
 }
 
@@ -18,13 +18,13 @@ originalMarineOnInitialized = Class_ReplaceMethod("Marine", "OnInitialized",
 	function(self)
 		originalMarineOnInitialized(self)
 		InitMixin(self, WalkMixin)
-		self.utilitySlot4 = kTechId.None
+		self.utilitySlot3 = kTechId.None
 		self.utilitySlot5 = kTechId.None
 	end
 )
 
 function Marine:GetUtilitySlotTechId(slot)
-    return slot == 4 and self.utilitySlot4 or self.utilitySlot5
+    return slot == 3 and self.utilitySlot3 or self.utilitySlot5
 end
 
 -- Offer overrides to increase ROF (Catalyst ONLY increases reload speeds in vanilla)
@@ -67,38 +67,6 @@ originalMarineOnUpdateAnimationInput = Class_ReplaceMethod("Marine", "OnUpdateAn
 	end
 )
 
-local originalMarineGetArmorAmount
-originalMarineGetArmorAmount = Class_ReplaceMethod("Marine", "GetArmorAmount",
-	function(self, armorLevels)
-		if not armorLevels then
-    
-			armorLevels = 0
-		
-			local teamInfo = GetTeamInfoEntity(self:GetTeamNumber())
-			if teamInfo then
-				armorLevels = teamInfo:GetUpgradeLevel(kTechId.ArmorArmsLab)
-			end
-		
-		end
-		
-		return Marine.kBaseArmor + armorLevels * Marine.kArmorPerUpgradeLevel
-	end
-)
-
-local originalMarineGetWeaponLevel
-originalMarineGetWeaponLevel = Class_ReplaceMethod("Marine", "GetWeaponLevel",
-	function(self)
-		local weaponLevel = 0
-
-		local teamInfo = GetTeamInfoEntity(self:GetTeamNumber())
-		if teamInfo then
-			weaponLevel = teamInfo:GetUpgradeLevel(kTechId.WeaponsArmsLab)
-		end
-		
-		return weaponLevel
-	end
-)
-
 -- Disable Sprint
 function SprintMixin:UpdateSprintingState(input)
 	self:UpdateWalkMode(input)
@@ -108,6 +76,20 @@ local originalMarineGetPlayFootsteps
 originalMarineGetPlayFootsteps = Class_ReplaceMethod("Marine", "GetPlayFootsteps",
 	function(self)
 		return originalMarineGetPlayFootsteps(self) and not self:GetIsWalking()
+	end
+)
+
+local originalMarineGetAirControl
+originalMarineGetAirControl = Class_ReplaceMethod("Marine", "GetAirControl",
+	function(self)
+		return 15 * self:GetSlowSpeedModifier()
+	end
+)
+
+local originalMarineGetSlowOnLand
+originalMarineGetSlowOnLand = Class_ReplaceMethod("Marine", "GetSlowOnLand",
+	function(self, impactForce)
+		return math.abs(impactForce) > self:GetMaxSpeed()
 	end
 )
 

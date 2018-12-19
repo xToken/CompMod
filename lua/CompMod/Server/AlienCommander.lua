@@ -30,6 +30,7 @@ function AlienCommander:OnProcessMove(input)
     
 end
 
+--[[
 local function GetIsCloud(techId)
     return techId == kTechId.EnzymeCloud or techId == kTechId.Hallucinate or techId == kTechId.MucousMembrane or techId == kTechId.Storm
 end
@@ -107,4 +108,4 @@ function AlienCommander:TriggerKhammAbilities(techId, position, trace)
 	
 	return false
 
-end
+end]]

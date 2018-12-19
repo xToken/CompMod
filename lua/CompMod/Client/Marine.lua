@@ -3,49 +3,6 @@
 -- lua\CompMod\Client\Marine.lua
 -- - Dragon
 
--- returns 0 - 3
-function PlayerUI_GetArmorLevel()
-    local gameInfoEnt = GetGameInfoEntity()
-    assert(gameInfoEnt)
-
-    if gameInfoEnt:GetWarmUpActive() then
-        return 3
-    end
-
-    local armorLevel = 0
-	local player = Client.GetLocalPlayer()
-	
-	if player then
-		local teamInfo = GetTeamInfoEntity(player:GetTeamNumber())
-		if teamInfo then
-			armorLevel = teamInfo:GetUpgradeLevel(kTechId.ArmorArmsLab)
-		end
-	end
-
-    return armorLevel
-end
-
-function PlayerUI_GetWeaponLevel()
-    local gameInfoEnt = GetGameInfoEntity()
-    assert(gameInfoEnt)
-
-    if gameInfoEnt:GetWarmUpActive() then
-        return 3
-    end
-	
-	local weaponLevel = 0
-	local player = Client.GetLocalPlayer()
-	
-	if player then
-		local teamInfo = GetTeamInfoEntity(player:GetTeamNumber())
-		if teamInfo then
-			weaponLevel = teamInfo:GetUpgradeLevel(kTechId.WeaponsArmsLab)
-		end
-	end
-
-    return weaponLevel
-end
-
 function PlayerUI_GetWeaponUpgradeTier()
 
 	local player = Client.GetLocalPlayer()
@@ -108,12 +65,12 @@ function MarineBuy_GetEquipment()
         --Exo's are inheriently handled by how the BuyMenus are organized
     end
 	
-	local slot4, slot5
-	slot4 = PlayerUI_GetUtilitySlotTech(4)
+	local slot3, slot5
+	slot3 = PlayerUI_GetUtilitySlotTech(3)
     slot5 = PlayerUI_GetUtilitySlotTech(5)
 	
-	if slot4 ~= kTechId.None then
-		inventory[slot4] = true
+	if slot3 ~= kTechId.None then
+		inventory[slot3] = true
 	end
 	
 	if slot5 ~= kTechId.None then
@@ -122,6 +79,20 @@ function MarineBuy_GetEquipment()
 	
     return inventory
     
+end
+
+local oldMarineBuy_GetCosts = MarineBuy_GetCosts
+function MarineBuy_GetCosts(techId)
+    if techId == kTechId.ClusterGrenade or techId == kTechId.GasGrenade or techId == kTechId.PulseGrenade then
+		local slot5 = PlayerUI_GetUtilitySlotTech(5)
+		if slot5 ~= kTechId.None then
+			return kMarineReBuyGrenadesCost
+		else
+			return oldMarineBuy_GetCosts(techId)
+		end
+    else
+        return oldMarineBuy_GetCosts(techId)
+    end
 end
 
 function PlayerUI_GetHasItem(techId)
@@ -152,11 +123,11 @@ function PlayerUI_GetHasItem(techId)
 	
 	if not kAllowMarineUtilityRebuy then
 	
-		local slot4, slot5
-		slot4 = PlayerUI_GetUtilitySlotTech(4)
-		slot5 = PlayerUI_GetUtilitySlotTech(5)
+		local slot3, slot5
+		slot3 = PlayerUI_GetUtilitySlotTech(3)
+		--slot5 = PlayerUI_GetUtilitySlotTech(5)
 		
-		if slot4 == techId then
+		if slot3 == techId then
 			hasItem = true
 		end
 		

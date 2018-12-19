@@ -12,8 +12,8 @@ local gAlienMenuButtons =
     [kTechId.AdvancedMenu] = { kTechId.Crag, kTechId.Shade, kTechId.Shift, kTechId.Whip,
                                kTechId.Shell, kTechId.Veil, kTechId.Spur, kTechId.None },
 
-    [kTechId.AssistMenu] = { kTechId.EnzymeCloud, kTechId.Hallucinate, kTechId.MucousMembrane, kTechId.BoneWall,
-                             kTechId.SelectDrifter, kTechId.None, kTechId.ShadeInk, kTechId.Contamination }
+    [kTechId.AssistMenu] = { kTechId.HealWave, kTechId.ShadeInk, kTechId.SelectShift, kTechId.SelectDrifter,
+                             kTechId.None, kTechId.None, kTechId.BoneWall, kTechId.Contamination }
 }
 
 local gAlienMenuIds = {}

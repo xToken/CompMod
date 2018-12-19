@@ -3,7 +3,7 @@
 -- lua\CompMod\Shared\Welder.lua
 -- - Dragon
 
-kWelderHUDSlot = 4
+kWelderHUDSlot = 3
 
 function Welder:GetMeleeBase()
 	if self.friendlies then
@@ -128,5 +128,3 @@ end
 function Weapon:GetWeight()
     return kWelderWeight
 end
-
-Welder.GetReplacementWeaponMapName = nil

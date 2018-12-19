@@ -28,8 +28,12 @@ TeamInfo.kRelevantTechIdsMarine =
     kTechId.Armor2,
     kTechId.Armor3,
 	
-	kTechId.WeaponsArmsLab,
-    kTechId.ArmorArmsLab,
+	kTechId.Weapons1Upgrade,
+    kTechId.Weapons2Upgrade,
+    kTechId.Weapons3Upgrade,
+    kTechId.Armor1Upgrade,
+    kTechId.Armor2Upgrade,
+    kTechId.Armor3Upgrade,
 
     kTechId.PrototypeLab,
 	

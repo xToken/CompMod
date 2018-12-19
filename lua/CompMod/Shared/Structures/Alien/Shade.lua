@@ -26,8 +26,8 @@ function Shade:GetAllowedInfestationDestruction()
 	return self.moving
 end
 
-function Shade:GetIsFlameAble()
-    return true
+function Shade:GetTechAllowed(techId, techNode, player)
+    return ScriptActor.GetTechAllowed(self, techId, techNode, player)
 end
 
 if Client then
@@ -85,6 +85,16 @@ if Server then
 			
 		end
 	)
+	
+	function Shade:UpdateCloaking()
+    
+		for _, cloakable in ipairs( GetEntitiesWithMixinForTeamWithinRange("Cloakable", self:GetTeamNumber(), self:GetOrigin(), Shade.kCloakRadius) ) do
+			cloakable:TriggerCloak()
+		end
+        
+        return self:GetIsAlive()
+    
+    end
 
 	function Shade:OnKill(attacker, doer, point, direction)
 		self:SetModel(nil)

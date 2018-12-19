@@ -58,7 +58,7 @@ if Server then
 	
 	function Mine:OnDestroy()
 	
-		local id = self:GetId()
+		--[[local id = self:GetId()
 		if kClientOwnedMines[self.owningId] then
 			for i = 1, #kClientOwnedMines[self.owningId] do
 				if kClientOwnedMines[self.owningId][i] == id then
@@ -66,7 +66,7 @@ if Server then
 					UpdateMarineLayMinesWeapons(self:GetOwner(), #kClientOwnedMines[self.owningId])
 				end
 			end
-		end
+		end]]
 		
     end
 	
@@ -113,7 +113,7 @@ if Server then
 	originalMineOnInitialized = Class_ReplaceMethod("Mine", "OnInitialized",
 		function(self)
 			originalMineOnInitialized(self)
-			self:AddTimedCallback(CheckOverMineLimit, 0.1)
+			--self:AddTimedCallback(CheckOverMineLimit, 0.1)
 		end
 	)
 	

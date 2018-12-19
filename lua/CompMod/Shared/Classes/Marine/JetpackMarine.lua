@@ -36,21 +36,18 @@ function JetpackMarine:OnTechOrResearchUpdated()
 end
 
 function JetpackMarine:GetFuelUseRate()
-    return self.jetpack_upg1 and kUpgradedJetpackUseFuelRate or kJetpackUseFuelRate
+    return self.jetpack_upg1 and kJetpackUseFuelRate or kJetpackUseFuelRate
 end
 
 function JetpackMarine:GetFuelReplenishRate()
-    return self.jetpack_upg1 and kUpgradedJetpackReplenishFuelRate or kJetpackReplenishFuelRate
+    return self.jetpack_upg1 and kJetpackReplenishFuelRate or kJetpackReplenishFuelRate
 end
 
 function JetpackMarine:GetFuel()
 
     local dt = Shared.GetTime() - self.timeJetpackingChanged
 
-    --more weight means the Jetpack has to provide more force to lift the marine and therefor consumes more fuel
-    local weightFactor = math.max( self:GetWeaponsWeight() / kJetpackWeightLiftForce, kMinWeightJetpackFuelFactor )
-    local rate = -self:GetFuelUseRate() * weightFactor
-    
+    local rate = -self:GetFuelUseRate()
     if not self.jetpacking then
         rate = self:GetFuelReplenishRate()
         dt = math.max(0, dt - JetpackMarine.kJetpackFuelReplenishDelay)
@@ -64,12 +61,13 @@ function JetpackMarine:GetFuel()
     
 end
 
+--[[
 function JetpackMarine:GetJetpackAcceleration()
-    return self.jetpack_upg1 and kUpgradedJetpackingAccel or kJetpackingAccel
+    return self.jetpack_upg1 and kJetpackingAccel or kJetpackingAccel
 end
 
 function JetpackMarine:GetJetpackVerticalAcceleration()
-    return self.jetpack_upg1 and kUpgradedVerticleAccel or kVerticalAccel
+    return self.jetpack_upg1 and kVerticalAccel or kVerticalAccel
 end
 
 function JetpackMarine:ModifyVelocity(input, velocity, deltaTime)
@@ -114,6 +112,7 @@ function JetpackMarine:ModifyVelocity(input, velocity, deltaTime)
     end
 
 end
+--]]
 
 Shared.LinkClassToMap("JetpackMarine", JetpackMarine.kMapName, networkVars, true)
 

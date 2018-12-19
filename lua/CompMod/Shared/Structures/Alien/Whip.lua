@@ -3,10 +3,6 @@
 -- lua\CompMod\Shared\Whip.lua
 -- - Dragon
 
-function Whip:GetIsFlameAble()
-    return true
-end
-
 if Server then
 
 	local originalWhipOnDestroy

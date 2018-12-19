@@ -12,5 +12,7 @@ if not string.find(Script.CallStack(), "Main.lua") then
 	
 	ModLoader.SetupFileHook( "lua/GUIFeedback.lua", "lua/CompMod/FileHooks/Post/GUIFeedback.lua", "post" )
 	ModLoader.SetupFileHook( "lua/Hud/Marine/GUIMarineHUD.lua", "lua/CompMod/FileHooks/Post/GUIMarineHud.lua", "post" )
+	--ModLoader.SetupFileHook( "lua/GUIAuraDisplay.lua", "lua/CompMod/FileHooks/Post/GUIAuraDisplay.lua", "post" )
+	ModLoader.SetupFileHook( "lua/GUIMarineBuyMenu.lua", "lua/CompMod/FileHooks/Post/GUIMarineBuyMenu.lua", "post" )
 	
 end

@@ -19,7 +19,7 @@ kMedPackCooldown = 0						-- Default is 0
 kCatPackCost = 2							-- Decreased from 3
 kCatPackDuration = 8						-- Decreased from 12
 
-kMineResearchCost  = 15						-- Decreased from 10
+kMineResearchCost  = 10						-- Decreased from 10
 kMineResearchTime  = 45						-- Increased from 20
 
 kGrenadeTechResearchCost = 15				-- Increased from 10
@@ -70,5 +70,5 @@ kSentryUpgrade1ResearchTime = 60
 kNanoArmorResearchCost = 30
 kNanoArmorResearchTime = 120
 
-kJetpackTechResearchCost = 15				-- Decreased from 25
+kJetpackTechResearchCost = 20				-- Decreased from 25
 kJetpackTechResearchTime = 90				-- Default is 90

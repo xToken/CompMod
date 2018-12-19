@@ -9,7 +9,7 @@ originalExoCopyPlayerDataFrom = Class_ReplaceMethod("Exo", "CopyPlayerDataFrom",
 		originalExoCopyPlayerDataFrom(self, player)
 		
 		if GetGamerules():GetGameStarted() then
-			self.utilitySlot4 = player.utilitySlot4 or kTechId.None
+			self.utilitySlot3 = player.utilitySlot3 or kTechId.None
 			self.utilitySlot5 = player.utilitySlot5 or kTechId.None
 			self.grenadesLeft = nil
 			self.grenadeType = nil

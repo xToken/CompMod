@@ -23,18 +23,18 @@ kOnosMaxChargeSpeed = 13.0					-- Increased from 12.5
 
 -- Marine
 kMarineWalkMaxSpeed = 5.8					-- Increased from 5.0
-kMarineMaxSlowWalkSpeed = 2.5
+kMarineMaxSlowWalkSpeed = 2.9
 
 -- JetpackMarine
-kJetpackFlySpeed = 13						-- Increased from 9.0
+kJetpackFlySpeed = 11						-- Increased from 9.0
 
 -- Jetpack
-kJetpackingAccel = 55
-kUpgradedJetpackingAccel = 30
-kJetpackUseFuelRate = 4
-kUpgradedJetpackUseFuelRate = .35
-kJetpackReplenishFuelRate = .20
-kUpgradedJetpackReplenishFuelRate = .25
+kJetpackingAccel = 0.95
+kUpgradedJetpackingAccel = 0
+kJetpackUseFuelRate = .21
+kUpgradedJetpackUseFuelRate = 0
+kJetpackReplenishFuelRate = .11
+kUpgradedJetpackReplenishFuelRate = 0
 
 -- EXOS
 kExoMaxSpeed = 6.0							-- Increased from 5.75

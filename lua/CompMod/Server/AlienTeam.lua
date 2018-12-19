@@ -98,8 +98,8 @@ function AlienTeam:InitTechTree()
     self.techTree:AddBuyNode(kTechId.Egg,							kTechId.None,					kTechId.None)
 	
 	-- Lifeform Eggs
-    self.techTree:AddUpgradeNode(kTechId.GorgeEgg,					kTechId.Hive)
-    self.techTree:AddUpgradeNode(kTechId.LerkEgg,					kTechId.TwoHives)
+    self.techTree:AddUpgradeNode(kTechId.GorgeEgg,					kTechId.ThreeHives)
+    self.techTree:AddUpgradeNode(kTechId.LerkEgg,					kTechId.ThreeHives)
     self.techTree:AddUpgradeNode(kTechId.FadeEgg,					kTechId.ThreeHives)
     self.techTree:AddUpgradeNode(kTechId.OnosEgg,					kTechId.ThreeHives)
 
@@ -140,7 +140,7 @@ function AlienTeam:InitTechTree()
 
     -- Shift
     self.techTree:AddActivation(kTechId.ShiftHatch,					kTechId.None,					kTechId.None)
-    self.techTree:AddPassive(kTechId.ShiftEnergize,					kTechId.None,					kTechId.None)
+    self.techTree:AddActivation(kTechId.ShiftEnergize,				kTechId.Shift,					kTechId.None)
 
     self.techTree:AddTargetedActivation(kTechId.TeleportHydra,		kTechId.Shift,					kTechId.None)
     self.techTree:AddTargetedActivation(kTechId.TeleportWhip,		kTechId.Shift,					kTechId.None)

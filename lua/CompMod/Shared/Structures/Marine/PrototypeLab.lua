@@ -9,7 +9,7 @@ function PrototypeLab:GetTechButtons(techId)
              kTechId.NanoShieldTech, kTechId.None, kTechId.None, kTechId.None }
 			 
 	if GetHasTech(self, kTechId.JetpackTech) then
-        techButtons[3] = kTechId.JetpackUpgrade1
+        --techButtons[3] = kTechId.JetpackUpgrade1
     end
 
 	if GetHasTech(self, kTechId.ExoUpgrade1) then

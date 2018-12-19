@@ -4,11 +4,11 @@
 -- - Dragon
 
 -- Harvester
-kHarvesterHealth = 2000						-- Vanilla is 2000
-kHarvesterArmor = 100						-- Vanilla is 200
+kHarvesterHealth = 1800						-- Vanilla is 2000
+kHarvesterArmor = 10						-- Vanilla is 200
 
-kMatureHarvesterHealth = 2200				-- Vanilla is 2300
-kMatureHarvesterArmor = 250					-- Vanilla is 320
+kMatureHarvesterHealth = 2000				-- Vanilla is 2300
+kMatureHarvesterArmor = 200					-- Vanilla is 320
 
 kMarineHealth = 100							-- Vanilla is 100
 kMarineArmor = 30							-- Vanilla is 30
@@ -44,7 +44,7 @@ kFadeArmorFullyUpgradedAmount = 200			-- Vanilla is 120
 kFadeHealthPerBioMass = 0					-- Vanilla is 5
 
 kOnosHealth = 800							-- Vanilla is 900
-kOnosArmor = 300							-- Vanilla is 450
+kOnosArmor = 400							-- Vanilla is 450
 kOnosArmorFullyUpgradedAmount = 750			-- Vanilla is 650
 kOnosHealtPerBioMass = 0					-- Vanilla is 30
 
@@ -54,6 +54,9 @@ kAlienMaxRegeneration = 120					-- Vanilla is 80
 
 kMineHealth = 80							-- Vanilla is 20
 kMineArmor = 10								-- Vanilla is 5
+
+kArmsLabHealth = 1650						-- Decreased from 1650
+kArmsLabArmor = 500							-- Decreased from 500
 
 kDrifterHealth = 300						-- Vanilla is 300
 kDrifterArmor = 0							-- Vanilla is 20

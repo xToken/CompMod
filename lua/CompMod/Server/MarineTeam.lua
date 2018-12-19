@@ -14,27 +14,6 @@ originalMarineTeamOnResetComplete = Class_ReplaceMethod("MarineTeam", "OnResetCo
 	end
 )
 
-function MarineTeam:GetTeamInfoMapName()
-    return MarineTeamInfo.kMapName
-end
-
-function MarineTeam:TrackEntity(techId)
-	return (techId == kTechId.ArmorArmsLab or techId == kTechId.WeaponsArmsLab) and true or false
-end
-
-local function GetArmorLevel(self)
-
-    local armorLevels = 0
-    local teamInfo = GetTeamInfoEntity(self:GetTeamNumber())
-    if teamInfo then
-        armorLevels = teamInfo:GetUpgradeLevel(kTechId.ArmorArmsLab)
-    end
-    return armorLevels
-
-end
-
-ReplaceLocals(MarineTeam.Update, { GetArmorLevel = GetArmorLevel })
-
 function MarineTeam:InitTechTree()
    
    PlayingTeam.InitTechTree(self)
@@ -79,20 +58,20 @@ function MarineTeam:InitTechTree()
     self.techTree:AddBuildNode(kTechId.Extractor,					kTechId.None,					kTechId.None)
     self.techTree:AddBuildNode(kTechId.InfantryPortal,				kTechId.CommandStation,			kTechId.None)
 	self.techTree:AddBuildNode(kTechId.Armory,						kTechId.CommandStation,			kTechId.None)
-    self.techTree:AddBuildNode(kTechId.ArmsLab,						kTechId.CommandStation,			kTechId.Armory)
+    self.techTree:AddBuildNode(kTechId.ArmsLab,						kTechId.CommandStation,			kTechId.None)
 	self.techTree:AddBuildNode(kTechId.RoboticsFactory,				kTechId.InfantryPortal,			kTechId.None)
 	
 	-- Adv structures
 	self.techTree:AddBuildNode(kTechId.Sentry,						kTechId.RoboticsFactory,		kTechId.None, 				true)
 	self.techTree:AddBuildNode(kTechId.SentryBattery,				kTechId.RoboticsFactory,		kTechId.None)
 	self.techTree:AddBuildNode(kTechId.PhaseGate,					kTechId.PhaseTech,				kTechId.None, 				true)
-    self.techTree:AddBuildNode(kTechId.Observatory,					kTechId.InfantryPortal,			kTechId.Armory)
+    self.techTree:AddBuildNode(kTechId.Observatory,					kTechId.InfantryPortal,			kTechId.None)
 	self.techTree:AddBuildNode(kTechId.PrototypeLab,				kTechId.AdvancedArmory,			kTechId.None)
 	
 	-- Commander Support
 	self.techTree:AddTargetedActivation(kTechId.Scan,				kTechId.Observatory)
-    self.techTree:AddTargetedActivation(kTechId.MedPack,			kTechId.Armory)
-    self.techTree:AddTargetedActivation(kTechId.AmmoPack,			kTechId.Armory)
+    self.techTree:AddTargetedActivation(kTechId.MedPack,			kTechId.None)
+    self.techTree:AddTargetedActivation(kTechId.AmmoPack,			kTechId.None)
     self.techTree:AddTargetedActivation(kTechId.CatPack,			kTechId.CatPackTech)
 	
 	-- Weapons T1
@@ -141,18 +120,26 @@ function MarineTeam:InitTechTree()
 	self.techTree:AddTechInheritance(kTechId.Armory, 				kTechId.AdvancedArmory)
 	
     -- Armslab Upgrades
-    self.techTree:AddUpgradeNode(kTechId.Weapons1,					kTechId.ArmsLab)
-    self.techTree:AddUpgradeNode(kTechId.Weapons2,					kTechId.AdvancedArmory)
-    self.techTree:AddUpgradeNode(kTechId.Weapons3,					kTechId.PrototypeLab)
-	self.techTree:AddUpgradeNode(kTechId.Armor1,					kTechId.ArmsLab)
-    self.techTree:AddUpgradeNode(kTechId.Armor2,					kTechId.AdvancedArmory)
-    self.techTree:AddUpgradeNode(kTechId.Armor3,					kTechId.PrototypeLab)
-	-- These are the upgraded arms labs
-	self.techTree:AddBuildNode(kTechId.WeaponsArmsLab,				kTechId.ArmsLab,				kTechId.None,				true)
-	self.techTree:AddBuildNode(kTechId.ArmorArmsLab,				kTechId.ArmsLab,				kTechId.None,				true)
-	-- BAH
-	self.techTree:AddTechInheritance(kTechId.ArmsLab, 				kTechId.WeaponsArmsLab)
-	self.techTree:AddTechInheritance(kTechId.ArmsLab, 				kTechId.ArmorArmsLab)
+    self.techTree:AddUpgradeNode(kTechId.Weapons1Upgrade,			kTechId.ArmsLab)
+    self.techTree:AddUpgradeNode(kTechId.Weapons2Upgrade,			kTechId.AdvancedArmory)
+    self.techTree:AddUpgradeNode(kTechId.Weapons3Upgrade,			kTechId.PrototypeLab)
+	self.techTree:AddUpgradeNode(kTechId.Armor1Upgrade,				kTechId.ArmsLab)
+    self.techTree:AddUpgradeNode(kTechId.Armor2Upgrade,				kTechId.AdvancedArmory)
+    self.techTree:AddUpgradeNode(kTechId.Armor3Upgrade,				kTechId.PrototypeLab)
+	-- Actual ArmsLab Techs
+	self.techTree:AddBuildNode(kTechId.Weapons1,					kTechId.ArmsLab,				kTechId.None,				true)
+    self.techTree:AddBuildNode(kTechId.Weapons2,					kTechId.ArmsLab,				kTechId.None,				true)
+    self.techTree:AddBuildNode(kTechId.Weapons3,					kTechId.ArmsLab,				kTechId.None,				true)
+	self.techTree:AddBuildNode(kTechId.Armor1,						kTechId.ArmsLab,				kTechId.None,				true)
+    self.techTree:AddBuildNode(kTechId.Armor2,						kTechId.ArmsLab,				kTechId.None,				true)
+    self.techTree:AddBuildNode(kTechId.Armor3,						kTechId.ArmsLab,				kTechId.None,				true)
+	-- To make sure
+	self.techTree:AddTechInheritance(kTechId.ArmsLab, 				kTechId.Weapons1)
+	self.techTree:AddTechInheritance(kTechId.ArmsLab, 				kTechId.Weapons2)
+	self.techTree:AddTechInheritance(kTechId.ArmsLab, 				kTechId.Weapons3)
+	self.techTree:AddTechInheritance(kTechId.ArmsLab, 				kTechId.Armor1)
+	self.techTree:AddTechInheritance(kTechId.ArmsLab, 				kTechId.Armor2)
+	self.techTree:AddTechInheritance(kTechId.ArmsLab, 				kTechId.Armor3)
 	
     -- Observatory Upgrades
     self.techTree:AddResearchNode(kTechId.PhaseTech,				kTechId.Observatory,			kTechId.None)

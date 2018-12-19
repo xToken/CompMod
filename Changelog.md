@@ -1,6 +1,78 @@
 # Changelog
 
-### CompMod R6 B5 (15-12-18)
+### ProGMod R1 B6 (18-12-18)
+
+##### Alien Changes:
+- Gorge upgrades cost increased from 0 to 1
+- Lerk upgrades cost increased from 0 to 3
+- Fade cost increased from 20 to 25
+- Fade upgrade cost increased from 0 to 5
+- Onos cost increased from 25 to 40
+- Onos upgrade cost increased from 0 to 8
+- Onos base armor increased from 300 to 400
+
+- Gorges can put out structures that are on fire 100% of the time.
+
+- Focus attack speed cooldown now scales with Veil levels (Focus will be revisted soon!)
+
+- Hydra RoF normalized to 1/s
+- Hydra damage increased from 15 to 20
+
+- Crag minimum healing decreased from 5 to 4
+- Crag HealWave duration lowered from 10 to 6
+- Crag HealWave cost lowered from 3 to 2
+
+- Shift passive energize effect only provides 7 energy per second
+- Shift has an active ability to provide energy at the original rate.
+- Costs 2 tRes, lasts for 6s with 6s cooldown
+
+- Shade ink cooldown/duration reverted to vanilla (16/6.3 seconds)
+
+- Drifter 'abilities' moved back to drifter.
+- MucousMembrane radius increased from 2 to 6
+- Enzyme radius increased from 2 to 6
+- HallucinationCloud radius increased from 1 to 6
+- Max Hallucinations increased back to 34% of TeamSize (to match Vanilla)
+
+- Harvester base health lowered from 2000 to 1800
+- Harvester base armor lowered from 100 to 10
+- Harvester max health lowered from 2200 to 2000
+- Harvester max armor lowered from 250 to 200
+
+##### Marine Changes:
+- Arms Lab HP reverted to vanilla (1650/500)
+- Arms Lab no longer requires Armory
+- Only 1 Arms Lab required for each upgrade type (Weapons/Armor)
+- If Arms Lab is lost, all upgrades need to be re-purchased
+- Arms Lab cost lowered from 15 to 10
+
+- Observatory no longer requires Armory
+
+- Armory cost lowered from 15 to 10
+- Mines research cost lowered from 15 to 10
+- Jetpack research cost increased from 15 to 20
+- Jetpack Upgrade 1 disabled, default jetpack is now at Upgrade 1 strength.
+
+- Jetpack movement reverted to vanilla system for now, still has increased flight speed (from 9 to 11)
+
+- Marines have slightly improved air control, can double jump uphil (More tweaks coming!)
+
+- Welder deals Flame damage type (fixes attacking Webs)
+- Welders do not drop on death now (you still always respawn with one, and can drop it for a teammate)
+
+- Mines pRes cost lowered from 15 to 5
+- Mines must be purchased each time, only come with 2
+- Mine no longer have global limit per player
+- Marines can re-buy grenades or switch to another grenade type for 2 pRes.  They will the continue to respawn with that grenade
+
+- Flamethrower damage increased from 12 to 20
+- Flamethrower damage cone and radius adjusted to require more precise aiming
+- Flamethrower clip size lowered from 50 to 25
+- Flamethrower range lowered from 9 to 6
+- Flamethrower damage type changed from Flame to Normal
+- Flamethrowers now set structures on fire again, which causes 30 additional damage per second
+
+### ProGMod R1 B5 (15-12-18)
 - Shotgun base RoF increased by ~8%
 - MG base damage increased to 15
 
@@ -12,7 +84,7 @@
 - Only 1 hallucination will be created per use
 - Hallucination lifetime decreased from 30 to 15 seconds
 
-### CompMod R6 B4 (15-12-18)
+### ProGMod R1 B4 (15-12-18)
 
 ##### Global Changes:
 - Starting tRes is now 50 per team
@@ -313,12 +385,12 @@
 - Stomp research time increased from 60 to 120
 - Stomp research requires three hives
 
-### CompMod R6 B3 (8-12-18)
+### ProGMod R1 B3 (8-12-18)
 
 ##### Alien Team Changes:
 - Adjusted skulk wallhop to allow better chaining of jumps
 
-### CompMod R6 B2 (8-12-18)
+### ProGMod R1 B2 (8-12-18)
 
 ##### Marine Team Changes:
 - Removed power node impulse and render effects from field players
@@ -335,7 +407,7 @@
 - Harvester base armor lowered by 100 (200 less effective health)
 - Harvester health when fully matured lowered by 100, armor lowered by 70 (240 less effective health)
 
-### CompMod R6 B1 (7-12-18)
+### ProGMod R1 B1 (7-12-18)
 
 ##### Alien Team Changes:
 - Cysts removed from the game.

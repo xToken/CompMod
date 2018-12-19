@@ -4,11 +4,18 @@
 -- - Dragon
 
 -- SHIFT
+local networkVars = {
+    energizing = "boolean"
+}
+
+AddMixinNetworkVars(InfestationMixin, networkVars)
+
 local originalShiftOnInitialized
 originalShiftOnInitialized = Class_ReplaceMethod("Shift", "OnInitialized",
 	function(self)
 		InitMixin(self, InfestationMixin)
 		originalShiftOnInitialized(self)
+		self.energizing = false
 	end
 )
 
@@ -24,9 +31,100 @@ function Shift:GetAllowedInfestationDestruction()
 	return self.moving
 end
 
-function Shift:GetIsFlameAble()
-    return true
+function Shift:GetIsEnergizing()
+	return self.energizing
 end
+
+function Shift:TriggerEnergize()
+	self.energizing = true
+	self.energizeStart = Shared.GetTime()
+	self:TriggerEffects("fireworks")
+	return true, true
+end
+
+function Shift:GetTechAllowed(techId, techNode, player)
+
+    local allowed, canAfford = ScriptActor.GetTechAllowed(self, techId, techNode, player) 
+    
+    allowed = allowed and not self.echoActive
+    
+    if allowed then
+ 
+        if techId == kTechId.TeleportHydra then
+            allowed = self.hydraInRange
+        elseif techId == kTechId.TeleportWhip then
+            allowed = self.whipInRange
+        elseif techId == kTechId.TeleportTunnel then
+            allowed = self.tunnelInRange
+        elseif techId == kTechId.TeleportCrag then
+            allowed = self.cragInRange
+        elseif techId == kTechId.TeleportShade then
+            allowed = self.shadeInRange
+        elseif techId == kTechId.TeleportShift then
+            allowed = self.shiftInRange
+        elseif techId == kTechId.TeleportVeil then
+            allowed = self.veilInRange
+        elseif techId == kTechId.TeleportSpur then
+            allowed = self.spurInRange
+        elseif techId == kTechId.TeleportShell then
+            allowed = self.shellInRange
+        elseif techId == kTechId.TeleportHive then
+            allowed = self.hiveInRange
+        elseif techId == kTechId.TeleportEgg then
+            allowed = self.eggInRange
+        elseif techId == kTechId.TeleportHarvester then
+            allowed = self.harvesterInRange
+        end
+    
+    end
+    
+    return allowed, canAfford
+    
+end
+
+function Shift:EnergizeInRange()
+
+    if self:GetIsBuilt() and self:GetIsEnergizing() then
+    
+        local energizeAbles = GetEntitiesWithMixinForTeamWithinXZRange("Energize", self:GetTeamNumber(), self:GetOrigin(), kEnergizeRange)
+        
+        for _, entity in ipairs(energizeAbles) do
+        
+            if entity ~= self then
+                entity:Energize(self)
+            end
+            
+        end
+		
+		if self.energizeStart + kShiftEnergizeDuration < Shared.GetTime() then
+			self.energizing = false
+		end
+    else
+		-- Passive energy
+		local energizeAbles = GetEntitiesWithMixinForTeamWithinXZRange("Energize", self:GetTeamNumber(), self:GetOrigin(), kEnergizeRange)
+		for _, entity in ipairs(energizeAbles) do
+			
+			if (not entity.GetIsEnergizeAllowed or entity:GetIsEnergizeAllowed()) and entity.timeLastEnergizeUpdate + kEnergizeUpdateRate < Shared.GetTime() and entity ~= self then
+			
+				entity:AddEnergy(kPlayerPassiveEnergyPerEnergize)
+				entity.timeLastEnergizeUpdate = Shared.GetTime()
+				
+			end
+
+		end
+    end
+    
+    return self:GetIsAlive()
+    
+end
+
+local originalShiftOnUpdateAnimationInput
+originalShiftOnUpdateAnimationInput = Class_ReplaceMethod("Shift", "OnUpdateAnimationInput",
+	function(self, modelMixin)
+		originalShiftOnUpdateAnimationInput(self, modelMixin)
+		--modelMixin:SetAnimationInput("asdf", self.energizing)
+	end
+)
 
 if Client then
 
@@ -83,6 +181,17 @@ if Server then
 			
 		end
 	)
+	
+	local originalShiftPerformActivation
+	originalShiftPerformActivation = Class_ReplaceMethod("Shift", "PerformActivation",
+		function(self, techId, position, normal, commander)
+			if techId == kTechId.ShiftEnergize then
+				return self:TriggerEnergize(commander)
+			else
+				return originalShiftPerformActivation(self, techId, position, normal, commander)
+			end
+		end
+	)
 
 	function Shift:OnKill(attacker, doer, point, direction)
 		self:SetModel(nil)
@@ -97,9 +206,5 @@ if Server then
 	end
 	
 end
-
-local networkVars = { }
-
-AddMixinNetworkVars(InfestationMixin, networkVars)
 
 Shared.LinkClassToMap("Shift", Shift.kMapName, networkVars)

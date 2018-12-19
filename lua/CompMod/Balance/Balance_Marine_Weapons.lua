@@ -31,7 +31,8 @@ kRailgunWeight = 0.045						-- Default is 0.045
 kClusterGrenadeCost = 10					-- Increased from 2
 kGasGrenadeCost = 10						-- Increased from 2
 kPulseGrenadeCost = 10						-- Increased from 2
-kMineCost = 15								-- Increased from 2
+kMineCost = 5								-- Increased from 2
+kMarineReBuyGrenadesCost = 2
 
 -- SHOTGUN
 kShotgunBulletsPerShot = 10					-- Decreased from 17
@@ -60,12 +61,20 @@ kHeavyMachineGunUpgReloadSpeed = 0.7
 kPistolDamage = 20							-- Decreased from 25
 
 -- FLAMETHROWER
-kFlamethrowerDamage = 10					-- Decreased from 12
-kFlamethrowerDamageRadius = 2.0				-- Increased from 1.8
-kFlamethrowerConeWidth = 0.3				-- Default is 0.3
-kFlamethrowerClipSize = 50					-- Default is 50
-kFlamethrowerRange = 7						-- Decreased from 9
-kFlamethrowerUpgradedRange = 10				
+kFlamethrowerDamage = 20					-- Increased from 12
+kFlamethrowerDamageRadius = 0.5				-- Decreased from 1.8 (NOT USED)
+kFlamethrowerConeWidth = 0.08				-- Default is 0.3
+kFlamethrowerClipSize = 25					-- Decreased from 50
+kFlamethrowerRange = 6						-- Decreased from 9
+kFlamethrowerUpgradedRange = 9
+kFlameThrowerEnergyDamage = 1				-- Default is 1
+kFlamethrowerDamageType = kDamageType.Normal	-- Default is Flame
+kBurnDamagePerSecond = 30
+kFlamethrowerBurnDuration = 0.25
+kFlamethrowerMaxBurnDuration = 20
+
+-- SIGHHHHHHHHHHHHHHHHHHHH
+kSprayDouseOnFireChance = 1.01
 
 -- GL
 kGrenadeLauncherGrenadeDamage = 80			-- Decreased from 165
@@ -89,12 +98,12 @@ kRailgunDamageType = kDamageType.Structural
 
 -- MINES
 kMineArmingTime = 0.03						-- Default is 0.17
-kMinesPerPlayerLimit = 3
-kNumMines = 3								-- Increased from 3
+kMinesPerPlayerLimit = 99
+kNumMines = 2								-- Increased from 3
 
 -- WELDER
 kWelderStructureDamagePerSecond = 25
-kWelderDamageType = kDamageType.Structural
+kWelderDamageType = kDamageType.Flame
 kWelderDamagePerSecond = 30
 kWelderFriendlyRange = 2.4
 kWelderAttackRange = 1.7

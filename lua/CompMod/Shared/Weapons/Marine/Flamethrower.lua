@@ -49,38 +49,41 @@ function Flamethrower:GetIsAffectedByWeaponUpgrades()
 end
 
 function Flamethrower:ApplyConeDamage(player)
-
+	
     local eyePos = player:GetEyePos()
     local ents = {}
 
     local fireDirection = player:GetViewCoords().zAxis
     local extents = Vector(self.kConeWidth, self.kConeWidth, self.kConeWidth)
-    local range = self:GetRange()
+    local remainingRange = self:GetRange()
 
     local startPoint = Vector(eyePos)
     local filterEnts = {self, player}
-    local trace = TraceMeleeBox(self, startPoint, fireDirection, extents, range, PhysicsMask.Flame, EntityFilterList(filterEnts))
-
-    local endPoint = trace.endPoint
-    local normal = trace.normal
-
-    if trace.fraction ~= 1 then
-
-        local traceEnt = trace.entity
-        if traceEnt and HasMixin(traceEnt, "Live") and traceEnt:GetCanTakeDamage() then
-            table.insert(ents, traceEnt)
+	
+	for i = 1, 4 do
+    
+        if remainingRange <= 0 then
+            break
         end
+		
+		local trace = TraceMeleeBox(self, startPoint, fireDirection, extents, remainingRange, PhysicsMask.Flame, EntityFilterList(filterEnts))
 
-        local hitEntities = GetEntitiesWithMixinWithinXZRange("Live", endPoint, self.kDamageRadius)
-        local damageHeight =  self.kDamageRadius / 2
-        for i = 1, #hitEntities do
-            local ent = hitEntities[i]
-            if ent ~= traceEnt and ent:GetCanTakeDamage() and math.abs(endPoint.y - ent:GetOrigin().y) <= damageHeight then
-                table.insert(ents, ent)
-            end
-        end
+		local endPoint = trace.endPoint
+		local normal = trace.normal
 
-    end
+		if trace.fraction ~= 1 then
+
+			local traceEnt = trace.entity
+			if traceEnt and HasMixin(traceEnt, "Live") and traceEnt:GetCanTakeDamage() then
+				table.insertunique(ents, traceEnt)
+			end
+
+		end
+		
+		remainingRange = remainingRange - (trace.endPoint - startPoint):GetLength() - self.kConeWidth
+        startPoint = trace.endPoint + fireDirection * self.kConeWidth + trace.normal * 0.05
+			
+	end
 
     local attackDamage = kFlamethrowerDamage
     for i = 1, #ents do
@@ -94,18 +97,14 @@ function Flamethrower:ApplyConeDamage(player)
 
             local health = ent:GetHealth()
             self:DoDamage( attackDamage, ent, enemyOrigin, toEnemy )
-			
-			if self.flamethrower_upg2 then
-			
-				-- Only light on fire if we successfully damaged them
-				if ent:GetHealth() ~= health and HasMixin(ent, "Fire") then
-					ent:SetOnFire(player, self)
-				end
+						
+			-- Only light on fire if we successfully damaged them
+			if ent:GetHealth() ~= health and HasMixin(ent, "Fire") and not ent:isa("Player") then
+				ent:SetOnFire(player, self)
+			end
 
-				if ent.GetEnergy and ent.SetEnergy then
-					ent:SetEnergy(ent:GetEnergy() - kFlameThrowerEnergyDamage)
-				end
-			
+			if ent.GetEnergy and ent.SetEnergy then
+				ent:SetEnergy(ent:GetEnergy() - kFlameThrowerEnergyDamage)
 			end
 			
         end

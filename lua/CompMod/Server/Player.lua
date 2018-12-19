@@ -3,23 +3,6 @@
 -- lua\CompMod\Server\Player.lua
 -- - Dragon
 
-local originalPlayerUpdateMisc
-originalPlayerUpdateMisc = Class_ReplaceMethod("Player", "UpdateMisc",
-	function(self, input)
-		originalPlayerUpdateMisc(self, input)
-		if self:GetTeamType() == kMarineTeamType then
-    
-			self.weaponUpgradeLevel = 0
-			
-			local teamInfo = GetTeamInfoEntity(self:GetTeamNumber())
-			if teamInfo then
-				self.weaponUpgradeLevel = teamInfo:GetUpgradeLevel(kTechId.WeaponsArmsLab)
-			end
-			
-		end
-	end
-)
-
 function Player:OnTechOrResearchUpdated()
 end
 

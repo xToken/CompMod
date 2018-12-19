@@ -86,19 +86,23 @@ local function InformResearch(player)
 	player:AddTimedCallback(player.TechOrResearchUpdated, 0.1)
 end
 
+function PlayingTeam:OnResearchCompleted(techId)
+	-- TELL THE PEOPLE!
+	self:ForEachPlayer(InformResearch)
+	-- and the structures
+	local ents = GetEntitiesWithMixinForTeam("Live", self:GetTeamNumber())
+	for i = 1, #ents do
+		if ents[i].OnTechOrResearchUpdated then
+			ents[i]:AddTimedCallback(ents[i].OnTechOrResearchUpdated, 0.1)
+		end
+	end
+end
+
 local originalPlayingTeamOnResearchComplete
 originalPlayingTeamOnResearchComplete = Class_ReplaceMethod("PlayingTeam", "OnResearchComplete",
 	function(self, structure, researchId)
 		originalPlayingTeamOnResearchComplete(self, structure, researchId)
-		-- TELL THE PEOPLE!
-		self:ForEachPlayer(InformResearch)
-		-- and the structures
-		local ents = GetEntitiesWithMixinForTeam("Live", self:GetTeamNumber())
-		for i = 1, #ents do
-			if ents[i].OnTechOrResearchUpdated then
-				ents[i]:AddTimedCallback(ents[i].OnTechOrResearchUpdated, 0.1)
-			end
-		end
+		self:OnResearchCompleted(researchId)
 	end
 )
 

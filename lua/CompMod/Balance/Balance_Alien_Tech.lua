@@ -52,8 +52,8 @@ kStormCost = 2								-- Default is 2
 kBoneWallCost = 3							-- Default is 3
 kBoneWallCooldown = 10						-- Default is 10
 
-kMucousMembraneRadius = 2					-- Decreased from 8!!!
-kEnzymeCloudRadius = 2						-- Decreased from 6.5
-kHallucinationCloudRadius = 1				-- Decreased from 8!!!
-kMaxHallucinations = 1
+kMucousMembraneRadius = 6					-- Decreased from 8!!!
+kEnzymeCloudRadius = 6						-- Decreased from 6.5
+kHallucinationCloudRadius = 6				-- Decreased from 8!!!
+kMaxHallucinations = 2
 kHallucinationLifeTime = 15					-- Decreased from 30

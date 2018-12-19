@@ -3,79 +3,42 @@
 -- lua\CompMod\Shared\ArmsLab.lua
 -- - Dragon
 
-local function GetLocalPlayerIsACommander()
-
-    local player = Client.GetLocalPlayer()
-    if player then
-        return player:isa("Commander"), player
-    end
-    
-    return nil, nil
-    
-end
-
-local CountToResearchId = { }
-CountToResearchId[kTechId.WeaponsArmsLab] = { [0] = kTechId.Weapons1, [1] = kTechId.Weapons2, [2] = kTechId.Weapons3, [3] = kTechId.Weapons3 }
-CountToResearchId[kTechId.ArmorArmsLab] = { [0] = kTechId.Armor1, [1] = kTechId.Armor2, [2] = kTechId.Armor3, [3] = kTechId.Armor3 }
-
-local function GetTierTech(self, techId)
-	local isCommander, player, techTree
-	if Client then
-		isCommander, player = GetLocalPlayerIsACommander()
-		techTree = GetTechTree()
-		
-	end
-	if Server then
-		player = GetCommanderForTeam(self:GetTeamNumber())
-		techTree = GetTechTree(self:GetTeamNumber())
-		isCommander = true
-	end
-	if player and isCommander then
-		local count = player:GetTrackedStructures(techId)
-		local targetTech = CountToResearchId[techId][count]
-		local techNode = techTree:GetTechNode(targetTech)
-		if techNode then
-			if techNode:GetResearching() then
-				targetTech = CountToResearchId[techId][math.min(count + 1, 3)]
-				techNode = techTree:GetTechNode(targetTech)
-				if techNode:GetResearching() then
-					return CountToResearchId[techId][math.min(count + 2, 3)]
-				end
-			end
-		end
-		return targetTech
-	end
-	return CountToResearchId[techId][3]
-end
+local kStructureTechIdtoUpgradeTechId = { }
+kStructureTechIdtoUpgradeTechId[kTechId.Weapons1] = kTechId.Weapons2Upgrade
+kStructureTechIdtoUpgradeTechId[kTechId.Weapons2] = kTechId.Weapons3Upgrade
+kStructureTechIdtoUpgradeTechId[kTechId.Weapons3] = kTechId.None
+kStructureTechIdtoUpgradeTechId[kTechId.Armor1] = kTechId.Armor2Upgrade
+kStructureTechIdtoUpgradeTechId[kTechId.Armor2] = kTechId.Armor3Upgrade
+kStructureTechIdtoUpgradeTechId[kTechId.Armor3] = kTechId.None
 
 function ArmsLab:GetTechButtons(techId)
-	
 	if self:GetTechId() == kTechId.ArmsLab then
-		return { GetTierTech(self, kTechId.WeaponsArmsLab), kTechId.None, kTechId.None, kTechId.None,
-				 GetTierTech(self, kTechId.ArmorArmsLab), kTechId.None, kTechId.None, kTechId.None }
-    end
-	return { kTechId.None, kTechId.None, kTechId.None, kTechId.None,
-             kTechId.None, kTechId.None, kTechId.None, kTechId.None }
+		return { kTechId.Weapons1Upgrade, kTechId.None, kTechId.None, kTechId.None,
+				kTechId.Armor1Upgrade, kTechId.None, kTechId.None, kTechId.None }
+	end
+	return { kStructureTechIdtoUpgradeTechId[self:GetTechId()] or kTechId.None, kTechId.None, kTechId.None, kTechId.None,
+				kTechId.None, kTechId.None, kTechId.None, kTechId.None }
 end
 
 if Server then
 
-	local kArmsLabResearchesInFlight = { }
-	
-	function ArmsLab:GetCanResearchOverride(techId)		
-		return not table.contains(kArmsLabResearchesInFlight, techId)
-	end
+	local kUpgradeTechIdtoStructureTechId = { }
+	kUpgradeTechIdtoStructureTechId[kTechId.Weapons1Upgrade] = kTechId.Weapons1
+	kUpgradeTechIdtoStructureTechId[kTechId.Weapons2Upgrade] = kTechId.Weapons2
+	kUpgradeTechIdtoStructureTechId[kTechId.Weapons3Upgrade] = kTechId.Weapons3
+	kUpgradeTechIdtoStructureTechId[kTechId.Armor1Upgrade] = kTechId.Armor1
+	kUpgradeTechIdtoStructureTechId[kTechId.Armor2Upgrade] = kTechId.Armor2
+	kUpgradeTechIdtoStructureTechId[kTechId.Armor3Upgrade] = kTechId.Armor3
 
 	function ArmsLab:OnResearchComplete(researchId)
 		local oldId = self:GetTechId()
-		local newId = (researchId == kTechId.Weapons1 or researchId == kTechId.Weapons2 or researchId == kTechId.Weapons3) and kTechId.WeaponsArmsLab or kTechId.ArmorArmsLab
-		if self:UpgradeToTechId(newId) then
+		local newId = kUpgradeTechIdtoStructureTechId[researchId]
+		if newId and self:UpgradeToTechId(newId) then
 			local team = self:GetTeam()
 			if team then
 				team:OnTeamEntityUpdated(oldId, newId, self)
 			end
 		end
-		table.removevalue(kArmsLabResearchesInFlight, researchId)
 	end
 
 	function ArmsLab:OnDestroy()
@@ -90,24 +53,30 @@ if Server then
 
 	end
 	
-	function ArmsLab:OnResearchCancel(researchId)
-		table.removevalue(kArmsLabResearchesInFlight, researchId)
-	end
-	
-	function ArmsLab:OnResearch(researchId)
-		if researchId ~= kTechId.Weapons3 and researchId ~= kTechId.Armor3 then
-			table.insert(kArmsLabResearchesInFlight, researchId)
-		end
-	end
-	
 end
 
 Shared.LinkClassToMap("ArmsLab", ArmsLab.kMapName, { })
 
-class 'ArmorArmsLab' (ArmsLab)
-ArmorArmsLab.kMapName = "armorarmslab"
-Shared.LinkClassToMap("ArmorArmsLab", ArmorArmsLab.kMapName, { })
+class 'Armor1ArmsLab' (ArmsLab)
+Armor1ArmsLab.kMapName = "armor1armslab"
+Shared.LinkClassToMap("Armor1ArmsLab", Armor1ArmsLab.kMapName, { })
 
-class 'WeaponsArmsLab' (ArmsLab)
-WeaponsArmsLab.kMapName = "weaponsarmslab"
-Shared.LinkClassToMap("WeaponsArmsLab", WeaponsArmsLab.kMapName, { })
+class 'Armor2ArmsLab' (ArmsLab)
+Armor2ArmsLab.kMapName = "armor2armslab"
+Shared.LinkClassToMap("Armor2ArmsLab", Armor2ArmsLab.kMapName, { })
+
+class 'Armor3ArmsLab' (ArmsLab)
+Armor3ArmsLab.kMapName = "armor3armslab"
+Shared.LinkClassToMap("Armor3ArmsLab", Armor3ArmsLab.kMapName, { })
+
+class 'Weapons1ArmsLab' (ArmsLab)
+Weapons1ArmsLab.kMapName = "weapons1armslab"
+Shared.LinkClassToMap("Weapons1ArmsLab", Weapons1ArmsLab.kMapName, { })
+
+class 'Weapons2ArmsLab' (ArmsLab)
+Weapons2ArmsLab.kMapName = "weapons2armslab"
+Shared.LinkClassToMap("Weapons2ArmsLab", Weapons2ArmsLab.kMapName, { })
+
+class 'Weapons3ArmsLab' (ArmsLab)
+Weapons3ArmsLab.kMapName = "weapons3armslab"
+Shared.LinkClassToMap("Weapons3ArmsLab", Weapons3ArmsLab.kMapName, { })
