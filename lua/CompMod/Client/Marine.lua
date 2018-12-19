@@ -74,7 +74,7 @@ function MarineBuy_GetEquipment()
 	end
 	
 	if slot5 ~= kTechId.None then
-		inventory[slot5] = true
+		--inventory[slot5] = true
 	end
 	
     return inventory
