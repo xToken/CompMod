@@ -33,17 +33,17 @@ kGorgeArmor = 30							-- Vanilla is 75
 kGorgeArmorFullyUpgradedAmount = 90			-- Vanilla is 100
 kGorgeHealthPerBioMass = 0					-- Vanilla is 2
 
-kLerkHealth = 200							-- Vanilla is 150
+kLerkHealth = 190							-- Vanilla is 150
 kLerkArmor = 20								-- Vanilla is 45
 kLerkArmorFullyUpgradedAmount = 80			-- Vanilla is 60
 kLerkHealthPerBioMass = 0					-- Vanilla is 2
 
 kFadeHealth = 300							-- Vanilla is 250
-kFadeArmor = 80								-- Vanilla is 80
-kFadeArmorFullyUpgradedAmount = 200			-- Vanilla is 120
+kFadeArmor = 70								-- Vanilla is 80
+kFadeArmorFullyUpgradedAmount = 160			-- Vanilla is 120
 kFadeHealthPerBioMass = 0					-- Vanilla is 5
 
-kOnosHealth = 800							-- Vanilla is 900
+kOnosHealth = 850							-- Vanilla is 900
 kOnosArmor = 400							-- Vanilla is 450
 kOnosArmorFullyUpgradedAmount = 750			-- Vanilla is 650
 kOnosHealtPerBioMass = 0					-- Vanilla is 30
