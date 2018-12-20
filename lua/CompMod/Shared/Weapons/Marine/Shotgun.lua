@@ -6,18 +6,18 @@
 -- Recalc this
 Shotgun.kSpreadVectors =
 {
-    GetNormalizedVector(Vector(-0.15, 0.15, kShotgunSpreadDistance)),
-    GetNormalizedVector(Vector(0.15, -0.15, kShotgunSpreadDistance)),
-	
-    GetNormalizedVector(Vector(-0.5, -0.5, kShotgunSpreadDistance)),
-    GetNormalizedVector(Vector(-0.5, 0.5, kShotgunSpreadDistance)),
-    GetNormalizedVector(Vector(0.5, 0.5, kShotgunSpreadDistance)),
-    GetNormalizedVector(Vector(0.5, -0.5, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(-0.1, 0.1, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0.1, -0.1, kShotgunSpreadDistance)),
     
-    GetNormalizedVector(Vector(-0.35, 0, kShotgunSpreadDistance)),
-    GetNormalizedVector(Vector(0.35, 0, kShotgunSpreadDistance)),
-    GetNormalizedVector(Vector(0, -0.35, kShotgunSpreadDistance)),
-    GetNormalizedVector(Vector(0, 0.35, kShotgunSpreadDistance))
+    GetNormalizedVector(Vector(-0.15, 0, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0.15, 0, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0, -0.15, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0, 0.15, kShotgunSpreadDistance)),
+	
+	GetNormalizedVector(Vector(-0.175, -0.175, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(-0.175, 0.175, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0.175, 0.175, kShotgunSpreadDistance)),
+    GetNormalizedVector(Vector(0.175, -0.175, kShotgunSpreadDistance))
 }
 
 local kBulletSize = 0.016
@@ -113,7 +113,7 @@ function Shotgun:FirePrimary(player)
         local spreadDirection = shootCoords:TransformVector(self.kSpreadVectors[bullet])
 
         local endPoint = startPoint + spreadDirection * range
-        startPoint = player:GetEyePos() + shootCoords.xAxis * self.kSpreadVectors[bullet].x * self.kStartOffset + shootCoords.yAxis * self.kSpreadVectors[bullet].y * self.kStartOffset
+        --startPoint = player:GetEyePos() + shootCoords.xAxis * self.kSpreadVectors[bullet].x * self.kStartOffset + shootCoords.yAxis * self.kSpreadVectors[bullet].y * self.kStartOffset
         
         local targets, trace, hitPoints = GetBulletTargets(startPoint, endPoint, spreadDirection, kBulletSize, filter)
         
@@ -140,6 +140,10 @@ function Shotgun:FirePrimary(player)
             local target = targets[i]
             local hitPoint = hitPoints[i]
 			local damage = self:GetBulletDamage(player, hitPoint)
+			
+			if Server then
+				--Print(string.format("Pellet %s dealt %s damage to %s entity %sm away", bullet, damage, target:GetClassName(), (player:GetEyePos() - hitPoint):GetLength()))
+			end
 			
             self:ApplyBulletGameplayEffects(player, target, hitPoint - hitOffset, direction, damage, "", showTracer and i == numTargets)
             

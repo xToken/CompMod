@@ -84,33 +84,34 @@ end
 
 function Shift:EnergizeInRange()
 
-    if self:GetIsBuilt() and self:GetIsEnergizing() then
-    
-        local energizeAbles = GetEntitiesWithMixinForTeamWithinXZRange("Energize", self:GetTeamNumber(), self:GetOrigin(), kEnergizeRange)
-        
-        for _, entity in ipairs(energizeAbles) do
-        
-            if entity ~= self then
-                entity:Energize(self)
-            end
-            
-        end
-		
-		if self.energizeStart + kShiftEnergizeDuration < Shared.GetTime() then
-			self.energizing = false
-		end
-    else
-		-- Passive energy
-		local energizeAbles = GetEntitiesWithMixinForTeamWithinXZRange("Energize", self:GetTeamNumber(), self:GetOrigin(), kEnergizeRange)
-		for _, entity in ipairs(energizeAbles) do
+    if self:GetIsBuilt() then
+		if self:GetIsEnergizing() then
+			local energizeAbles = GetEntitiesWithMixinForTeamWithinXZRange("Energize", self:GetTeamNumber(), self:GetOrigin(), kEnergizeRange)
 			
-			if (not entity.GetIsEnergizeAllowed or entity:GetIsEnergizeAllowed()) and entity.timeLastEnergizeUpdate + kEnergizeUpdateRate < Shared.GetTime() and entity ~= self then
+			for _, entity in ipairs(energizeAbles) do
 			
-				entity:AddEnergy(kPlayerPassiveEnergyPerEnergize)
-				entity.timeLastEnergizeUpdate = Shared.GetTime()
+				if entity ~= self then
+					entity:Energize(self)
+				end
 				
 			end
+			
+			if self.energizeStart + kShiftEnergizeDuration < Shared.GetTime() then
+				self.energizing = false
+			end
+		else
+			-- Passive energy
+			local energizeAbles = GetEntitiesWithMixinForTeamWithinXZRange("Energize", self:GetTeamNumber(), self:GetOrigin(), kEnergizeRange)
+			for _, entity in ipairs(energizeAbles) do
+				
+				if (not entity.GetIsEnergizeAllowed or entity:GetIsEnergizeAllowed()) and entity.timeLastEnergizeUpdate + kEnergizeUpdateRate < Shared.GetTime() and entity ~= self then
+				
+					entity:AddEnergy(kPlayerPassiveEnergyPerEnergize)
+					entity.timeLastEnergizeUpdate = Shared.GetTime()
+					
+				end
 
+			end
 		end
     end
     

@@ -69,3 +69,5 @@ kHydraArmor = 50							-- Vanilla is 10
 
 kMatureHydraHealth = 650					-- Vanilla is 450
 kMatureHydraArmor = 100						-- Vanilla is 50
+
+kArmorHealScalar = 1 -- 0.75
