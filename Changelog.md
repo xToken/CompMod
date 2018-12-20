@@ -1,4 +1,32 @@
 # Changelog
+### ProGMod R1 B7 (19-12-18)
+
+##### Alien Changes:
+- Lowered Lerk upgrades cost from 3 to 2
+- Lowered Lerk health from 200 to 190
+- Lowered Fade upgrades cost from 5 to 3
+- Lowered Fade base armor from 80 to 70
+- Lowered Fade max carapace armor from 200 to 160
+- Lowered Onos upgrades cost from 8 to 4
+- Increased Onos health from 800 to 850
+
+
+##### Marine Changes:
+- Increased Arms Lab cost from 10 to 20
+- Decreased Weapons1/Armor1 cost from 20 to 15
+- Increased Weapons3/Armor3 cost from 40 to 45
+- Increased Jetpack pRes cost from 5 to 10
+- Increased SG Choke Upgrade minimum range falloff from 6.5 to 8
+- Increased base MG clip size from 75 to 100
+- Increased upgraded MG clip size from 100 to 125
+- Increased base flamethrower range from 6 to 7
+- Increased upgraded flamethrower range from 9 to 10
+- Flamethrower now deals structural damage
+- Flamethrower DOT now deals no damage
+- Welder now repairs 50 player armor a second, up from 20 (structures still the same at 90/s)
+
+- Walk binding is now using the 'SecondaryMovementModifier' binding (Same as original CompMod/Current NSL Comp Mod)
+- Fixed GrenadeLaunchers not dealing correct 4x damage to structures
 
 ### ProGMod R1 B6 (18-12-18)
 

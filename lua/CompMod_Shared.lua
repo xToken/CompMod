@@ -11,7 +11,7 @@ Script.Load( "lua/CompMod/Elixer_Utility.lua" )
 Elixer.UseVersion( 1.8 )
 
 kCompModVersion = 1
-kCompModBuild = 6
+kCompModBuild = 7
 
 local ModFiles = { }
 Shared.GetMatchingFileNames( "lua/CompMod/New/*.lua", true, ModFiles )
