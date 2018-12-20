@@ -9,10 +9,10 @@ local function MultiplyForMachineGun(target, attacker, doer, damage, armorFracti
     return ConditionalValue(target.GetReceivesStructuralDamage and target:GetReceivesStructuralDamage(damageType), damage * s, damage), armorFractionUsed, healthPerArmor
 end
 
--- Grenades explode with FIRE
-local function MultipleGLforFlameAble(target, attacker, doer, damage, armorFractionUsed, healthPerArmor, damageType, hitPoint)
-    if target.GetIsFlameAble and target:GetIsFlameAble(damageType) then
-        damage = damage * kGrenadeLauncherFlameableMultiplier
+-- Grenades explode with powa
+local function MultipleGLforStructures(target, attacker, doer, damage, armorFractionUsed, healthPerArmor, damageType, hitPoint)
+    if target.GetReceivesStructuralDamage and target:GetReceivesStructuralDamage(damageType) then
+        damage = damage * kGrenadeLauncherSecondaryStructureMultiplier
     end
     
     return damage, armorFractionUsed, healthPerArmor
@@ -26,7 +26,7 @@ function GetDamageByType(...)
 	-- Insert our new func for MG
 	table.insert(kDamageTypeRules[kDamageType.MachineGun], MultiplyForMachineGun)
 	-- Insert our new func for GL
-	table.insert(kDamageTypeRules[kDamageType.GrenadeLauncher], MultipleGLforFlameAble)
+	table.insert(kDamageTypeRules[kDamageType.GrenadeLauncher], MultipleGLforStructures)
 	-- Point back function
 	GetDamageByType = oldGetDamageByType
 	-- Return original values

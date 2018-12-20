@@ -19,6 +19,14 @@ kMedPackCooldown = 0						-- Default is 0
 kCatPackCost = 2							-- Decreased from 3
 kCatPackDuration = 8						-- Decreased from 12
 
+kWeapons1ResearchCost = 15					-- Decreased from 20
+kWeapons2ResearchCost = 30					-- Default is 30
+kWeapons3ResearchCost = 45					-- Increased from 40
+
+kArmor1ResearchCost = 15					-- Decreased from 20
+kArmor2ResearchCost = 30					-- Default is 30
+kArmor3ResearchCost = 45					-- Increased from 40
+
 kMineResearchCost  = 10						-- Decreased from 10
 kMineResearchTime  = 45						-- Increased from 20
 
