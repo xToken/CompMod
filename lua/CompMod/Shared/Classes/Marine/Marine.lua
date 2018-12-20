@@ -3,7 +3,7 @@
 -- lua\CompMod\Shared\Marine.lua
 -- - Dragon
 
-Script.Load( "lua/CompMod/Shared/WalkMixin.lua" )
+Script.Load( "lua/CompMod/New/WalkMixin.lua" )
 
 local networkVars =
 {
