@@ -21,7 +21,7 @@ end
 
 function WalkMixin:UpdateWalkMode(input)
 
-    local walkState = bit.band(input.commands, Move.MovementModifier) ~= 0
+    local walkState = bit.band(input.commands, Move.ReadyRoom) ~= 0
 	local canWalk = not self.crouching and self:GetIsOnGround() and not self.sprinting
 	
     if walkState ~= self.walking then
