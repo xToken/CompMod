@@ -32,11 +32,6 @@ function PlayerUI_GetUtilitySlotTech(slot)
     return kTechId.None
 end
 
--- Little weird, but if we have the tech, we have the arms lab now.
-function MarineUI_GetHasArmsLab()
-    return true
-end
-
 function MarineBuy_GetEquipment()
     
     local inventory = {}
