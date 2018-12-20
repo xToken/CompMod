@@ -37,7 +37,7 @@ kMarineReBuyGrenadesCost = 2
 -- SHOTGUN
 kShotgunBulletsPerShot = 10					-- Decreased from 17
 kShotgunSpreadDistance = 7					-- Decreased from 8.5 (See other adjustments in ShotgunAdjustments)
-kShotgunDamage = 17							-- Increased from 10
+kShotgunDamage = 18							-- Increased from 10
 kShotgunMaxRange = 16						-- Added max range (Damage drops to 1)
 kShotgunDropOffStartRange = 5				-- Min range where damage falloff begins
 kShotgunUpg1DropOffStartRange = 8			-- Upgraded min range where damage falloff begins
@@ -48,7 +48,7 @@ kShotgunClipSize = 6						-- Default is 6
 kShotgunUpgradedReloadSpeed = 1.2
 
 -- MG
-kHeavyMachineGunDamage = 15					-- Default is 9 (*)
+kHeavyMachineGunDamage = 14					-- Default is 9 (*)
 kHeavyMachineGunStructureDamageScalar = 0.5
 kHeavyMachineGunStructureUpgradedDamageScalar = 0.5
 kHeavyMachineGunClipSize = 100				-- Default is 125
@@ -61,9 +61,9 @@ kHeavyMachineGunUpgReloadSpeed = 0.7
 kPistolDamage = 20							-- Decreased from 25
 
 -- FLAMETHROWER
-kFlamethrowerDamage = 20					-- Increased from 12
+kFlamethrowerDamage = 25					-- Increased from 12
 kFlamethrowerDamageRadius = 0.5				-- Decreased from 1.8 (NOT USED)
-kFlamethrowerConeWidth = 0.08				-- Default is 0.3
+kFlamethrowerConeWidth = 0.15				-- Default is 0.3
 kFlamethrowerClipSize = 25					-- Decreased from 50
 kFlamethrowerRange = 7						-- Decreased from 9
 kFlamethrowerUpgradedRange = 10
@@ -108,5 +108,5 @@ kWelderDamagePerSecond = 30
 kWelderFriendlyRange = 2.4
 kWelderAttackRange = 1.7
 kSelfWeldAmount = 5
-kPlayerArmorWeldRate = 50					-- Default is 20
-kStructureWeldRate = 90						-- Default is 90
+kPlayerArmorWeldRate = 30					-- Default is 20
+kStructureWeldRate = 120					-- Default is 90
