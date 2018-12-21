@@ -28,10 +28,6 @@ function Crag:GetInfestationMaxRadius()
     return kStructureInfestationRadius
 end
 
-function Crag:GetAllowedInfestationDestruction()
-	return self.moving
-end
-
 function Crag:UpdateHealing()
 
     local time = Shared.GetTime()
@@ -52,7 +48,14 @@ if Client then
 	originalCragOnUpdate = Class_ReplaceMethod("Crag", "OnUpdate",
 		function(self, deltaTime)
 			originalCragOnUpdate(self, deltaTime)
-
+			if self.isTeleporting ~= self.lastisTeleporting then
+				-- This isnt good coding, but these is all over the place in vanilla
+				if not self.isTeleporting then
+					-- We are not moving, trigger clear, then infest start.
+					self:CleanupInfestation()
+				end
+				self.lastisTeleporting = self.isTeleporting
+			end
 			if self.moving ~= self.lastmoving then
 				-- This isnt good coding, but these is all over the place in vanilla
 				if not self.moving then
@@ -61,7 +64,6 @@ if Client then
 				end
 				self.lastmoving = self.moving
 			end
-			
 		end
 	)
 
@@ -99,6 +101,18 @@ if Server then
 				self.lastmoving = self.moving
 			end
 			
+		end
+	)
+	
+	function Crag:OnTeleport()
+		self:SetDesiredInfestationRadius(0)
+	end
+	
+	local originalCragOnTeleportEnd
+	originalCragOnTeleportEnd = Class_ReplaceMethod("Crag", "OnTeleportEnd",
+		function(self, destinationEntity)
+			originalCragOnTeleportEnd(self, destinationEntity)
+			self:CleanupInfestation()
 		end
 	)
 

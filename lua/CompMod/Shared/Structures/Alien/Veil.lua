@@ -20,6 +20,25 @@ function Veil:GetInfestationMaxRadius()
     return kStructureInfestationRadius
 end
 
+if Client then
+
+	local originalVeilOnUpdate
+	originalVeilOnUpdate = Class_ReplaceMethod("Veil", "OnUpdate",
+		function(self, deltaTime)
+			originalVeilOnUpdate(self, deltaTime)
+			if self.isTeleporting ~= self.lastisTeleporting then
+				-- This isnt good coding, but these is all over the place in vanilla
+				if not self.isTeleporting then
+					-- We are not moving, trigger clear, then infest start.
+					self:CleanupInfestation()
+				end
+				self.lastisTeleporting = self.isTeleporting
+			end
+		end
+	)
+
+end
+
 if Server then
 
 	local originalVeilOnUpdate
@@ -49,6 +68,14 @@ if Server then
 		if team then
 			team:OnTeamEntityDestroyed(self)
 		end
+	end
+	
+	function Veil:OnTeleport()
+		self:SetDesiredInfestationRadius(0)
+	end
+	
+	function Veil:OnTeleportEnd(destinationEntity)
+		self:CleanupInfestation()
 	end
 	
 	function Veil:GetPassiveBuild()

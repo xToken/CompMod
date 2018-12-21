@@ -27,10 +27,6 @@ function Shift:GetInfestationMaxRadius()
     return kStructureInfestationRadius
 end
 
-function Shift:GetAllowedInfestationDestruction()
-	return self.moving
-end
-
 function Shift:GetIsEnergizing()
 	return self.energizing
 end
@@ -133,7 +129,14 @@ if Client then
 	originalShiftOnUpdate = Class_ReplaceMethod("Shift", "OnUpdate",
 		function(self, deltaTime)
 			originalShiftOnUpdate(self, deltaTime)
-
+			if self.isTeleporting ~= self.lastisTeleporting then
+				-- This isnt good coding, but these is all over the place in vanilla
+				if not self.isTeleporting then
+					-- We are not moving, trigger clear, then infest start.
+					self:CleanupInfestation()
+				end
+				self.lastisTeleporting = self.isTeleporting
+			end
 			if self.moving ~= self.lastmoving then
 				-- This isnt good coding, but these is all over the place in vanilla
 				if not self.moving then
@@ -142,7 +145,6 @@ if Client then
 				end
 				self.lastmoving = self.moving
 			end
-			
 		end
 	)
 
@@ -180,6 +182,18 @@ if Server then
 				self.lastmoving = self.moving
 			end
 			
+		end
+	)
+	
+	function Shift:OnTeleport()
+		self:SetDesiredInfestationRadius(0)
+	end
+	
+	local originalShiftOnTeleportEnd
+	originalShiftOnTeleportEnd = Class_ReplaceMethod("Shift", "OnTeleportEnd",
+		function(self, destinationEntity)
+			originalShiftOnTeleportEnd(self, destinationEntity)
+			self:CleanupInfestation()
 		end
 	)
 	

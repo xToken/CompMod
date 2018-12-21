@@ -56,6 +56,14 @@ if Server then
 		end
 	end
 	
+	function Harvester:OnTeleport()
+		self:SetDesiredInfestationRadius(0)
+	end
+	
+	function Harvester:OnTeleportEnd(destinationEntity)
+		self:CleanupInfestation()
+	end
+	
 	function Harvester:GetPassiveBuild()
 		return self:GetGameEffectMask(kGameEffect.OnInfestation)
 	end

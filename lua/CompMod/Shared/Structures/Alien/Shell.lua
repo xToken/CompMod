@@ -20,6 +20,25 @@ function Shell:GetInfestationMaxRadius()
     return kStructureInfestationRadius
 end
 
+if Client then
+
+	local originalShellOnUpdate
+	originalShellOnUpdate = Class_ReplaceMethod("Shell", "OnUpdate",
+		function(self, deltaTime)
+			originalShellOnUpdate(self, deltaTime)
+			if self.isTeleporting ~= self.lastisTeleporting then
+				-- This isnt good coding, but these is all over the place in vanilla
+				if not self.isTeleporting then
+					-- We are not moving, trigger clear, then infest start.
+					self:CleanupInfestation()
+				end
+				self.lastisTeleporting = self.isTeleporting
+			end
+		end
+	)
+
+end
+
 if Server then
 
 	local originalShellOnUpdate
@@ -42,6 +61,14 @@ if Server then
 			
 		end
 	)
+	
+	function Shell:OnTeleport()
+		self:SetDesiredInfestationRadius(0)
+	end
+	
+	function Shell:OnTeleportEnd(destinationEntity)
+		self:CleanupInfestation()
+	end
 
 	function Shell:OnKill(attacker, doer, point, direction)
 		self:SetModel(nil)

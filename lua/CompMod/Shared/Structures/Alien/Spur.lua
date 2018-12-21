@@ -20,6 +20,25 @@ function Spur:GetInfestationMaxRadius()
     return kStructureInfestationRadius
 end
 
+if Client then
+
+	local originalSpurOnUpdate
+	originalSpurOnUpdate = Class_ReplaceMethod("Spur", "OnUpdate",
+		function(self, deltaTime)
+			originalSpurOnUpdate(self, deltaTime)
+			if self.isTeleporting ~= self.lastisTeleporting then
+				-- This isnt good coding, but these is all over the place in vanilla
+				if not self.isTeleporting then
+					-- We are not moving, trigger clear, then infest start.
+					self:CleanupInfestation()
+				end
+				self.lastisTeleporting = self.isTeleporting
+			end
+		end
+	)
+
+end
+
 if Server then
 
 	local originalSpurOnUpdate
@@ -49,6 +68,14 @@ if Server then
 		if team then
 			team:OnTeamEntityDestroyed(self)
 		end
+	end
+	
+	function Spur:OnTeleport()
+		self:SetDesiredInfestationRadius(0)
+	end
+	
+	function Spur:OnTeleportEnd(destinationEntity)
+		self:CleanupInfestation()
 	end
 	
 	function Spur:GetPassiveBuild()
