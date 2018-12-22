@@ -84,7 +84,10 @@ function Shotgun:GetBulletDamage(player, endPoint)
 end
 
 function Shotgun:GetBaseAttackSpeed()
-    return self.primaryAttacking and self.shotgun_upg2 and kShotgunUpgradedROF or kShotgunBaseROF
+	if not self.primaryAttacking then
+		return 1
+	end
+    return self.shotgun_upg2 and kShotgunUpgradedROF or kShotgunBaseROF
 end
 
 function Shotgun:FirePrimary(player)
