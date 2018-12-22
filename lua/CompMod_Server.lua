@@ -16,3 +16,6 @@ Shared.GetMatchingFileNames( "lua/CompMod/Server/*.lua", true, MainFiles )
 for i = 1, #MainFiles do
 	Script.Load(MainFiles[i])
 end
+
+-- Load end game reporting
+Script.Load( "lua/CompMod/GameReporter.lua" )
