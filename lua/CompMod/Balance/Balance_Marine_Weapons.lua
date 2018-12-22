@@ -59,19 +59,20 @@ kHeavyMachineGunUpgReloadSpeed = 0.7
 
 -- PISTOL
 kPistolDamage = 20							-- Decreased from 25
+kPistolDamageType = kDamageType.Normal		-- Default is Light
 
 -- FLAMETHROWER
-kFlamethrowerDamage = 25					-- Increased from 12
+kFlamethrowerDamage = 16					-- Increased from 12
 kFlamethrowerDamageRadius = 0.5				-- Decreased from 1.8 (NOT USED)
-kFlamethrowerConeWidth = 0.15				-- Default is 0.3
+kFlamethrowerConeWidth = 0.05				-- Default is 0.3
 kFlamethrowerClipSize = 25					-- Decreased from 50
-kFlamethrowerRange = 7						-- Decreased from 9
-kFlamethrowerUpgradedRange = 10
+kFlamethrowerRange = 5						-- Decreased from 9
+kFlamethrowerUpgradedRange = 8
 kFlameThrowerEnergyDamage = 1				-- Default is 1
-kFlamethrowerDamageType = kDamageType.Structural	-- Default is Flame
-kBurnDamagePerSecond = 0
+kFlamethrowerDamageType = kDamageType.Normal	-- Default is Flame
+kBurnDamagePerSecond = 25
 kFlamethrowerBurnDuration = 0.25
-kFlamethrowerMaxBurnDuration = 20
+kFlamethrowerMaxBurnDuration = 15
 
 -- SIGHHHHHHHHHHHHHHHHHHHH
 kSprayDouseOnFireChance = 1.01
