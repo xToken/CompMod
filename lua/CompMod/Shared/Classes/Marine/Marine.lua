@@ -9,6 +9,8 @@ local networkVars =
 {
     utilitySlot3 = "enum kTechId",
 	utilitySlot5 = "enum kTechId",
+	nanoArmor = "boolean",
+    timeNanoArmorHealed = "private compensated  time",
 }
 
 AddMixinNetworkVars(WalkMixin, networkVars)
@@ -20,6 +22,8 @@ originalMarineOnInitialized = Class_ReplaceMethod("Marine", "OnInitialized",
 		InitMixin(self, WalkMixin)
 		self.utilitySlot3 = kTechId.None
 		self.utilitySlot5 = kTechId.None
+		self.nanoArmor = false
+		self.timeNanoArmorHealed = 0
 	end
 )
 
@@ -124,6 +128,18 @@ originalMarineGetMaxSpeed = Class_ReplaceMethod("Marine", "GetMaxSpeed",
 		end
 		
 		return maxSpeed * self:GetSlowSpeedModifier() * inventorySpeedScalar  * useModifier
+	end
+)
+
+local oldMarineOnProcessMove
+oldMarineOnProcessMove = Class_ReplaceMethod("Marine", "OnProcessMove",
+	function(self, input)
+		oldMarineOnProcessMove(self, input)
+		-- check nano armor
+        if not self:GetIsInCombat() and self.nanoArmor and self.timeNanoArmorHealed + kNanoArmorHealInterval < Shared.GetTime() then            
+            self:SetArmor(self:GetArmor() + kNanoArmorHealInterval * kNanoArmorHealPerSecond, true)
+			self.timeNanoArmorHealed = Shared.GetTime()
+        end
 	end
 )
 

@@ -4,17 +4,17 @@
 -- - Dragon
 
 local function UpdateNanoArmor(self)
-    self.hasNanoArmor = GetHasTech(self, kTechId.NanoArmor)
-    return true
+    self.nanoArmor = GetHasTech(self, kTechId.NanoArmor)
+    return false
 end
 
-ReplaceLocals(Marine.OnInitialized, { UpdateNanoArmor = UpdateNanoArmor })
+ReplaceUpValue(Marine.OnInitialized, "UpdateNanoArmor", UpdateNanoArmor, { LocateRecurse = true } )
 
 function Marine:OnTechOrResearchUpdated()
 	if GetHasTech(self, kTechId.NanoArmor) then
-		self.hasNanoArmor = true
+		self.nanoArmor = true
 	else
-		self.hasNanoArmor = false
+		self.nanoArmor = false
 	end
 end
 

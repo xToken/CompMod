@@ -22,6 +22,7 @@ kExosuitArmor = 320							-- Vanilla is 320
 kArmorPerUpgradeLevel = 20					-- Vanilla is 20
 kExosuitArmorPerUpgradeLevel = 30			-- Vanilla is 30
 kNanoArmorHealPerSecond = 1					-- Was 0.5
+kNanoArmorHealInterval = 1
 
 kSkulkHealth = 75							-- Vanilla is 75
 kSkulkArmor = 10							-- Vanilla is 10
