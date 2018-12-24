@@ -13,37 +13,37 @@ kLeapResearchCost = 20						-- Increased from 15
 kLeapResearchTime = 60						-- Increased from 40
 
 kXenocideResearchCost = 35					-- Increased from 25
-kXenocideResearchTime = 120					-- Increased from 60
+kXenocideResearchTime = 90					-- Increased from 60
 
 kGorgeTunnelResearchCost = 20				-- Increased from 15
-kGorgeTunnelResearchTime = 60				-- Increased from 40
+kGorgeTunnelResearchTime = 30				-- Increased from 40
 
 kBileBombResearchCost = 25					-- Increased from 15
-kBileBombResearchTime = 90					-- Increased from 40
+kBileBombResearchTime = 60					-- Increased from 40
 
 kUmbraResearchCost = 25						-- Increased from 20
-kUmbraResearchTime = 90						-- Increased from 45
+kUmbraResearchTime = 60						-- Increased from 45
 
 kSporesResearchCost = 35					-- Increased from 20
-kSporesResearchTime = 120					-- Increased from 60
+kSporesResearchTime = 90					-- Increased from 60
 
 kMetabolizeEnergyResearchCost = 20			-- Default is 20
-kMetabolizeEnergyResearchTime = 60			-- Increased from 40
+kMetabolizeEnergyResearchTime = 30			-- Increased from 40
 
 kMetabolizeHealthResearchCost = 25			-- Increased from 20
-kMetabolizeHealthResearchTime = 90			-- Increased from 45
+kMetabolizeHealthResearchTime = 60			-- Increased from 45
 
 kStabResearchCost = 35						-- Increased from 25
-kStabResearchTime = 120						-- Increased from 60
+kStabResearchTime = 90						-- Increased from 60
 
-kChargeResearchCost = 30					-- Increased from 15
-kChargeResearchTime = 60					-- Increased from 40
+kChargeResearchCost = 25					-- Increased from 15
+kChargeResearchTime = 30					-- Increased from 40
 
 kBoneShieldResearchCost = 25				-- Increased from 20
-kBoneShieldResearchTime = 90				-- Increased from 40
+kBoneShieldResearchTime = 60				-- Increased from 40
 
 kStompResearchCost = 35						-- Increased from 25
-kStompResearchTime = 120					-- Increased from 60
+kStompResearchTime = 90						-- Increased from 60
 
 kEnzymeCloudCost = 2						-- Default is 2
 kHallucinationCloudCost = 2					-- Default is 2
