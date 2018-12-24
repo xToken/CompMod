@@ -65,21 +65,17 @@ function Shotgun:GetUpgradeTier()
 end
 
 function Shotgun:GetCatalystSpeedBase()
-    return self.shotgun_upg2 and kShotgunUpgradedReloadSpeed or 1
+    return self.shotgun_upg1 and kShotgunUpgradedReloadSpeed or 1
 end
 
 function Shotgun:GetBulletDamage(player, endPoint)
-	local minDist = kShotgunDropOffStartRange
-	if self.shotgun_upg1 then
-		minDist = kShotgunUpg1DropOffStartRange
-	end
 	local distanceTo = (player:GetEyePos() - endPoint):GetLength()
 	if distanceTo > kShotgunMaxRange then
 		return 1
-	elseif distanceTo <= minDist then
+	elseif distanceTo <= kShotgunDropOffStartRange then
 		return kShotgunDamage
 	else
-		return kShotgunDamage * (1 - math.sin((distanceTo - minDist) / kShotgunMaxRange))
+		return kShotgunDamage * (1 - (distanceTo - kShotgunDropOffStartRange) / (kShotgunMaxRange - kShotgunDropOffStartRange))
 	end
 end
 
