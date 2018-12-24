@@ -167,7 +167,7 @@ function AlienTeam:InitTechTree()
 
     -- gorge researches
 	self.techTree:AddResearchNode(kTechId.GorgeTunnelTech,			kTechId.Hive,					kTechId.None,					kTechId.AllAliens)
-    self.techTree:AddResearchNode(kTechId.BileBomb,					kTechId.TwoHives,				kTechId.None,					kTechId.AllAliens)
+    self.techTree:AddResearchNode(kTechId.BileBomb,					kTechId.Hive,					kTechId.None,					kTechId.AllAliens)
 	--self.techTree:AddResearchNode(kTechId.Something,				kTechId.ThreeHives,				kTechId.None,					kTechId.AllAliens) -- Need third hive abil
 	
 	-- Gorge abilities
