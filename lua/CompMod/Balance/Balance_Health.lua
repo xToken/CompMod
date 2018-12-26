@@ -59,8 +59,23 @@ kMineArmor = 10								-- Vanilla is 5
 kArmsLabHealth = 1650						-- Decreased from 1650
 kArmsLabArmor = 500							-- Decreased from 500
 
-kDrifterHealth = 300						-- Vanilla is 300
+kDrifterHealth = 150						-- Vanilla is 300
 kDrifterArmor = 0							-- Vanilla is 20
+
+kCragHealth = 400							-- Vanilla is 600
+kCragArmor = 100							-- Vanilla is 200
+kMatureCragHealth = 600						-- Vanilla is 700
+kMatureCragArmor = 200						-- Vanilla is 340
+
+kShiftHealth = 450							-- Vanilla is 750
+kShiftArmor = 75							-- Vanilla is 75
+kMatureShiftHealth = 700					-- Vanilla is 1100
+kMatureShiftArmor = 150						-- Vanilla is 150
+
+kShadeHealth = 500							-- Vanilla is 750
+kShadeArmor = 50							-- Vanilla is 0
+kMatureShadeHealth = 8000					-- Vanilla is 1500
+kMatureShadeArmor = 100						-- Vanilla is 0
 
 kMACHealth = 300							-- Vanilla is 300
 kMACArmor = 0								-- Vanilla is 50
@@ -70,5 +85,9 @@ kHydraArmor = 50							-- Vanilla is 10
 
 kMatureHydraHealth = 650					-- Vanilla is 450
 kMatureHydraArmor = 100						-- Vanilla is 50
+
+kBabblerHealth = 11							-- Vanilla is 10
+
+kWebHealth = 40								-- Vanilla is 80
 
 kArmorHealScalar = 1 -- 0.75

@@ -57,3 +57,5 @@ kEnzymeCloudRadius = 6						-- Decreased from 6.5
 kHallucinationCloudRadius = 6				-- Decreased from 8!!!
 kMaxHallucinations = 2
 kHallucinationLifeTime = 15					-- Decreased from 30
+
+kAlienStructureMoveSpeed = 3				-- Increased from 1.5

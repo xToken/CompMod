@@ -5,10 +5,11 @@
 
 kHarvesterCost = 10							-- Increased from 8
 kHiveCost = 40								-- Default is 40
-kCragCost = 15								-- Increased from 13
-kShiftCost = 15								-- Increased from 13
-kShadeCost = 15								-- Increased from 13
+kCragCost = 10								-- Decreased from 13
+kShiftCost = 10								-- Decreased from 13
+kShadeCost = 10								-- Decreased from 13
 kWhipCost = 15								-- Increased from 13
+kDrifterCost = 5							-- Decreased from 8
 
 kShellCost = 15								-- Default is 15
 kTwoShellsCost = 25							-- Increased from 15
