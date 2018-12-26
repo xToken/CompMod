@@ -55,11 +55,11 @@ function MarineTeam:InitTechTree()
     
     -- Base structures
 	self.techTree:AddBuildNode(kTechId.CommandStation,				kTechId.None,					kTechId.None)
-    self.techTree:AddBuildNode(kTechId.Extractor,					kTechId.None,					kTechId.None)
+    self.techTree:AddBuildNode(kTechId.Extractor,					kTechId.CommandStation,			kTechId.None)
     self.techTree:AddBuildNode(kTechId.InfantryPortal,				kTechId.CommandStation,			kTechId.None)
 	self.techTree:AddBuildNode(kTechId.Armory,						kTechId.CommandStation,			kTechId.None)
     self.techTree:AddBuildNode(kTechId.ArmsLab,						kTechId.CommandStation,			kTechId.None)
-	self.techTree:AddBuildNode(kTechId.RoboticsFactory,				kTechId.InfantryPortal,			kTechId.None)
+	self.techTree:AddBuildNode(kTechId.RoboticsFactory,				kTechId.CommandStation,			kTechId.None)
 	
 	-- Adv structures
 	self.techTree:AddBuildNode(kTechId.Sentry,						kTechId.RoboticsFactory,		kTechId.None, 				true)
