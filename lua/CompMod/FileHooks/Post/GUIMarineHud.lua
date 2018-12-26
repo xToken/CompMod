@@ -1,6 +1,6 @@
 -- Natural Selection 2 Competitive Mod
 -- Source located at - https://github.com/xToken/CompMod
--- lua\CompMod\Client\GUIMarineHud.lua
+-- lua\CompMod\FileHooks\Post\GUIMarineHud.lua
 -- - Dragon
 
 -- Init calls reset... so call reset again....

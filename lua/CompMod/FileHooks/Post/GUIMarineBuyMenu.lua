@@ -1,6 +1,6 @@
 -- Natural Selection 2 Competitive Mod
 -- Source located at - https://github.com/xToken/CompMod
--- lua\CompMod\Client\GUIMarineBuyMenu.lua
+-- lua\CompMod\FileHooks\Post\GUIMarineBuyMenu.lua
 -- - Dragon
 
 local originalGUIMarineBuyMenu_UpdateItemButtons

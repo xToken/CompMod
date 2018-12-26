@@ -1,6 +1,6 @@
 -- Natural Selection 2 Competitive Mod
 -- Source located at - https://github.com/xToken/CompMod
--- lua\CompMod\Client\GUIAuraDisplay.lua
+-- lua\CompMod\FileHooks\Post\GUIAuraDisplay.lua
 -- - Dragon
 
 local kIconSize = Vector(80, 80, 0)
