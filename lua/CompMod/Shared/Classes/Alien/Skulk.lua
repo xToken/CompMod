@@ -4,6 +4,9 @@
 -- - Dragon
 
 -- Skulk
+
+local kSkulkScaleVector = Vector(0.9, 1, 1)
+
 function Skulk:GetAirControl()
     return 32
 end
@@ -43,6 +46,13 @@ end
 
 function Skulk:GetUpgradeLevel(upgradeIndexName)
     return Alien.GetUpgradeLevel(self, upgradeIndexName)
+end
+
+function Skulk:OnAdjustModelCoords(modelCoords)
+	modelCoords.xAxis = modelCoords.xAxis * kSkulkScaleVector.x
+	modelCoords.yAxis = modelCoords.yAxis * kSkulkScaleVector.y
+	modelCoords.zAxis = modelCoords.zAxis * kSkulkScaleVector.z
+    return modelCoords
 end
 
 Skulk.kMaxSpeed = kSkulkMaxGroundSpeed

@@ -5,5 +5,5 @@
 
 function BiteLeap:GetMeleeBase()
     -- Width of box, height of box
-    return 1.0, 1.2
+    return 0.8, 1.0
 end
