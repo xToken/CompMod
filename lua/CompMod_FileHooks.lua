@@ -15,5 +15,15 @@ if not string.find(Script.CallStack(), "Main.lua") then
 	ModLoader.SetupFileHook( "lua/Hud/Marine/GUIMarineHUD.lua", "lua/CompMod/FileHooks/Post/GUIMarineHud.lua", "post" )
 	--ModLoader.SetupFileHook( "lua/GUIAuraDisplay.lua", "lua/CompMod/FileHooks/Post/GUIAuraDisplay.lua", "post" )
 	ModLoader.SetupFileHook( "lua/GUIMarineBuyMenu.lua", "lua/CompMod/FileHooks/Post/GUIMarineBuyMenu.lua", "post" )
+	--ModLoader.SetupFileHook( "lua/GUITechMap.lua", "lua/CompMod/FileHooks/Post/GUITechMap.lua", "post" )
+	--ModLoader.SetupFileHook( "lua/MarineTechMap.lua", "lua/CompMod/FileHooks/Replace/MarineTechMap.lua", "replace" )
+	--ModLoader.SetupFileHook( "lua/AlienTechMap.lua", "lua/CompMod/FileHooks/Replace/AlienTechMap.lua", "replace" )
 	
+	--BetterDoors
+	ModLoader.SetupFileHook( "lua/Door.lua", "lua/CompMod/FileHooks/Replace/Door.lua", "replace" )
+	
+	--Predict VM Hooks
+	if Predict then
+		ModLoader.SetupFileHook( "lua/PostLoadMod.lua", "lua/CompMod/Predict/predict_loaded.lua", "post" )
+	end
 end
