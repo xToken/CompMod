@@ -13,7 +13,7 @@ local gAlienMenuButtons =
                                kTechId.Shell, kTechId.Veil, kTechId.Spur, kTechId.None },
 
     [kTechId.AssistMenu] = { kTechId.HealWave, kTechId.ShadeInk, kTechId.SelectShift, kTechId.SelectDrifter,
-                             kTechId.None, kTechId.None, kTechId.BoneWall, kTechId.Contamination }
+                             kTechId.None, kTechId.None, kTechId.BoneWall, kTechId.None }
 }
 
 local gAlienMenuIds = {}
