@@ -74,7 +74,7 @@ kMatureShiftArmor = 150						-- Vanilla is 150
 
 kShadeHealth = 500							-- Vanilla is 750
 kShadeArmor = 50							-- Vanilla is 0
-kMatureShadeHealth = 8000					-- Vanilla is 1500
+kMatureShadeHealth = 800					-- Vanilla is 1500
 kMatureShadeArmor = 100						-- Vanilla is 0
 
 kMACHealth = 300							-- Vanilla is 300
