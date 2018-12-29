@@ -4,7 +4,12 @@
 -- - Dragon
 
 local kCompModTextureReplaces = { }
-kCompModTextureReplaces["ui/buildmenu.dds"] = "ui/buildmenu_compmod.dds"
+kCompModTextureReplaces["ui/buildmenu.dds"] = "ui/buildmenu_progmod.dds"
+kCompModTextureReplaces["ui/inventory_icons.dds"] = "ui/inventory_icons_progmod.dds"
+
+for _, t in pairs(kCompModTextureReplaces) do
+	PrecacheAsset(t)
+end
 
 local oldGUIItemSetTexture = GUIItem.SetTexture
 function GUIItem:SetTexture(fileName)
