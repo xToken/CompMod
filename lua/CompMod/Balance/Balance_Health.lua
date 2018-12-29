@@ -56,8 +56,8 @@ kAlienMaxRegeneration = 120					-- Vanilla is 80
 kMineHealth = 80							-- Vanilla is 20
 kMineArmor = 10								-- Vanilla is 5
 
-kArmsLabHealth = 1650						-- Decreased from 1650
-kArmsLabArmor = 500							-- Decreased from 500
+kArmsLabHealth = 1650						-- Vanilla is 1650
+kArmsLabArmor = 500							-- Vanilla is 500
 
 kDrifterHealth = 150						-- Vanilla is 300
 kDrifterArmor = 0							-- Vanilla is 20

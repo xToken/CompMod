@@ -31,7 +31,7 @@ kRailgunWeight = 0.045						-- Default is 0.045
 kClusterGrenadeCost = 10					-- Increased from 2
 kGasGrenadeCost = 10						-- Increased from 2
 kPulseGrenadeCost = 10						-- Increased from 2
-kMineCost = 5								-- Increased from 2
+kMineCost = 5								-- Decreased from 10
 kMarineReBuyGrenadesCost = 2
 
 -- SHOTGUN
