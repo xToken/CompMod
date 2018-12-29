@@ -8,10 +8,10 @@ function Armory:GetItemList(forPlayer)
     return {
 		kTechId.Welder,
 		kTechId.LayMines,
-		kTechId.Flamethrower,
 		kTechId.Shotgun,
-		kTechId.HeavyMachineGun,
 		kTechId.GrenadeLauncher,
+		kTechId.Flamethrower,
+		kTechId.HeavyMachineGun,
 		kTechId.ClusterGrenade,
 		kTechId.GasGrenade,
 		kTechId.PulseGrenade,
