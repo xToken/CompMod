@@ -4,5 +4,5 @@
 -- - Dragon
 
 function CommandStation:GetTechButtons()
-    return { kTechId.PowerSurgeTech }
+    return { }
 end
