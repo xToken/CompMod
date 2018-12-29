@@ -7,7 +7,7 @@ function Fade:GetGroundTransistionTime()
     return 0.2
 end
 
-local kFadeOffsetSpeed = 10
+local kFadeOffsetSpeed = 5
 local kFadeModelOffset = 0.70
 
 local originalFadeOnCreate
@@ -31,7 +31,8 @@ originalFadeModifyVelocity = Class_ReplaceMethod("Fade", "ModifyVelocity",
 		local origin = self:GetOrigin()
 		self.updateOffset = false
 		local upTrace = Shared.TraceRay(origin, origin + Vector(0, 2, 0), CollisionRep.Move, PhysicsMask.AllButPCs, EntityFilterOneAndIsa(self, "Babbler"))
-		if upTrace.fraction < 0.8 then
+		-- This seems to return ghosted traces... so minimum trace to ensure we actually found SOMETHING above us thats REALLLY there
+		if upTrace.fraction > 0.3 and upTrace.fraction < 0.8 then
 			-- The ceiling is here.
 			-- Trace down to make sure we are not against the floor.
 			local downTrace = Shared.TraceRay(origin, origin - Vector(0, kFadeModelOffset + 0.1, 0), CollisionRep.Move, PhysicsMask.AllButPCs, EntityFilterOne(self))
