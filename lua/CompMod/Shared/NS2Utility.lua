@@ -12,7 +12,7 @@ function GetIsCloseToMenuStructure(player)
     return (ptlabs and #ptlabs > 0) or (armories and #armories > 0) or (robos and #robos > 0)
 
 end
-
+--[[
 function GetBulletTargets(startPoint, endPoint, spreadDirection, bulletSize, filter)
 
     local targets = {}
@@ -52,3 +52,4 @@ function GetBulletTargets(startPoint, endPoint, spreadDirection, bulletSize, fil
     return targets, trace, hitPoints
 
 end
+--]]
