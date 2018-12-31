@@ -9,7 +9,7 @@ kLerkEggCost = 30							-- Default is 30
 kFadeEggCost = 70							-- Default is 70
 kOnosEggCost = 100							-- Default is 100
 
-kLeapResearchCost = 20						-- Increased from 15
+kLeapResearchCost = 25						-- Increased from 15
 kLeapResearchTime = 60						-- Increased from 40
 
 kXenocideResearchCost = 35					-- Increased from 25

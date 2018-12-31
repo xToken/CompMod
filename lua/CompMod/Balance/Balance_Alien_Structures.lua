@@ -4,7 +4,7 @@
 -- - Dragon
 
 kHarvesterCost = 10							-- Increased from 8
-kHiveCost = 40								-- Default is 40
+kHiveCost = 50								-- Increased from 40
 kCragCost = 10								-- Decreased from 13
 kShiftCost = 10								-- Decreased from 13
 kShadeCost = 10								-- Decreased from 13
