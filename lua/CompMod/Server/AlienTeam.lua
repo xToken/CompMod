@@ -126,7 +126,7 @@ function AlienTeam:InitTechTree()
     self.techTree:AddBuyNode(kTechId.Carapace,						kTechId.Shell,					kTechId.None,					kTechId.AllAliens)
     self.techTree:AddBuyNode(kTechId.Regeneration,					kTechId.Shell,					kTechId.None,					kTechId.AllAliens)
 
-    self.techTree:AddBuyNode(kTechId.Focus,							kTechId.Veil,					kTechId.None,					kTechId.AllAliens)
+    --self.techTree:AddBuyNode(kTechId.Focus,							kTechId.Veil,					kTechId.None,					kTechId.AllAliens)
     self.techTree:AddBuyNode(kTechId.Aura,							kTechId.Veil,					kTechId.None,					kTechId.AllAliens)
     self.techTree:AddBuyNode(kTechId.Camouflage,					kTechId.Veil,					kTechId.None,					kTechId.AllAliens)
 
