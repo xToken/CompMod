@@ -90,4 +90,4 @@ kBabblerHealth = 11							-- Vanilla is 10
 
 kWebHealth = 40								-- Vanilla is 80
 
-kArmorHealScalar = 1 -- 0.75
+kArmorHealScalar = 0.5						-- Vanilla is 1
