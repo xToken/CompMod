@@ -10,7 +10,7 @@ Script.Load("lua/CompMod_Shared.lua")
 
 -- Load client specific changes
 local MainFiles = { }
-Shared.GetMatchingFileNames( "lua/CompMod/Client/*.lua", true, MainFiles )
+Shared.GetMatchingFileNames("lua/CompMod/*client.lua", true, MainFiles)
 
 -- Load function changes
 for i = 1, #MainFiles do
