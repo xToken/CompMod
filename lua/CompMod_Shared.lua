@@ -5,24 +5,16 @@
 
 -- Base 'Shared' changes which apply to all VMs
 
-Script.Load( "lua/Class.lua" )
-Script.Load( "lua/CompMod/Elixer_Utility.lua" )
+Script.Load("lua/Class.lua")
+Script.Load("lua/CompMod/Utilities/Elixer/shared.lua")
 
 Elixer.UseVersion( 1.8 )
 
 kCompModVersion = 1
-kCompModBuild = 13
-
-local ModFiles = { }
-Shared.GetMatchingFileNames( "lua/CompMod/New/*.lua", true, ModFiles )
-
--- Load new technology
-for i = 1, #ModFiles do
-	Script.Load(ModFiles[i])
-end
+kCompModBuild = 15
 
 local MainFiles = { }
-Shared.GetMatchingFileNames( "lua/CompMod/Shared/*.lua", true, MainFiles )
+Shared.GetMatchingFileNames("lua/CompMod/*shared.lua", true, MainFiles)
 
 -- Load function changes
 for i = 1, #MainFiles do
