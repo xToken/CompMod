@@ -28,55 +28,60 @@ kArmor2ResearchCost = 30					-- Default is 30
 kArmor3ResearchCost = 45					-- Increased from 40
 
 kMineResearchCost  = 10						-- Decreased from 10
-kMineResearchTime  = 45						-- Increased from 20
+kMineResearchTime  = 20						-- Increased from 20
 
 kGrenadeTechResearchCost = 15				-- Increased from 10
-kGrenadeTechResearchTime = 45				-- Default is 45
+kGrenadeTechResearchTime = 30				-- Default is 45
 
 -- New Tech
-kFlamethrowerUpgrade1Cost = 15
-kFlamethrowerUpgrade1ResearchTime = 60
+kFlamethrowerUpgrade1Cost = 10
+kFlamethrowerUpgrade1ResearchTime = 30
 
 kShotgunUpgrade1Cost = 15
-kShotgunUpgrade1ResearchTime = 60
+kShotgunUpgrade1ResearchTime = 30
 kShotgunUpgrade2Cost = 30
-kShotgunUpgrade2ResearchTime = 120
+kShotgunUpgrade2ResearchTime = 60
 
 kMGUpgrade1Cost = 15
-kMGUpgrade1ResearchTime = 60
+kMGUpgrade1ResearchTime = 30
 kMGUpgrade2Cost = 30
-kMGUpgrade2ResearchTime = 120
+kMGUpgrade2ResearchTime = 60
 
 kGLUpgrade1Cost = 15
-kGLUpgrade1ResearchTime = 60
-
-kJetpackUpgrade1Cost = 30
-kJetpackUpgrade1ResearchTime = 120
-
-kExoUpgrade1Cost = 15
-kExoUpgrade1ResearchTime = 60
-
-kExoUpgrade2Cost = 30
-kExoUpgrade2ResearchTime = 120
-
-kMinigunUpgrade1Cost = 15
-kMinigunUpgrade1ResearchTime = 60
-kMinigunUpgrade2Cost = 30
-kMinigunUpgrade2ResearchTime = 120
-
-kRailgunUpgrade1Cost = 15
-kRailgunUpgrade1ResearchTime = 60
-
-kARCUpgrade1Cost = 15
-kARCUpgrade1ResearchTime = 60
-kARCUpgrade2Cost = 30
-kARCUpgrade2ResearchTime = 120
-
-kSentryUpgrade1Cost = 15
-kSentryUpgrade1ResearchTime = 60
-
-kNanoArmorResearchCost = 30
-kNanoArmorResearchTime = 120
+kGLUpgrade1ResearchTime = 30
 
 kJetpackTechResearchCost = 20				-- Decreased from 25
-kJetpackTechResearchTime = 90				-- Default is 90
+kJetpackTechResearchTime = 60				-- Default is 90
+
+kJetpackUpgrade1Cost = 30
+kJetpackUpgrade1ResearchTime = 90
+
+kExoUpgrade1Cost = 15
+kExoUpgrade1ResearchTime = 30
+
+kExoUpgrade2Cost = 30
+kExoUpgrade2ResearchTime = 60
+
+kMinigunUpgrade1Cost = 15
+kMinigunUpgrade1ResearchTime = 30
+kMinigunUpgrade2Cost = 30
+kMinigunUpgrade2ResearchTime = 60
+
+kRailgunUpgrade1Cost = 15
+kRailgunUpgrade1ResearchTime = 30
+
+kARCUpgrade1Cost = 15
+kARCUpgrade1ResearchTime = 30
+kARCUpgrade2Cost = 30
+kARCUpgrade2ResearchTime = 60
+
+kSentryUpgrade1Cost = 15
+kSentryUpgrade1ResearchTime = 30
+
+kUpgradeRoboticsFactoryCost = 15
+kUpgradeRoboticsFactoryTime = 30
+
+kARCBuildTime = 10
+
+kNanoArmorResearchCost = 30
+kNanoArmorResearchTime = 90

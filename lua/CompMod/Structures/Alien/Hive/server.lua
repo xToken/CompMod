@@ -32,3 +32,35 @@ local function UpdateHealing(self)
 end
 
 ReplaceLocals(Hive.OnUpdate, { UpdateHealing = UpdateHealing })
+
+function Hive:OnTeleport()
+    self:SetDesiredInfestationRadius(0)
+end
+
+function Hive:OnTeleportEnd()
+
+    local attachedTechPoint = self:GetAttached()
+    if attachedTechPoint then
+        attachedTechPoint:SetIsSmashed(true)
+    end
+
+    self.startGrown = false
+    self:CleanupInfestation()
+
+    local commander = self:GetCommander()
+
+    if commander then
+
+        -- we assume onos extents for now, save lastExtents in commander
+        for index = 1, 150 do
+            local extents = LookupTechData(kTechId.Onos, kTechDataMaxExtents, nil)
+            local randomSpawn = GetRandomSpawnForCapsule(extents.y, extents.x, self:GetOrigin(), 2, 15, EntityFilterAll())
+            if randomSpawn then
+                commander.lastGroundOrigin = randomSpawn
+                break
+            end
+        end
+
+    end
+
+end

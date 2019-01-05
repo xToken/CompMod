@@ -33,3 +33,31 @@ function CommanderUI_MenuButtonOffset(index)
     return -1, -1
     
 end
+
+local oldCommanderGhostStructureLeftMouseButtonDown = CommanderGhostStructureLeftMouseButtonDown
+local ghostStructureCoords
+function CommanderGhostStructureLeftMouseButtonDown(x, y)
+    local commander = Client.GetLocalPlayer()
+    local curTech = commander.currentTechId
+    oldCommanderGhostStructureLeftMouseButtonDown(x, y)
+    if curTech == kTechId.TeleportStructure and commander.lastTeleportTechId ~= kTechId.None then
+        local techTree = GetTechTree()
+        local techNode = techTree:GetTechNode(commander.lastTeleportTechId)
+        local allowed, canAfford = commander:GetTechAllowed(commander.lastTeleportTechId, techNode, commander)
+        if not allowed then
+            commander.lastTeleportTechId = kTechId.None
+            ghostStructureCoords = GetUpValue(oldCommanderGhostStructureLeftMouseButtonDown, "ghostStructureCoords")
+            Client.AddWorldMessage(kWorldTextMessageType.CommanderError, Locale.ResolveString("COMMANDERERROR_TECH_NOT_AVAILABLE"), ghostStructureCoords.origin)
+        elseif not canAfford then
+            commander.lastTeleportTechId = kTechId.None
+            ghostStructureCoords = GetUpValue(oldCommanderGhostStructureLeftMouseButtonDown, "ghostStructureCoords")
+            Client.AddWorldMessage(kWorldTextMessageType.CommanderError, string.format(Locale.ResolveString("COMMANDERERROR_INSUFFICIENT_RESOURCES_%s"), ToString(techNode:GetCost())), ghostStructureCoords.origin)
+        else
+            commander:SetCurrentTech(commander.lastTeleportTechId)
+            commander.lastTeleportTechId = kTechId.None
+            -- This isnt ideal as well, involves a debug call each click for comms... buts its the comm.. he doesnt really need perfect FPS right?
+            ghostStructureCoords = GetUpValue(oldCommanderGhostStructureLeftMouseButtonDown, "ghostStructureCoords")
+            Client.AddWorldMessage(kWorldTextMessageType.CommanderError, Locale.ResolveString("SELECT_ECHO_LOCATION"), ghostStructureCoords.origin)
+        end
+    end
+end

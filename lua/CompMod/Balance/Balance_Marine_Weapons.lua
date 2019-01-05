@@ -9,8 +9,8 @@ kShotgunCost = 15							-- Decreased from 20
 kHeavyMachineGunCost = 20					-- Default is 20
 kGrenadeLauncherCost = 20					-- Default is 20
 kFlamethrowerCost = 10						-- Decreased from 20
-kDualExosuitCost = 30						-- Decreased from 55
-kDualRailgunExosuitCost = 30				-- Decreased from 55
+kDualExosuitCost = 35						-- Decreased from 55
+kDualRailgunExosuitCost = 35				-- Decreased from 55
 kJetpackCost = 10							-- Decreased from 15
 
 -- Weights
@@ -48,25 +48,24 @@ kShotgunUpgradedReloadSpeed = 1.2
 
 -- MG
 kHeavyMachineGunDamage = 14					-- Default is 9 (*)
-kHeavyMachineGunStructureDamageScalar = 0.5
-kHeavyMachineGunStructureUpgradedDamageScalar = 0.5
 kHeavyMachineGunClipSize = 100				-- Default is 125
 kHeavyMachineGunUpgradedClipSize = 125
 kHeavyMachineGunSpread = Math.Radians(4)	-- Default is 4
 kHeavyMachineGunReloadSpeed = 0.39611550146364	-- Dont ask.....
 kHeavyMachineGunUpgReloadSpeed = 0.7
+kHeavyMachineGunDamageType = kDamageType.Puncture
 
 -- PISTOL
 kPistolDamage = 20							-- Decreased from 25
 kPistolDamageType = kDamageType.Normal		-- Default is Light
 
 -- FLAMETHROWER
-kFlamethrowerDamage = 16					-- Increased from 12
+kFlamethrowerDamage = 18					-- Increased from 12
 kFlamethrowerDamageRadius = 0.5				-- Decreased from 1.8 (NOT USED)
 kFlamethrowerConeWidth = 0.05				-- Default is 0.3
 kFlamethrowerClipSize = 25					-- Decreased from 50
-kFlamethrowerRange = 5						-- Decreased from 9
-kFlamethrowerUpgradedRange = 8
+kFlamethrowerRange = 8						-- Decreased from 9
+kFlamethrowerUpgradedRange = 10
 kFlameThrowerEnergyDamage = 1				-- Default is 1
 kFlamethrowerDamageType = kDamageType.Normal-- Default is Flame
 kBurnDamagePerSecond = 25
@@ -87,26 +86,61 @@ kGrenadeLauncherSecondaryStructureMultiplier = 2
 kGrenadeFragmentDamageRadius = 3
 kGrenadeFragmentDamage = 20
 
+-- CLUSTER GRENADES
+kClusterGrenadeDamageType = kDamageType.Structural
+kClusterGrenadeBurnTime = 2.0
+
+-- PULSE GRENADES
+kPulseGrenadeDamageRadius = 6
+kPulseGrenadeDamage = 120
+
+-- GAS GRENADES
+kNerveGasDamagePerSecond = 40
+kNerveGasDamageType = kDamageType.Normal
+
 -- MINIGUN
-kMinigunDamage = 10							-- Default is 10
-kMinigunDamageType = kDamageType.Normal		-- Default is Normal
+kMinigunDamage = 6							-- This sounds really weak, but its actually only a little less DPS vs MG
+kMinigunDamageType = kDamageType.Normal
+kMinigunHeatUpRate = 0.175
+kMinigunCoolDownRate = 0.25
+kMinigunBulletSize = 0.02
 
 -- RAILGUN
-kRailgunDamage = 10							-- Default is 10
-kRailgunChargeDamage = 140					-- Default is 140
-kRailgunDamageType = kDamageType.Structural
+kRailgunDamage = 20							-- Default is 10
+kRailgunBulletsPerShot = 4
+kRailgunDamageType = kDamageType.Normal
+kRailgunBulletSize = 0.016
+kRailgunMaxAmmo = 6
+kRailgunRegenAmmoRate = 2.5
+kRailgunMaxRange = 20
+kRailgunDropOffStartRange = 8
 
 -- MINES
+kMineDamage = 110
+kMineDamageType = kDamageType.Normal
 kMineArmingTime = 0.03						-- Default is 0.17
 kMinesPerPlayerLimit = 99
 kNumMines = 2								-- Increased from 3
 
 -- WELDER
 kWelderStructureDamagePerSecond = 25
-kWelderDamageType = kDamageType.Flame
+kWelderDamageType = kDamageType.Normal
 kWelderDamagePerSecond = 30
 kWelderFriendlyRange = 2.4
 kWelderAttackRange = 1.7
 kSelfWeldAmount = 5
 kPlayerArmorWeldRate = 30					-- Default is 20
+kExoArmorWeldRate = 25
 kStructureWeldRate = 120					-- Default is 90
+
+-- EXO
+kExoShieldMinFuel = 0.99
+kExoShieldDamageReductionScalar = 0.75
+kExoShieldFuelUsageRate = 2
+
+kExoRepairMinFuel = 0.1
+kExoRepairPerSecond = 15
+kExoRepairFuelUsageRate = 25
+kExoRepairInterval = 0.5
+
+kExoFuelRechargeRate = 10

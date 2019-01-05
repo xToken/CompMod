@@ -5,6 +5,7 @@
 
 kTechDataIDName = "techdataidname"
 kTechDataButtonID = "techdatabuttonid"
+kTechDataRequiresSecondPlacement = "techdatarequirestwoplacements"
 
 Script.Load("lua/CompMod/TechData/NewTechData.lua")
 

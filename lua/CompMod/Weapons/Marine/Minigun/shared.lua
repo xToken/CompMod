@@ -19,9 +19,12 @@ originalMinigunOnInitialized = Class_ReplaceMethod("Minigun", "OnInitialized",
 		if Server then
 			self:AddTimedCallback(Minigun.OnTechOrResearchUpdated, 0.1)
 		end
-		
 	end
 )
+
+ReplaceUpValue(Minigun.OnTag, "kBulletSize", kMinigunBulletSize, { LocateRecurse = true } )
+ReplaceUpValue(Minigun.ProcessMoveOnWeapon, "kHeatUpRate", kMinigunHeatUpRate, { LocateRecurse = true } )
+ReplaceUpValue(Minigun.ProcessMoveOnWeapon, "kCoolDownRate", kMinigunCoolDownRate, { LocateRecurse = true } )
 
 function Minigun:OnTechOrResearchUpdated()
 	if GetHasTech(self, kTechId.MinigunUpgrade1) then
@@ -43,6 +46,10 @@ function Minigun:GetUpgradeTier()
 		return kTechId.MinigunUpgrade1, 1
 	end
     return kTechId.None, 0
+end
+
+function Minigun:ConstrainMoveVelocity(moveVelocity)
+	Weapon.ConstrainMoveVelocity(self, moveVelocity)    
 end
 
 Shared.LinkClassToMap("Minigun", Minigun.kMapName, networkVars)

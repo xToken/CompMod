@@ -7,6 +7,8 @@ Grenade.kRadius = 0.05
 Grenade.kDetonateRadius = 0.10
 Grenade.kMinLifeTime = 0.0
 
+-- Load GL Fragment file
+
 local kGrenadeFragmentPoints =
 {
     Vector(0.1, 0.12, 0.1),

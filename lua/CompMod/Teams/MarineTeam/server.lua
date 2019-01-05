@@ -120,12 +120,12 @@ function MarineTeam:InitTechTree()
 	self.techTree:AddTechInheritance(kTechId.Armory, 				kTechId.AdvancedArmory)
 	
 	-- ArmsLab Techs
-	self.techTree:AddResearchNode(kTechId.Weapons1,					kTechId.ArmsLab,				kTechId.None,				true)
-    self.techTree:AddResearchNode(kTechId.Weapons2,					kTechId.AdvancedArmory,			kTechId.Weapons1,			true)
-    self.techTree:AddResearchNode(kTechId.Weapons3,					kTechId.PrototypeLab,			kTechId.Weapons2,			true)
-	self.techTree:AddResearchNode(kTechId.Armor1,					kTechId.ArmsLab,				kTechId.None,				true)
-    self.techTree:AddResearchNode(kTechId.Armor2,					kTechId.AdvancedArmory,			kTechId.Armor1,				true)
-    self.techTree:AddResearchNode(kTechId.Armor3,					kTechId.PrototypeLab,			kTechId.Armor2,				true)
+	self.techTree:AddResearchNode(kTechId.Weapons1,					kTechId.ArmsLab,				kTechId.None)
+    self.techTree:AddResearchNode(kTechId.Weapons2,					kTechId.AdvancedArmory,			kTechId.Weapons1)
+    self.techTree:AddResearchNode(kTechId.Weapons3,					kTechId.PrototypeLab,			kTechId.Weapons2)
+	self.techTree:AddResearchNode(kTechId.Armor1,					kTechId.ArmsLab,				kTechId.None)
+    self.techTree:AddResearchNode(kTechId.Armor2,					kTechId.AdvancedArmory,			kTechId.Armor1)
+    self.techTree:AddResearchNode(kTechId.Armor3,					kTechId.PrototypeLab,			kTechId.Armor2)
 	
     -- Observatory Upgrades
     self.techTree:AddResearchNode(kTechId.PhaseTech,				kTechId.Observatory,			kTechId.None)

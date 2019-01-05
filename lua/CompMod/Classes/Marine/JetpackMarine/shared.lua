@@ -3,9 +3,7 @@
 -- lua\CompMod\Classes\Marine\JetpackMarine\shared.lua
 -- - Dragon
 
-local kFlyAcceleration = 28
-local kVerticalAccel = 5
-local kUpgradedVerticleAccel = 18
+JetpackMarine.kJetpackFuelReplenishDelay = kJetpackFuelReplenishDelay
 
 local networkVars =
 {
@@ -36,11 +34,11 @@ function JetpackMarine:OnTechOrResearchUpdated()
 end
 
 function JetpackMarine:GetFuelUseRate()
-    return self.jetpack_upg1 and kJetpackUseFuelRate or kJetpackUseFuelRate
+    return self.jetpack_upg1 and kUpgradedJetpackUseFuelRate or kJetpackUseFuelRate
 end
 
 function JetpackMarine:GetFuelReplenishRate()
-    return self.jetpack_upg1 and kJetpackReplenishFuelRate or kJetpackReplenishFuelRate
+    return self.jetpack_upg1 and kUpgradedJetpackReplenishFuelRate or kJetpackReplenishFuelRate
 end
 
 function JetpackMarine:GetFuel()
@@ -61,25 +59,20 @@ function JetpackMarine:GetFuel()
     
 end
 
---[[
-function JetpackMarine:GetJetpackAcceleration()
-    return self.jetpack_upg1 and kJetpackingAccel or kJetpackingAccel
-end
-
-function JetpackMarine:GetJetpackVerticalAcceleration()
-    return self.jetpack_upg1 and kVerticalAccel or kVerticalAccel
+function JetpackMarine:GetAirControl()
+    return 30
 end
 
 function JetpackMarine:ModifyVelocity(input, velocity, deltaTime)
 
     if self:GetIsJetpacking() then
         
-        local verticalAccel = self:GetJetpackVerticalAcceleration()
+        local verticalAccel = kJetpackingVerticleThrust
         
         if self:GetIsWebbed() then
             verticalAccel = 5
         elseif input.move:GetLength() == 0 then
-            verticalAccel = verticalAccel + 10
+            verticalAccel = verticalAccel + 6
         end
     
         self.onGround = false
@@ -98,7 +91,7 @@ function JetpackMarine:ModifyVelocity(input, velocity, deltaTime)
 		wishDir.y = 0
 		wishDir:Normalize()
 
-		velocity:Add(wishDir * self:GetJetpackAcceleration() * self:GetInventorySpeedScalar() * deltaTime)
+		velocity:Add(wishDir * kJetpackLateralForce * self:GetInventorySpeedScalar() * deltaTime)
 
 		if velocity:GetLengthXZ() > maxSpeed then
 			velocity.y = 0
@@ -112,9 +105,5 @@ function JetpackMarine:ModifyVelocity(input, velocity, deltaTime)
     end
 
 end
---]]
 
 Shared.LinkClassToMap("JetpackMarine", JetpackMarine.kMapName, networkVars, true)
-
--- Actually set these values since locals
-ReplaceLocals(JetpackMarine.ModifyVelocity, { kFlySpeed = kJetpackFlySpeed })

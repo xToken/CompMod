@@ -26,15 +26,23 @@ kMarineWalkMaxSpeed = 5.7					-- Increased from 5.0
 kMarineMaxSlowWalkSpeed = 2.9
 
 -- JetpackMarine
-kJetpackFlySpeed = 10.5						-- Increased from 9.0
+kJetpackFlySpeed = 12						-- Increased from 9.0
 
 -- Jetpack
-kJetpackingAccel = 0.95
-kUpgradedJetpackingAccel = 0
-kJetpackUseFuelRate = .21
-kUpgradedJetpackUseFuelRate = 0
-kJetpackReplenishFuelRate = .11
-kUpgradedJetpackReplenishFuelRate = 0
+kJetpackingVerticleThrust = 23
+kJetpackLateralForce = 44
+
+kJetpackUseFuelRate = .85
+kUpgradedJetpackUseFuelRate = .78
+kJetpackReplenishFuelRate = .28
+kUpgradedJetpackReplenishFuelRate = .35
+kJetpackFuelReplenishDelay = 0.65
 
 -- EXOS
 kExoMaxSpeed = 6.0							-- Increased from 5.75
+
+kExoThrusterMinFuel = 0.3
+kExoThrusterFuelUsageRate = 1.5
+kExoThrusterLateralAccel = 50
+kExoThrusterVerticleAccel = 8
+kExoThrusterMaxSpeed = 5

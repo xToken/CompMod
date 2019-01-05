@@ -67,6 +67,7 @@ TeamInfo.kRelevantTechIdsAlien =
     kTechId.Xenocide,
     kTechId.BileBomb,
     kTechId.BabblerTech,
+    kTechId.HealingRoost,
 	kTechId.Spores,
     kTechId.Umbra,
 	kTechId.Spikes,
@@ -79,5 +80,11 @@ TeamInfo.kRelevantTechIdsAlien =
 	
 	kTechId.TwoHives,
     kTechId.ThreeHives,
+
+    kTechId.OffensiveTraits,
+    kTechId.DefensiveTraits,
+    kTechId.MovementTraits,
+    kTechId.AdditionalTraitSlot1,
+    kTechId.AdditionalTraitSlot2,
     
 }

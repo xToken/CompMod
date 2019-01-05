@@ -9,7 +9,10 @@ kCragCost = 10								-- Decreased from 13
 kShiftCost = 10								-- Decreased from 13
 kShadeCost = 10								-- Decreased from 13
 kWhipCost = 15								-- Increased from 13
+
 kDrifterCost = 5							-- Decreased from 8
+kDrifterCooldown = 0
+kDrifterBuildTime = 3
 
 kShellCost = 15								-- Default is 15
 kTwoShellsCost = 25							-- Increased from 15
@@ -56,9 +59,26 @@ kCragHealingInterval = 2					-- Default is 2
 kShiftEnergizeDuration = 6
 kShiftEnergizeCooldown = 6
 kShiftEnergizeCost = 2
-kPlayerEnergyPerEnergize = 15				-- Default is 15
-kPlayerPassiveEnergyPerEnergize = 7
+kPlayerEnergyPerEnergize = 10				-- Default is 15
+kPlayerPassiveEnergyPerEnergize = 4
 
 kShadeInkCost = 3							-- Default is 3
 kShadeInkCooldown = 16						-- Default is 16
 kShadeInkDuration = 6.3						-- Default is 6.3
+
+kEchoHydraCost = 1
+kEchoCragCost = 1
+kEchoShadeCost = 1
+kEchoShiftCost = 1
+kEchoVeilCost = 1
+kEchoSpurCost = 1
+kEchoShellCost = 1
+kEchoWhipCost = 2
+kEchoTunnelCost = 5
+kEchoEggCost = 2
+kEchoEmbryoCost = 3
+kEchoHarvesterCost = 5
+kEchoHiveCost = 50
+
+kEchoTeleportTime = 5						-- Default is 5
+kRuptureBurstTime = 5

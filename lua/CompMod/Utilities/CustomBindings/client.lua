@@ -5,47 +5,47 @@
 
 local kCustomBindingsTable = { }
 
-function RegisterCustomBinding(bindingName, insertAfter, type, desc, key)
+function RegisterCustomBinding(bindingName, insertAfter, type, desc, key, comm)
 	assert(bindingName)
     assert(type)
     assert(key)
-    table.insert(kCustomBindingsTable, { n = bindingName, iA = insertAfter, t = type, d = desc or "Custom Binding", k = key })
+    table.insert(kCustomBindingsTable, { n = bindingName, iA = insertAfter, t = type, d = desc or "Custom Binding", k = key, c = comm })
+end
+
+local function InsertCustomBinding(start, t, new)
+	table.insert(t, start, new.n)
+	table.insert(t, start + 1, new.t)
+	table.insert(t, start + 2, new.d)
+	table.insert(t, start + 3, new.k)
 end
 
 function OnLoadComplete()
 	local origControlBindings = GetUpValue(BindingsUI_GetBindingsData, "globalControlBindings", { LocateRecurse = true })
+	local origCommanderBindings = GetUpValue(BindingsUI_GetComBindingsData, "globalComControlBindings", { LocateRecurse = true })
 	local defaults = GetUpValue( GetDefaultInputValue, "defaults", { LocateRecurse = true })
+
 	for i = 1, #kCustomBindingsTable do
+		local target = kCustomBindingsTable[i].c and origCommanderBindings or origControlBindings
 		if not kCustomBindingsTable[i].iA then
 			-- Just insert at the end
-			table.insert(origControlBindings, #origControlBindings + 1, kCustomBindingsTable[i].n)
-			table.insert(origControlBindings, #origControlBindings + 1, kCustomBindingsTable[i].t)
-			table.insert(origControlBindings, #origControlBindings + 1, kCustomBindingsTable[i].d)
-			table.insert(origControlBindings, #origControlBindings + 1, kCustomBindingsTable[i].k)
+			InsertCustomBinding(#target + 1, target, kCustomBindingsTable[i])
 		else
 			-- Find the binding to insert after
 			local success = false
-			for j = 1, #origControlBindings do
-				if origControlBindings[j] == kCustomBindingsTable[i].iA then
-					table.insert(origControlBindings, j + 4, kCustomBindingsTable[i].n)
-					table.insert(origControlBindings, j + 5, kCustomBindingsTable[i].t)
-					table.insert(origControlBindings, j + 6, kCustomBindingsTable[i].d)
-					table.insert(origControlBindings, j + 7, kCustomBindingsTable[i].k)
+			for j = 1, #target do
+				if target[j] == kCustomBindingsTable[i].iA then
+					InsertCustomBinding(j + 4, target, kCustomBindingsTable[i])
 					success = true
 				end
 			end
 			if not success then
 				-- Couldnt find, insert at end
-				table.insert(origControlBindings, #origControlBindings + 1, kCustomBindingsTable[i].n)
-				table.insert(origControlBindings, #origControlBindings + 1, kCustomBindingsTable[i].t)
-				table.insert(origControlBindings, #origControlBindings + 1, kCustomBindingsTable[i].d)
-				table.insert(origControlBindings, #origControlBindings + 1, kCustomBindingsTable[i].k)
+				InsertCustomBinding(#target + 1, target, kCustomBindingsTable[i])
 			end
 		end
 		-- Insert into defaults table
 		table.insert(defaults, { kCustomBindingsTable[i].n, kCustomBindingsTable[i].k })
 	end
-	--ReplaceLocals(BindingsUI_GetBindingsData, { globalControlBindings = origControlBindings })
 end
 
 Event.Hook("LoadComplete", OnLoadComplete)

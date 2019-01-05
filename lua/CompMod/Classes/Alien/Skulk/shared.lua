@@ -48,6 +48,10 @@ function Skulk:GetUpgradeLevel(upgradeIndexName)
     return Alien.GetUpgradeLevel(self, upgradeIndexName)
 end
 
+function Skulk:GetAdrenalineRecuperationRate()
+    return kSkulkAdrenalineRecuperationScalar
+end
+
 function Skulk:OnAdjustModelCoords(modelCoords)
 	modelCoords.xAxis = modelCoords.xAxis * kSkulkScaleVector.x
 	modelCoords.yAxis = modelCoords.yAxis * kSkulkScaleVector.y

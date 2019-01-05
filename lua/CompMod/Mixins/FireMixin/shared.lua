@@ -10,6 +10,8 @@ function FireMixin:SetOnFire(attacker, doer)
         if not self:GetCanBeSetOnFire() then
             return
         end
+
+        local burnTime = kFlamethrowerBurnDuration
         
         self:SetGameEffectMask(kGameEffect.OnFire, true)
         
@@ -19,6 +21,10 @@ function FireMixin:SetOnFire(attacker, doer)
         
         if doer then
             self.fireDoerId = doer:GetId()
+        end
+
+        if doer.OverrideBurnTime then
+            burnTime = doer:OverrideBurnTime()
         end
         
         local time = Shared.GetTime()
@@ -30,9 +36,9 @@ function FireMixin:SetOnFire(attacker, doer)
         
         --Flat restriction to single-shot player burn time. ideally will diminish "burn-out" deaths
         if self:isa("Player") then
-            self.timeBurnDuration = kFlamethrowerBurnDuration
+            self.timeBurnDuration = burnTime
         else
-            self.timeBurnDuration = math.min(self.timeBurnDuration + kFlamethrowerBurnDuration, kFlamethrowerMaxBurnDuration)
+            self.timeBurnDuration = math.min(self.timeBurnDuration + burnTime, kFlamethrowerMaxBurnDuration)
         end
         
     end

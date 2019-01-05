@@ -12,5 +12,9 @@ function Onos:GetMovePhysicsMask()
     return PhysicsMask.OnosMovement
 end
 
+function Onos:GetAdrenalineRecuperationRate()
+	return kOnosAdrenalineRecuperationScalar
+end
+
 Onos.kMaxSpeed = kOnosMaxGroundSpeed
 Onos.kChargeSpeed = kOnosMaxChargeSpeed

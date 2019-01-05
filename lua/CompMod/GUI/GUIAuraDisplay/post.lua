@@ -7,6 +7,8 @@ local kIconSize = Vector(80, 80, 0)
 local kHeartOffset = Vector(0, 1.25, 0)
 local kExoHeartOffset = Vector(0, 2.25, 0)
 local kTexture = "ui/aura.dds"
+local kHeartbeatMinSoundRate = 2
+local kHeartbeatMaxSoundRate = 4
 
 local function CreateAuaIcon(self)
 
@@ -25,6 +27,10 @@ function GUIAuraDisplay:Update(deltaTime)
     PROFILE("GUIAuraDisplay:Update")
     
     local players = {}
+
+    if not self.soundTrigger then
+        self.soundTrigger = { }
+    end
     
     local player = Client.GetLocalPlayer()
     if player and GetHasAuraUpgrade(player) then
@@ -33,13 +39,19 @@ function GUIAuraDisplay:Update(deltaTime)
         local eyePos = player:GetEyePos()
         
         local range = player:GetVeilLevel() * 10
+
         for _, enemyPlayer in ipairs( GetEntitiesForTeamWithinRange("Player", GetEnemyTeamNumber(player:GetTeamNumber()), eyePos, range) ) do
         
             if not enemyPlayer:isa("Spectator") and not enemyPlayer:isa("Commander") then
 
-                if enemyPlayer:GetIsAlive() then                
-                    if viewDirection:DotProduct(GetNormalizedVector(enemyPlayer:GetOrigin() - eyePos)) > 0 and not GetWallBetween(eyePos, enemyPlayer:GetOrigin(), enemyPlayer) then
-                        table.insert(players, enemyPlayer)    
+                if enemyPlayer:GetIsAlive() then
+                    if viewDirection:DotProduct(GetNormalizedVector(enemyPlayer:GetOrigin() - eyePos)) > 0 then
+                        if not GetWallBetween(eyePos, enemyPlayer:GetOrigin(), enemyPlayer) then
+                            table.insert(players, enemyPlayer)
+                        elseif (self.soundTrigger[enemyPlayer:GetId()] or 0) < Shared.GetTime() then
+                            StartSoundEffectAtOrigin("sound/NS2.fev/alien/structures/shift/idle", enemyPlayer:GetOrigin(), 1.5, nil)
+                            self.soundTrigger[enemyPlayer:GetId()] = Shared.GetTime() + math.random(kHeartbeatMinSoundRate, kHeartbeatMaxSoundRate)
+                        end
                     end
                     
                 end
@@ -49,7 +61,7 @@ function GUIAuraDisplay:Update(deltaTime)
         end
     
     end
-    
+
     local numPlayers = #players
     local numIcons = #self.icons
     

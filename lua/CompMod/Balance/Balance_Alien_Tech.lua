@@ -21,6 +21,9 @@ kGorgeTunnelResearchTime = 30				-- Increased from 40
 kBileBombResearchCost = 25					-- Increased from 15
 kBileBombResearchTime = 60					-- Increased from 40
 
+kHealingRoostCost = 20
+kHealingRoostResearchTime = 30
+
 kUmbraResearchCost = 25						-- Increased from 20
 kUmbraResearchTime = 60						-- Increased from 45
 
@@ -45,6 +48,21 @@ kBoneShieldResearchTime = 60				-- Increased from 40
 kStompResearchCost = 35						-- Increased from 25
 kStompResearchTime = 90						-- Increased from 60
 
+kAdditionalTraitSlot1Cost = 25
+kAdditionalTraitSlot1ResearchTime = 60
+
+kAdditionalTraitSlot2Cost = 35
+kAdditionalTraitSlot2ResearchTime = 90
+
+kOffensiveTraitCost = 20
+kOffensiveTraitResearchTime = 30
+
+kDefensiveTraitCost = 20
+kDefensiveTraitResearchTime = 30
+
+kMovementTraitCost = 20
+kMovementTraitResearchTime = 30
+
 kEnzymeCloudCost = 2						-- Default is 2
 kHallucinationCloudCost = 2					-- Default is 2
 kMucousMembraneCost = 2						-- Default is 2
@@ -58,4 +76,17 @@ kHallucinationCloudRadius = 6				-- Decreased from 8!!!
 kMaxHallucinations = 2
 kHallucinationLifeTime = 15					-- Decreased from 30
 
-kAlienStructureMoveSpeed = 3				-- Increased from 1.5
+kAlienStructureMoveSpeed = 2.5				-- Increased from 1.5
+
+kNutrientMistCost = 1
+kNutrientMistCooldown = 1
+kNutrientMistDuration = 10
+kNutrientMistRange = 0.2
+kNutrientMistMaxStackTime = 30
+
+kParasiteCloudLifetime = 6
+kParasiteCloudDetectRadius = 5
+kParasiteCloudRange = 35
+kParasiteCloudCost = 3
+kParasiteCloudCooldown = 5
+kParasiteCloudMarkDuration = 2

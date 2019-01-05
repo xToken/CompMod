@@ -6,19 +6,15 @@
 function PrototypeLab:GetTechButtons(techId)
 	
 	local techButtons = { kTechId.CatPackTech, kTechId.NanoArmor, kTechId.JetpackTech, kTechId.ExoUpgrade1, 
-             kTechId.NanoShieldTech, kTechId.None, kTechId.None, kTechId.None }
+             kTechId.None, kTechId.None, kTechId.None, kTechId.None }
 			 
 	if GetHasTech(self, kTechId.JetpackTech) then
-        --techButtons[3] = kTechId.JetpackUpgrade1
+        techButtons[3] = kTechId.JetpackUpgrade1
     end
 
 	if GetHasTech(self, kTechId.ExoUpgrade1) then
         techButtons[4] = kTechId.ExoUpgrade2
     end
-	
-	if GetHasTech(self, kTechId.MinigunUpgrade1) then
-		techButtons[6] = kTechId.MinigunUpgrade2
-	end
 	
     return techButtons
 end

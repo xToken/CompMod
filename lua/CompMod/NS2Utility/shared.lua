@@ -12,6 +12,47 @@ function GetIsCloseToMenuStructure(player)
     return (ptlabs and #ptlabs > 0) or (armories and #armories > 0) or (robos and #robos > 0)
 
 end
+
+local oldGetSelectionText = GetSelectionText
+function GetSelectionText(entity, teamNumber)
+
+    local text = oldGetSelectionText(entity, teamNumber)
+
+    if HasMixin(entity, "Maturity") then
+
+        if entity:GetMaturityLevel() == kMaturityLevel.Starving then
+            text = Locale.ResolveString("STARVING") .. " " .. text
+        end
+
+        if entity:GetMaturityLevel() == kMaturityLevel.Mature then
+            text = Locale.ResolveString("MATURED") .. " " .. text
+        end
+
+    end
+    return text
+
+end
+
+function GetNumberOfAllowedUpgrades(callingEntity)
+    if not callingEntity then
+        return 1
+    end
+    local techtree = GetTechTree(callingEntity:GetTeamNumber())
+    if techtree then
+        if GetHasTech(callingEntity, kTechId.AdditionalTraitSlot2) then
+            return 3
+        elseif GetHasTech(callingEntity, kTechId.AdditionalTraitSlot1) then
+            return 2
+        else
+            return 1
+        end
+    else
+        return 1
+    end
+end
+
+-- Bullet size re-enabled
+
 --[[
 function GetBulletTargets(startPoint, endPoint, spreadDirection, bulletSize, filter)
 

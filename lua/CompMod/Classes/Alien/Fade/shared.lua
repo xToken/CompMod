@@ -62,6 +62,10 @@ function Fade:OnAdjustModelCoords(modelCoords)
     return modelCoords
 end
 
+function Fade:GetAdrenalineRecuperationRate()
+	return kFadeAdrenalineRecuperationScalar
+end
+
 -- Actually set these values since locals
 ReplaceLocals(Fade.GetMaxSpeed, { kMaxSpeed = kFadeMaxSpeed })
 ReplaceLocals(Fade.GetMaxSpeed, { kBlinkSpeed = kFadeBlinkSpeed })

@@ -15,19 +15,3 @@ end
 function Hydra:GetRateOfFire()
 	return kHydraRateOfFire
 end
-
-if Server then
-	
-	local CreateSpikeProjectile = GetUpValue(Hydra.AttackTarget, "CreateSpikeProjectile")
-	function Hydra:AttackTarget()
-
-		self:TriggerUncloak()
-		
-		CreateSpikeProjectile(self)    
-		self:TriggerEffects("hydra_attack")
-		
-		self.timeOfNextFire = Shared.GetTime() + self:GetRateOfFire()
-		
-	end
-
-end

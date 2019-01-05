@@ -5,4 +5,4 @@
 
 Script.Load("lua/CompMod/Utilities/CustomBindings/client.lua")
 
-RegisterCustomBinding("SecondaryMovementModifier", "MovementModifier", "input", "Secondary Movement Modifier", "Capital")
+RegisterCustomBinding("SecondaryMovementModifier", "MovementModifier", "input", "Secondary Movement Modifier", "Capital", false)

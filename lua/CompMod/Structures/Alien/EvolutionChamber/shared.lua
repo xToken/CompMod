@@ -11,7 +11,7 @@ EvolutionChamber.kUpgradeButtons =
     [kTechId.GorgeMenu] = { kTechId.GorgeTunnelTech, kTechId.BileBomb, kTechId.None, kTechId.None,
                                  kTechId.None, kTechId.None, kTechId.None, kTechId.None },
                                  
-    [kTechId.LerkMenu] = { kTechId.None, kTechId.Umbra, kTechId.Spores, kTechId.None,
+    [kTechId.LerkMenu] = { kTechId.HealingRoost, kTechId.Umbra, kTechId.Spores, kTechId.None,
                                  kTechId.None, kTechId.None, kTechId.None, kTechId.None },
                                  
     [kTechId.FadeMenu] = { kTechId.MetabolizeEnergy, kTechId.MetabolizeHealth, kTechId.Stab, kTechId.None,

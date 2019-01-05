@@ -154,12 +154,13 @@ function Door:OnInitialized()
 		
 	elseif Client then
 	
+		self:AddFieldWatcher("state", Door.OnStateChanged)
 		self:AddTimedCallback(UpdateClientAutoOpen, kLocalUpdateAutoOpenRate)
 		self.clientstate = Door.kState.Open
 		self.clientstateoverride = 0
 		
 	elseif Predict then
-	
+
 		self.clientstate = Door.kState.Open
 		self.clientstateoverride = 0
 		
@@ -197,25 +198,24 @@ function Door:GetDescription()
     
 end
 
-function Door:SetState(state)
+function Door:OnStateChanged()
+	if self.state ~= self.clientstate then
+		-- We didnt predict this, or didnt predict it correctly.  Trigger sound
+		self:TriggerSound(self.state)
+	end
+end
 
+function Door:TriggerSound(state)
+	local sound = Door.kStateSound[state]
+	if sound ~= "" and Client then
+		StartSoundEffectForPlayer(sound, Client.GetLocalPlayer())
+	end
+end
+
+function Door:SetState(state)
     if self.state ~= state then
-    
-        self.state = state
-        
-        if Server then
-        
-            local sound = Door.kStateSound[self.state]
-            if sound ~= "" then
-			
-                self:PlaySound(sound)
-				
-            end
-            
-        end
-        
+        self.state = state        
     end
-    
 end
 
 function Door:GetState()
@@ -231,6 +231,7 @@ function Door:SetClientState(state)
 		self.clientstateoverride = Shared.GetTime() + kClientStateGrace
 	end
     self.clientstate = state
+    self:TriggerSound(state)
 end
 
 function Door:GetCanBeUsed(player, useSuccessTable)

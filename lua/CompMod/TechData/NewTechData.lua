@@ -69,7 +69,6 @@ function BuildCompModTechDataUpdates()
 			[kTechDataResearchTimeKey] = kJetpackUpgrade1ResearchTime,
 			[kTechDataDisplayName] = "MARINE_JP_1",
 			[kTechDataTooltipInfo] = "MARINE_JP_1_TOOLTIP",
-			[kTechDataImplemented] = false,
 			[kTechDataButtonID] = 89
 		})
 	table.insert(newTechTable,
@@ -79,7 +78,6 @@ function BuildCompModTechDataUpdates()
 			[kTechDataResearchTimeKey] = kExoUpgrade1ResearchTime,
 			[kTechDataDisplayName] = "MARINE_EXO_1",
 			[kTechDataTooltipInfo] = "MARINE_EXO_1_TOOLTIP",
-			[kTechDataImplemented] = false,
 			[kTechDataButtonID] = 25
 		})
 	table.insert(newTechTable,
@@ -150,6 +148,119 @@ function BuildCompModTechDataUpdates()
 			[kTechDataImplemented] = false,
 			[kTechDataButtonID] = 5
 		})
+	table.insert(newTechTable,
+		{
+			[kTechDataId] = kTechId.StructureMenu,
+			[kTechDataDisplayName] = "BUILD_STRUCTURES",
+			[kTechDataTooltipInfo] = "BUILD_STRUCTURES_TOOLTIP",
+			[kTechDataButtonID] = 157
+		})
+	table.insert(newTechTable,
+		{
+			[kTechDataId] = kTechId.AdvancedStructureMenu,
+			[kTechDataDisplayName] = "BUILD_ADV_STRUCTURES",
+			[kTechDataTooltipInfo] = "BUILD_ADV_STRUCTURES_TOOLTIP",
+			[kTechDataButtonID] = 11
+		})
+	table.insert(newTechTable,
+		{
+			[kTechDataId] = kTechId.OffensiveTraits,
+			[kTechDataCostKey] = kOffensiveTraitCost,
+			[kTechDataResearchTimeKey] = kOffensiveTraitResearchTime,
+			[kTechDataDisplayName] = "OFFENSE_TRAITS",
+			[kTechDataTooltipInfo] = "OFFENSE_TRAITS_TOOLTIP",
+			[kTechDataButtonID] = 23
+		})
+	table.insert(newTechTable,
+		{
+			[kTechDataId] = kTechId.DefensiveTraits,
+			[kTechDataCostKey] = kDefensiveTraitCost,
+			[kTechDataResearchTimeKey] = kDefensiveTraitResearchTime,
+			[kTechDataDisplayName] = "DEFENSE_TRAITS",
+			[kTechDataTooltipInfo] = "DEFENSE_TRAITS_TOOLTIP",
+			[kTechDataButtonID] = 22
+		})
+	table.insert(newTechTable,
+		{
+			[kTechDataId] = kTechId.MovementTraits,
+			[kTechDataCostKey] = kMovementTraitCost,
+			[kTechDataResearchTimeKey] = kMovementTraitResearchTime,
+			[kTechDataDisplayName] = "MOVEMENT_TRAITS",
+			[kTechDataTooltipInfo] = "MOVEMENT_TRAITS_TOOLTIP",
+			[kTechDataButtonID] = 11
+		})
+	table.insert(newTechTable,
+		{
+			[kTechDataId] = kTechId.AdditionalTraitSlot1,
+			[kTechDataCostKey] = kAdditionalTraitSlot1Cost,
+			[kTechDataResearchTimeKey] = kAdditionalTraitSlot1ResearchTime,
+			[kTechDataDisplayName] = "ADDITIONAL_TRAIT_SLOT",
+			[kTechDataTooltipInfo] = "ADDITIONAL_TRAIT_SLOT_TOOLTIP",
+			[kTechDataButtonID] = 70
+		})
+	table.insert(newTechTable,
+		{
+			[kTechDataId] = kTechId.AdditionalTraitSlot2,
+			[kTechDataCostKey] = kAdditionalTraitSlot2Cost,
+			[kTechDataResearchTimeKey] = kAdditionalTraitSlot2ResearchTime,
+			[kTechDataDisplayName] = "ADDITIONAL_TRAIT_SLOT_2",
+			[kTechDataTooltipInfo] = "ADDITIONAL_TRAIT_SLOT_2_TOOLTIP",
+			[kTechDataButtonID] = 65
+		})
+	table.insert(newTechTable,
+		{
+			[kTechDataId] = kTechId.HealingRoost,
+			[kTechDataCostKey] = kHealingRoostCost,
+			[kTechDataResearchTimeKey] = kHealingRoostResearchTime,
+			[kTechDataDisplayName] = "HEALING_ROOST",
+			[kTechDataTooltipInfo] = "HEALING_ROOST_TOOLTIP",
+			[kTechDataButtonID] = 166
+		})
+	table.insert(newTechTable,
+		{
+			[kTechDataId] = kTechId.ParasiteCloud,
+			[kTechDataCooldown] = kParasiteCloudCooldown,
+            [kTechDataMapName] = ParasiteCloud.kMapName,
+            [kTechDataDisplayName] = "PARASITE_CLOUD",
+            [kTechDataCostKey] = kParasiteCloudCost,
+            [kTechDataTooltipInfo] = "PARASITE_CLOUD_TOOLTIP",
+            [kVisualRange] = ParasiteCloud.kRadius,
+            [kTechDataGhostModelClass] = "AlienGhostModel",
+            [kTechDataIgnorePathingMesh] = true,
+            [kTechDataAllowStacking] = true,
+            [kTechDataModel] = BoneWall.kModelName,
+			[kTechDataButtonID] = 70
+		})
+	table.insert(newTechTable,
+		{
+            [kTechDataId] = kTechId.TeleportStructure,
+            [kTechIDShowEnables] = false,
+            [kTechDataGhostModelClass] = "TeleportAlienGhostModel",
+            [kTechDataDisplayName] = "ECHO_STRUCTURE",
+            [kTechDataTooltipInfo] = "ECHO_TOOLTIP",
+            [kTechDataCollideWithWorldOnly] = true,
+            [kTechDataIgnorePathingMesh] = true,
+            [kTechDataAllowStacking] = true,
+            [kTechDataModel] = BoneWall.kModelName,
+            [kVisualRange] = 0.5,
+            [kTechDataButtonID] = 40,
+            [kCommanderSelectRadius] = 0.375,
+            [kTechDataRequiresSecondPlacement] = true
+        })
+	table.insert(newTechTable, 
+		{
+            [kTechDataId] = kTechId.TeleportEmbryo,
+            [kTechIDShowEnables] = false,
+            [kTechDataGhostModelClass] = "TeleportAlienGhostModel",
+            [kTechDataDisplayName] = "ECHO_EMBRYO",
+            [kTechDataCostKey] = kEchoEmbryoCost,
+            [kTechDataRequiresInfestation] = false,
+            [kTechDataModel] = Egg.kModelName,
+            [kTechDataTooltipInfo] = "ECHO_TOOLTIP",
+            [kTechDataCollideWithWorldOnly] = true,
+            [kTechDataImplemented] = false,
+            [kTechDataRequiresSecondPlacement] = true
+        })
 
 	-- Existing tech updates below!
 	table.insert(techIdUpdates,
@@ -189,6 +300,87 @@ function BuildCompModTechDataUpdates()
 		})
 	table.insert(techIdUpdates,
 		{
+			[kTechDataId] = kTechId.NutrientMist,
+			[kCommanderSelectRadius] = 0.375
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.TeleportHarvester,
+            [kTechDataRequiresInfestation] = false,
+            [kTechDataRequiresSecondPlacement] = true
+        })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.TeleportHydra,
+            [kTechDataRequiresSecondPlacement] = true
+        })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.TeleportWhip,
+            [kTechDataRequiresSecondPlacement] = true
+        })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.TeleportTunnel,
+            [kTechDataRequiresSecondPlacement] = true
+        })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.TeleportCrag,
+            [kTechDataRequiresSecondPlacement] = true
+        })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.TeleportShade,
+            [kTechDataRequiresSecondPlacement] = true
+        })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.TeleportShift,
+            [kTechDataRequiresSecondPlacement] = true
+        })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.TeleportVeil,
+            [kTechDataRequiresSecondPlacement] = true
+        })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.TeleportSpur,
+            [kTechDataRequiresSecondPlacement] = true
+        })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.TeleportShell,
+            [kTechDataRequiresSecondPlacement] = true
+        })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.TeleportHive,
+			[kTechDataImplemented] = true,
+			[kTechDataMaxExtents] = Vector(2, 1, 2),
+			[kTechDataCollideWithWorldOnly] = false,
+            [kTechDataRequiresSecondPlacement] = true
+        })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.TeleportEgg,
+            [kTechDataRequiresSecondPlacement] = true
+        })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.Egg,
+            [kTechDataRequiresInfestation] = false
+        })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.Drifter,
+			[kTechDataBuildTime] = kDrifterBuildTime,
+			[kTechDataResearchTimeKey] = kDrifterBuildTime,
+			[kTechDataCooldown] = kDrifterCooldown
+		})
+	table.insert(techIdUpdates,
+		{
 			[kTechDataId] = kTechId.NanoShieldTech,
 			[kTechDataImplemented] = false
 		})
@@ -197,6 +389,36 @@ function BuildCompModTechDataUpdates()
 			[kTechDataId] = kTechId.PowerSurgeTech,
 			[kTechDataImplemented] = false
 		})
+	table.insert(techIdUpdates,
+		{
+            [kTechDataId] = kTechId.Carapace,
+            [kTechDataCategory] = kTechId.DefensiveTraits
+        })
+	table.insert(techIdUpdates,
+        {
+            [kTechDataId] = kTechId.Regeneration,
+            [kTechDataCategory] = kTechId.DefensiveTraits
+        })
+	table.insert(techIdUpdates,
+        {
+            [kTechDataId] = kTechId.Aura,
+            [kTechDataCategory] = kTechId.OffensiveTraits
+        })
+	table.insert(techIdUpdates,
+        {
+            [kTechDataId] = kTechId.Celerity,
+            [kTechDataCategory] = kTechId.MovementTraits
+        })
+	table.insert(techIdUpdates,
+        {
+            [kTechDataId] = kTechId.Adrenaline,
+            [kTechDataCategory] = kTechId.MovementTraits
+        })
+	table.insert(techIdUpdates,
+        {
+            [kTechDataId] = kTechId.Crush,
+            [kTechDataCategory] = kTechId.OffensiveTraits
+        })
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.TwoShells,
@@ -323,6 +545,11 @@ function BuildCompModTechDataUpdates()
 			[kTechDataCooldown] = kShiftEnergizeCooldown,
 			[kTechDataCostKey] = kShiftEnergizeCost,
 			[kTechDataOneAtATime] = true,
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.DualRailgunExosuit,
+			[kTechDataImplemented] = false,
 		})
 	return newTechTable, techIdUpdates
 end

@@ -6,13 +6,12 @@
 -- Remove the cyst build button
 local gAlienMenuButtons =
 {
-    [kTechId.BuildMenu] = { kTechId.None, kTechId.Harvester, kTechId.DrifterEgg, kTechId.Hive,
-                            kTechId.ThreatMarker, kTechId.NeedHealingMarker, kTechId.ExpandingMarker, kTechId.None },
+    [kTechId.BuildMenu] = { kTechId.ThreatMarker, kTechId.NeedHealingMarker, kTechId.ExpandingMarker, kTechId.None,
+                            kTechId.None, kTechId.None, kTechId.None, kTechId.None },
                             
-    [kTechId.AdvancedMenu] = { kTechId.Crag, kTechId.Shade, kTechId.Shift, kTechId.Whip,
-                               kTechId.Shell, kTechId.Veil, kTechId.Spur, kTechId.None },
+    [kTechId.AdvancedMenu] = { kTechId.None },
 
-    [kTechId.AssistMenu] = { kTechId.HealWave, kTechId.ShadeInk, kTechId.SelectShift, kTechId.SelectDrifter,
+    [kTechId.AssistMenu] = { kTechId.HealWave, kTechId.ShadeInk, kTechId.SelectDrifter, kTechId.BoneWall,
                              kTechId.None, kTechId.None, kTechId.BoneWall, kTechId.None }
 }
 
@@ -21,6 +20,49 @@ do
     for menuId, _ in pairs(gAlienMenuButtons) do
         gAlienMenuIds[#gAlienMenuIds+1] = menuId
     end
+end
+
+local gTeleportClassnames
+function GetEchoTeleportTechIdForClassname(classname)
+
+    if not gTeleportClassnames then
+    
+        gTeleportClassnames = {}
+        gTeleportClassnames["Hydra"] = kTechId.TeleportHydra
+        gTeleportClassnames["Whip"] = kTechId.TeleportWhip
+        gTeleportClassnames["TunnelEntrance"] = kTechId.TeleportTunnel
+        gTeleportClassnames["Crag"] = kTechId.TeleportCrag
+        gTeleportClassnames["Shade"] = kTechId.TeleportShade
+        gTeleportClassnames["Shift"] = kTechId.TeleportShift
+        gTeleportClassnames["Veil"] = kTechId.TeleportVeil
+        gTeleportClassnames["Spur"] = kTechId.TeleportSpur
+        gTeleportClassnames["Shell"] = kTechId.TeleportShell
+        gTeleportClassnames["Hive"] = kTechId.TeleportHive
+        gTeleportClassnames["Egg"] = kTechId.TeleportEgg
+        gTeleportClassnames["Harvester"] = kTechId.TeleportHarvester
+        --gTeleportClassnames["Embryo"] = kTechId.TeleportEmbryo
+    end
+    
+    return gTeleportClassnames[classname]
+
+end
+
+function GetIsEchoTeleportTechId(techId)
+
+return techId == kTechId.TeleportHydra or
+       techId == kTechId.TeleportWhip or
+       techId == kTechId.TeleportTunnel or
+       techId == kTechId.TeleportCrag or
+       techId == kTechId.TeleportShade or
+       techId == kTechId.TeleportShift or
+       techId == kTechId.TeleportVeil or
+       techId == kTechId.TeleportSpur or
+       techId == kTechId.TeleportShell or
+       techId == kTechId.TeleportHive or
+       techId == kTechId.TeleportEgg or
+       techId == kTechId.TeleportHarvester --or
+       --techId == kTechId.TeleportEmbryo
+
 end
 
 local function OnUpdateChamberCounts(self)
@@ -52,21 +94,9 @@ function AlienCommander:GetUpgradeChamberCount(techId)
 	end
 end
 
-local CountToResearchId = { }
-CountToResearchId[kTechId.Shell] = { [0] = kTechId.Shell, [1] = kTechId.TwoShells, [2] = kTechId.ThreeShells, [3] = kTechId.ThreeShells }
-CountToResearchId[kTechId.Spur] = { [0] = kTechId.Spur, [1] = kTechId.TwoSpurs, [2] = kTechId.ThreeSpurs, [3] = kTechId.ThreeSpurs }
-CountToResearchId[kTechId.Veil] = { [0] = kTechId.Veil, [1] = kTechId.TwoVeils, [2] = kTechId.ThreeVeils, [3] = kTechId.ThreeVeils }
-
-local function GetTierTech(self, techId)
-	return CountToResearchId[techId][self:GetUpgradeChamberCount(techId)]
-end
-
 local oldAlienCommanderGetButtonTable
 oldAlienCommanderGetButtonTable = Class_ReplaceMethod("AlienCommander", "GetButtonTable",
 	function(self)
-		gAlienMenuButtons[kTechId.AdvancedMenu][5] = GetTierTech(self, kTechId.Shell)
-		gAlienMenuButtons[kTechId.AdvancedMenu][6] = GetTierTech(self, kTechId.Veil)
-		gAlienMenuButtons[kTechId.AdvancedMenu][7] = GetTierTech(self, kTechId.Spur)
 		return gAlienMenuButtons
     end
 )

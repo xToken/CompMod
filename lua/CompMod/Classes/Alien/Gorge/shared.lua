@@ -14,4 +14,8 @@ function Gorge:GetAirFriction()
     return math.max(0.15 * speedFraction, 0.12)
 end
 
+function Gorge:GetAdrenalineRecuperationRate()
+	return kGorgeAdrenalineRecuperationScalar
+end
+
 Gorge.kMaxGroundSpeed = kGorgeMaxGroundSpeed

@@ -30,6 +30,17 @@ function AlienCommander:OnProcessMove(input)
     
 end
 
+local oldAlienCommanderProcessTechTreeActionForEntity = AlienCommander.ProcessTechTreeActionForEntity
+function AlienCommander:ProcessTechTreeActionForEntity(techNode, position, normal, pickVec, orientation, entity, trace, targetId)
+	local techId = techNode:GetTechId()
+	if (GetIsEchoTeleportTechId(techId) or techId == kTechId.EnzymeCloud or techId == kTechId.Hallucinate or techId == kTechId.MucousMembrane or techId == kTechId.Storm or techId == kTechId.NutrientMist) and targetId then
+		return entity:PerformActivation(techId, position, normal, self, targetId)
+	else
+		return oldAlienCommanderProcessTechTreeActionForEntity(self, techNode, position, normal, pickVec, orientation, entity, trace, targetId)
+	end
+end
+
+-- Disabled directly castable alien commander abilities
 --[[
 local function GetIsCloud(techId)
     return techId == kTechId.EnzymeCloud or techId == kTechId.Hallucinate or techId == kTechId.MucousMembrane or techId == kTechId.Storm
@@ -108,4 +119,5 @@ function AlienCommander:TriggerKhammAbilities(techId, position, trace)
 	
 	return false
 
-end]]
+end
+--]]

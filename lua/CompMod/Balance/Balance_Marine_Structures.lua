@@ -26,5 +26,6 @@ kARCSpeed = 2.0								-- Default is 2.0
 kARCUpgradedSpeed = 3.0
 kARCCombatMoveSpeed = 0.8					-- Default is 0.8
 kARCUpgradedCombatMoveSpeed = 1.8
+kARCDamageType = kDamageType.StructuresOnly
 
 kArmsLabBuildTime = 12						-- Decreased from 17

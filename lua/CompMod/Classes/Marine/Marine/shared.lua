@@ -14,12 +14,14 @@ local networkVars =
 }
 
 AddMixinNetworkVars(WalkMixin, networkVars)
+AddMixinNetworkVars(DetectableMixin, networkVars)
 
 local originalMarineOnInitialized
 originalMarineOnInitialized = Class_ReplaceMethod("Marine", "OnInitialized",
 	function(self)
 		originalMarineOnInitialized(self)
 		InitMixin(self, WalkMixin)
+		InitMixin(self, DetectableMixin)
 		self.utilitySlot3 = kTechId.None
 		self.utilitySlot5 = kTechId.None
 		self.nanoArmor = false
@@ -29,6 +31,10 @@ originalMarineOnInitialized = Class_ReplaceMethod("Marine", "OnInitialized",
 
 function Marine:GetUtilitySlotTechId(slot)
     return slot == 3 and self.utilitySlot3 or self.utilitySlot5
+end
+
+function Marine:SensorBlipType()
+	return AlienSensorBlip.kMapName
 end
 
 -- Offer overrides to increase ROF (Catalyst ONLY increases reload speeds in vanilla)
@@ -137,7 +143,7 @@ oldMarineOnProcessMove = Class_ReplaceMethod("Marine", "OnProcessMove",
 		oldMarineOnProcessMove(self, input)
 		-- check nano armor
         if not self:GetIsInCombat() and self.nanoArmor and self.timeNanoArmorHealed + kNanoArmorHealInterval < Shared.GetTime() then            
-            self:SetArmor(self:GetArmor() + kNanoArmorHealInterval * kNanoArmorHealPerSecond, true)
+            self:SetArmor(self:GetArmor() + kNanoArmorHealInterval * kNanoArmorHealPerSecond, false)
 			self.timeNanoArmorHealed = Shared.GetTime()
         end
 	end

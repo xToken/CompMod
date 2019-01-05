@@ -32,34 +32,3 @@ end
 function PowerPoint:GetShowUnitStatusForOverride()
     return false
 end
-
--- Always socketed/active/use unsockeded model
-if Server then
-	local kUnsocketedSocketModelName = GetUpValue( PowerPoint.SetInternalPowerState, "kUnsocketedSocketModelName" )
-	local kUnsocketedAnimationGraph
-	
-	local originalPowerPointOnCreate
-	originalPowerPointOnCreate = Class_ReplaceMethod("PowerPoint", "OnCreate",
-		function(self)
-			originalPowerPointOnCreate(self)
-			self:SetInternalPowerState(PowerPoint.kPowerState.socketed)
-			self:SetConstructionComplete()
-			self:SetLightMode(kLightMode.Normal)
-			self:SetPoweringState(true)
-			self:SetModel(kUnsocketedSocketModelName, kUnsocketedAnimationGraph)
-		end
-	)
-
-	local originalPowerPointReset
-	originalPowerPointReset = Class_ReplaceMethod("PowerPoint", "Reset",
-		function(self)
-			originalPowerPointReset(self)
-			self:SetInternalPowerState(PowerPoint.kPowerState.socketed)
-			self:SetConstructionComplete()
-			self:SetLightMode(kLightMode.Normal)
-			self:SetPoweringState(true)
-			self:SetModel(kUnsocketedSocketModelName, kUnsocketedAnimationGraph)
-		end
-	)
-
-end

@@ -47,3 +47,7 @@ function ClusterGrenade:Detonate(targetHit)
         DestroyEntity(self)
 
 end
+
+function ClusterGrenade:OverrideBurnTime()
+    return kClusterGrenadeBurnTime
+end

@@ -1,6 +1,6 @@
 -- Natural Selection 2 Competitive Mod
 -- Source located at - https://github.com/xToken/CompMod
--- lua\CompMod\TechTreeConstants\TechTreeConstants\post.lua
+-- lua\CompMod\TechTreeConstants\post.lua
 -- - Dragon
 
 Script.Load("lua/CompMod/Utilities/Elixer/shared.lua")

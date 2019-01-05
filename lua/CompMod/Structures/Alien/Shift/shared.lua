@@ -31,6 +31,10 @@ function Shift:GetIsEnergizing()
 	return self.energizing
 end
 
+function Shift:ShouldGenerateInfestation()
+    return not self.moving
+end
+
 function Shift:TriggerEnergize()
 	self.energizing = true
 	self.energizeStart = Shared.GetTime()
@@ -39,43 +43,14 @@ function Shift:TriggerEnergize()
 end
 
 function Shift:GetTechAllowed(techId, techNode, player)
+    
+    return ScriptActor.GetTechAllowed(self, techId, techNode, player) 
+    
+end
 
-    local allowed, canAfford = ScriptActor.GetTechAllowed(self, techId, techNode, player) 
-    
-    allowed = allowed and not self.echoActive
-    
-    if allowed then
- 
-        if techId == kTechId.TeleportHydra then
-            allowed = self.hydraInRange
-        elseif techId == kTechId.TeleportWhip then
-            allowed = self.whipInRange
-        elseif techId == kTechId.TeleportTunnel then
-            allowed = self.tunnelInRange
-        elseif techId == kTechId.TeleportCrag then
-            allowed = self.cragInRange
-        elseif techId == kTechId.TeleportShade then
-            allowed = self.shadeInRange
-        elseif techId == kTechId.TeleportShift then
-            allowed = self.shiftInRange
-        elseif techId == kTechId.TeleportVeil then
-            allowed = self.veilInRange
-        elseif techId == kTechId.TeleportSpur then
-            allowed = self.spurInRange
-        elseif techId == kTechId.TeleportShell then
-            allowed = self.shellInRange
-        elseif techId == kTechId.TeleportHive then
-            allowed = self.hiveInRange
-        elseif techId == kTechId.TeleportEgg then
-            allowed = self.eggInRange
-        elseif techId == kTechId.TeleportHarvester then
-            allowed = self.harvesterInRange
-        end
-    
-    end
-    
-    return allowed, canAfford
-    
+function Shift:GetTechButtons(techId)
+    return { kTechId.ShiftEnergize, kTechId.Move, kTechId.None, kTechId.None, 
+                        kTechId.None, kTechId.None, kTechId.None, kTechId.None }
 end
 
 function Shift:EnergizeInRange()
@@ -86,8 +61,11 @@ function Shift:EnergizeInRange()
 			
 			for _, entity in ipairs(energizeAbles) do
 			
-				if entity ~= self then
-					entity:Energize(self)
+				if (not entity.GetIsEnergizeAllowed or entity:GetIsEnergizeAllowed()) and entity.timeLastEnergizeUpdate + kEnergizeUpdateRate < Shared.GetTime() and entity ~= self then
+				
+					entity:AddEnergy(kPlayerEnergyPerEnergize * self:GetMaturityScaling())
+					entity.timeLastEnergizeUpdate = Shared.GetTime()
+					
 				end
 				
 			end
@@ -102,7 +80,7 @@ function Shift:EnergizeInRange()
 				
 				if (not entity.GetIsEnergizeAllowed or entity:GetIsEnergizeAllowed()) and entity.timeLastEnergizeUpdate + kEnergizeUpdateRate < Shared.GetTime() and entity ~= self then
 				
-					entity:AddEnergy(kPlayerPassiveEnergyPerEnergize)
+					entity:AddEnergy(kPlayerPassiveEnergyPerEnergize * self:GetMaturityScaling())
 					entity.timeLastEnergizeUpdate = Shared.GetTime()
 					
 				end
@@ -122,104 +100,5 @@ originalShiftOnUpdateAnimationInput = Class_ReplaceMethod("Shift", "OnUpdateAnim
 		--modelMixin:SetAnimationInput("asdf", self.energizing)
 	end
 )
-
-if Client then
-
-	local originalShiftOnUpdate
-	originalShiftOnUpdate = Class_ReplaceMethod("Shift", "OnUpdate",
-		function(self, deltaTime)
-			originalShiftOnUpdate(self, deltaTime)
-			if self.isTeleporting ~= self.lastisTeleporting then
-				-- This isnt good coding, but these is all over the place in vanilla
-				if not self.isTeleporting then
-					-- We are not moving, trigger clear, then infest start.
-					self:CleanupInfestation()
-				end
-				self.lastisTeleporting = self.isTeleporting
-			end
-			if self.moving ~= self.lastmoving then
-				-- This isnt good coding, but these is all over the place in vanilla
-				if not self.moving then
-					-- We are not moving, trigger clear, then infest start.
-					self:CleanupInfestation()
-				end
-				self.lastmoving = self.moving
-			end
-		end
-	)
-
-end
-
-if Server then
-
-	local originalShiftOnUpdate
-	originalShiftOnUpdate = Class_ReplaceMethod("Shift", "OnUpdate",
-		function(self, deltaTime)
-			originalShiftOnUpdate(self, deltaTime)
-			
-			if not self:GetIsAlive() then
-
-				local destructionAllowedTable = { allowed = true }
-				if self.GetDestructionAllowed then
-					self:GetDestructionAllowed(destructionAllowedTable)
-				end
-
-				if destructionAllowedTable.allowed then
-					DestroyEntity(self)
-				end
-
-			end
-
-			if self.moving ~= self.lastmoving then
-				-- This isnt good coding, but these is all over the place in vanilla
-				if self.moving then
-					-- We are moving, trigger recede
-					self:SetDesiredInfestationRadius(0)
-				else
-					-- We are not moving, trigger clear, then infest start.
-					self:CleanupInfestation()
-				end
-				self.lastmoving = self.moving
-			end
-			
-		end
-	)
-	
-	function Shift:OnTeleport()
-		self:SetDesiredInfestationRadius(0)
-	end
-	
-	local originalShiftOnTeleportEnd
-	originalShiftOnTeleportEnd = Class_ReplaceMethod("Shift", "OnTeleportEnd",
-		function(self, destinationEntity)
-			originalShiftOnTeleportEnd(self, destinationEntity)
-			self:CleanupInfestation()
-		end
-	)
-	
-	local originalShiftPerformActivation
-	originalShiftPerformActivation = Class_ReplaceMethod("Shift", "PerformActivation",
-		function(self, techId, position, normal, commander)
-			if techId == kTechId.ShiftEnergize then
-				return self:TriggerEnergize(commander)
-			else
-				return originalShiftPerformActivation(self, techId, position, normal, commander)
-			end
-		end
-	)
-
-	function Shift:OnKill(attacker, doer, point, direction)
-		self:SetModel(nil)
-		local team = self:GetTeam()
-		if team then
-			team:OnTeamEntityDestroyed(self)
-		end
-	end
-	
-	function Shift:GetPassiveBuild()
-		return self:GetGameEffectMask(kGameEffect.OnInfestation)
-	end
-	
-end
 
 Shared.LinkClassToMap("Shift", Shift.kMapName, networkVars)
