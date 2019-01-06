@@ -18,7 +18,7 @@ kNanoArmorHealPerSecond = 5					-- Was 0.5
 kNanoArmorHealInterval = 1
 
 kSkulkHealth = 75							-- Vanilla is 75
-kSkulkArmor = 5								-- Vanilla is 10
+kSkulkArmor = 10							-- Vanilla is 10
 kSkulkArmorFullyUpgradedAmount = 35			-- Vanilla is 30
 kSkulkHealthPerBioMass = 0					-- Vanilla is 3
 
@@ -27,9 +27,9 @@ kGorgeArmor = 30							-- Vanilla is 75
 kGorgeArmorFullyUpgradedAmount = 90			-- Vanilla is 100
 kGorgeHealthPerBioMass = 0					-- Vanilla is 2
 
-kLerkHealth = 190							-- Vanilla is 150
-kLerkArmor = 20								-- Vanilla is 45
-kLerkArmorFullyUpgradedAmount = 80			-- Vanilla is 60
+kLerkHealth = 200							-- Vanilla is 150
+kLerkArmor = 30								-- Vanilla is 45
+kLerkArmorFullyUpgradedAmount = 90			-- Vanilla is 60
 kLerkHealthPerBioMass = 0					-- Vanilla is 2
 
 kFadeHealth = 300							-- Vanilla is 250
@@ -67,17 +67,17 @@ kMatureHiveArmor = 1400						-- Vanilla is 1400
 
 kCragHealth = 400							-- Vanilla is 600
 kCragArmor = 100							-- Vanilla is 200
-kMatureCragHealth = 600						-- Vanilla is 700
+kMatureCragHealth = 800						-- Vanilla is 700
 kMatureCragArmor = 200						-- Vanilla is 340
 
 kShiftHealth = 450							-- Vanilla is 750
 kShiftArmor = 75							-- Vanilla is 75
-kMatureShiftHealth = 700					-- Vanilla is 1100
+kMatureShiftHealth = 900					-- Vanilla is 1100
 kMatureShiftArmor = 150						-- Vanilla is 150
 
 kShadeHealth = 500							-- Vanilla is 750
 kShadeArmor = 50							-- Vanilla is 0
-kMatureShadeHealth = 800					-- Vanilla is 1500
+kMatureShadeHealth = 1000					-- Vanilla is 1500
 kMatureShadeArmor = 100						-- Vanilla is 0
 
 kShellHealth = 600							-- Vanilla is 600

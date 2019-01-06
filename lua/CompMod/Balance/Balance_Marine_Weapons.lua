@@ -47,7 +47,7 @@ kShotgunClipSize = 6						-- Default is 6
 kShotgunUpgradedReloadSpeed = 1.2
 
 -- MG
-kHeavyMachineGunDamage = 14					-- Default is 9 (*)
+kHeavyMachineGunDamage = 13					-- Default is 9 (*)
 kHeavyMachineGunClipSize = 100				-- Default is 125
 kHeavyMachineGunUpgradedClipSize = 125
 kHeavyMachineGunSpread = Math.Radians(4)	-- Default is 4

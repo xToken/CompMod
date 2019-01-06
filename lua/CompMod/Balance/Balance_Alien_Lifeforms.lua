@@ -50,6 +50,7 @@ kHealingRoostHealthRegain = 5
 -- SPIKES
 kSpikeMaxDamage = 14						-- Increased from 7 with damage type rework
 kSpikeMinDamage = 14						-- Increased from 7 with damage type rework
+kLerkSpikeSpread = Math.Radians(2.8)
 
 -- SPORES
 kSporesDamageType = kDamageType.Normal		-- Changed from GAS to normal

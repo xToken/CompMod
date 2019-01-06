@@ -30,14 +30,63 @@ function AlienCommander:OnProcessMove(input)
     
 end
 
+function AlienCommander:ProcessMist(pickVec, orientation, worldCoordsSpecified, targetId)
+
+    local targetEnt = Shared.GetEntity(targetId)
+    local success = false
+
+    if targetEnt then
+
+        local team = self:GetTeam()
+        local cost = GetCostForTech(kTechId.NutrientMist)
+
+        -- Dont allow stacking more than 30s of catalyst
+        if HasMixin(targetEnt, "Catalyst") then
+            if targetEnt.timeUntilCatalystEnd + kNutrientMistDuration < kNutrientMistMaxStackTime and not targetEnt:isa("Player") then
+                targetEnt:TriggerCatalyst(kNutrientMistDuration, self:GetId())
+                self:TriggerEffects("comm_nutrient_mist")
+                team:AddTeamResources(-cost)
+                success = true
+            end
+        end
+
+    end
+
+    if not success then
+    	self:TriggerInvalidSound()
+    end
+
+end
+
+local oldAlienCommanderProcessTechTreeAction = AlienCommander.ProcessTechTreeAction
+function AlienCommander:ProcessTechTreeAction(techId, pickVec, orientation, worldCoordsSpecified, targetId, shiftDown)
+	if techId == kTechId.NutrientMist then
+		self:ProcessMist(pickVec, orientation, worldCoordsSpecified, targetId)
+		return false, false
+	end
+	return oldAlienCommanderProcessTechTreeAction(self, techId, pickVec, orientation, worldCoordsSpecified, targetId, shiftDown)
+end
+
+local GetNearest = GetUpValue( AlienCommander.ProcessTechTreeActionForEntity, "GetNearest" )
+
 local oldAlienCommanderProcessTechTreeActionForEntity = AlienCommander.ProcessTechTreeActionForEntity
 function AlienCommander:ProcessTechTreeActionForEntity(techNode, position, normal, pickVec, orientation, entity, trace, targetId)
 	local techId = techNode:GetTechId()
-	if (GetIsEchoTeleportTechId(techId) or techId == kTechId.EnzymeCloud or techId == kTechId.Hallucinate or techId == kTechId.MucousMembrane or techId == kTechId.Storm or techId == kTechId.NutrientMist) and targetId then
+	if GetIsEchoTeleportTechId(techId) and targetId then
 		return entity:PerformActivation(techId, position, normal, self, targetId)
-	else
-		return oldAlienCommanderProcessTechTreeActionForEntity(self, techNode, position, normal, pickVec, orientation, entity, trace, targetId)
 	end
+	if techId == kTechId.EnzymeCloud or techId == kTechId.Hallucinate or techId == kTechId.MucousMembrane or techId == kTechId.Storm then
+		entity = GetNearest(self, "Drifter")
+		if entity then
+			return entity:PerformActivation(techId, position, normal, self, targetId)
+		end
+		return false, false
+	end
+	if not entity and techId == kTechId.ShiftEnergize then
+        local className = "Shift"
+        entity = GetNearest(self, className)
+    end
+	return oldAlienCommanderProcessTechTreeActionForEntity(self, techNode, position, normal, pickVec, orientation, entity, trace, targetId)
 end
 
 -- Disabled directly castable alien commander abilities

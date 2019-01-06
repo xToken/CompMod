@@ -29,3 +29,6 @@ kARCUpgradedCombatMoveSpeed = 1.8
 kARCDamageType = kDamageType.StructuresOnly
 
 kArmsLabBuildTime = 12						-- Decreased from 17
+
+kExtractorHealth = 2400						-- Default is 2400
+kExtractorArmor = 850						-- Default is 1050

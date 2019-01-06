@@ -546,10 +546,5 @@ function BuildCompModTechDataUpdates()
 			[kTechDataCostKey] = kShiftEnergizeCost,
 			[kTechDataOneAtATime] = true,
 		})
-	table.insert(techIdUpdates,
-		{
-			[kTechDataId] = kTechId.DualRailgunExosuit,
-			[kTechDataImplemented] = false,
-		})
 	return newTechTable, techIdUpdates
 end

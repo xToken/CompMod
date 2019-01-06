@@ -28,8 +28,8 @@ local kDrifterStructures = { kTechId.Crag, kTechId.Shade, kTechId.Shift, kTechId
 
 function Drifter:GetTechButtons(techId)
 
-    local techButtons = { kTechId.EnzymeCloud, kTechId.NutrientMist, kTechId.Hallucinate, kTechId.ParasiteCloud,
-                                kTechId.StructureMenu, kTechId.AdvancedStructureMenu, kTechId.TeleportStructure, kTechId.Patrol }
+    local techButtons = { kTechId.EnzymeCloud, kTechId.Hallucinate, kTechId.ParasiteCloud, kTechId.TeleportStructure,
+                                kTechId.StructureMenu, kTechId.AdvancedStructureMenu, kTechId.Move, kTechId.Patrol }
     
     if techId == kTechId.StructureMenu then
         techButtons = { kTechId.Crag, kTechId.Shade, kTechId.Shift, kTechId.Whip,

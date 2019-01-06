@@ -6,13 +6,13 @@
 -- Remove the cyst build button
 local gAlienMenuButtons =
 {
-    [kTechId.BuildMenu] = { kTechId.ThreatMarker, kTechId.NeedHealingMarker, kTechId.ExpandingMarker, kTechId.None,
-                            kTechId.None, kTechId.None, kTechId.None, kTechId.None },
+    [kTechId.BuildMenu] = { kTechId.NutrientMist, kTechId.None, kTechId.None, kTechId.None,
+                            kTechId.ThreatMarker, kTechId.NeedHealingMarker, kTechId.ExpandingMarker, kTechId.None },
                             
     [kTechId.AdvancedMenu] = { kTechId.None },
 
-    [kTechId.AssistMenu] = { kTechId.HealWave, kTechId.ShadeInk, kTechId.SelectDrifter, kTechId.BoneWall,
-                             kTechId.None, kTechId.None, kTechId.BoneWall, kTechId.None }
+    [kTechId.AssistMenu] = { kTechId.HealWave, kTechId.ShadeInk, kTechId.ShiftEnergize, kTechId.SelectDrifter,
+                             kTechId.EnzymeCloud, kTechId.Hallucinate, kTechId.BoneWall, kTechId.None }
 }
 
 local gAlienMenuIds = {}
@@ -83,6 +83,17 @@ originalAlienCommanderOnInitialized = Class_ReplaceMethod("AlienCommander", "OnI
 		end
 	end
 )
+
+local GetNearest = GetUpValue( AlienCommander.GetTechAllowed, "GetNearest" )
+
+local oldAlienCommanderGetTechAllowed = AlienCommander.GetTechAllowed
+function AlienCommander:GetTechAllowed(techId, techNode)
+  local allowed, canAfford = oldAlienCommanderGetTechAllowed(self, techId, techNode)
+  if techId == kTechId.ShiftEnergize then
+      allowed = GetNearest(self, "Shift") ~= nil
+  end
+  return allowed, canAfford
+end
 
 function AlienCommander:GetUpgradeChamberCount(techId)
 	if techId == kTechId.Shell then

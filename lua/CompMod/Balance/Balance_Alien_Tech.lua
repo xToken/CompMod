@@ -15,7 +15,7 @@ kLeapResearchTime = 60						-- Increased from 40
 kXenocideResearchCost = 35					-- Increased from 25
 kXenocideResearchTime = 90					-- Increased from 60
 
-kGorgeTunnelResearchCost = 20				-- Increased from 15
+kGorgeTunnelResearchCost = 10				-- Increased from 15
 kGorgeTunnelResearchTime = 30				-- Increased from 40
 
 kBileBombResearchCost = 25					-- Increased from 15
@@ -54,13 +54,13 @@ kAdditionalTraitSlot1ResearchTime = 60
 kAdditionalTraitSlot2Cost = 35
 kAdditionalTraitSlot2ResearchTime = 90
 
-kOffensiveTraitCost = 20
+kOffensiveTraitCost = 10
 kOffensiveTraitResearchTime = 30
 
-kDefensiveTraitCost = 20
+kDefensiveTraitCost = 10
 kDefensiveTraitResearchTime = 30
 
-kMovementTraitCost = 20
+kMovementTraitCost = 10
 kMovementTraitResearchTime = 30
 
 kEnzymeCloudCost = 2						-- Default is 2
