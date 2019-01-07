@@ -1,1 +1,1 @@
-See the Changelog at [Changelog](https://github.com/xToken/CompMod/wiki/Changelog-from-most-recent-patch)
+See the Changelog at [Changelog](https://xtoken.github.io/CompMod/)

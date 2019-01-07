@@ -1,7 +1,6 @@
 ### QoL Changes:
 	- Added predicted doors
 	- Added texture remapping system to allow for new tech icons
-	- Tournament mode is now networked to clients
 	
 ### Resource System Changes:
 	- Starting tRes is now 50 per team (Decreased from 60)
