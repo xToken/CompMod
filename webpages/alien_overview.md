@@ -1,4 +1,5 @@
 ## Alien Changes vs Vanilla NS2
+
 ### Skulk:
 	- Adjusted wallhop to allow better chaining of jumps
 	- Speed increased to 8.0 from 7.25
@@ -9,6 +10,7 @@
 	- Maximum carapace armor increased from 30 to 40
 	- Parasite:
 		- Duration lowered from 44 to 30
+		
 ### Gorge:
 	- Speed increased to 6.75 from 6.0
 	- Air control increased to 18 from 6
@@ -41,6 +43,7 @@
 		 - Health increased from 10 to 11, removed damage limitation of 5 per hit.
 	- Web:
 		 - Decreased web health from 80 to 40
+		 
 ### Lerk:
 	- flying speed increased to 13.25 from 13
 	- Cost decreased from 21 to 15 pRes
@@ -59,6 +62,7 @@
 		 - Damage increased from 15 to 20/s
 	- Healing Roost:
 		 - New ability, lerk heals passively for 5 HP/s when roosting
+		 
 ### Fade:
 	- Added slightly modified ceiling fix for crouching fades
 	- Ground speed increased to 6.5 from 6.2
@@ -71,6 +75,7 @@
 	- Maximum carapace armor increased from 120 to 160
 	- Swipe:
 		- Damage type changed from structuresonlylight to puncture (Deals half damage to structures)
+		
 ### Onos:
 	- Cost reduced from 40 to 35
 	- Disabled 'Stampede' effects, cannot charge through players and doesn't send marines flying.
@@ -93,6 +98,7 @@
 		 - Increased charge energy cost from 20 to 30/second
 	- Stomp:
 		 - Damage type changed to normal from heavy
+		 
 ### Traits:
 	- Traits re-categorized under Offensive, Defensive & Movement
 	- Traits categories must be researched first, each costs 20 tRes and takes 30 seconds
@@ -120,6 +126,7 @@
 	- Offensive (Veils):
 		- Aura: No longer shows enemies through walls
 		- Crush: Increases structural damage & damage to Exos
+		
 ### Maturity:
 	- Now called Sustenance
 	- Sustenance now passively decreases, requiring structures to be regularly misted to maintain the benefits
@@ -127,28 +134,34 @@
 	- Each mist gives 33% sustenance over 10 seconds, and can be stacked up to 3 times
 	- After the mist effect has ended, the structure will not lose sustenance for an additional 10 seconds
 	- Structures start at 0% sustenance
+	
 ### Nutrient Mist:
 	- Moved to global Alien Commander ability
 	- Single target only
 	- Only increases the sustenance of the target structure
 	- Nutrient Mist increases sustenance, can be stacked up to 3 times.
 	- Costs decreased to 1 tRes
+	
 ### Echo:
 	- Now requires the individual structure to be targetted first, then the target location
 	- The Drifter now casts echo
 	- Hives can now be echoed for 50 tRes
 	- Echoing all other structures costs 3 tRes
 	- Echo now has an effect triggered at the destination when something is being teleported in
+	
 ### Hallucination:
 	- Now requires the Offensive Traits research
+	
 ### Enzyme:
 	- Now requires the Movement Traits research
+	
 ### ParasiteCloud:
 	- New ability on the Drifter
 	- The cloud will be shot out from the drifter towards the target location
 	- As the cloud moves, it will parasite (2/s duration) nearby Marines, enabling the commander to scout ahead
 	- Costs is 3 tRes
 	- Requires the Defensive Traits research
+	
 ### Drifter
 	- Drifters now build from the Hive
 	- Drifters take 3 seconds to build
@@ -162,6 +175,7 @@
 	- Enzyme radius decreased from 6.5 to 6
 	- Hallucination Cloud radius decreased from 8 to 6
 	- Hallucination lifetime decreased from 30 to 15 seconds
+	
 ### Crag:
 	- Increased move speed from 1.5 to 3
 	- Infestation is no longer required to build, will spread automatically (10m)
@@ -176,6 +190,7 @@
 	- Heal Wave is now 2x the healing (increased from 1.3)
 	- Heal Wave duration lowered from 8 to 6
 	- Heal Wave cost lowered from 3 to 2
+	
 ### Shift:
 	- Increased move speed from 1.5 to 3
 	- Infestation is no longer required to build, will spread automatically (10m)
@@ -187,6 +202,7 @@
 	- New Active Ability to provide energy at 10 energy per second.
 	- Both the shift passive and active abilities scale with the shifts sustenance level
 	- Costs 2 tRes, lasts for 6s with 6s cooldown
+	
 ### Shade:
 	- Increased move speed from 1.5 to 3
 	- Infestation is no longer required to build, will spread automatically (10m)
@@ -196,44 +212,57 @@
 	- Adjusted armor from 0/0 to 50/100
 	- Lowered cost from 13 to 10
 	- Gains a detection passive above 80% sustenance, that shows aura icons on marines like obs detection
+	
 ### Whip:
 	- Cost increased from 13 to 15
 	- Bombard unlocks above 80% sustenance, and is lost below 80%
+	
 ### Shell:
 	- Infestation is no longer required to build, will spread automatically (10m)
 	- Will not auto-build off infestation
 	- Two Shells cost increased from 15 to 25
 	- Three Shells cost increased from 15 to 35
+	
 ### Spur:
 	- Infestation is no longer required to build, will spread automatically (10m)
 	- Will not auto-build off infestation
 	- Two Spurs cost increased from 15 to 25
 	- Three Spurs cost increased from 15 to 35
+	
 ### Veil:
 	- Infestation is no longer required to build, will spread automatically (10m)
 	- Will not auto-build off infestation
 	- Two Veils cost increased from 15 to 25
 	- Three Veils cost increased from 15 to 35
+	
 ### Harvester:
 	- Adjusted health from 2000/2300 to 1800/2000
 	- Adjusted armor from 200/320 to 200/300
 	- Harvester cost increased to 10
+	
 ### Hive:
 	- Infestation spreads further (25m up from 20m)
 	- Cost increased from 40 to 50 tRes
 	- Healing rate lowered from 1s to 2s
+	
 ### Healing:
 	- Armor now heals at half the rate of health
+	
 ### Cyst:
 	- Disabled
+	
 ### Biomass:
 	- Disabled
+	
 ### Contamination:
 	- Disabled
+	
 ### Rupture:
 	- Disabled
+	
 ### Focus:
 	- Disabled
+	
 ### Researches:
 	- Leap research cost increased from 15 to 25
 	- Leap research time increased from 40 to 60
