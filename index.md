@@ -1,11 +1,16 @@
 Some description/highlevel shtuffffffffff?
 
-[Alien Changes Overview](https://xtoken.github.io/CompMod/webpages/alien_overview)
+## [Alien Changes Overview](https://xtoken.github.io/CompMod/webpages/alien_overview)
 
-[Marine Changes Overview](https://xtoken.github.io/CompMod/webpages/marine_overview)
+## [Marine Changes Overview](https://xtoken.github.io/CompMod/webpages/marine_overview)
 
-[Other Misc. Changes Overview](https://xtoken.github.io/CompMod/webpages/misc_overview)
+## [Other Misc. Changes Overview](https://xtoken.github.io/CompMod/webpages/misc_overview)
 
+## [Alien Commander Guide](https://xtoken.github.io/CompMod/webpages/alien_comm_guide)
+
+## [Marine Commander Guide](https://xtoken.github.io/CompMod/webpages/marine_comm_guide)
+
+***
 # Recent Changelog:
 
 ## Revision 2 Build 3 (6-1-19)

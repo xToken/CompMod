@@ -120,8 +120,6 @@
 ### Weapon Weights:
 	- Weight calculation is now non-linear and does not allow speeds beyond the 'max speed' when going under the default threshold
 	- Weight has been adjusted, weapon weights listed below:
-	
-		### Weight Values:
 		- Pistol Weight = 0.05
 		- Rifle Weight = 0.175
 		- Grenade Launcher Weight = 0.3
