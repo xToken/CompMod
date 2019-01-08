@@ -11,7 +11,7 @@ Some description/highlevel shtuffffffffff?
 ### [Marine Commander Guide](https://xtoken.github.io/CompMod/webpages/marine_comm_guide)
 
 ***
-### Recent Changelog: Revision 2 Build 3 (7-1-19)
+### Recent Changelog: Build 15 (7-1-19)
 
 ### Marines:
 	- Increased phase gate minimum phase time to 0.3 seconds
