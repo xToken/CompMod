@@ -32,6 +32,10 @@ function Shell:OnTeleportEnd(destinationEntity)
 	self:CleanupInfestation()
 end
 
+function Shell:OnTeleportFailed()
+    self:SetDesiredInfestationRadius(self:GetInfestationMaxRadius())
+end
+
 function Shell:GetDestroyOnKill()
 	return false
 end

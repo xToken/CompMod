@@ -19,7 +19,7 @@ kRifleWeight = 0.175
 kGrenadeLauncherWeight = 0.3
 kFlamethrowerWeight = 0.2
 kShotgunWeight = 0.225
-kHeavyMachineGunWeight = 0.4
+kHeavyMachineGunWeight = 0.46
 kHeavyMachineGunUpgradedWeight = 0.25
 kHandGrenadeWeight = 0.05
 kLayMineWeight = 0.075
@@ -53,7 +53,7 @@ kHeavyMachineGunUpgradedClipSize = 125
 kHeavyMachineGunSpread = Math.Radians(4)	-- Default is 4
 kHeavyMachineGunReloadSpeed = 0.39611550146364	-- Dont ask.....
 kHeavyMachineGunUpgReloadSpeed = 0.7
-kHeavyMachineGunDamageType = kDamageType.Puncture
+kHeavyMachineGunDamageType = kDamageType.HalfStructural
 
 -- PISTOL
 kPistolDamage = 20							-- Decreased from 25
@@ -81,7 +81,7 @@ kGrenadeLauncherClipSize = 4				-- Default is 4
 kGrenadeLauncherGrenadeDamageRadius = 3.5	-- Decreased from 4.8
 kGrenadeLifetime = 2.0						-- Default is 2
 kGrenadeLauncherSpeed = 30					-- Increased from 25
-kGrenadeLauncherSecondaryStructureMultiplier = 2
+kGrenadeLauncherGrenadeDamageType = kDamageType.QuadStructural
 
 kGrenadeFragmentDamageRadius = 3
 kGrenadeFragmentDamage = 20
@@ -95,8 +95,8 @@ kPulseGrenadeDamageRadius = 6
 kPulseGrenadeDamage = 120
 
 -- GAS GRENADES
-kNerveGasDamagePerSecond = 40
-kNerveGasDamageType = kDamageType.Normal
+kNerveGasDamagePerSecond = 50
+kNerveGasDamageType = kDamageType.NerveGas
 
 -- MINIGUN
 kMinigunDamage = 6							-- This sounds really weak, but its actually only a little less DPS vs MG
@@ -144,3 +144,5 @@ kExoRepairFuelUsageRate = 25
 kExoRepairInterval = 0.5
 
 kExoFuelRechargeRate = 10
+kMinigunFuelUsageScalar = 1
+kRailgunFuelUsageScalar = 1.5

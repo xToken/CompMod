@@ -47,7 +47,7 @@ local function GatherRoundData(winningTeam)
 		mapName = Shared.GetMapName(),
 		player_slots = Server.GetMaxPlayers(),
 		build = Shared.GetBuildNumber(),
-		mod_build = kCompModVersion .. "." .. kCompModBuild,
+		mod_build = kCompModBuild,
 		tournamentMode = GetTournamentModeEnabled(),
 		rookie_only = ( Server.GetConfigSetting("rookie_only") == true ),
 		conceded = ( GetGamerules():GetTeam1():GetHasConceded() or GetGamerules():GetTeam2():GetHasConceded() ),

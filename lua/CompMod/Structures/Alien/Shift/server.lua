@@ -40,6 +40,10 @@ function Shift:OnTeleport()
 	self:SetDesiredInfestationRadius(0)
 end
 
+function Shift:OnTeleportFailed()
+    self:SetDesiredInfestationRadius(self:GetInfestationMaxRadius())
+end
+
 local originalShiftOnTeleportEnd
 originalShiftOnTeleportEnd = Class_ReplaceMethod("Shift", "OnTeleportEnd",
 	function(self, destinationEntity)

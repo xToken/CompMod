@@ -4,7 +4,6 @@
 -- - Dragon
 
 -- Just Override these, we change too much here anyways
-
 TeamInfo.kRelevantTechIdsMarine =
 {
     
@@ -65,12 +64,11 @@ TeamInfo.kRelevantTechIdsAlien =
  
     kTechId.Leap,
     kTechId.Xenocide,
+    kTechId.GorgeTunnelTech,
     kTechId.BileBomb,
-    kTechId.BabblerTech,
     kTechId.HealingRoost,
-	kTechId.Spores,
     kTechId.Umbra,
-	kTechId.Spikes,
+    kTechId.Spores,
     kTechId.MetabolizeEnergy,
     kTechId.MetabolizeHealth,
     kTechId.Stab,

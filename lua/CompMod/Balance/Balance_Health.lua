@@ -32,12 +32,12 @@ kLerkArmor = 30								-- Vanilla is 45
 kLerkArmorFullyUpgradedAmount = 90			-- Vanilla is 60
 kLerkHealthPerBioMass = 0					-- Vanilla is 2
 
-kFadeHealth = 300							-- Vanilla is 250
+kFadeHealth = 350							-- Vanilla is 250
 kFadeArmor = 70								-- Vanilla is 80
 kFadeArmorFullyUpgradedAmount = 160			-- Vanilla is 120
 kFadeHealthPerBioMass = 0					-- Vanilla is 5
 
-kOnosHealth = 850							-- Vanilla is 900
+kOnosHealth = 900							-- Vanilla is 900
 kOnosArmor = 400							-- Vanilla is 450
 kOnosArmorFullyUpgradedAmount = 750			-- Vanilla is 650
 kOnosHealtPerBioMass = 0					-- Vanilla is 30
@@ -52,7 +52,7 @@ kMineArmor = 10								-- Vanilla is 5
 kArmsLabHealth = 1650						-- Vanilla is 1650
 kArmsLabArmor = 500							-- Vanilla is 500
 
-kDrifterHealth = 150						-- Vanilla is 300
+kDrifterHealth = 250						-- Vanilla is 300
 kDrifterArmor = 0							-- Vanilla is 20
 
 kHarvesterHealth = 1800						-- Vanilla is 2000
@@ -67,17 +67,17 @@ kMatureHiveArmor = 1400						-- Vanilla is 1400
 
 kCragHealth = 400							-- Vanilla is 600
 kCragArmor = 100							-- Vanilla is 200
-kMatureCragHealth = 800						-- Vanilla is 700
+kMatureCragHealth = 1000					-- Vanilla is 700
 kMatureCragArmor = 200						-- Vanilla is 340
 
 kShiftHealth = 450							-- Vanilla is 750
 kShiftArmor = 75							-- Vanilla is 75
-kMatureShiftHealth = 900					-- Vanilla is 1100
+kMatureShiftHealth = 1100					-- Vanilla is 1100
 kMatureShiftArmor = 150						-- Vanilla is 150
 
 kShadeHealth = 500							-- Vanilla is 750
 kShadeArmor = 50							-- Vanilla is 0
-kMatureShadeHealth = 1000					-- Vanilla is 1500
+kMatureShadeHealth = 1200					-- Vanilla is 1500
 kMatureShadeArmor = 100						-- Vanilla is 0
 
 kShellHealth = 600							-- Vanilla is 600
@@ -113,18 +113,19 @@ kBabblerHealth = 11							-- Vanilla is 10
 
 kWebHealth = 40								-- Vanilla is 80
 
-kArmorHealScalar = 0.5						-- Vanilla is 1
+kArmorHealScalar = 1						-- Vanilla is 1
 
 kMaturityGracePeriod = 10					-- How long after the last mist before maturity starts decreasing
 kMaturityStarvingThreshold = 0.3			-- Below this is 'staving'
 kMaturityGrownThreshold = 0.8				-- Above this is 'mature'
 kMaturityMinEffectivenessThreshold = 0.25	-- Minimum of this amount of effectiveness
 kMaturityMaxEffectivenessThreshold = 0.9	-- After this, effectiveness no longer increases
+kMaturityStartingLevel = 0
 
-kMaturityBaseBreakpoint = 0.5				-- This is the threshold for the maturation/starvation rate.  Above is accelerated, below is base
+kMaturityBaseBreakpoint = 1					-- This is the threshold for the maturation/starvation rate.  Above is accelerated, below is base
 local t = kMaturityBaseBreakpoint
 local q = 1-t
-kMaturityBaseStarvationRate = -t/240		-- This is the base rate that maturity is lost at.
-kMaturityAcceleratedStarvationRate = -q/60	-- This is the accelerated rate that maturity is lost at.
-kMaturityBaseGainRate = t/10				-- This is the base rate that maturity is gained at.
-kMaturityAcceleratedGainRate = q/30			-- This is the accelerated rate that maturity is gained at.
+kMaturityBaseStarvationRate = -t/120		-- This is the base rate that maturity is lost at.
+kMaturityAcceleratedStarvationRate = -q/1	-- This is the accelerated rate that maturity is lost at.
+kMaturityBaseGainRate = t/33				-- This is the base rate that maturity is gained at.
+kMaturityAcceleratedGainRate = q/1			-- This is the accelerated rate that maturity is gained at.

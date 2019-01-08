@@ -68,6 +68,10 @@ local function PerformTeleport(self)
             if destinationEntity then
                 destinationEntity:GetTeam():AddTeamResources(self.teleportCost)
             end
+
+            if self.OnTeleportFailed then
+                self:OnTeleportFailed()
+            end
         
         end
     

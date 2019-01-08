@@ -24,7 +24,7 @@ local originalPlayerGetShowHealthFor
 originalPlayerGetShowHealthFor = Class_ReplaceMethod("Player", "GetShowHealthFor",
 	function(self, player)
 		local gameInfo = GetGameInfoEntity()
-        if gameInfo and not gameInfo:GetTournamentMode() then
+        if gameInfo and (not gameInfo.GetTournamentMode or not gameInfo:GetTournamentMode()) then
 			return originalPlayerGetShowHealthFor(self, player)
 		end
 		return ( player:isa("Spectator") or player:isa("Commander") or ( not GetAreEnemies(self, player) and self:GetIsAlive() ) ) and self:GetTeamType() ~= kNeutralTeamType

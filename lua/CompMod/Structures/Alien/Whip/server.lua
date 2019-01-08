@@ -16,10 +16,10 @@ originalWhipOnDestroy = Class_ReplaceMethod("Whip", "OnDestroy",
 
 
 function Whip:OnMaturityLevelUpdated(oldLevel, newLevel)
-	if newLevel == kMaturityLevel.Mature then
+	if newLevel == kMaturityLevel.Flourishing then
     	self:GiveUpgrade(kTechId.WhipBombard)
     end
-    if oldLevel == kMaturityLevel.Mature and newLevel ~= kMaturityLevel.Mature then
+    if oldLevel == kMaturityLevel.Flourishing and newLevel ~= kMaturityLevel.Flourishing then
     	self:RemoveUpgrade(kTechId.WhipBombard)
     end
 end

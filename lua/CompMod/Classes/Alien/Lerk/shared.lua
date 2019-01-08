@@ -29,6 +29,10 @@ function Lerk:UpdateRoostHealing()
     return self:GetIsAlive()
 end
 
+function Lerk:GetHasMovementSpecial()
+    return GetHasTech(self, kTechId.HealingRoost, true)
+end
+
 function Lerk:GetAdrenalineRecuperationRate()
 	return kLerkAdrenalineRecuperationScalar
 end

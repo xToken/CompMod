@@ -40,7 +40,7 @@ end
 
 function Shade:GetDetectionRange()
 
-    if self:GetMaturityLevel() == kMaturityLevel.Mature then
+    if self:GetMaturityLevel() == kMaturityLevel.Flourishing then
         return Shade.kCloakRadius
     end
     

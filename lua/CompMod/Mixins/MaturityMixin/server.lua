@@ -9,7 +9,7 @@ function MaturityMixin:OnMaturityUpdate(deltaTime)
 
     -- Check for first init
     if not self.lastCatalystedTime then
-        self.finalMatureFraction = 0.5
+        self.finalMatureFraction = kMaturityStartingLevel
         self.lastCatalystedTime = Shared.GetTime()
         self:UpdateMaturity()
     end

@@ -7,6 +7,7 @@ local kDirectoryReplace = { }
 kDirectoryReplace['/CompMod/'] = "/"
 kDirectoryReplace['/GUI/'] = "/"
 kDirectoryReplace['/Mixins/'] = "/"
+kDirectoryReplace['/TechMaps/'] = "/"
 
 -- Dont run from filehook calls on main menu.
 if not string.find(Script.CallStack(), "Main.lua") then

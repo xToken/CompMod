@@ -3,6 +3,9 @@
 -- lua\CompMod\Teams\PlayingTeam\server.lua
 -- - Dragon
 
+-- FHJKDSHFKJLSDFHDKJLSHFKJLD WHYYYYYYYYYYYY
+PlayingTeam.kResearchDisplayTime = 15
+
 -- Entity Constructed tracking
 local function ClearEntityTrackingTables(self)
 	self.trackedTeamEntities = { }
@@ -97,6 +100,16 @@ function PlayingTeam:OnResearchCompleted(techId)
 		end
 	end
 end
+
+-- Another hidden set of 'relevant' IDs ://///
+local function NewGetIsResearchRelevant(techId)
+	if LookupTechData(techId, kTechDataNotifyPlayers, false) then
+		return 1
+	end
+	return nil
+end
+
+ReplaceUpValue(PlayingTeam.OnResearchComplete, "GetIsResearchRelevant", NewGetIsResearchRelevant)
 
 local originalPlayingTeamOnResearchComplete
 originalPlayingTeamOnResearchComplete = Class_ReplaceMethod("PlayingTeam", "OnResearchComplete",

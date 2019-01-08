@@ -6,12 +6,16 @@
 kTechDataIDName = "techdataidname"
 kTechDataButtonID = "techdatabuttonid"
 kTechDataRequiresSecondPlacement = "techdatarequirestwoplacements"
+kTechDataDescription = "techdatadescription"
+kTechDataUnlockAction = "techdataunlockaction"
+kTechDataNotifyPlayers = "techdatanotifyplayers"
+kTechDataRequiredTechs = "techdatarequiredtechs"
 
 Script.Load("lua/CompMod/TechData/NewTechData.lua")
 
 local techDataUpdatesBuilt = false
 local newTechTable = { }
-local techIdUpdates = { }
+local updatedTechTable = { }
 
 -- Take all the updated tech IDs kTechData keys, insert into single table for easy checking
 local techIdUpdatedKeys = { }
@@ -19,12 +23,11 @@ local techIdUpdatedFields = { } -- LUA tables make me sad sometimes
 		
 local function BuildTechDataUpdates()
 	if not techDataUpdatesBuilt then
-		newTechTable, techIdUpdates = BuildCompModTechDataUpdates()
-		for i = 1, #techIdUpdates do
-			table.insert(techIdUpdatedKeys, techIdUpdates[i][kTechDataId])
-			techIdUpdatedFields[techIdUpdates[i][kTechDataId]] = techIdUpdates[i]
-			-- Clear tech ID field from key updates
-			techIdUpdatedFields[techIdUpdates[i][kTechDataId]][kTechDataId] = nil
+		newTechTable, updatedTechTable = BuildCompModTechDataUpdates()
+		for i = 1, #updatedTechTable do
+			local updatedId = updatedTechTable[i][kTechDataId]
+			table.insert(techIdUpdatedKeys, updatedId)
+			techIdUpdatedFields[updatedId] = updatedTechTable[i]
 		end
 		techDataUpdatesBuilt = true
 	end
@@ -34,7 +37,14 @@ function ReturnNewTechButtons()
 	BuildTechDataUpdates()
 	local tButtons = { }
 	for i = 1, #newTechTable do
-		tButtons[newTechTable[i][kTechDataId]] = newTechTable[i][kTechDataButtonID]
+		if newTechTable[i][kTechDataButtonID] then
+			tButtons[newTechTable[i][kTechDataId]] = newTechTable[i][kTechDataButtonID]
+		end
+	end
+	for i = 1, #updatedTechTable do
+		if updatedTechTable[i][kTechDataButtonID] then
+			tButtons[updatedTechTable[i][kTechDataId]] = updatedTechTable[i][kTechDataButtonID]
+		end
 	end
 	return tButtons
 end

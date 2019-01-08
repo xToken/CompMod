@@ -30,7 +30,7 @@ kLerkAdrenalineRecuperationScalar = 0.6
 kFadeAdrenalineRecuperationScalar = 1
 kOnosAdrenalineRecuperationScalar = 0.8
 
-kCelerityAddSpeed = 1.5						-- Default is 1.5
+kCelerityAddSpeed = 1.8						-- Default is 1.5
 
 kAlienCrushDamagePercentByLevel = 0.07		-- Default is 0.07
 
@@ -50,7 +50,8 @@ kHealingRoostHealthRegain = 5
 -- SPIKES
 kSpikeMaxDamage = 14						-- Increased from 7 with damage type rework
 kSpikeMinDamage = 14						-- Increased from 7 with damage type rework
-kLerkSpikeSpread = Math.Radians(2.8)
+kLerkSpikeSpread = Math.Radians(3.1)
+kSpikeDamageType = kDamageType.HalfStructural
 
 -- SPORES
 kSporesDamageType = kDamageType.Normal		-- Changed from GAS to normal
@@ -66,6 +67,10 @@ kStompDamage = 40
 kStompRange = 12
 
 -- SWIPE
-kSwipeDamageType = kDamageType.Puncture		-- Changed from structuresonlylight to normal
+kSwipeDamageType = kDamageType.HalfStructural		-- Changed from structuresonlylight to normal
 kSwipeDamage = 75
 kSwipeEnergyCost = 7
+
+-- GORE
+kGoreDamage = 75
+kGoreDamageType = kDamageType.QuadStructural

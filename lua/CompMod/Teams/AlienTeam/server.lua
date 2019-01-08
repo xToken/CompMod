@@ -210,3 +210,31 @@ function AlienTeam:InitTechTree()
     self.techTree:SetComplete()
 
 end
+
+local kUpgradeStructureTable =
+{
+    {
+        name = "Shell",
+        techId = kTechId.Shell,
+        upgrades = {
+            kTechId.Carapace, kTechId.Regeneration
+        }
+    },
+    {
+        name = "Veil",
+        techId = kTechId.Veil,
+        upgrades = {
+            kTechId.Crush, kTechId.Aura
+        }
+    },
+    {
+        name = "Spur",
+        techId = kTechId.Spur,
+        upgrades = {
+            kTechId.Celerity, kTechId.Adrenaline
+        }
+    }
+}
+function AlienTeam.GetUpgradeStructureTable()
+    return kUpgradeStructureTable
+end

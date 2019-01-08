@@ -11,7 +11,7 @@ local function UpdateHealing(self)
 
             -- Heal players and egg, so we can't spot an embryo (evolving alien) easily by shooting
             -- an egg and check for the hive regen to apply.
-            local healedEntitiesName = {"Player", "Egg"}
+            local healedEntitiesName = {"Player", "Egg", "Drifter"}
             for _, healedEntityName in ipairs(healedEntitiesName) do
                 for index, ent in ipairs(GetEntitiesForTeam(healedEntityName, self:GetTeamNumber())) do
 
@@ -35,6 +35,10 @@ ReplaceLocals(Hive.OnUpdate, { UpdateHealing = UpdateHealing })
 
 function Hive:OnTeleport()
     self:SetDesiredInfestationRadius(0)
+end
+
+function Hive:OnTeleportFailed()
+    self:SetDesiredInfestationRadius(self:GetInfestationMaxRadius())
 end
 
 function Hive:OnTeleportEnd()
@@ -63,4 +67,21 @@ function Hive:OnTeleportEnd()
 
     end
 
+end
+
+function Hive:HatchEggs()
+    local amountEggsForHatch = ScaleWithPlayerCount(kEggsPerHatch, #GetEntitiesForTeam("Player", self:GetTeamNumber()), true)
+    local eggCount = 0
+    for i = 1, 20 do
+        local egg = self:SpawnEgg(true)
+        if egg then eggCount = eggCount + 1 end
+        if eggCount >= amountEggsForHatch then break end
+    end
+
+    if eggCount > 0 then
+        self:TriggerEffects("hatch")
+        return true
+    end
+
+    return false
 end

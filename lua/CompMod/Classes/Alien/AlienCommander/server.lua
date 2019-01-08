@@ -73,7 +73,10 @@ local oldAlienCommanderProcessTechTreeActionForEntity = AlienCommander.ProcessTe
 function AlienCommander:ProcessTechTreeActionForEntity(techNode, position, normal, pickVec, orientation, entity, trace, targetId)
 	local techId = techNode:GetTechId()
 	if GetIsEchoTeleportTechId(techId) and targetId then
-		return entity:PerformActivation(techId, position, normal, self, targetId)
+		if entity then
+			return entity:PerformActivation(techId, position, normal, self, targetId)
+		end
+		return false, false
 	end
 	if techId == kTechId.EnzymeCloud or techId == kTechId.Hallucinate or techId == kTechId.MucousMembrane or techId == kTechId.Storm then
 		entity = GetNearest(self, "Drifter")

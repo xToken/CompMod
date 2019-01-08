@@ -48,9 +48,9 @@ function GUIAuraDisplay:Update(deltaTime)
                     if viewDirection:DotProduct(GetNormalizedVector(enemyPlayer:GetOrigin() - eyePos)) > 0 then
                         if not GetWallBetween(eyePos, enemyPlayer:GetOrigin(), enemyPlayer) then
                             table.insert(players, enemyPlayer)
-                        elseif (self.soundTrigger[enemyPlayer:GetId()] or 0) < Shared.GetTime() then
-                            StartSoundEffectAtOrigin("sound/NS2.fev/alien/structures/shift/idle", enemyPlayer:GetOrigin(), 1.5, nil)
-                            self.soundTrigger[enemyPlayer:GetId()] = Shared.GetTime() + math.random(kHeartbeatMinSoundRate, kHeartbeatMaxSoundRate)
+                        --elseif (self.soundTrigger[enemyPlayer:GetId()] or 0) < Shared.GetTime() then
+                            --StartSoundEffectAtOrigin("sound/NS2.fev/alien/structures/shift/idle", enemyPlayer:GetOrigin(), 1.5, nil)
+                            --self.soundTrigger[enemyPlayer:GetId()] = Shared.GetTime() + math.random(kHeartbeatMinSoundRate, kHeartbeatMaxSoundRate)
                         end
                     end
                     

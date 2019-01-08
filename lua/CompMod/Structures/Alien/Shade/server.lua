@@ -40,6 +40,10 @@ function Shade:OnTeleport()
 	self:SetDesiredInfestationRadius(0)
 end
 
+function Shade:OnTeleportFailed()
+    self:SetDesiredInfestationRadius(self:GetInfestationMaxRadius())
+end
+
 local originalShadeOnTeleportEnd
 originalShadeOnTeleportEnd = Class_ReplaceMethod("Shade", "OnTeleportEnd",
 	function(self, destinationEntity)

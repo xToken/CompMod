@@ -7,5 +7,5 @@ local originalFeedbackInit
 originalFeedbackInit = Class_ReplaceMethod("GUIFeedback", "Initialize",
 function(self)
 	originalFeedbackInit(self)
-	self.buildText:SetText(self.buildText:GetText() .. " (" .. "Prog-Mod" .. " v"  .. kCompModVersion .. "." .. kCompModBuild .. ")")
+	self.buildText:SetText(self.buildText:GetText() .. " (" .. "Prog-Mod" .. " b"  .. kCompModBuild .. ")")
 end)

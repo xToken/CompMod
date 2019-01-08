@@ -1,6 +1,6 @@
 -- Natural Selection 2 Competitive Mod
 -- Source located at - https://github.com/xToken/CompMod
--- lua\CompMod\GUI\GUIFeedback\post.lua
+-- lua\CompMod\GUI\GUIUnitStatus\post.lua
 -- - Dragon
 
 local kMaturityBarWidth
@@ -19,7 +19,7 @@ function GUIUnitStatus:UpdateUnitStatusBlip( blipIndex, localPlayerIsCommander, 
         updateBlip.MaturityBarBg:SetColor(kArmorBarBgColors[kAlienTeamType])
         if maturityFraction > kMaturityGrownThreshold then
         	updateBlip.MaturityBar:SetColor(Color(0,1,0,1))
-        elseif kMaturityGrownThreshold > kMaturityStarvingThreshold then
+        elseif maturityFraction > kMaturityStarvingThreshold then
         	updateBlip.MaturityBar:SetColor(Color(1,1,0,1))
         else
         	updateBlip.MaturityBar:SetColor(Color(1,0,0,1))

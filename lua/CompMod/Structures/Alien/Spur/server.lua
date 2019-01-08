@@ -25,7 +25,19 @@ originalSpurOnUpdate = Class_ReplaceMethod("Spur", "OnUpdate",
 )
 
 function Spur:GetDestroyOnKill()
-	return false
+    return false
+end
+
+function Spur:OnTeleport()
+    self:SetDesiredInfestationRadius(0)
+end
+
+function Spur:OnTeleportFailed()
+    self:SetDesiredInfestationRadius(self:GetInfestationMaxRadius())
+end
+
+function Spur:OnTeleportEnd(destinationEntity)
+    self:CleanupInfestation()
 end
 
 function Spur:OnKill(attacker, doer, point, direction)
@@ -34,14 +46,6 @@ function Spur:OnKill(attacker, doer, point, direction)
 	if team then
 		team:OnTeamEntityDestroyed(self)
 	end
-end
-
-function Spur:OnTeleport()
-	self:SetDesiredInfestationRadius(0)
-end
-
-function Spur:OnTeleportEnd(destinationEntity)
-	self:CleanupInfestation()
 end
 
 function Spur:GetPassiveBuild()

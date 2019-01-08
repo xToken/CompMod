@@ -36,6 +36,10 @@ function Veil:OnKill(attacker, doer, point, direction)
 	end
 end
 
+function Veil:OnTeleportFailed()
+    self:SetDesiredInfestationRadius(self:GetInfestationMaxRadius())
+end
+
 function Veil:OnTeleport()
 	self:SetDesiredInfestationRadius(0)
 end

@@ -3,21 +3,48 @@
 -- lua\CompMod\AlienUpgradeManager\server.lua
 -- - Dragon
 
-function AlienUpgradeManager:Populate(player)
+-- Hooking this to remove upgrades if we are switching between categories
+local GetHasCategory = GetUpValue(AlienUpgradeManager.AddUpgrade, "GetHasCategory")
+local RemoveCategoryUpgrades = GetUpValue(AlienUpgradeManager.AddUpgrade, "RemoveCategoryUpgrades")
+function AlienUpgradeManager:GetHasChanged()
 
-    assert(player)
-    assert(HasMixin(player, "Upgradable"))
-    
-    self.upgrades = { }
-    table.insert(self.upgrades, player:GetTechId())
-    
-    self.availableResources = player:GetPersonalResources()
-    self.initialResources = player:GetPersonalResources()
-    self.lifeFormTechId = player:GetTechId()
-    self.initialLifeFormTechId = player:GetTechId()
-    self.teamNumber = player:GetTeamNumber()
-    
-    self.initialUpgrades = { }
-    table.copy(self.upgrades, self.initialUpgrades)
+    -- Scan our new upgrades.. Remove
+    for _, upgradeId in ipairs(self.upgrades) do
+        local categoryId = LookupTechData(upgradeId, kTechDataCategory)
+        if not GetHasCategory(self.newUpgrades, categoryId) then
+            -- We didnt request this category, so we must have removed it
+            if categoryId then
+                RemoveCategoryUpgrades(self, categoryId)
+            end
+        end
+    end
 
+    local changed = #self.upgrades ~= #self.initialUpgrades
+    
+    if not changed then
+    
+        for _, upgradeId in ipairs(self.upgrades) do
+            
+            if not table.icontains(self.initialUpgrades, upgradeId) then
+                changed = true
+                break
+            end
+            
+        end
+        
+    end
+    
+    return changed
+end
+
+local oldAlienUpgradeManagerAddUpgrade = AlienUpgradeManager.AddUpgrade
+function AlienUpgradeManager:AddUpgrade(upgradeId, override)
+    local allowed = oldAlienUpgradeManagerAddUpgrade(self, upgradeId, override)
+    if allowed then
+        if not self.newUpgrades then
+            self.newUpgrades = { }
+        end
+        table.insert(self.newUpgrades, upgradeId)
+    end
+    return allowed
 end

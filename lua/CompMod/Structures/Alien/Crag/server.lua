@@ -40,6 +40,10 @@ function Crag:OnTeleport()
 	self:SetDesiredInfestationRadius(0)
 end
 
+function Crag:OnTeleportFailed()
+	self:SetDesiredInfestationRadius(self:GetInfestationMaxRadius())
+end
+
 function Crag:GetDestroyOnKill()
 	return false
 end

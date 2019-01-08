@@ -12,7 +12,7 @@ function InfestationMixin:__initmixin()
     
     self.growthRate = self:GetInfestationGrowthRate() * gInfestationMultiplier
     self.desiredInfestationRadius = 0
-    self.infestationPatches = {}
+    self.infestationPatches = { }
     self.infestationRadius = 0
     self.infestationChangeTime = Shared.GetTime()
     
@@ -32,8 +32,15 @@ function InfestationMixin:CleanupInfestation()
     
     end
 
-    self.infestationPatches = {}
+    self.infestationPatches = { }
     self.infestationGenerated = false
+
+end
+
+function InfestationMixin:OnKill(attacker, doer, point, direction)
+    
+    -- trigger receed
+    self:SetDesiredInfestationRadius(0)
 
 end
 
@@ -63,6 +70,8 @@ function InfestationMixin:UpdateInfestation(deltaTime)
     
     PROFILE("InfestationMixin:UpdateInfestation")
 
+    if self.allowDestruction then return false end
+
     local needsInfestation = (not HasMixin(self, "Construct") or self:GetIsBuilt()) and (not self.ShouldGenerateInfestation or self:ShouldGenerateInfestation())
     
     if needsInfestation and not self.infestationGenerated then
@@ -72,8 +81,8 @@ function InfestationMixin:UpdateInfestation(deltaTime)
         -- CreateInfestation resets the radius/time, but it might be fully grown.  The server would be networking us the correct value, we just ignore it on the first update
         -- because of this.  So cache the values and restore after
         if Client then
-            self.infestationRadius = r
-            self.infestationChangeTime = t
+            --self.infestationRadius = r
+            --self.infestationChangeTime = t -- Disable this unless we start using the placeholder ent for these
         end
         self.desiredInfestationRadius = self:GetInfestationMaxRadius()
     end

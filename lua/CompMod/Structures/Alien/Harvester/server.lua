@@ -46,6 +46,10 @@ function Harvester:OnTeleport()
 	self:SetDesiredInfestationRadius(0)
 end
 
+function Harvester:OnTeleportFailed()
+	self:SetDesiredInfestationRadius(self:GetInfestationMaxRadius())
+end
+
 function Harvester:OnTeleportEnd(destinationEntity)
 	self:CleanupInfestation()
 end

@@ -11,8 +11,8 @@ local gAlienMenuButtons =
                             
     [kTechId.AdvancedMenu] = { kTechId.None },
 
-    [kTechId.AssistMenu] = { kTechId.HealWave, kTechId.ShadeInk, kTechId.ShiftEnergize, kTechId.SelectDrifter,
-                             kTechId.EnzymeCloud, kTechId.Hallucinate, kTechId.BoneWall, kTechId.None }
+    [kTechId.AssistMenu] = { kTechId.HealWave, kTechId.ShadeInk, kTechId.ShiftEnergize, kTechId.NutrientMist,
+                             kTechId.EnzymeCloud, kTechId.Hallucinate, kTechId.BoneWall, kTechId.SelectDrifter }
 }
 
 local gAlienMenuIds = {}
@@ -40,7 +40,6 @@ function GetEchoTeleportTechIdForClassname(classname)
         gTeleportClassnames["Hive"] = kTechId.TeleportHive
         gTeleportClassnames["Egg"] = kTechId.TeleportEgg
         gTeleportClassnames["Harvester"] = kTechId.TeleportHarvester
-        --gTeleportClassnames["Embryo"] = kTechId.TeleportEmbryo
     end
     
     return gTeleportClassnames[classname]
@@ -60,8 +59,7 @@ return techId == kTechId.TeleportHydra or
        techId == kTechId.TeleportShell or
        techId == kTechId.TeleportHive or
        techId == kTechId.TeleportEgg or
-       techId == kTechId.TeleportHarvester --or
-       --techId == kTechId.TeleportEmbryo
+       techId == kTechId.TeleportHarvester
 
 end
 

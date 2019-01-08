@@ -24,7 +24,11 @@ function GetSelectionText(entity, teamNumber)
             text = Locale.ResolveString("STARVING") .. " " .. text
         end
 
-        if entity:GetMaturityLevel() == kMaturityLevel.Mature then
+        if entity:GetMaturityLevel() == kMaturityLevel.Producing then
+            text = Locale.ResolveString("PRODUCING") .. " " .. text
+        end
+
+        if entity:GetMaturityLevel() == kMaturityLevel.Flourishing then
             text = Locale.ResolveString("MATURED") .. " " .. text
         end
 

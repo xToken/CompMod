@@ -82,12 +82,13 @@ function Exo:GetFuelRechargeRate()
 end
 
 function Exo:GetFuelUsageRate()
+    local usageScalar = self:GetHasMinigun() and kMinigunFuelUsageScalar or kRailgunFuelUsageScalar
     if self.thrustersActive then
-    	return kExoThrusterFuelUsageRate
+    	return kExoThrusterFuelUsageRate * usageScalar
     elseif self.shieldActive then
-    	return kExoShieldFuelUsageRate
+    	return kExoShieldFuelUsageRate * usageScalar
     elseif self.repairActive then
-    	return kExoRepairFuelUsageRate
+    	return kExoRepairFuelUsageRate * usageScalar
     else
     	-- wut
     	return 1
@@ -145,7 +146,7 @@ function Exo:UpdateRepairs(input)
         self.repairActive = false
     end
 
-    if not self:GetIsInCombat() and self.repairActive and self.timeAutoRepairHealed + kExoRepairInterval < Shared.GetTime() then            
+    if self.repairActive and self.timeAutoRepairHealed + kExoRepairInterval < Shared.GetTime() then            
         self:SetArmor(self:GetArmor() + kExoRepairInterval * kExoRepairPerSecond, false)
 		self.timeAutoRepairHealed = Shared.GetTime()
     end

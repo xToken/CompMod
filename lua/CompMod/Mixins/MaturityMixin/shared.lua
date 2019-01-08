@@ -3,7 +3,7 @@
 -- lua\CompMod\Mixins\MaturityMixin\shared.lua
 -- - Dragon
 
-kMaturityLevel = enum({ 'Starving', 'Grown', 'Mature' })
+kMaturityLevel = enum({ 'Starving', 'Grown', 'Mature', 'Producing', 'Flourishing' })
 
 function MaturityMixin:GetStarvationRate()
     local matureFraction = self:GetMaturityFraction()
@@ -28,9 +28,9 @@ function MaturityMixin:GetMaturityLevel()
     if matureFraction < kMaturityStarvingThreshold then
         return kMaturityLevel.Starving
     elseif matureFraction < kMaturityGrownThreshold then
-        return kMaturityLevel.Grown
+        return kMaturityLevel.Producing
     else
-        return kMaturityLevel.Mature
+        return kMaturityLevel.Flourishing
     end
 end
 
