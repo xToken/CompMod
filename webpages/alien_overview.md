@@ -245,9 +245,6 @@
 	- Cost increased from 40 to 50 tRes
 	- Healing rate lowered from 1s to 2s
 	
-### Healing:
-	- Armor now heals at half the rate of health
-	
 ### Cyst:
 	- Disabled
 	
