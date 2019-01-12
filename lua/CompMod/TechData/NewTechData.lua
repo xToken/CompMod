@@ -741,5 +741,12 @@ function BuildCompModTechDataUpdates()
             [kTechDataId] = kTechId.Stomp,
             [kTechDataNotifyPlayers] = true
         })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.Cyst,
+			[kTechDataBuildRequiresMethod] = nil,
+			[kTechDataGhostModelClass] = "AlienGhostModel",
+			[kTechDataGrows] = true
+		})
 	return newTechTable, techIdUpdates
 end
