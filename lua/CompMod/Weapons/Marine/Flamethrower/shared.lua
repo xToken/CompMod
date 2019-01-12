@@ -48,6 +48,34 @@ function Flamethrower:GetIsAffectedByWeaponUpgrades()
     return true
 end
 
+function Flamethrower:BurnBileDOT(startPoint, endPoint)
+
+    local toTarget = endPoint - startPoint
+    local length = toTarget:GetLength()
+    toTarget:Normalize()
+
+    local stepLength = 2
+    for i = 1, 5 do
+    
+        -- stop when target has reached, any spores would be behind
+        if length < i * stepLength then
+            break
+        end
+
+        local checkAtPoint = startPoint + toTarget * i * stepLength
+        -- moar dots
+        local dots = GetEntitiesWithinRange("DotMarker", checkAtPoint, 4)
+
+        for i = 1, #dots do
+            local dot = dots[i]
+            dot:TriggerEffects("burn_bomb", { effecthostcoords = Coords.GetTranslation(dot:GetOrigin()) } )
+            DestroyEntity(dot)
+        end
+
+    end
+
+end
+
 function Flamethrower:ApplyConeDamage(player)
 	
     local eyePos = player:GetEyePos()
@@ -70,6 +98,12 @@ function Flamethrower:ApplyConeDamage(player)
 
 		local endPoint = trace.endPoint
 		local normal = trace.normal
+
+		-- Check for spores in the way.
+	    if Server then
+	        self:BurnSporesAndUmbra(startPoint, endPoint)
+	        self:BurnBileDOT(startPoint, endPoint)
+	    end
 
 		if trace.fraction ~= 1 then
 
