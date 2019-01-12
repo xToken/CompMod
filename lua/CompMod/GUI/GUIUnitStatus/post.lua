@@ -36,7 +36,7 @@ local oldGUIUnitStatusInitialize = GUIUnitStatus.Initialize
 function GUIUnitStatus:Initialize()
 	oldGUIUnitStatusInitialize(self)
 	kMaturityBarWidth = GUIScale(130)
-	kMaturityBarHeight = GUIScale(4)
+	kMaturityBarHeight = GUIScale(6)
 end
 
 local oldCreateBlipItem = GetUpValue(GUIUnitStatus.UpdateUnitStatusList, "CreateBlipItem", { LocateRecurse = true })
@@ -48,7 +48,7 @@ local function newCreateBlipItem(self)
 	newBlip.MaturityBarBg = GetGUIManager():CreateGraphicItem()
     newBlip.MaturityBarBg:SetAnchor(GUIItem.Middle, GUIItem.Bottom)
     newBlip.MaturityBarBg:SetSize(Vector(kMaturityBarWidth, kMaturityBarHeight, 0))
-    newBlip.MaturityBarBg:SetPosition(Vector(-kMaturityBarWidth / 2, -GUIScale(10), 0))
+    newBlip.MaturityBarBg:SetPosition(Vector(-kMaturityBarWidth / 2, -GUIScale(12), 0))
     newBlip.MaturityBarBg:SetTexture(neutralTexture)
     newBlip.MaturityBarBg:SetColor(Color(0,0,0,0))
     newBlip.MaturityBarBg:SetTexturePixelCoordinates(GUIUnpackCoords(GUIUnitStatus.kUnitStatusBarTexCoords))
