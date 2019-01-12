@@ -20,6 +20,10 @@ function Spur:GetInfestationMaxRadius()
     return kStructureInfestationRadius
 end
 
+function Spur:GetSustenanceScalar()
+    return 3
+end
+
 local networkVars = { }
 
 AddMixinNetworkVars(InfestationMixin, networkVars)
