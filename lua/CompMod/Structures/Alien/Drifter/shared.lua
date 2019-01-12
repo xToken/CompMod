@@ -20,11 +20,11 @@ local function GetTierTech(drifter, techId)
 	return CountToResearchId[techId][comm:GetUpgradeChamberCount(techId)]
 end
 
-local kDrifterStructures = { kTechId.Crag, kTechId.Shade, kTechId.Shift, kTechId.Whip,
+kDrifterStructures = { kTechId.Crag, kTechId.Shade, kTechId.Shift, kTechId.Whip,
                             kTechId.Hive, kTechId.Harvester, kTechId.Cyst, kTechId.Shell, 
                             kTechId.TwoShells, kTechId.ThreeShells, kTechId.Spur, 
                             kTechId.TwoSpurs, kTechId.ThreeSpurs, kTechId.Veil, 
-                            kTechId.TwoVeils, kTechId.ThreeVeils }
+                            kTechId.TwoVeils, kTechId.ThreeVeils, kTechId.Cyst }
 
 function Drifter:GetTechButtons(techId)
 
@@ -40,28 +40,6 @@ function Drifter:GetTechButtons(techId)
                                kTechId.None, kTechId.None, kTechId.None, kTechId.RootMenu }
     end
     return techButtons
-
-end
-
-function Drifter:ProcessParasiteCloudOrder(techId, position, commander)
-
-    local origin = self:GetOrigin()
-    local trace = Shared.TraceRay(
-        origin, 
-        position, 
-        CollisionRep.Damage, 
-        PhysicsMask.Bullets, 
-        EntityFilterOneAndIsa(self, "Babbler")
-    )
-    
-    local travelVector = trace.endPoint - origin
-    local distance = math.min( ParasiteCloud.kMaxRange, travelVector:GetLength() )
-    local destination = GetNormalizedVector(travelVector) * distance + origin
-    local paraCloud = CreateEntity( ParasiteCloud.kMapName, origin, commander:GetTeamNumber() )
-
-    paraCloud:SetTravelDestination( destination )
-
-    return true
 
 end
 
@@ -112,8 +90,14 @@ function Drifter:PerformActivation(techId, position, normal, commander, targetId
 
     elseif techId == kTechId.ParasiteCloud then
 
-        success = self:ProcessParasiteCloudOrder(techId, position+ Vector(0, 2.5, 0), commander)
-        keepProcessing = false
+        local team = self:GetTeam()
+        local cost = GetCostForTech(techId)
+        if cost <= team:GetTeamResources() then
+            self:GiveOrder(techId, nil, position + Vector(0, 2.5, 0), nil, not commander.shiftDown, false)
+            -- Only 1 Drifter will process this activation.
+            keepProcessing = false
+        end
+        success = false --self:ProcessParasiteCloudOrder(techId, position+ Vector(0, 2.5, 0), commander)
 
     elseif GetIsEchoTeleportTechId(techId) then
 
@@ -130,6 +114,42 @@ function Drifter:PerformActivation(techId, position, normal, commander, targetId
     end
 
     return success, keepProcessing
+
+end
+
+function Drifter:ProcessParasiteCloudOrder(moveSpeed, deltaTime)
+
+    local currentOrder = self:GetCurrentOrder()
+    if currentOrder then
+
+        local targetPos = currentOrder:GetLocation()
+        local commander = GetCommander(self:GetTeamNumber())
+        local team = self:GetTeam()
+        local cost = GetCostForTech(kTechId.ParasiteCloud)
+        local origin = self:GetOrigin()
+        local trace = Shared.TraceRay(origin, targetPos, CollisionRep.Move, PhysicsMask.Bullets, EntityFilterAll())
+
+        -- check if we can SEE the destination      
+        if trace.fraction == 1 then
+
+            local travelVector = targetPos - origin
+            local distance = math.min( ParasiteCloud.kMaxRange, travelVector:GetLength() )
+            local destination = GetNormalizedVector(travelVector) * distance + origin
+            local paraCloud = CreateEntity( ParasiteCloud.kMapName, origin, commander:GetTeamNumber() )
+
+            paraCloud:SetTravelDestination( destination )
+
+            self:CompletedCurrentOrder()
+            self:TriggerUncloak()
+        else
+            -- move to target otherwise
+            if self:MoveToTarget(PhysicsMask.AIMovement, targetPos, moveSpeed, deltaTime) then
+                self:ClearOrders()
+            end
+
+        end
+
+    end
 
 end
 
@@ -151,7 +171,7 @@ function Drifter:ProcessMistOrder(moveSpeed, deltaTime)
         local techId = targetEnt and targetEnt:GetTechId() or kTechId.None
         local range = 3
 
-        -- check if we can reach the destinaiton
+        -- check if we can SEE the destination
         if targetEnt and (targetEnt:GetOrigin() - self:GetOrigin()):GetLengthXZ() < range then
             -- Dont allow stacking more than 30s of catalyst
             if HasMixin(targetEnt, "Catalyst") then
@@ -293,6 +313,9 @@ function Drifter:OnUpdate(deltaTime)
 	    	end
             if GetIsEchoTeleportTechId(currentOrder:GetType()) then
                 self:ProcessTeleportOrder(drifterMoveSpeed, deltaTime)
+            end
+            if currentOrder:GetType() == kTechId.ParasiteCloud then
+                self:ProcessParasiteCloudOrder(drifterMoveSpeed, deltaTime)
             end
 	    end
 	end
