@@ -3,6 +3,36 @@
 -- lua\CompMod\Classes\Alien\AlienCommander\server.lua
 -- - Dragon
 
+local kDrifterOrderScanRange = 40
+
+local function GetNearestDrifter(self, orderType)
+
+    local ents = GetEntitiesForTeam("Drifter", self:GetTeamNumber())
+    Shared.SortEntitiesByDistance(self:GetOrigin(), ents)
+    local isEchoOrder = GetIsEchoTeleportTechId(orderType)
+    local isBuildOrder = table.contains(kDrifterStructures, orderType)
+    -- Grab nearest drifter performing same type of order, or just nearest drifter
+    for i = 1, #ents do
+    	local dist = (ents[i]:GetOrigin() - self:GetOrigin()):GetLengthSquared()
+    	local currentOrder = ents[i]:GetCurrentOrder()
+    	if currentOrder and dist < (kDrifterOrderScanRange*kDrifterOrderScanRange) then
+        	local techId = currentOrder:GetType()
+        	if isEchoOrder and GetIsEchoTeleportTechId(techId) then
+        		-- This drifter is echoing, and we have an echo order
+        		return ents[i]
+        	elseif isBuildOrder and table.contains(kDrifterStructures, techId) then
+        		-- This drifter is building, and we have a build order
+        		return ents[i]
+        	elseif not isEchoOrder and not isBuildOrder then
+        		--Who knows what this drifter is doing
+        		return ents[i]
+        	end
+        end
+    end
+    return ents[1]
+
+end
+
 function AlienCommander:TrackedEntityUpdate(techId, newCount)
 	if techId == kTechId.Shell then
 		self.shellCount = Clamp(newCount, 0, 3)
@@ -78,7 +108,7 @@ function AlienCommander:ProcessTechTreeActionForEntity(techNode, position, norma
 	local techId = techNode:GetTechId()
 	if GetIsEchoTeleportTechId(techId) and targetId then
 		if not entity then
-			entity = GetNearest(self, "Drifter")
+			entity = GetNearestDrifter(self, techId)
 		end
 		if entity then
 			return entity:PerformActivation(techId, position, normal, self, targetId)
@@ -87,7 +117,7 @@ function AlienCommander:ProcessTechTreeActionForEntity(techNode, position, norma
 	end
 	if table.contains(kDrifterStructures, techId) then
 		if not entity then
-			entity = GetNearest(self, "Drifter")
+			entity = GetNearestDrifter(self, techId)
 		end
 		if entity then
 			return entity:PerformActivation(techId, position, normal, self, targetId)
@@ -96,7 +126,7 @@ function AlienCommander:ProcessTechTreeActionForEntity(techNode, position, norma
 	end
 	if techId == kTechId.EnzymeCloud or techId == kTechId.Hallucinate or techId == kTechId.MucousMembrane or techId == kTechId.Storm or techId == kTechId.ParasiteCloud then
 		if not entity then
-			entity = GetNearest(self, "Drifter")
+			entity = GetNearestDrifter(self, techId)
 		end
 		if entity then
 			return entity:PerformActivation(techId, position, normal, self, targetId)
