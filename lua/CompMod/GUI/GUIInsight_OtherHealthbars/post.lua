@@ -38,7 +38,7 @@ function GUIInsight_OtherHealthbars:Update(deltaTime)
                     maturityBar:SetColor(Color(1,0,0,1))
                 end
                 otherGUI.Background:SetSize(Vector(backgroundSize, self.kOtherHealthBarSize.y * 2 + 1, 0))
-            else
+            elseif other:GetIsVisible() and self.isVisible and other:GetIsAlive() then
                 otherGUI.MaturityBar:SetIsVisible(false)
             end
         end
