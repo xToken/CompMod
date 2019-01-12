@@ -4,6 +4,7 @@
 -- - Dragon
 
 JetpackMarine.kJetpackFuelReplenishDelay = kJetpackFuelReplenishDelay
+JetpackMarine.kJetpackGravity = -13
 
 local networkVars =
 {
