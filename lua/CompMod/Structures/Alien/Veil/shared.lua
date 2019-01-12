@@ -20,6 +20,10 @@ function Veil:GetInfestationMaxRadius()
     return kStructureInfestationRadius
 end
 
+function Veil:GetSustenanceScalar()
+    return 3
+end
+
 local networkVars = { }
 
 AddMixinNetworkVars(InfestationMixin, networkVars)
