@@ -27,8 +27,8 @@ kOnosGestateTime = 16						-- Default is 30
 kSkulkAdrenalineRecuperationScalar = 0.4
 kGorgeAdrenalineRecuperationScalar = 0.3
 kLerkAdrenalineRecuperationScalar = 0.6
-kFadeAdrenalineRecuperationScalar = 1
-kOnosAdrenalineRecuperationScalar = 0.8
+kFadeAdrenalineRecuperationScalar = 0.8
+kOnosAdrenalineRecuperationScalar = 0.5
 
 kCelerityAddSpeed = 1.8						-- Default is 1.5
 
@@ -73,4 +73,4 @@ kSwipeEnergyCost = 7
 
 -- GORE
 kGoreDamage = 75
-kGoreDamageType = kDamageType.QuadStructural
+kGoreDamageType = kDamageType.Structural
