@@ -14,7 +14,7 @@ ParasiteCloud.kEffect = PrecacheAsset("cinematics/alien/drifter/stormcloud.cinem
 ParasiteCloud.kLifetime = kParasiteCloudLifetime
 ParasiteCloud.kRadius = kParasiteCloudDetectRadius
 ParasiteCloud.kMaxRange = kParasiteCloudRange
-ParasiteCloud.kTravelSpeed = 6
+ParasiteCloud.kTravelSpeed = 5
 
 local kUpdateTime = 0.25
 
