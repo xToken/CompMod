@@ -15,3 +15,7 @@ end
 function Hydra:GetRateOfFire()
 	return kHydraRateOfFire
 end
+
+function Hydra:DisableSustenance()
+	return true
+end
