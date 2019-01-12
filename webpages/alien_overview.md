@@ -1,25 +1,27 @@
 ## Alien Changes vs Vanilla NS2
 
 ### Skulk:
+	- Maximum carapace armor decreased from 30 to 25
 	- Adjusted wallhop to allow better chaining of jumps
 	- Speed increased to 8.0 from 7.25
 	- Decreased model width by 10% from the front
 	- Decreased bite cone from 1.2 wide and 1.2 tall to 0.8 wide and 1.0 tall
 	- Skulks will respawn with their last evolved upgrades in full effect
 	- Automatically selected upgrades for Skulks is disabled
-	- Maximum carapace armor increased from 30 to 40
+	- Ground speed increased from 7.25 to 7.5
+	- Celerity walljump bonus increased from 1.2 to 1.5
 	- Parasite:
 		- Duration lowered from 44 to 30
-		
+	
 ### Gorge:
+	- Health increased from 160 to 250
+	- Base armor decreased from 75 to 30
+	- Maximum carapace armor decreased from 100 to 90
 	- Speed increased to 6.75 from 6.0
 	- Air control increased to 18 from 6
 	- Air friction lowered to .12-.15 from .2
 	- Cost increased from 8 to 10 pRes
 	- Upgrade cost unchanged at 1 pRes
-	- Health increased from 160 to 250
-	- Base armor decreased from 75 to 30
-	- Maximum carapace armor decreased from 100 to 90
 	- Gorges can put out structures that are on fire 100% of the time.
 	- Spit:
 		- Damage type changed to Normal
@@ -45,12 +47,12 @@
 		 - Decreased web health from 80 to 40
 		 
 ### Lerk:
-	- flying speed increased to 13.25 from 13
-	- Cost decreased from 21 to 15 pRes
-	- Upgrade cost lowered from 3 to 2 pRes
 	- Health increased from 150 to 200
-	- Base armor decreased from 45 to 30
-	- Maximum carapace armor increased from 60 to 90
+	- Base armor decreased from 45 to 20
+	- Maximum carapace armor increased from 60 to 80
+	- Cost decreased from 21 to 15 pRes
+	- Flying speed increased to 13.25 from 13
+	- Upgrade cost lowered from 3 to 2 pRes
 	- Gestate time lowered from 15 to 10 seconds
 	- Model rotation slightly restricted
 	- Bite:
@@ -64,41 +66,47 @@
 		 - New ability, lerk heals passively for 5 HP/s when roosting
 		 
 ### Fade:
-	- Added slightly modified ceiling fix for crouching fades
+	- Health increased from 250 to 300
+	- Maximum carapace armor increased from 120 to 170
+	- Base armor is unchanged at 80
+	- Cost decreased from 37 to 25 pRes
 	- Ground speed increased to 6.5 from 6.2
 	- Blink speed increased to 14.5 from 14
-	- Cost decreased from 37 to 25 pRes
 	- Upgrade cost decreased from 5 to 3 pRes
-	- Health increased from 250 to 350
-	- Base armor lowered from 80 to 70
 	- Gestate time lowered from 25 to 13 seconds
-	- Maximum carapace armor increased from 120 to 160
+	- Added slightly modified ceiling fix for crouching fades
 	- Swipe:
 		- Damage type changed from structuresonlylight to puncture (Deals half damage to structures)
-		
+	- Blink:
+		- Blink can chain 'jumps' to bypass ground friction and maintain higher speeds
+
 ### Onos:
+	- Base health lowered from 900 to 800
+	- Base armor unchanged at 450
+	- Maximum carapace armor increased from 650 to 750
 	- Cost reduced from 40 to 35
+	- Onos model shrunk by 15%
 	- Disabled 'Stampede' effects, cannot charge through players and doesn't send marines flying.
 	- Speed increased to 7.0 from 6.6
-	- Charge speed increased to 13 from 12.5
 	- Cost decreased from 62 to 40 pRes
 	- Upgrade cost decreased from 8 to 4 pRes
-	- Base armor decreased from 450 to 400
-	- Maximum carapace armor increased from 650 to 750
 	- Gestate time lowered from 30 to 16 seconds
 	- Gore:
 		- Damage reduced to 75
-		- Damage type changed from structural to QuadStructural
+		- Damage type unchanged as Structural
+	- Smash:
+		- Animation speed up by 30%
 	- Charge:
 		 - No longer knocks marines back
 		 - No longer allows you to charge through marines
 		 - No longer reduces your mouse sensitivty while charging
 		 - Lowered delay between charges from 1 to 0.25 seconds
-		 - Lowered time to accelerate to full charge speed from 0.5 to 0.25 seconds
-		 - Increased charge energy cost from 20 to 30/second
+		 - Time to accelerate to full charge speed increased from 0.5 to 1.5 seconds
+		 - Increased charge energy cost from 20 to 34/second
+		 - Charge speed unchanged at 12.5
 	- Stomp:
 		 - Damage type changed to normal from heavy
-		 
+
 ### Traits:
 	- Traits re-categorized under Offensive, Defensive & Movement
 	- Traits categories must be researched first, each costs 20 tRes and takes 30 seconds
@@ -113,26 +121,27 @@
 			- Skulk - additional 60% energy regen
 			- Gorge - additional 45% energy regen
 			- Lerk - additional 90% energy regen
-			- Fade - additional 150% energy regen
-			- Onos - additional 120% energy regen
+			- Fade - additional 120% energy regen
+			- Onos - additional 75% energy regen
 	- Defensive (Shells):
-		- Regeneration: Regeneration always works in combat, up to 12% health per tick
+		- Regeneration: Regeneration always works in combat, up to 9% health per tick
 		- Carapace: Increases armor:
-			- Skulk - Additional 10 armor per Shell
-			- Gorge - Additional 10 armor per Shell
-			- Lerk - Additional 10 armor per Shell
-			- Fade - Additional 10 armor per Shell
-			- Onos - Additional 10 armor per Shell
+			- Skulk - Additional 5 armor per Shell
+			- Gorge - Additional 20 armor per Shell
+			- Lerk - Additional 20 armor per Shell
+			- Fade - Additional 30 armor per Shell
+			- Onos - Additional 100 armor per Shell
 	- Offensive (Veils):
-		- Aura: No longer shows enemies through walls
-		- Crush: Increases structural damage & damage to Exos
-		
+		- Aura: No longer shows enemies through walls, each veil increases range by 10m
+		- Crush: Increases structural damage & damage to Exos by 7% per veil
+
 ### Maturity:
 	- Now called Sustenance
 	- Sustenance now passively decreases, requiring structures to be regularly misted to maintain the benefits
 	- Structure passives and actives (Crag, Shift, Shade) scale with with sustenance level
-	- Each mist gives 33% sustenance over 10 seconds, and can be stacked up to 3 times
-	- After the mist effect has ended, the structure will not lose sustenance for an additional 10 seconds
+	- For Shells, Spurs & Veils, each mist gives 100% sustenance over 30 seconds.
+	- For all other structures, each mist gives 33% sustenance over 10 seconds, and can be stacked up to 3 times
+	- After the mist effect has ended, the structure will start losing sustenance immediately
 	- Structures start at 0% sustenance
 	
 ### Nutrient Mist:
@@ -158,13 +167,15 @@
 ### ParasiteCloud:
 	- New ability on the Drifter
 	- The cloud will be shot out from the drifter towards the target location
+	- The drifter will move until it has LOS on the target area before casting the parasite cloud
 	- As the cloud moves, it will parasite (2/s duration) nearby Marines, enabling the commander to scout ahead
 	- Costs is 3 tRes
 	- Requires the Defensive Traits research
+	- Will last for 10 seconds, and can travel up to 40m
 	
 ### Drifter
-	- Drifters now build from the Hive
-	- Drifters take 3 seconds to build
+	- Drifters can be built from Drifter Eggs placed anywhere on infestation.
+	- Drifters take 5 seconds to build
 	- Health decreased from 300 to 250
 	- Armor decreased from 20 to 0 
 	- Will now be healed by the hive
@@ -185,8 +196,8 @@
 	- Lowered cost from 13 to 10
 	- Healing range decreased from 14 to 12
 	- Passive healing % decreased from 6 to 4
-	- Minimum passive healing decreased from 10 to 4
-	- Maximum passive healing decreased from 60 to 40
+	- Minimum passive healing decreased from 10 to 8
+	- Maximum passive healing decreased from 60 to 30
 	- Heal Wave is now 2x the healing (increased from 1.3)
 	- Heal Wave duration lowered from 8 to 6
 	- Heal Wave cost lowered from 3 to 2
@@ -246,7 +257,9 @@
 	- Healing rate lowered from 1s to 2s
 	
 ### Cyst:
-	- Disabled
+	- Can be built anywhere, cost 5tRes.  They have 650 HP, and provide a small AOE of infestation
+	- Do not require a connection to the hive or any other Cysts.
+	- Model size increased by 50%
 	
 ### Biomass:
 	- Disabled

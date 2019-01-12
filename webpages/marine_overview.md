@@ -12,10 +12,11 @@
 	- Cost decreased from 15 to 10 pRes
 	- Weight calculation adjusted, higher weights are required for larger impacts on movement speed/flight speed
 	- Higher weights will no longer cause increased fuel usage
-	- Max speed increased from 10.5 to 12
+	- Max speed increased from 9 to 10
 	- Max speed cannot be exceeded anymore
 	- Uses fuel much more rapidly, but recharges a bit faster as well
 	- Has better air control when not actively 'jetpacking'
+	- Gravity has been lowered to allow more time to manuever between 'thrusts'
 	
 ### Exo:
 	- Speed increased to 6 from 5.75
@@ -56,9 +57,9 @@
 ### Railgun:
 	- Changed to a 'Railgun Shotgun'
 	- Deals 20 damage per pellet, fires 4 pellets
-	- Has 6 ammo each arm by default, regains 1 ammo every 2.5 seconds
+	- Has 6 ammo each arm by default, regains 1 ammo every 2.25 seconds
 	- Bullet size now matches shotgun
-	- Has damage falloff ala the shotgun, starting at 8m and ending at 20m
+	- Has damage falloff ala the shotgun, starting at 10m and ending at 20m
 	
 ### Grenade Launcher:
 	- Damage lowered from 165 to 80
@@ -81,12 +82,14 @@
 	- Decreased attack cone from 0.15 to 0.05
 	- Increased initial range from 7 to 8
 	- Upgraded range is 10m
+	- Clip size decreased from 50 to 35.
 	- Changed damage type back to normal from structural
 	- Increased burn damage from 0 to 25 (50/s)
 	- Lowered max burn duration from 20 to 15
 	- Fixed OnFire damage not applying when structures are still being damaged
 	- Now benefits from weapon upgrades
-	
+	- Burns spores, umbra, drifter abilities, bilebomb and bilebomb DOT.
+
 ### Pistol:
 	- Changed damage type to Normal
 	
@@ -146,6 +149,14 @@
 	- Jetpack drop requires prototype lab
 	- Mines drop requires Advanced Armory
 	
+### Medpacks:
+	- No longer have a pickup cooldown (Spam away!)
+	
+### Catpacks:
+	- Duration lowered from 8 to 5
+	- Weapon reload speed increase removed
+	- Now unlock once the advanced armory is researched
+	
 ### Extractors:
 	- Build time increased to 15 from 11
 	- Extractor now requires a Command Station (:D)
@@ -191,7 +202,7 @@
 	- Only return 75% of the cost when poofed
 	
 ### Jetpack Research:
-	- Cost decreased from 25 to 20 tRes
+	- Cost increased from 25 to 40 tRes
 	- Research time lowered from 90 to 60
 	
 ### Grenade Research:
