@@ -17,9 +17,9 @@ function GUIInsight_OtherHealthbars:Update(deltaTime)
         
         for _, other in ientitylist(others) do
             local otherIndex = other:GetId()
+            local otherGUI = self.otherList[otherIndex]
             local relevant = other:GetIsVisible() and self.isVisible and other:GetIsAlive() and other.GetMaturityFraction
             if relevant then
-                local otherGUI = self.otherList[otherIndex]
                 local maxHealth = other:GetMaxHealth() + other:GetMaxArmor() * kHealthPointsPerArmor
                 local barScale = maxHealth/2400
                 local backgroundSize = math.max(self.kOtherHealthBarSize.x, barScale * self.kOtherHealthBarSize.x)
@@ -39,7 +39,7 @@ function GUIInsight_OtherHealthbars:Update(deltaTime)
                 end
                 otherGUI.Background:SetSize(Vector(backgroundSize, self.kOtherHealthBarSize.y * 2 + 1, 0))
             else
-                maturityBar:SetIsVisible(false)
+                otherGUI.MaturityBar:SetIsVisible(false)
             end
         end
     end
