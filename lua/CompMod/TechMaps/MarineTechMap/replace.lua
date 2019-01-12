@@ -39,7 +39,7 @@ function GetLinePositionForTechMap(techMap, fromTechId, toTechId)
 end
 
 kMarineTechMapYStart = -1
-kMarineTechMapIconSize = Vector(60, 60, 0)
+kMarineTechMapIconSize = Vector(50, 50, 0)
 kMarineTechMapSize = 20
 kMarineTechMap =
 {
@@ -55,7 +55,7 @@ kMarineTechMap =
 		{ {}, {}, {}, {kTechId.JetpackTech}, {}, {}, {kTechId.CatPackTech}, {}, {}, {kTechId.NanoArmor}, {}, {}, {kTechId.ExoUpgrade1, nil, "Exo Upgrade 1"}, {}, {}, {kTechId.ExoUpgrade2, nil, "EXO Upgrade 2"} },
 		{ {}, { kTechId.ArmsLab}, {}, {}, {}, {kTechId.Weapons1}, {}, {}, {}, {kTechId.Weapons2}, {}, {}, {}, { kTechId.Weapons3} },
         { {}, {}, {},{kTechId.Armor1}, {}, {}, {}, {kTechId.Armor2}, {}, {}, {}, {kTechId.Armor3} },		
-        { {}, {kTechId.RoboticsFactory}, {}, {}, {}, {kTechId.MAC}, {}, {}, {}, {kTechId.ARCUpgrade1, nil, "ARC Upgrade 1"}, {}, {}, {}, {kTechId.DualMinigunExosuit}, {}, {}, {}, {kTechId.DualRailgunExosuit} },
+        { {}, {kTechId.RoboticsFactory}, {}, {}, {}, {kTechId.MAC}, {}, {}, {}, {kTechId.ARCUpgrade1, nil, "ARC Upgrade 1"}, {}, {}, {}, {kTechId.DualMinigunExosuit, nil, "Dual Minigun Exosuit"}, {}, {}, {}, {kTechId.DualRailgunExosuit, nil, "Dual Railgun Exosuit"} },
 		{ {}, {}, {kTechId.ARCRoboticsFactory}, {}, {}, {}, {kTechId.ARC}, {}, {}, {}, {kTechId.ARCUpgrade2, nil, "ARC Upgrade 2"} },
 		{ {}, {}, {kTechId.SentryBattery}, {}, {}, {}, {kTechId.Sentry}, {}, {}, {}, {kTechId.SentryUpgrade1} }
 }
