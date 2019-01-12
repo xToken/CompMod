@@ -48,22 +48,7 @@ function Drifter:PerformActivation(techId, position, normal, commander, targetId
     local success = false
     local keepProcessing = true
 
-    if techId == kTechId.NutrientMist then
-
-        local team = self:GetTeam()
-        local cost = GetCostForTech(techId)
-        if cost <= team:GetTeamResources() and targetId then
-
-            self:GiveOrder(techId, targetId, position, nil, not commander.shiftDown, false)
-            -- Only 1 Drifter will process this activation.
-            keepProcessing = false
-
-        end
-
-        -- return false, team res will be drained once we reached the destination and created the enzyme entity
-        success = false
-
-    elseif techId == kTechId.EnzymeCloud or techId == kTechId.Hallucinate or techId == kTechId.MucousMembrane or techId == kTechId.Storm then
+    if techId == kTechId.EnzymeCloud or techId == kTechId.Hallucinate or techId == kTechId.MucousMembrane or techId == kTechId.Storm then
 
         local team = self:GetTeam()
         local cost = GetCostForTech(techId)
@@ -83,7 +68,7 @@ function Drifter:PerformActivation(techId, position, normal, commander, targetId
     	local team = self:GetTeam()
         local cost = GetCostForTech(techId)
         if cost <= team:GetTeamResources() then
-            self:GiveOrder(techId, nil, position, nil, not commander.shiftDown, false)
+            self:GiveOrder(techId, nil, position, nil, false, false)
             keepProcessing = false
         end
         success = false
@@ -104,7 +89,7 @@ function Drifter:PerformActivation(techId, position, normal, commander, targetId
         local team = self:GetTeam()
         local cost = GetCostForTech(techId)
         if cost <= team:GetTeamResources() then
-            self:GiveOrder(techId, targetId, position, nil, not commander.shiftDown, false)
+            self:GiveOrder(techId, targetId, position, nil, false, false)
             keepProcessing = false
         end
         success = false
