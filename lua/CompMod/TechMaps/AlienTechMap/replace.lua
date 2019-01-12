@@ -47,7 +47,7 @@ local function SetSpurIcon(icon)
 end
 
 kAlienTechMapYStart = 0
-kAlienTechMapIconSize = Vector(70, 70, 0)
+kAlienTechMapIconSize = Vector(60, 60, 0)
 kAlienTechMapSize = 16
 
 kAlienTechMap =
