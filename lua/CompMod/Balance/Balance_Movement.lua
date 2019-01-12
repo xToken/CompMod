@@ -4,8 +4,9 @@
 -- - Dragon
 
 -- SKULK
-kSkulkMaxGroundSpeed = 8.0					-- Increased from 7.25
-kSkulkMaxWallJumpSpeed = 11.5				-- Increased from 11
+kSkulkMaxGroundSpeed = 7.5					-- Increased from 7.25
+kSkulkMaxWallJumpSpeed = 11					-- Increased from 11
+kSkulkWallJumpSpeed = 1.5
 
 -- GORGE
 kGorgeMaxGroundSpeed = 6.75					-- Increased from 6
@@ -19,24 +20,24 @@ kFadeBlinkSpeed = 15						-- Increased from 14
 
 -- ONOS
 kOnosMaxGroundSpeed = 7.0					-- Increased from 6.6
-kOnosMaxChargeSpeed = 13					-- Increased from 12.5								
-kOnosChargeUpTime = 0.25
-kOnosChargeDelay = 0.25
-kChargeEnergyCost = 30
+kOnosMaxChargeSpeed = 12.5					-- Default is 12.5
+kOnosChargeUpTime = 1.5
+kOnosChargeDelay = 0.2
+kChargeEnergyCost = 34
 
 -- Marine
 kMarineWalkMaxSpeed = 5.7					-- Increased from 5.0
 kMarineMaxSlowWalkSpeed = 2.9
 
 -- JetpackMarine
-kJetpackFlySpeed = 12						-- Increased from 9.0
+kJetpackFlySpeed = 10						-- Increased from 9.0
 
 -- Jetpack
-kJetpackingVerticleThrust = 23
-kJetpackLateralForce = 34
+kJetpackingVerticleThrust = 18
+kJetpackLateralForce = 20
 
-kJetpackUseFuelRate = .90
-kUpgradedJetpackUseFuelRate = .82
+kJetpackUseFuelRate = .82
+kUpgradedJetpackUseFuelRate = .68
 kJetpackReplenishFuelRate = .28
 kUpgradedJetpackReplenishFuelRate = .35
 kJetpackFuelReplenishDelay = 0.65
