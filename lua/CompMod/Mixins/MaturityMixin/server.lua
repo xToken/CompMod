@@ -14,8 +14,12 @@ function MaturityMixin:OnMaturityUpdate(deltaTime)
         self:UpdateMaturity()
     end
     
-    -- Catalyst is required for maturity to do anything now
-    if not self.GetIsCatalysted then return false end
+    -- If this structure disables, then set to full and quit
+    if self.DisableSustenance and self:DisableSustenance() then
+        self.finalMatureFraction = 1
+        self:UpdateMaturity()
+        return false
+    end
 
     -- calculate starvation
     local updated = self.maturitygain
