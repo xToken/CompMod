@@ -8,7 +8,7 @@ Hive.kHealthPercentage = .06
 
 function Hive:GetTechButtons()
 
-    local techButtons = { kTechId.ShiftHatch, kTechId.Drifter, kTechId.AdditionalTraitSlot1, kTechId.LifeFormMenu,
+    local techButtons = { kTechId.ShiftHatch, kTechId.None, kTechId.AdditionalTraitSlot1, kTechId.LifeFormMenu,
                           kTechId.MovementTraits, kTechId.OffensiveTraits, kTechId.DefensiveTraits, kTechId.None }
 
     if GetHasTech(self, kTechId.AdditionalTraitSlot1) then
