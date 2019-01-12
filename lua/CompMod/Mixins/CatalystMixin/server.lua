@@ -6,8 +6,14 @@
 function CatalystMixin:TriggerCatalyst(duration)
 
     if Server and self:GetCanCatalyst() then
+    	if self.GetSustenanceScalar then
+    		duration = duration * self:GetSustenanceScalar()
+    	end
         self.timeUntilCatalystEnd = math.min(self.timeUntilCatalystEnd + ConditionalValue(duration ~= nil, duration, CatalystMixin.kDefaultDuration), kNutrientMistMaxStackTime)
         self.isCatalysted = true
+        if self.OnCatalyzed then
+        	self:OnCatalyzed()
+        end
     end
 
 end
