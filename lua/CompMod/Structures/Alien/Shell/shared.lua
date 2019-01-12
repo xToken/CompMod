@@ -20,6 +20,10 @@ function Shell:GetInfestationMaxRadius()
     return kStructureInfestationRadius
 end
 
+function Shell:GetSustenanceScalar()
+    return 3
+end
+
 local networkVars = { }
 
 AddMixinNetworkVars(InfestationMixin, networkVars)
