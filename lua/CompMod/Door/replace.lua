@@ -13,26 +13,19 @@ class 'Door' (ScriptActor)
 
 Door.kMapName = "door"
 
-Door.kInoperableSound = PrecacheAsset("sound/NS2.fev/common/door_inoperable")
 Door.kOpenSound = PrecacheAsset("sound/NS2.fev/common/door_open")
 Door.kCloseSound = PrecacheAsset("sound/NS2.fev/common/door_close")
-Door.kLockSound = PrecacheAsset("sound/NS2.fev/common/door_lock")
-Door.kUnlockSound = PrecacheAsset("sound/NS2.fev/common/door_unlock")
 
 Door.kState = enum( {'Open', 'Close' } )
 Door.kStateSound = { [Door.kState.Open] = Door.kOpenSound, 
                      [Door.kState.Close] = Door.kCloseSound  }
 
-local kUpdateAutoUnlockRate = 1
-local kUpdateAutoOpenRate = 0.3
+local kUpdateAutoOpenRate = 0.25
 local kLocalUpdateAutoOpenRate = 0.025
-local kClientStateGrace = 0.7
-local kWeldPercentagePerSecond = 1 / kDoorWeldTime
-local kHealthPercentagePerSecond = 0.9 / kDoorWeldTime
+local kClientStateGrace = 0.5
 
 local kModelNameDefault = PrecacheAsset("models/misc/door/door.model")
 local kModelNameClean = PrecacheAsset("models/misc/door/door_clean.model")
-local kModelNameDestroyed = PrecacheAsset("models/misc/door/door_destroyed.model")
 local kDoorAnimationGraph = PrecacheAsset("models/misc/door/door.animation_graph")
 
 local networkVars =
@@ -67,14 +60,15 @@ local function UpdateAutoOpen(self, timePassed)
 		
 	end
 	
-	if self:GetState() == Door.kState.Open then
-		self:ForceUpdateUntil(Shared.GetTime() + kUpdateAutoOpenRate + 0.1)
-	end
-	
 	if desiredOpenState and self:GetState() == Door.kState.Close then
 		self:SetState(Door.kState.Open)
 	elseif not desiredOpenState and self:GetState() == Door.kState.Open then
 		self:SetState(Door.kState.Close)  
+	end
+
+	-- Force client model mixin updates
+	if self:GetState() == Door.kState.Open then
+		self:ForceUpdateUntil(Shared.GetTime() + kUpdateAutoOpenRate + 0.1)
 	end
     
     return true
@@ -83,7 +77,6 @@ end
 
 local function ClientUpdateAutoOpen(self, player)
 
-    local state = self:GetClientState()
     if player then
 
         local desiredOpenState = false
@@ -96,9 +89,9 @@ local function ClientUpdateAutoOpen(self, player)
 			end
 		end
         
-        if desiredOpenState and state == Door.kState.Close then
+        if desiredOpenState and self:GetClientState() == Door.kState.Close then
             self:SetClientState(Door.kState.Open)
-        elseif not desiredOpenState and state == Door.kState.Open then
+        elseif not desiredOpenState and self:GetClientState() == Door.kState.Open then
             self:SetClientState(Door.kState.Close)
         end
         
@@ -129,7 +122,15 @@ function Door:OnCreate()
     InitMixin(self, BaseModelMixin)
     InitMixin(self, ClientModelMixin)
     InitMixin(self, PathingMixin)
-    
+
+    if Client then
+		self:AddFieldWatcher("state", Door.OnStateChanged)
+	end
+
+    self.state = Door.kState.Open
+    self.clientstate = Door.kState.Open
+	self.clientstateoverride = 0
+
 end
 
 function Door:OnInitialized()
@@ -150,19 +151,10 @@ function Door:OnInitialized()
         end
 		
 		self:AddTimedCallback(UpdateAutoOpen, kUpdateAutoOpenRate)
-		self.state = Door.kState.Open
 		
 	elseif Client then
 	
-		self:AddFieldWatcher("state", Door.OnStateChanged)
 		self:AddTimedCallback(UpdateClientAutoOpen, kLocalUpdateAutoOpenRate)
-		self.clientstate = Door.kState.Open
-		self.clientstateoverride = 0
-		
-	elseif Predict then
-
-		self.clientstate = Door.kState.Open
-		self.clientstateoverride = 0
 		
 	end
     
@@ -199,23 +191,16 @@ function Door:GetDescription()
 end
 
 function Door:OnStateChanged()
-	if self.state ~= self.clientstate then
-		-- We didnt predict this, or didnt predict it correctly.  Trigger sound
-		self:TriggerSound(self.state)
-	end
+	self:TriggerSound(self.state)
+	return true
 end
 
 function Door:TriggerSound(state)
-	local sound = Door.kStateSound[state]
-	if sound ~= "" and Client then
-		StartSoundEffectForPlayer(sound, Client.GetLocalPlayer())
-	end
+	StartSoundEffectAtOrigin(Door.kStateSound[state], self:GetOrigin())
 end
 
 function Door:SetState(state)
-    if self.state ~= state then
-        self.state = state        
-    end
+    self.state = state
 end
 
 function Door:GetState()
@@ -229,9 +214,9 @@ end
 function Door:SetClientState(state)
 	if state ~= self.clientstate then
 		self.clientstateoverride = Shared.GetTime() + kClientStateGrace
+		self.clientstate = state
+    	--self:TriggerSound(state)
 	end
-    self.clientstate = state
-    self:TriggerSound(state)
 end
 
 function Door:GetCanBeUsed(player, useSuccessTable)
