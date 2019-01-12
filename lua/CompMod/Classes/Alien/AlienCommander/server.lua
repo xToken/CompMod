@@ -64,6 +64,10 @@ function AlienCommander:ProcessTechTreeAction(techId, pickVec, orientation, worl
 		self:ProcessMist(pickVec, orientation, worldCoordsSpecified, targetId)
 		return false, false
 	end
+	if techId == kTechId.Cyst then
+		-- bypass normal cyst logic
+		return Commander.ProcessTechTreeAction(self, techId, pickVec, orientation, worldCoordsSpecified, targetId, shiftDown)  
+	end
 	return oldAlienCommanderProcessTechTreeAction(self, techId, pickVec, orientation, worldCoordsSpecified, targetId, shiftDown)
 end
 
@@ -73,13 +77,27 @@ local oldAlienCommanderProcessTechTreeActionForEntity = AlienCommander.ProcessTe
 function AlienCommander:ProcessTechTreeActionForEntity(techNode, position, normal, pickVec, orientation, entity, trace, targetId)
 	local techId = techNode:GetTechId()
 	if GetIsEchoTeleportTechId(techId) and targetId then
+		if not entity then
+			entity = GetNearest(self, "Drifter")
+		end
 		if entity then
 			return entity:PerformActivation(techId, position, normal, self, targetId)
 		end
 		return false, false
 	end
-	if techId == kTechId.EnzymeCloud or techId == kTechId.Hallucinate or techId == kTechId.MucousMembrane or techId == kTechId.Storm then
-		entity = GetNearest(self, "Drifter")
+	if table.contains(kDrifterStructures, techId) then
+		if not entity then
+			entity = GetNearest(self, "Drifter")
+		end
+		if entity then
+			return entity:PerformActivation(techId, position, normal, self, targetId)
+		end
+		return false, false
+	end
+	if techId == kTechId.EnzymeCloud or techId == kTechId.Hallucinate or techId == kTechId.MucousMembrane or techId == kTechId.Storm or techId == kTechId.ParasiteCloud then
+		if not entity then
+			entity = GetNearest(self, "Drifter")
+		end
 		if entity then
 			return entity:PerformActivation(techId, position, normal, self, targetId)
 		end
