@@ -4,6 +4,7 @@
 -- - Dragon
 
 -- Skulk
+Skulk.kWallJumpMaxSpeedCelerityBonus = kSkulkWallJumpSpeed
 
 local kSkulkScaleVector = Vector(0.9, 1, 1)
 
