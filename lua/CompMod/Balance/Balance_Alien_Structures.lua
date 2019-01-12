@@ -9,10 +9,13 @@ kCragCost = 10								-- Decreased from 13
 kShiftCost = 10								-- Decreased from 13
 kShadeCost = 10								-- Decreased from 13
 kWhipCost = 15								-- Increased from 13
+kCystCost = 5
+kCystBuildTime = 10
 
 kDrifterCost = 5							-- Decreased from 8
 kDrifterCooldown = 0
 kDrifterBuildTime = 3
+kDrifterHatchTime = 5
 
 kShellCost = 15								-- Default is 15
 kTwoShellsCost = 25							-- Increased from 15
@@ -48,8 +51,8 @@ kHydraRateOfFire = 1
 kHydraDamage = 20							-- Increased from 15
 
 kCragHealPercentage = 0.04					-- Decreased from 0.06
-kCragkMinHeal = 4							-- Decreased from 10
-kCragkMaxHeal = 50							-- Decreased from 60
+kCragkMinHeal = 8							-- Decreased from 10
+kCragkMaxHeal = 30							-- Decreased from 60
 kCragHealWaveDuration = 6					-- Decreased from 8
 kCragHealWaveMultiplier = 2					-- Increased from 1.3
 kCragHealWaveCost = 2						-- Decreased from 3
