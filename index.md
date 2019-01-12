@@ -11,6 +11,17 @@ Some description/highlevel shtuffffffffff?
 ### [Marine Commander Guide](https://xtoken.github.io/CompMod/webpages/marine_comm_guide)
 
 ***
+### Recent Changelog: Build 21 (12-1-19)
+
+### Aliens:
+	- Dropping structures from the global menu will now queue orders onto nearby drifters already building structures, or the closest drifter.
+	
+### Misc:
+	- Shrunk size of techmap icons a bit
+	- Added helper text to last 2 icons for Robotics Factory (They are the exosuit purchases, not ARC upgrades :D)
+	- Fixed spectator assert bug with maturity icons
+
+***
 ### Recent Changelog: Build 20 (12-1-19)
 
 ### Marines:
