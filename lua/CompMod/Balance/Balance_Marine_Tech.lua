@@ -17,7 +17,9 @@ kAmmoPackCost = 1							-- Default is 1
 kMedPackCost = 1							-- Default is 1
 kMedPackCooldown = 0						-- Default is 0
 kCatPackCost = 2							-- Decreased from 3
-kCatPackDuration = 8						-- Decreased from 12
+kCatPackDuration = 5						-- Decreased from 12
+kCatPackWeaponSpeed = 1.0
+kMedpackPickupDelay = 0.01
 
 kWeapons1ResearchCost = 15					-- Decreased from 20
 kWeapons2ResearchCost = 30					-- Default is 30
@@ -32,6 +34,9 @@ kMineResearchTime  = 20						-- Increased from 20
 
 kGrenadeTechResearchCost = 15				-- Increased from 10
 kGrenadeTechResearchTime = 30				-- Default is 45
+
+kAdvancedArmoryUpgradeCost = 25
+kPrototypeLabCost = 35
 
 -- New Tech
 kFlamethrowerUpgrade1Cost = 10
@@ -50,7 +55,7 @@ kMGUpgrade2ResearchTime = 60
 kGLUpgrade1Cost = 15
 kGLUpgrade1ResearchTime = 30
 
-kJetpackTechResearchCost = 20				-- Decreased from 25
+kJetpackTechResearchCost = 40				-- Increased from 25
 kJetpackTechResearchTime = 60				-- Default is 90
 
 kJetpackUpgrade1Cost = 30
