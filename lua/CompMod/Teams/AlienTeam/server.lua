@@ -9,9 +9,7 @@ end
 
 ReplaceLocals(AlienTeam.SpawnInitialStructures, { CreateCysts = CreateNothing })
 
-local TrackedTechIds = { kTechId.Spur,
-							kTechId.Shell,
-							kTechId.Veil }
+local TrackedTechIds = { kTechId.Spur, kTechId.Shell, kTechId.Veil }
 
 function AlienTeam:TrackEntity(techId)
 	return table.contains(TrackedTechIds, techId)
@@ -77,16 +75,16 @@ function AlienTeam:InitTechTree()
     --self.techTree:AddPassive(kTechId.DrifterRegeneration)
 
     -- Hive
-    self.techTree:AddTargetedActivation(kTechId.Hive,                    	kTechId.None,           		kTechId.None)
+    self.techTree:AddTargetedActivation(kTechId.Hive,               kTechId.Drifter,           		kTechId.None)
     self.techTree:AddSpecial(kTechId.TwoHives)
     self.techTree:AddSpecial(kTechId.ThreeHives)
 	
-    self.techTree:AddTargetedActivation(kTechId.Harvester)
-    --self.techTree:AddBuildNode(kTechId.DrifterEgg)
+    self.techTree:AddTargetedActivation(kTechId.Harvester,          kTechId.Drifter,                kTechId.None)
+    self.techTree:AddBuildNode(kTechId.DrifterEgg)
     self.techTree:AddManufactureNode(kTechId.Drifter,				kTechId.None,					kTechId.None,					true)
 	
 	-- Whips
-	self.techTree:AddTargetedActivation(kTechId.Whip,                      	kTechId.None,                	kTechId.None)
+	self.techTree:AddTargetedActivation(kTechId.Whip,               kTechId.Drifter,                kTechId.None)
     self.techTree:AddUpgradeNode(kTechId.EvolveBombard,             kTechId.None,                	kTechId.None)    
 	self.techTree:AddPassive(kTechId.WhipBombard)
     self.techTree:AddPassive(kTechId.Slap)
@@ -108,9 +106,10 @@ function AlienTeam:InitTechTree()
     self.techTree:AddUpgradeNode(kTechId.OnosEgg,					kTechId.ThreeHives)
 
     -- Support Chambers
-    self.techTree:AddTargetedActivation(kTechId.Crag,						kTechId.Hive,					kTechId.None)
-    self.techTree:AddTargetedActivation(kTechId.Shift,						kTechId.Hive,					kTechId.None)
-    self.techTree:AddTargetedActivation(kTechId.Shade,						kTechId.Hive,					kTechId.None)
+    self.techTree:AddBuildNode(kTechId.Cyst,                        kTechId.Drifter)
+    self.techTree:AddTargetedActivation(kTechId.Crag,               kTechId.Drifter,					kTechId.None)
+    self.techTree:AddTargetedActivation(kTechId.Shift,              kTechId.Drifter,					kTechId.None)
+    self.techTree:AddTargetedActivation(kTechId.Shade,              kTechId.Drifter,					kTechId.None)
 
     -- Alien traits
     self.techTree:AddResearchNode(kTechId.OffensiveTraits,          kTechId.Hive,                   kTechId.None)
@@ -121,15 +120,15 @@ function AlienTeam:InitTechTree()
     self.techTree:AddResearchNode(kTechId.AdditionalTraitSlot2,     kTechId.AdditionalTraitSlot1,   kTechId.None,                   true)
 
     -- Alien upgrade structure
-    self.techTree:AddTargetedActivation(kTechId.Shell,						kTechId.DefensiveTraits, 		kTechId.None,					true)
+    self.techTree:AddTargetedActivation(kTechId.Shell,						kTechId.DefensiveTraits, 		kTechId.Drifter,				true)
     self.techTree:AddTargetedActivation(kTechId.TwoShells,					kTechId.TwoHives, 				kTechId.DefensiveTraits,		true)
-    self.techTree:AddTargetedActivation(kTechId.ThreeShells,					kTechId.ThreeHives, 			kTechId.DefensiveTraits,		true)
+    self.techTree:AddTargetedActivation(kTechId.ThreeShells,                kTechId.ThreeHives, 			kTechId.DefensiveTraits,		true)
 
-    self.techTree:AddTargetedActivation(kTechId.Veil,						kTechId.OffensiveTraits, 		kTechId.None,					true)
+    self.techTree:AddTargetedActivation(kTechId.Veil,						kTechId.OffensiveTraits, 		kTechId.Drifter,				true)
     self.techTree:AddTargetedActivation(kTechId.TwoVeils,					kTechId.TwoHives, 				kTechId.OffensiveTraits,		true)
     self.techTree:AddTargetedActivation(kTechId.ThreeVeils,					kTechId.ThreeHives, 			kTechId.OffensiveTraits,		true)
 
-    self.techTree:AddTargetedActivation(kTechId.Spur,						kTechId.MovementTraits, 		kTechId.None,					true)
+    self.techTree:AddTargetedActivation(kTechId.Spur,						kTechId.MovementTraits, 		kTechId.Drifter,				true)
     self.techTree:AddTargetedActivation(kTechId.TwoSpurs,					kTechId.TwoHives, 				kTechId.MovementTraits,			true)
     self.techTree:AddTargetedActivation(kTechId.ThreeSpurs,					kTechId.ThreeHives, 			kTechId.MovementTraits,			true)
 
