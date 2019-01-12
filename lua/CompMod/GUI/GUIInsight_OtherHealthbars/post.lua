@@ -29,6 +29,7 @@ function GUIInsight_OtherHealthbars:Update(deltaTime)
                 local maturityBarTextureSize = maturityFraction * kOtherHealthBarTextureSize.x
                 maturityBar:SetTexturePixelCoordinates(0, 0, maturityBarTextureSize, kOtherHealthBarTextureSize.y)
                 maturityBar:SetSize(Vector(maturitySize, self.kOtherHealthBarSize.y, 0))
+                maturityBar:SetIsVisible(true)
                 if maturityFraction > kMaturityGrownThreshold then
                     maturityBar:SetColor(Color(0,1,0,1))
                 elseif kMaturityGrownThreshold > kMaturityStarvingThreshold then
@@ -37,6 +38,8 @@ function GUIInsight_OtherHealthbars:Update(deltaTime)
                     maturityBar:SetColor(Color(1,0,0,1))
                 end
                 otherGUI.Background:SetSize(Vector(backgroundSize, self.kOtherHealthBarSize.y * 2 + 1, 0))
+            else
+                maturityBar:SetIsVisible(false)
             end
         end
     end
