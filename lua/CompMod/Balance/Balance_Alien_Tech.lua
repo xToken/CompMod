@@ -84,9 +84,9 @@ kNutrientMistDuration = 10
 kNutrientMistRange = 0.2
 kNutrientMistMaxStackTime = 30
 
-kParasiteCloudLifetime = 6
+kParasiteCloudLifetime = 10
 kParasiteCloudDetectRadius = 5
-kParasiteCloudRange = 35
+kParasiteCloudRange = 40
 kParasiteCloudCost = 3
 kParasiteCloudCooldown = 5
 kParasiteCloudMarkDuration = 2
