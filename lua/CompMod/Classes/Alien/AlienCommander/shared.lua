@@ -6,13 +6,14 @@
 -- Remove the cyst build button
 local gAlienMenuButtons =
 {
-    [kTechId.BuildMenu] = { kTechId.NutrientMist, kTechId.None, kTechId.None, kTechId.None,
+    [kTechId.BuildMenu] = { kTechId.Cyst, kTechId.Harvester, kTechId.DrifterEgg, kTechId.Hive,
                             kTechId.ThreatMarker, kTechId.NeedHealingMarker, kTechId.ExpandingMarker, kTechId.None },
                             
-    [kTechId.AdvancedMenu] = { kTechId.None },
+    [kTechId.AdvancedMenu] = { kTechId.Crag, kTechId.Shade, kTechId.Shift, kTechId.Whip,
+                               kTechId.Shell, kTechId.Veil, kTechId.Spur, kTechId.None },
 
-    [kTechId.AssistMenu] = { kTechId.HealWave, kTechId.ShadeInk, kTechId.ShiftEnergize, kTechId.NutrientMist,
-                             kTechId.EnzymeCloud, kTechId.Hallucinate, kTechId.BoneWall, kTechId.SelectDrifter }
+    [kTechId.AssistMenu] = { kTechId.HealWave, kTechId.ShadeInk, kTechId.ShiftEnergize, kTechId.SelectDrifter,
+                             kTechId.NutrientMist, kTechId.EnzymeCloud, kTechId.BoneWall, kTechId.Hallucinate }
 }
 
 local gAlienMenuIds = {}
