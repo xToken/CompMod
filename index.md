@@ -52,9 +52,9 @@ Some description/highlevel shtuffffffffff?
 	- Onos adrenaline regeneration rate decreased from 120% to 75%
 	- Onos gore/smash damage type changed to structural from quadstructural
 	- Onos smash animation speed up by 30%
-	- Onos charge max speed lowered from 13 to 12.5
+	- Onos charge max speed unchanged at 13
 	- Charging onos now takes 1.5 seconds to reach maximum speed
-	- Charge now costs 34 energy/s, up from 30/s
+	- Charge now costs 29 energy/s, down from 30/s
 	- Onos model shrunk by 15%
 	- Skulk ground speed lowered from 8.0 to 7.5
 	- Skulk walljump speed lowered from 11.5 to 11

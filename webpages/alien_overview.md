@@ -102,8 +102,8 @@
 		 - No longer reduces your mouse sensitivty while charging
 		 - Lowered delay between charges from 1 to 0.25 seconds
 		 - Time to accelerate to full charge speed increased from 0.5 to 1.5 seconds
-		 - Increased charge energy cost from 20 to 34/second
-		 - Charge speed unchanged at 12.5
+		 - Increased charge energy cost from 20 to 29/second
+		 - Charge speed increased from 12.5 to 13
 	- Stomp:
 		 - Damage type changed to normal from heavy
 
