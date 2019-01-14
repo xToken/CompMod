@@ -13,7 +13,7 @@ function GetIsCloseToMenuStructure(player)
 
 end
 
-local oldGetSelectionText = GetSelectionText
+--[[local oldGetSelectionText = GetSelectionText
 function GetSelectionText(entity, teamNumber)
 
     local text = oldGetSelectionText(entity, teamNumber)
@@ -35,7 +35,7 @@ function GetSelectionText(entity, teamNumber)
     end
     return text
 
-end
+end--]]
 
 function GetNumberOfAllowedUpgrades(callingEntity)
     if not callingEntity then
