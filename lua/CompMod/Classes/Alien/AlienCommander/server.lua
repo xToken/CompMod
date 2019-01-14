@@ -11,6 +11,7 @@ local function GetNearestDrifter(self, orderType)
     Shared.SortEntitiesByDistance(self:GetOrigin(), ents)
     local isEchoOrder = GetIsEchoTeleportTechId(orderType)
     local isBuildOrder = table.contains(kDrifterStructures, orderType)
+    local isCloudOrder = GetIsDrifterCloudTechId(orderType)
     -- Grab nearest drifter performing same type of order, or just nearest drifter
     for i = 1, #ents do
     	local dist = (ents[i]:GetOrigin() - self:GetOrigin()):GetLengthSquared()
@@ -23,7 +24,7 @@ local function GetNearestDrifter(self, orderType)
         	elseif isBuildOrder and table.contains(kDrifterStructures, techId) then
         		-- This drifter is building, and we have a build order
         		return ents[i]
-        	elseif not isEchoOrder and not isBuildOrder then
+        	elseif isCloudOrder and GetIsDrifterCloudTechId(orderType) then
         		--Who knows what this drifter is doing
         		return ents[i]
         	end

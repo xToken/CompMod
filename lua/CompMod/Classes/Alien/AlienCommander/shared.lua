@@ -4,6 +4,15 @@
 -- - Dragon
 
 -- Remove the cyst build button
+local CountToResearchId = { }
+CountToResearchId[kTechId.Shell] = { [0] = kTechId.Shell, [1] = kTechId.Shell2, [2] = kTechId.Shell3, [3] = kTechId.Shell3 }
+CountToResearchId[kTechId.Spur] = { [0] = kTechId.Spur, [1] = kTechId.Spur2, [2] = kTechId.Spur3, [3] = kTechId.Spur3 }
+CountToResearchId[kTechId.Veil] = { [0] = kTechId.Veil, [1] = kTechId.Veil2, [2] = kTechId.Veil3, [3] = kTechId.Veil3 }
+
+local function GetTierTech(self, techId)
+  return CountToResearchId[techId][self:GetUpgradeChamberCount(techId)]
+end
+
 local gAlienMenuButtons =
 {
     [kTechId.BuildMenu] = { kTechId.Cyst, kTechId.Harvester, kTechId.DrifterEgg, kTechId.Hive,
@@ -64,6 +73,16 @@ return techId == kTechId.TeleportHydra or
 
 end
 
+function GetIsDrifterCloudTechId(techId)
+
+  return techId == kTechId.EnzymeCloud or
+    techId == kTechId.Hallucinate or 
+    techId == kTechId.MucousMembrane or 
+    techId == kTechId.Storm or 
+    techId == kTechId.ParasiteCloud
+
+end
+
 local function OnUpdateChamberCounts(self)
 	local team = self:GetTeam()
 	if team then
@@ -108,14 +127,14 @@ local oldAlienCommanderGetButtonTable
 oldAlienCommanderGetButtonTable = Class_ReplaceMethod("AlienCommander", "GetButtonTable",
 	function(self)
 		return gAlienMenuButtons
-    end
+  end
 )
 
 local oldAlienCommanderGetMenuIds
 oldAlienCommanderGetMenuIds = Class_ReplaceMethod("AlienCommander", "GetMenuIds",
 	function(self)
 		return gAlienMenuIds
-    end
+  end
 )
 
 local oldAlienCommanderGetQuickMenuTechButtons
@@ -124,6 +143,12 @@ oldAlienCommanderGetQuickMenuTechButtons = Class_ReplaceMethod("AlienCommander",
 		-- Top row always for quick access.
 		local alienTechButtons = { kTechId.BuildMenu, kTechId.AdvancedMenu, kTechId.AssistMenu, kTechId.RootMenu }
 		local menuButtons = self:GetButtonTable()[techId]
+
+    if techId == kTechId.AdvancedMenu then
+      menuButtons[5] = GetTierTech(self, kTechId.Shell)
+      menuButtons[6] = GetTierTech(self, kTechId.Veil)
+      menuButtons[7] = GetTierTech(self, kTechId.Spur)
+    end
 
 		if not menuButtons then
 		
@@ -136,5 +161,5 @@ oldAlienCommanderGetQuickMenuTechButtons = Class_ReplaceMethod("AlienCommander",
 		
 		-- Return buttons and true/false if we are in a quick-access menu.
 		return alienTechButtons
-    end
+  end
 )

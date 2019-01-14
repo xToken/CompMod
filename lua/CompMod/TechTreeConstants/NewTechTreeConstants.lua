@@ -32,5 +32,11 @@ function BuildCompModTechTreeConstantUpdates()
 	table.insert(newTechNames, "TeleportStructure")
 	table.insert(newTechNames, "TeleportEmbryo")
 	table.insert(newTechNames, "HealingRoost")
+	table.insert(newTechNames, "Shell2")
+	table.insert(newTechNames, "Shell3")
+	table.insert(newTechNames, "Veil2")
+	table.insert(newTechNames, "Veil3")
+	table.insert(newTechNames, "Spur2")
+	table.insert(newTechNames, "Spur3")
 	return newTechNames
 end

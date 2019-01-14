@@ -5,26 +5,36 @@
 
 Drifter.kHoverHeight = 1
 
+local originalDrifterOnCreate
+originalDrifterOnCreate = Class_ReplaceMethod("Drifter", "OnCreate",
+    function(self)
+        originalDrifterOnCreate(self)
+        InitMixin(self, BuildingMixin)
+    end
+)
+
 local function GetCommander(teamNum)
     local commanders = GetEntitiesForTeam("Commander", teamNum)
     return commanders[1]
 end
 
 local CountToResearchId = { }
-CountToResearchId[kTechId.Shell] = { [0] = kTechId.Shell, [1] = kTechId.TwoShells, [2] = kTechId.ThreeShells, [3] = kTechId.ThreeShells }
-CountToResearchId[kTechId.Spur] = { [0] = kTechId.Spur, [1] = kTechId.TwoSpurs, [2] = kTechId.ThreeSpurs, [3] = kTechId.ThreeSpurs }
-CountToResearchId[kTechId.Veil] = { [0] = kTechId.Veil, [1] = kTechId.TwoVeils, [2] = kTechId.ThreeVeils, [3] = kTechId.ThreeVeils }
+CountToResearchId[kTechId.Shell] = { [0] = kTechId.Shell, [1] = kTechId.Shell2, [2] = kTechId.Shell3, [3] = kTechId.Shell3 }
+CountToResearchId[kTechId.Spur] = { [0] = kTechId.Spur, [1] = kTechId.Spur2, [2] = kTechId.Spur3, [3] = kTechId.Spur3 }
+CountToResearchId[kTechId.Veil] = { [0] = kTechId.Veil, [1] = kTechId.Veil2, [2] = kTechId.Veil3, [3] = kTechId.Veil3 }
 
 local function GetTierTech(drifter, techId)
 	local comm = GetCommander(drifter:GetTeamNumber())
-	return CountToResearchId[techId][comm:GetUpgradeChamberCount(techId)]
+    if comm and CountToResearchId[techId] then
+	   return CountToResearchId[techId][comm:GetUpgradeChamberCount(techId)]
+    end
 end
 
 kDrifterStructures = { kTechId.Crag, kTechId.Shade, kTechId.Shift, kTechId.Whip,
                             kTechId.Hive, kTechId.Harvester, kTechId.Cyst, kTechId.Shell, 
-                            kTechId.TwoShells, kTechId.ThreeShells, kTechId.Spur, 
-                            kTechId.TwoSpurs, kTechId.ThreeSpurs, kTechId.Veil, 
-                            kTechId.TwoVeils, kTechId.ThreeVeils, kTechId.Cyst }
+                            kTechId.Shell2, kTechId.Shell3, kTechId.Spur, 
+                            kTechId.Spur2, kTechId.Spur3, kTechId.Veil, 
+                            kTechId.Veil2, kTechId.Veil3, kTechId.Cyst }
 
 function Drifter:GetTechButtons(techId)
 
@@ -68,7 +78,7 @@ function Drifter:PerformActivation(techId, position, normal, commander, targetId
     	local team = self:GetTeam()
         local cost = GetCostForTech(techId)
         if cost <= team:GetTeamResources() then
-            self:GiveOrder(techId, nil, position, nil, false, false)
+            self:GiveOrder(techId, nil, position, nil, not commander.shiftDown, false)
             keepProcessing = false
         end
         success = false
@@ -89,7 +99,7 @@ function Drifter:PerformActivation(techId, position, normal, commander, targetId
         local team = self:GetTeam()
         local cost = GetCostForTech(techId)
         if cost <= team:GetTeamResources() then
-            self:GiveOrder(techId, targetId, position, nil, false, false)
+            self:GiveOrder(techId, targetId, position, nil, not commander.shiftDown, false)
             keepProcessing = false
         end
         success = false
@@ -138,51 +148,6 @@ function Drifter:ProcessParasiteCloudOrder(moveSpeed, deltaTime)
 
 end
 
-function Drifter:ProcessMistOrder(moveSpeed, deltaTime)
-
-    local currentOrder = self:GetCurrentOrder()
-    local targetEnt = Shared.GetEntity(currentOrder:GetParam())
-
-    if currentOrder then
-
-        if not targetEnt then
-            return self:ClearOrders()
-        end
-
-        local targetPos = currentOrder:GetLocation()
-        local commander = GetCommander(self:GetTeamNumber())
-        local team = self:GetTeam()
-        local cost = GetCostForTech(kTechId.NutrientMist)
-        local techId = targetEnt and targetEnt:GetTechId() or kTechId.None
-        local range = 3
-
-        -- check if we can SEE the destination
-        if targetEnt and (targetEnt:GetOrigin() - self:GetOrigin()):GetLengthXZ() < range then
-            -- Dont allow stacking more than 30s of catalyst
-            if HasMixin(targetEnt, "Catalyst") then
-                if targetEnt.timeUntilCatalystEnd + kNutrientMistDuration < kNutrientMistMaxStackTime and not targetEnt:isa("Player") then
-                    targetEnt:TriggerCatalyst(kNutrientMistDuration, self:GetId())
-                    commander:TriggerEffects("comm_nutrient_mist")
-                    team:AddTeamResources(-cost)
-                else
-                    -- dont trigger
-                    commander:TriggerInvalidSound()
-                end
-            end
-            self:CompletedCurrentOrder()
-            self:TriggerUncloak()
-        else
-            -- move to target otherwise
-            if self:MoveToTarget(PhysicsMask.AIMovement, targetEnt:GetOrigin(), moveSpeed, deltaTime) then
-                self:ClearOrders()
-            end
-
-        end
-
-    end
-
-end
-
 function Drifter:ProcessTeleportOrder(moveSpeed, deltaTime)
 
     local currentOrder = self:GetCurrentOrder()
@@ -206,18 +171,18 @@ function Drifter:ProcessTeleportOrder(moveSpeed, deltaTime)
             local team = self:GetTeam()
             local cost = GetCostForTech(techId)
             local success = false
-            if commander then
-                if cost <= team:GetTeamResources() then
-                    local legalBuildPosition, position, _, errorString = GetIsBuildLegal(techId, teleportPos, math.random() * 2 * math.pi, kStructureSnapRadius, commander)
-                    if legalBuildPosition and teleportEnt:GetCanTeleport() then
-                        teleportEnt:TriggerTeleport(kEchoTeleportTime, self:GetId(), position, cost)
-                        if HasMixin(teleportEnt, "Orders") then
-                            teleportEnt:ClearCurrentOrder()
-                        end
-                        team:AddTeamResources(-cost)
-                        Shared.PlayPrivateSound(commander, Shift.kShiftEchoSound2D, nil, 1.0, self:GetOrigin())   
-                        success = true
+            if cost <= team:GetTeamResources() then
+                local legalBuildPosition, position, _, errorString = GetIsBuildLegal(techId, teleportPos, math.random() * 2 * math.pi, kStructureSnapRadius, commander)
+                if legalBuildPosition and teleportEnt:GetCanTeleport() then
+                    teleportEnt:TriggerTeleport(kEchoTeleportTime, self:GetId(), position, cost)
+                    if HasMixin(teleportEnt, "Orders") then
+                        teleportEnt:ClearCurrentOrder()
                     end
+                    team:AddTeamResources(-cost)
+                    if commander then
+                        Shared.PlayPrivateSound(commander, Shift.kShiftEchoSound2D, nil, 1.0, self:GetOrigin())   
+                    end
+                    success = true
                 end
             end
 
@@ -244,24 +209,28 @@ function Drifter:ProcessBuildOrder(moveSpeed, deltaTime)
 
         local targetPos = currentOrder:GetLocation()
         local techId = currentOrder:GetType()
+        local tierTechId = GetTierTech(self, techId)
         local range = 3
 
         if (targetPos - self:GetOrigin()):GetLengthXZ() < range then
 
-            local commander = GetCommander(self:GetTeamNumber())
+            --local commander = GetCommander(self:GetTeamNumber())
             local team = self:GetTeam()
 		    local cost = GetCostForTech(techId)
             local success = false
-		    if commander then
-		    	if cost <= team:GetTeamResources() then
-		    		local trace = GetCommanderPickTarget(commander, targetPos + Vector(0, 2, 0), true, true, LookupTechData(techId, kTechDataCollideWithWorldOnly, false))
-                    if trace and trace.fraction < 1 then
-    	                success = commander:AttemptToBuild(techId, trace.endPoint, trace.normal, math.random() * 2 * math.pi, true, nil, self)
+		    if team then
+                local techTree = team:GetTechTree()
+                local techNode = techTree:GetTechNode(techId)
+                local techNode2 = techTree:GetTechNode(tierTechId)
+    	    	if cost <= team:GetTeamResources() then
+    	    		local trace = GetCommanderPickTarget(self, targetPos + Vector(0, 2, 0), true, true, LookupTechData(techId, kTechDataCollideWithWorldOnly, false))
+                    if techNode:GetAvailable() and (not techNode2 or techNode2:GetAvailable()) and trace and trace.fraction < 1 then
+    	                success = self:AttemptToBuild(techId, trace.endPoint, trace.normal, math.random() * 2 * math.pi, true, nil, self)
     		            if success then
     		            	team:AddTeamResources(-cost)
     		            end
                     end
-	        	end
+            	end
 	        end
             self:CompletedCurrentOrder()
 
@@ -293,9 +262,6 @@ function Drifter:OnUpdate(deltaTime)
 	    	if table.contains(kDrifterStructures, currentOrder:GetType()) then
 	    		self:ProcessBuildOrder(drifterMoveSpeed, deltaTime)
 	    	end
-	    	if currentOrder:GetType() == kTechId.NutrientMist then
-	    		self:ProcessMistOrder(drifterMoveSpeed, deltaTime)
-	    	end
             if GetIsEchoTeleportTechId(currentOrder:GetType()) then
                 self:ProcessTeleportOrder(drifterMoveSpeed, deltaTime)
             end
@@ -304,4 +270,22 @@ function Drifter:OnUpdate(deltaTime)
             end
 	    end
 	end
+end
+
+if Server then
+
+    function Drifter:GetTechTree()
+
+        local techTree
+
+        local team = self:GetTeam()
+        if team and team:isa("PlayingTeam") then
+            techTree = team:GetTechTree()
+        end
+        
+        return techTree
+
+    end
+
+
 end
