@@ -38,6 +38,9 @@ Some description/highlevel shtuffffffffff?
 	- Railgun damage falloff minimum increased from 8 to 10m
 	- Flamethrower clip size increased from 25 to 35
 	- Flamethrower now burns spores, umbra, drifter abilities and bilebomb again
+	- Shotgun level 1 reload speed increased from 20% to 30%
+	- Marine weapon upgrades (SG/MG lvl 1) moved to normal armory
+	- Marine weapon upgrades (SG/MG lvl 2 and GL lvl 1) moved to advanced armory
 
 ### Aliens:
 	- Skulk max carapace armor lowered from 35 to 25

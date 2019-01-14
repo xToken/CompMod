@@ -39,7 +39,7 @@
 	- Base RoF increased by ~8%
 	- Added damage falloff, starts at 6m
 	- After 16m, damage will decreased to 1 per pellet
-	- Tier 1 upgrade increases reload speed by 20%
+	- Tier 1 upgrade increases reload speed by 30%
 	- Tier 2 upgrade increases fire rate by 8%
 	
 ### MG:
@@ -220,25 +220,25 @@
 ### Shotgun Upgrade 1 added:
 	- Cost: 15 tRes
 	- Research Time: 30 seconds
-	- Requires: Advanced Armory
+	- Requires: Armory
 	- Grants: Increases reload speed by 20%
 	
 ### Shotgun Upgrade 2 added:
 	- Cost: 30 tRes
 	- Research Time: 60 seconds
-	- Requires: Prototype Lab
+	- Requires: Advanced Armory
 	- Grants: Increases RoF by ~8%
 	
 ### MG Upgrade 1 added:
 	- Cost: 15 tRes
 	- Research Time: 30 seconds
-	- Requires: Advanced Armory
+	- Requires: Armory
 	- Grants: Decreases weapon weight from 0.4 to 0.25
 	
 ### MG Upgrade 2 added:
 	- Cost: 30 tRes
 	- Research Time: 60 seconds
-	- Requires: Prototype Lab
+	- Requires: Advanced Armory
 	- Grants: Increases clip size from 100 to 125, increases reload speed by 40%
 	
 ### GL Upgrade 1 added:
