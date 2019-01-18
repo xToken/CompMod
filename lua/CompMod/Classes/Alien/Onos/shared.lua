@@ -25,7 +25,7 @@ function Onos:PreUpdateMove(input, runningPrediction)
         input.move.x = input.move.x * math.max(0, 1 - math.pow(self:GetChargeFraction(), 2))
         input.move.z = 1
         
-        self:DeductAbilityEnergy(Onos.kChargeEnergyCost * input.time)
+        self:DeductAbilityEnergy(Onos.kChargeEnergyCost * input.time * self:GetChargeFraction())
         
         if self:GetEnergy() == 0 then
         
