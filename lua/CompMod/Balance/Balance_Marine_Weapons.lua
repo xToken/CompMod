@@ -51,8 +51,8 @@ kHeavyMachineGunDamage = 13					-- Default is 9 (*)
 kHeavyMachineGunClipSize = 100				-- Default is 125
 kHeavyMachineGunUpgradedClipSize = 125
 kHeavyMachineGunSpread = Math.Radians(3.1)	-- Default is 4
-kHeavyMachineGunReloadSpeed = 0.39611550146364	-- Dont ask.....
-kHeavyMachineGunUpgReloadSpeed = 0.8
+kHeavyMachineGunReloadSpeed = 1				-- Dont ask.....
+kHeavyMachineGunUpgReloadSpeed = 1.5
 kHeavyMachineGunDamageType = kDamageType.HalfStructural
 
 -- PISTOL

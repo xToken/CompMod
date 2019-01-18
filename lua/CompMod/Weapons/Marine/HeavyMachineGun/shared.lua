@@ -23,8 +23,8 @@ originalHeavyMachineGunOnInitialized = Class_ReplaceMethod("HeavyMachineGun", "O
 	end
 )
 
-function HeavyMachineGun:GetReloadSpeed()
-	return self.mg_upg2 and kHeavyMachineGunUpgReloadSpeed or kHeavyMachineGunReloadSpeed
+function HeavyMachineGun:GetCatalystSpeedBase()
+    return self.mg_upg2 and kHeavyMachineGunUpgReloadSpeed or kHeavyMachineGunReloadSpeed
 end
 
 function HeavyMachineGun:GetClipSize()
@@ -64,16 +64,6 @@ function HeavyMachineGun:GetUpgradeTier()
 		return kTechId.MGUpgrade1, 1
 	end
     return kTechId.None, 0
-end
-
-function HeavyMachineGun:OnUpdateAnimationInput(modelMixin)
-
-    PROFILE("HeavyMachineGun:OnUpdateAnimationInput")
-    
-    ClipWeapon.OnUpdateAnimationInput(self, modelMixin)
-    
-    modelMixin:SetAnimationInput("reload_speed", self:GetReloadSpeed())
-
 end
 
 Shared.LinkClassToMap("HeavyMachineGun", HeavyMachineGun.kMapName, networkVars)
