@@ -90,3 +90,14 @@ kARCBuildTime = 10
 
 kNanoArmorResearchCost = 30
 kNanoArmorResearchTime = 90
+
+kPowerNodeCost = 20
+
+kMACSupply = 0
+kArmorySupply = 1
+kARCSupply = 0
+kSentrySupply = 5
+kRoboticsFactorySupply = 0
+kInfantryPortalSupply = 0
+kPhaseGateSupply = 2
+kObservatorySupply = 3
