@@ -16,8 +16,8 @@ function Axe:FirePrimary()
         if not (didHit and target) then
 			local startPoint = player:GetEyePos()
 			local coords = player:GetViewAngles():GetCoords()
-			local endPoint = startPoint + coords.zAxis * (self:GetRange() + 0.50)
-            local boxTrace = Shared.TraceBox(self:GetWebTraceVector(), startPoint, startPoint + coords.zAxis * (0.50 + self:GetRange()), CollisionRep.Default, PhysicsMask.AllButPCsAndRagdolls, EntityFilterTwo(player, self))
+			local endPoint = startPoint + coords.zAxis * (self:GetRange() + 1)
+            local boxTrace = Shared.TraceBox(self:GetWebTraceVector(), startPoint, endPoint, CollisionRep.Default, PhysicsMask.AllButPCsAndRagdolls, EntityFilterTwo(player, self))
             if boxTrace.entity and boxTrace.entity:isa("Web") then
                 self:DoDamage(kAxeDamage, boxTrace.entity, boxTrace.endPoint, coords.zAxis, "organic", false)
             end
