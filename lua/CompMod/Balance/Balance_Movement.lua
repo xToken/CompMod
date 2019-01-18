@@ -23,7 +23,7 @@ kOnosMaxGroundSpeed = 7.0					-- Increased from 6.6
 kOnosMaxChargeSpeed = 13					-- Default is 12.5
 kOnosChargeUpTime = 1.5
 kOnosChargeDelay = 0.2
-kChargeEnergyCost = 29
+kChargeEnergyCost = 30
 
 -- Marine
 kMarineWalkMaxSpeed = 5.7					-- Increased from 5.0
@@ -37,9 +37,9 @@ kJetpackingVerticleThrust = 18
 kJetpackLateralForce = 20
 
 kJetpackUseFuelRate = .82
-kUpgradedJetpackUseFuelRate = .68
+kUpgradedJetpackUseFuelRate = .64
 kJetpackReplenishFuelRate = .28
-kUpgradedJetpackReplenishFuelRate = .35
+kUpgradedJetpackReplenishFuelRate = .4
 kJetpackFuelReplenishDelay = 0.65
 
 -- EXOS
