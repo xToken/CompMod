@@ -18,11 +18,6 @@ function MaturityMixin:OnMaturityUpdate(deltaTime)
         end
     
      end
-  
-     if fraction == 1.0 then
-        -- we are done and can stop running
-        return false
-     end
      
      return kUpdateIntervalLow
     

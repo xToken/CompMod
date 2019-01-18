@@ -31,33 +31,39 @@ originalPlayerGetShowHealthFor = Class_ReplaceMethod("Player", "GetShowHealthFor
 	end
 )
 
-local oldPlayerUI_ShowsUnitStatusInfo = PlayerUI_ShowsUnitStatusInfo
-function PlayerUI_ShowsUnitStatusInfo(player, unit)
-	if player:isa("Commander") and player.healthBarsToggle then
-		return not GetAreEnemies(player, unit)
-	end
-	return oldPlayerUI_ShowsUnitStatusInfo(player, unit)
+function Player:GetCommHealthBarsShown()
+    return self.commHealthBars and self.commHealthBars or false
 end
 
-function Player:OnShowHealthBars(toggle)
-	if not self.healthBarsToggle then self.healthBarsToggle = false end
-	if toggle then
-    	self.healthBarsToggle = not self.healthBarsToggle
-    end
-end
-
-local originalPlayerSendKeyEvent
-originalPlayerSendKeyEvent = Class_ReplaceMethod("Player", "SendKeyEvent",
-	function(self, key, down)
-		local handled = originalPlayerSendKeyEvent(self, key, down)
-		if handled then return handled end
-		if not ChatUI_EnteringChatMessage() and not MainMenu_GetIsOpened() then
-			if GetIsBinding(key, "ToggleHealthBars") and self:isa("Commander") then
-	            self:OnShowHealthBars(down)
-	        end
+local oldPlayerUI_GetStatusInfoForUnit = PlayerUI_GetStatusInfoForUnit
+function PlayerUI_GetStatusInfoForUnit(player, unit)
+	local unitState = oldPlayerUI_GetStatusInfoForUnit(player, unit)
+	if unitState then
+		if HasMixin(unit, "Maturity") then
+			unitState.CatalystRemaining = math.max((unit.timeCatalystEnds and unit.timeCatalystEnds or 0) - Shared.GetTime(), 0)
+			unitState.CatalystScalar = unit.GetSustenanceScalar and unit:GetSustenanceScalar() or 1
 		end
+		local visibleToPlayer = true
+        local isPlayer = unit:isa("Player")
+        local areEnemies = GetAreEnemies(player, unit)
+    
+        if HasMixin(unit, "Cloakable") and areEnemies then
+
+            if unit:GetIsCloaked() or (isPlayer and unit:GetCloakFraction() > 0.2) then
+                visibleToPlayer = false
+            end
+
+        end
+
+        -- Don't show tech points or nozzles if they are attached
+        if visibleToPlayer and (unit:GetMapName() == TechPoint.kMapName or unit:GetMapName() == ResourcePoint.kPointMapName) and unit.GetAttached and (unit:GetAttached() ~= nil) then
+            visibleToPlayer = false
+        end
+		unitState.CommHealthBarsToggle = not isPlayer and player:GetCommHealthBarsShown() and not areEnemies and visibleToPlayer and not unit:isa("Weapon")
 	end
-)
+
+	return unitState
+end
 
 RegisterCustomBinding("ToggleHealthBars", nil, "input", "Toggle Health Bars", "H", true)
 

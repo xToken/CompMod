@@ -61,3 +61,32 @@ function CommanderGhostStructureLeftMouseButtonDown(x, y)
         end
     end
 end
+
+function Commander:ToggleCommHealthBars(down)
+    if down then
+        self.commHealthBars = not self.commHealthBars
+        Client.SetOptionBoolean("commanderHealthBars", self.commHealthBars)
+    end
+end
+
+local originalCommanderSendKeyEvent
+originalCommanderSendKeyEvent = Class_ReplaceMethod("Commander", "SendKeyEvent",
+    function(self, key, down)
+        local handled = originalCommanderSendKeyEvent(self, key, down)
+        if not ChatUI_EnteringChatMessage() and not MainMenu_GetIsOpened() and not handled then
+            if GetIsBinding(key, "ToggleHealthBars") then
+                self:ToggleCommHealthBars(down)
+                handled = true
+            end
+        end
+        return handled
+    end
+)
+
+local originalCommanderOnInitLocalClient
+originalCommanderOnInitLocalClient = Class_ReplaceMethod("Commander", "OnInitLocalClient",
+    function(self)
+        originalCommanderOnInitLocalClient(self)
+        self.commHealthBars = Client.GetOptionBoolean("commanderHealthBars", true)
+    end
+)

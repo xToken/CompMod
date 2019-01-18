@@ -6,28 +6,18 @@
 kMaturityLevel = enum({ 'Starving', 'Grown', 'Mature', 'Producing', 'Flourishing' })
 
 function MaturityMixin:GetStarvationRate()
-    local matureFraction = self:GetMaturityFraction()
-	if matureFraction <= kMaturityBaseBreakpoint then
-		return kMaturityBaseStarvationRate
-	else
-		return kMaturityAcceleratedStarvationRate
-	end
+    return kMaturityBaseStarvationRate
 end
 
 function MaturityMixin:GetMaturationRate()
-    local matureFraction = self:GetMaturityFraction()
-	if matureFraction <= kMaturityBaseBreakpoint then
-		return kMaturityBaseGainRate
-	else
-		return kMaturityAcceleratedGainRate
-	end
+    return kMaturityBaseGainRate
 end
 
 function MaturityMixin:GetMaturityLevel()
     local matureFraction = self:GetMaturityFraction()
     if matureFraction < kMaturityStarvingThreshold then
         return kMaturityLevel.Starving
-    elseif matureFraction < kMaturityGrownThreshold then
+    elseif matureFraction < kMaturityFlourishingThreshold then
         return kMaturityLevel.Producing
     else
         return kMaturityLevel.Flourishing

@@ -3,7 +3,7 @@
 -- lua\CompMod\GUI\GUISelectionPanel\post.lua
 -- - Dragon
 
-local kSustenanceHelperTexture = "ui/alien_selection_sustenance.dds"
+local kSustenanceHelperTexture = PrecacheAsset("ui/alien_selection_sustenance.dds")
 local kSustenanceHelperTextureSize = Vector(128, 128, 0)
 local redColor = Color(1, 0, 0, 1)
 local mediumColor = kAlienFontColor

@@ -34,7 +34,7 @@ kDrifterStructures = { kTechId.Crag, kTechId.Shade, kTechId.Shift, kTechId.Whip,
                             kTechId.Hive, kTechId.Harvester, kTechId.Cyst, kTechId.Shell, 
                             kTechId.Shell2, kTechId.Shell3, kTechId.Spur, 
                             kTechId.Spur2, kTechId.Spur3, kTechId.Veil, 
-                            kTechId.Veil2, kTechId.Veil3, kTechId.Cyst }
+                            kTechId.Veil2, kTechId.Veil3, kTechId.Cyst, kTechId.None }
 
 function Drifter:GetTechButtons(techId)
 

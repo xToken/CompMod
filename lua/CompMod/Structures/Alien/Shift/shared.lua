@@ -43,7 +43,9 @@ function Shift:TriggerEnergize()
 end
 
 function Shift:GetTechAllowed(techId, techNode, player)
-    
+    if techId == kTechId.ShiftEnergize and self:GetMaturityLevel() ~= kMaturityLevel.Flourishing then
+        return false, false
+    end
     return ScriptActor.GetTechAllowed(self, techId, techNode, player) 
     
 end

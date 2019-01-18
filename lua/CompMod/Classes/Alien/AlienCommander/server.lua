@@ -72,7 +72,7 @@ function AlienCommander:ProcessMist(pickVec, orientation, worldCoordsSpecified, 
         local cost = GetCostForTech(kTechId.NutrientMist)
 
         -- Dont allow stacking more than 30s of catalyst
-        if HasMixin(targetEnt, "Catalyst") then
+        if HasMixin(targetEnt, "Catalyst") and (not targetEnt.DisableSustenance or not targetEnt:DisableSustenance()) then
             if targetEnt.timeUntilCatalystEnd + kNutrientMistDuration < kNutrientMistMaxStackTime and not targetEnt:isa("Player") then
                 targetEnt:TriggerCatalyst(kNutrientMistDuration, self:GetId())
                 self:TriggerEffects("comm_nutrient_mist")

@@ -60,6 +60,9 @@ function Crag:UpdateHealing()
 end
 
 function Crag:GetTechAllowed(techId, techNode, player)
+    if techId == kTechId.HealWave and self:GetMaturityLevel() ~= kMaturityLevel.Flourishing then
+        return false, false
+    end
     return ScriptActor.GetTechAllowed(self, techId, techNode, player)
 end
 
