@@ -55,8 +55,8 @@ kArmsLabArmor = 500							-- Vanilla is 500
 kDrifterHealth = 250						-- Vanilla is 300
 kDrifterArmor = 0							-- Vanilla is 20
 
-kHarvesterHealth = 1800						-- Vanilla is 2000
-kHarvesterArmor = 200						-- Vanilla is 200
+kHarvesterHealth = 1600						-- Vanilla is 2000
+kHarvesterArmor = 100						-- Vanilla is 200
 kMatureHarvesterHealth = 2200				-- Vanilla is 2300
 kMatureHarvesterArmor = 300					-- Vanilla is 320
 
@@ -118,19 +118,21 @@ kBabblerHealth = 11							-- Vanilla is 10
 
 kWebHealth = 40								-- Vanilla is 80
 
+kInfestedPowerPointHealth = 2000
+kInfestedPowerPointArmor = 500
+kInfestedPowerPointValue = 10
+
+kPowerPointHealth = 2000
+kPowerPointArmor = 1000
+
 kArmorHealScalar = 1						-- Vanilla is 1
 
 kMaturityGracePeriod = 0					-- How long after the last mist before maturity starts decreasing
 kMaturityStarvingThreshold = 0.3			-- Below this is 'staving'
-kMaturityGrownThreshold = 0.8				-- Above this is 'mature'
+kMaturityFlourishingThreshold = 0.85		-- Above this is 'mature'
 kMaturityMinEffectivenessThreshold = 0.25	-- Minimum of this amount of effectiveness
-kMaturityMaxEffectivenessThreshold = 0.9	-- After this, effectiveness no longer increases
+kMaturityMaxEffectivenessThreshold = 0.85	-- After this, effectiveness no longer increases
 kMaturityStartingLevel = 0
 
-kMaturityBaseBreakpoint = 1					-- This is the threshold for the maturation/starvation rate.  Above is accelerated, eq/below is base
-local t = kMaturityBaseBreakpoint
-local q = 1-t
-kMaturityBaseStarvationRate = -t/120		-- This is the base rate that maturity is lost at.
-kMaturityAcceleratedStarvationRate = -q/1	-- This is the accelerated rate that maturity is lost at.
-kMaturityBaseGainRate = t/30				-- This is the base rate that maturity is gained at.
-kMaturityAcceleratedGainRate = q/1			-- This is the accelerated rate that maturity is gained at.
+kMaturityBaseStarvationRate = -1/90			-- This is the base rate that maturity is lost at.
+kMaturityBaseGainRate = 1/15				-- This is the base rate that maturity is gained at.
