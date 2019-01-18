@@ -9,10 +9,10 @@ kLerkEggCost = 30							-- Default is 30
 kFadeEggCost = 70							-- Default is 70
 kOnosEggCost = 100							-- Default is 100
 
-kLeapResearchCost = 25						-- Increased from 15
+kLeapResearchCost = 20						-- Increased from 15
 kLeapResearchTime = 60						-- Increased from 40
 
-kXenocideResearchCost = 35					-- Increased from 25
+kXenocideResearchCost = 30					-- Increased from 25
 kXenocideResearchTime = 90					-- Increased from 60
 
 kGorgeTunnelResearchCost = 10				-- Increased from 15
@@ -24,10 +24,10 @@ kBileBombResearchTime = 60					-- Increased from 40
 kHealingRoostCost = 20
 kHealingRoostResearchTime = 30
 
-kUmbraResearchCost = 25						-- Increased from 20
+kUmbraResearchCost = 20						-- Increased from 20
 kUmbraResearchTime = 60						-- Increased from 45
 
-kSporesResearchCost = 35					-- Increased from 20
+kSporesResearchCost = 30					-- Increased from 20
 kSporesResearchTime = 90					-- Increased from 60
 
 kMetabolizeEnergyResearchCost = 20			-- Default is 20
@@ -36,16 +36,16 @@ kMetabolizeEnergyResearchTime = 30			-- Increased from 40
 kMetabolizeHealthResearchCost = 25			-- Increased from 20
 kMetabolizeHealthResearchTime = 60			-- Increased from 45
 
-kStabResearchCost = 35						-- Increased from 25
+kStabResearchCost = 30						-- Increased from 25
 kStabResearchTime = 90						-- Increased from 60
 
-kChargeResearchCost = 25					-- Increased from 15
+kChargeResearchCost = 20					-- Increased from 15
 kChargeResearchTime = 30					-- Increased from 40
 
 kBoneShieldResearchCost = 25				-- Increased from 20
 kBoneShieldResearchTime = 60				-- Increased from 40
 
-kStompResearchCost = 35						-- Increased from 25
+kStompResearchCost = 30						-- Increased from 25
 kStompResearchTime = 90						-- Increased from 60
 
 kAdditionalTraitSlot1Cost = 25
@@ -62,6 +62,9 @@ kDefensiveTraitResearchTime = 30
 
 kMovementTraitCost = 10
 kMovementTraitResearchTime = 30
+
+kInfestPowerNodeCost = 20
+kInfestPowerNodeBuiltTime = 10
 
 kEnzymeCloudCost = 2						-- Default is 2
 kHallucinationCloudCost = 2					-- Default is 2
@@ -80,13 +83,19 @@ kAlienStructureMoveSpeed = 2.5				-- Increased from 1.5
 
 kNutrientMistCost = 1
 kNutrientMistCooldown = 1
-kNutrientMistDuration = 10
+kNutrientMistDuration = 5
 kNutrientMistRange = 0.2
-kNutrientMistMaxStackTime = 30
+kNutrientMistMaxStackTime = 15
 
 kParasiteCloudLifetime = 10
 kParasiteCloudDetectRadius = 5
 kParasiteCloudRange = 40
-kParasiteCloudCost = 3
+kParasiteCloudCost = 2
 kParasiteCloudCooldown = 5
 kParasiteCloudMarkDuration = 2
+
+kDrifterSupply = 0
+kWhipSupply = 5
+kCragSupply = 2
+kShadeSupply = 2
+kShiftSupply = 2
