@@ -28,40 +28,32 @@ function HeavyMachineGun:GetReloadSpeed()
 end
 
 function HeavyMachineGun:GetClipSize()
-    return self.mg_upg2 and kHeavyMachineGunUpgradedClipSize or kHeavyMachineGunClipSize
+    return self.mg_upg1 and kHeavyMachineGunUpgradedClipSize or kHeavyMachineGunClipSize
 end
 
 function HeavyMachineGun:GetWeight()
-    return self.mg_upg1 and kHeavyMachineGunUpgradedWeight or kHeavyMachineGunWeight
+    return kHeavyMachineGunWeight
 end
 
 function HeavyMachineGun:OnTechOrResearchUpdated()
 	if GetHasTech(self, kTechId.MGUpgrade1) then
-		self.mg_upg1 = true
-		local player = self:GetParent()
-		if player then
-			player:TriggerWeaponWeightUpdate()
-		end
-	else
-		self.mg_upg1 = false
-		local player = self:GetParent()
-		if player then
-			player:TriggerWeaponWeightUpdate()
-		end
-	end
-	if GetHasTech(self, kTechId.MGUpgrade2) then
 		local fullClip = self.clip == self:GetClipSize()
-		self.mg_upg2 = true
+		self.mg_upg1 = true
 		if fullClip then
 			-- Automagically fill the gun with moar bullets!
 			self.clip = self:GetClipSize()
 		end
 	else
-		self.mg_upg2 = false
+		self.mg_upg1 = false
 		if self.clip > self:GetClipSize() then
 			-- Automagically delete the bullets!
 			self.clip = self:GetClipSize()
 		end
+	end
+	if GetHasTech(self, kTechId.MGUpgrade2) then
+		self.mg_upg2 = true
+	else
+		self.mg_upg2 = false
 	end
 end
 
