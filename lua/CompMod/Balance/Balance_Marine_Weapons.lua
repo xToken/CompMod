@@ -9,18 +9,18 @@ kShotgunCost = 15							-- Decreased from 20
 kHeavyMachineGunCost = 20					-- Default is 20
 kGrenadeLauncherCost = 20					-- Default is 20
 kFlamethrowerCost = 10						-- Decreased from 20
-kDualExosuitCost = 30						-- Decreased from 55
-kDualRailgunExosuitCost = 30				-- Decreased from 55
+kDualExosuitCost = 25						-- Decreased from 55
+kDualRailgunExosuitCost = 25				-- Decreased from 55
 kJetpackCost = 10							-- Decreased from 15
 
 -- Weights
 kPistolWeight = 0.05
 kRifleWeight = 0.175
 kGrenadeLauncherWeight = 0.3
-kFlamethrowerWeight = 0.2
+kFlamethrowerWeight = 0.125
 kShotgunWeight = 0.225
-kHeavyMachineGunWeight = 0.46
-kHeavyMachineGunUpgradedWeight = 0.25
+kHeavyMachineGunWeight = 0.27
+--kHeavyMachineGunUpgradedWeight = 0.25
 kHandGrenadeWeight = 0.05
 kLayMineWeight = 0.075
 kWelderWeight = 0.05
@@ -44,17 +44,16 @@ kShotgunBaseROF	= 1.08						-- Increased SG base rate of fire
 kShotgunUpgradedROF	= 1.16					-- Increased SG base rate of fire from upgrades
 kShotgunFireRate = 0.70						-- To prevent fire rate cap from triggering
 kShotgunClipSize = 6						-- Default is 6
-kShotgunUpgradedReloadSpeed = 1.3
+kShotgunUpgradedReloadSpeed = 1.5
 
 -- MG
 kHeavyMachineGunDamage = 13					-- Default is 9 (*)
 kHeavyMachineGunClipSize = 100				-- Default is 125
 kHeavyMachineGunUpgradedClipSize = 125
-kHeavyMachineGunSpread = Math.Radians(4)	-- Default is 4
+kHeavyMachineGunSpread = Math.Radians(3.1)	-- Default is 4
 kHeavyMachineGunReloadSpeed = 0.39611550146364	-- Dont ask.....
-kHeavyMachineGunUpgReloadSpeed = 0.7
+kHeavyMachineGunUpgReloadSpeed = 0.8
 kHeavyMachineGunDamageType = kDamageType.HalfStructural
-kHeavyMachineGunSpread = Math.Radians(3.5)
 
 -- PISTOL
 kPistolDamage = 20							-- Decreased from 25
@@ -63,15 +62,16 @@ kPistolDamageType = kDamageType.Normal		-- Default is Light
 -- FLAMETHROWER
 kFlamethrowerDamage = 18					-- Increased from 12
 kFlamethrowerDamageRadius = 0.5				-- Decreased from 1.8 (NOT USED)
-kFlamethrowerConeWidth = 0.05				-- Default is 0.3
-kFlamethrowerClipSize = 35					-- Decreased from 50
+kFlamethrowerConeWidth = 0.06				-- Default is 0.3
+kFlamethrowerClipSize = 100					-- Increased from 50
 kFlamethrowerRange = 8						-- Decreased from 9
 kFlamethrowerUpgradedRange = 10
 kFlameThrowerEnergyDamage = 1				-- Default is 1
 kFlamethrowerDamageType = kDamageType.Normal-- Default is Flame
-kBurnDamagePerSecond = 25
+kBurnDamagePerSecond = 10
 kFlamethrowerBurnDuration = 0.25
-kFlamethrowerMaxBurnDuration = 15
+kFlamethrowerMaxBurnDuration = 20
+--kFlamethrowerDamagePerSecond = 25
 
 -- SIGHHHHHHHHHHHHHHHHHHHH
 kSprayDouseOnFireChance = 1.01
@@ -107,7 +107,7 @@ kMinigunCoolDownRate = 0.25
 kMinigunBulletSize = 0.02
 
 -- RAILGUN
-kRailgunDamage = 20							-- Default is 10
+kRailgunDamage = 22							-- Default is 10
 kRailgunBulletsPerShot = 4
 kRailgunDamageType = kDamageType.Normal
 kRailgunBulletSize = 0.016
@@ -115,6 +115,7 @@ kRailgunMaxAmmo = 6
 kRailgunRegenAmmoRate = 2.25
 kRailgunMaxRange = 20
 kRailgunDropOffStartRange = 10
+kRailgunSpreadDistance = 4
 
 -- MINES
 kMineDamage = 110
