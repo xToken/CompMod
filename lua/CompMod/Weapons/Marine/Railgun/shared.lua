@@ -7,10 +7,10 @@ local kMinRailgunRateOfFire = 0.6
 
 Railgun.kSpreadVectors =
 {    
-    GetNormalizedVector(Vector(-0.45, 0.45, 14)),
-    GetNormalizedVector(Vector(0.45, 0.45, 14)),
-    GetNormalizedVector(Vector(0.45, -0.45, 14)),
-    GetNormalizedVector(Vector(-0.45, -0.45, 14))
+    GetNormalizedVector(Vector(-0.15, 0, kRailgunSpreadDistance)),
+    GetNormalizedVector(Vector(0.15, 0, kRailgunSpreadDistance)),
+    GetNormalizedVector(Vector(0, -0.15, kRailgunSpreadDistance)),
+    GetNormalizedVector(Vector(0, 0.15, kRailgunSpreadDistance)),
 }
 
 local networkVars =
