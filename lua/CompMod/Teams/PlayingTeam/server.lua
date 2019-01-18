@@ -16,6 +16,7 @@ originalPlayingTeamTeamInitialize = Class_ReplaceMethod("PlayingTeam", "Initiali
 	function(self, teamName, teamNumber)
 		originalPlayingTeamTeamInitialize(self, teamName, teamNumber)
 		ClearEntityTrackingTables(self)
+		self.claimedPowerPoints = 0
 	end
 )
 
@@ -24,6 +25,7 @@ originalPlayingTeamOnInitialized = Class_ReplaceMethod("PlayingTeam", "OnInitial
 	function(self)
 		originalPlayingTeamOnInitialized(self)
 		ClearEntityTrackingTables(self)
+		self.claimedPowerPoints = 0
 	end
 )
 
@@ -134,3 +136,23 @@ originalPlayingTeamTechRemoved = Class_ReplaceMethod("PlayingTeam", "TechRemoved
 		self:ForEachPlayer(InformResearch)
 	end
 )
+
+function PlayingTeam:GetNumCapturedPowerPoints()
+	return self.claimedPowerPoints
+end
+
+function PlayingTeam:UpdateNumCapturedPowerPoints()
+	local count = 0
+    for _, pp in ientitylist(Shared.GetEntitiesWithClassname("PowerPoint")) do
+    
+        if pp.occupiedTeam == self:GetTeamNumber() then
+        	local e = Shared.GetEntity(pp.attachedId)
+        	if e.GetIsBuilt and e:GetIsBuilt() then
+            	count = count + 1
+            end
+        end
+        
+    end
+    
+    self.claimedPowerPoints = count
+end

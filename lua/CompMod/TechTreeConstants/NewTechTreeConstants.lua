@@ -38,5 +38,7 @@ function BuildCompModTechTreeConstantUpdates()
 	table.insert(newTechNames, "Veil3")
 	table.insert(newTechNames, "Spur2")
 	table.insert(newTechNames, "Spur3")
+	table.insert(newTechNames, "InfestedNode")
+	table.insert(newTechNames, "PowerNode")
 	return newTechNames
 end

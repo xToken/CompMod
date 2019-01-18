@@ -17,7 +17,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_FT_1_TOOLTIP",
 			[kTechDataDescription] = "EVT_FT_LEVEL_1_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 86
+			[kTechDataButtonID] = 176
 		})
 	table.insert(newTechTable,
 		{
@@ -28,7 +28,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_SHOTGUN_1_TOOLTIP",
 			[kTechDataDescription] = "EVT_SG_LEVEL_1_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 85
+			[kTechDataButtonID] = 177
 		})
 	table.insert(newTechTable,
 		{
@@ -39,7 +39,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_SHOTGUN_2_TOOLTIP",
 			[kTechDataDescription] = "EVT_SG_LEVEL_2_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 85
+			[kTechDataButtonID] = 177
 		})
 	table.insert(newTechTable,
 		{
@@ -50,7 +50,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_MG_1_TOOLTIP",
 			[kTechDataDescription] = "EVT_MG_LEVEL_1_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 171
+			[kTechDataButtonID] = 178
 		})
 	table.insert(newTechTable,
 		{
@@ -61,7 +61,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_MG_2_TOOLTIP",
 			[kTechDataDescription] = "EVT_MG_LEVEL_2_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 171
+			[kTechDataButtonID] = 178
 		})
 	table.insert(newTechTable,
 		{
@@ -72,7 +72,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_GL_1_TOOLTIP",
 			[kTechDataDescription] = "EVT_GL_LEVEL_1_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 87
+			[kTechDataButtonID] = 179
 		})
 	table.insert(newTechTable,
 		{
@@ -83,7 +83,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_JP_1_TOOLTIP",
 			[kTechDataDescription] = "EVT_JP_LEVEL_1_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 89
+			[kTechDataButtonID] = 182
 		})
 	table.insert(newTechTable,
 		{
@@ -94,7 +94,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_EXO_1_TOOLTIP",
 			[kTechDataDescription] = "EVT_EXO_LEVEL_1_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 25
+			[kTechDataButtonID] = 183
 		})
 	table.insert(newTechTable,
 		{
@@ -151,7 +151,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataResearchTimeKey] = kARCUpgrade1ResearchTime,
 			[kTechDataDisplayName] = "MARINE_ARC_1",
 			[kTechDataTooltipInfo] = "MARINE_ARC_1_TOOLTIP",
-			[kTechDataButtonID] = 32
+			[kTechDataButtonID] = 180
 		})
 	table.insert(newTechTable,
 		{
@@ -429,16 +429,104 @@ function BuildCompModTechDataUpdates()
 			[kTechDataObstacleRadius] = 0.5,
 			[kTechDataButtonID] = 147
 		})
+	table.insert(newTechTable,
+		{
+			[kTechDataId] = kTechId.InfestedNode,
+			[kTechDataHint] = "INFEST_POWER_NODE_HINT",
+			[kTechDataDisplayName] = "INFEST_POWER_NODE",
+			[kTechDataTooltipInfo] = "INFEST_POWER_NODE_TOOLTIP",
+            [kTechDataIgnorePathingMesh] = true,
+            [kTechDataSpawnBlock] = true,
+            [kTechDataCollideWithWorldOnly] = true,
+            [kTechDataAllowStacking] = true,
+            [kTechDataGhostModelClass] = "AlienGhostModel",
+            [kTechDataMapName] = InfestedNode.kMapName,
+            [kTechDataCostKey] = kInfestPowerNodeCost,
+            [kTechDataBuildTime] = kInfestPowerNodeBuiltTime,
+            [kTechDataModel] = InfestedNode.kModelName,
+            [kTechDataMaxHealth] = kInfestedPowerPointHealth,
+            [kTechDataMaxArmor] = kInfestedPowerPointArmor,
+            [kStructureAttachClass] = "PowerPoint",
+            [kTechDataPointValue] = kInfestedPowerPointValue,
+            [kTechDataHotkey] = Move.E,
+            [kTechDataButtonID] = 168,
+		})
+	table.insert(newTechTable,
+		{
+			[kTechDataId] = kTechId.PowerNode,
+			[kTechDataHint] = "POWER_NODE_HINT",
+			[kTechDataDisplayName] = "POWER_NODE",
+			[kTechDataTooltipInfo] = "POWER_NODE_TOOLTIP",
+            [kTechDataIgnorePathingMesh] = true,
+            [kTechDataSpawnBlock] = true,
+            [kTechDataCollideWithWorldOnly] = true,
+            [kTechDataAllowStacking] = true,
+            [kTechDataGhostModelClass] = "MarineGhostModel",
+            [kTechDataMapName] = PowerNode.kMapName,
+            [kTechDataCostKey] = kPowerNodeCost,
+            [kTechDataBuildTime] = kPowerPointBuildTime,
+            [kTechDataModel] = PowerNode.kModelName,
+            [kTechDataMaxHealth] = kPowerPointHealth,
+            [kTechDataMaxArmor] = kPowerPointArmor,
+            [kStructureAttachClass] = "PowerPoint",
+            [kTechDataPointValue] = kPowerPointPointValue,
+            [kTechDataHotkey] = Move.E,
+            [kTechDataButtonID] = 93,
+		})
+
 	-- Existing tech updates below!
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.AdvancedArmory,
-			[kTechIDShowEnables] = false
+			[kTechIDShowEnables] = false,
+			[kTechDataRequiresPower] = false
 		})
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.PrototypeLab,
-			[kTechIDShowEnables] = false
+			[kTechIDShowEnables] = false,
+			[kTechDataRequiresPower] = false
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.Observatory,
+			[kTechDataSupply] = kObservatorySupply,
+			[kTechDataRequiresPower] = false
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.PhaseGate,
+			[kTechDataRequiresPower] = false
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.ARCRoboticsFactory,
+			[kTechDataRequiresPower] = false
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.RoboticsFactory,
+			[kTechDataRequiresPower] = false
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.ArmsLab,
+			[kTechDataRequiresPower] = false
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.Armory,
+			[kTechDataRequiresPower] = false
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.InfantryPortal,
+			[kTechDataRequiresPower] = false
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.Extractor,
+			[kTechDataRequiresPower] = false
 		})
 	table.insert(techIdUpdates,
 		{
@@ -573,21 +661,60 @@ function BuildCompModTechDataUpdates()
 		{
 			[kTechDataId] = kTechId.DropHeavyMachineGun,
 			[kStructureAttachId] = { kTechId.Armory, kTechId.AdvancedArmory },
+			[kStructureAttachRequiresPower] = false,
 		})
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.DropGrenadeLauncher,
 			[kStructureAttachId] = { kTechId.Armory, kTechId.AdvancedArmory },
+			[kStructureAttachRequiresPower] = false,
 		})
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.DropFlamethrower,
 			[kStructureAttachId] = { kTechId.Armory, kTechId.AdvancedArmory },
+			[kStructureAttachRequiresPower] = false,
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.DropShotgun,
+			[kStructureAttachRequiresPower] = false,
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.DropWelder,
+			[kStructureAttachRequiresPower] = false,
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.DropMines,
+			[kStructureAttachRequiresPower] = false,
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.DropJetpack,
+			[kStructureAttachRequiresPower] = false,
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.GrenadeLauncher,
+			[kStructureAttachRequiresPower] = false,
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.Flamethrower,
+			[kStructureAttachRequiresPower] = false,
+		})
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.Shotgun,
+			[kStructureAttachRequiresPower] = false,
 		})
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.DropExosuit,
-			[kStructureAttachId] = kTechId.RoboticsFactory
+			[kStructureAttachId] = kTechId.RoboticsFactory,
+			[kStructureAttachRequiresPower] = false,
 		})
 	table.insert(techIdUpdates,
 		{
@@ -685,6 +812,11 @@ function BuildCompModTechDataUpdates()
         {
             [kTechDataId] = kTechId.LayMines,
             [kTechDataButtonID] = 8
+        })
+	table.insert(techIdUpdates,
+        {
+            [kTechDataId] = kTechId.NanoArmor,
+            [kTechDataButtonID] = 181
         })
 	table.insert(techIdUpdates,
         {

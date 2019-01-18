@@ -42,3 +42,10 @@ function GetCanEggFit(position)
     return false
     
 end
+
+-- Lol NS2....
+function NS2Gamerules:DestroyUnusedPowerNodes()
+end
+
+function SocketPowerForLocation(locationName)
+end

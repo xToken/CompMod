@@ -60,6 +60,7 @@ function AlienTeam:InitTechTree()
     self.techTree:AddBuildNode(kTechId.Rupture,						kTechId.Hive)
     self.techTree:AddBuildNode(kTechId.BoneWall,					kTechId.Hive)
     self.techTree:AddBuildNode(kTechId.Contamination,				kTechId.ThreeHives)
+    self.techTree:AddBuildNode(kTechId.InfestedNode,                kTechId.Drifter,                   kTechId.None)
 
     -- Drifter triggered abilities
     self.techTree:AddTargetedActivation(kTechId.EnzymeCloud,		kTechId.MovementTraits,			kTechId.None)

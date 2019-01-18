@@ -98,3 +98,27 @@ function GetBulletTargets(startPoint, endPoint, spreadDirection, bulletSize, fil
 
 end
 --]]
+
+function GetMaxSupplyForTeam(teamNumber)
+
+    local maxSupply = 0
+
+    if Server then
+    
+        local team = GetGamerules():GetTeam(teamNumber)
+        if team and team.GetNumCapturedPowerPoints then
+            maxSupply = team:GetNumCapturedPowerPoints() * kSupplyPerPowerPoint
+        end
+        
+    else
+        
+        local teamInfoEnt = GetTeamInfoEntity(teamNumber)
+        if teamInfoEnt and teamInfoEnt.GetNumCapturedPowerPoints then
+            maxSupply = teamInfoEnt:GetNumCapturedPowerPoints() * kSupplyPerPowerPoint
+        end
+
+    end
+
+    return maxSupply + kBaseSupply
+
+end

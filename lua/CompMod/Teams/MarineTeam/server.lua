@@ -3,17 +3,6 @@
 -- lua\CompMod\Teams\MarineTeam\server.lua
 -- - Dragon
 
-local originalMarineTeamOnResetComplete
-originalMarineTeamOnResetComplete = Class_ReplaceMethod("MarineTeam", "OnResetComplete",
-	function(self)
-		originalMarineTeamOnResetComplete(self)
-		for index, powerPoint in ientitylist(Shared.GetEntitiesWithClassname("PowerPoint")) do
-			-- Always built!
-			powerPoint:SetConstructionComplete()
-		end
-	end
-)
-
 function MarineTeam:InitTechTree()
    
    PlayingTeam.InitTechTree(self)
@@ -35,7 +24,7 @@ function MarineTeam:InitTechTree()
 	
 	self.techTree:AddAction(kTechId.SelectObservatory)
 	
-	self.techTree:AddActivation(kTechId.SocketPowerNode,			kTechId.None,					kTechId.None)
+	self.techTree:AddBuildNode(kTechId.PowerNode,					kTechId.None,					kTechId.None)
 	
 	-- Door actions
     self.techTree:AddBuildNode(kTechId.Door,						kTechId.None,					kTechId.None)

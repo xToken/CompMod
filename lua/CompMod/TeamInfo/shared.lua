@@ -3,6 +3,14 @@
 -- lua\CompMod\TeamInfo\shared.lua
 -- - Dragon
 
+local originalTeamInfoOnCreate
+originalTeamInfoOnCreate = Class_ReplaceMethod("TeamInfo", "OnCreate",
+    function(self)
+        originalTeamInfoOnCreate(self)
+        self.numCapturedPowerPoints = 0
+    end
+)
+
 -- Just Override these, we change too much here anyways
 TeamInfo.kRelevantTechIdsMarine =
 {
@@ -86,3 +94,19 @@ TeamInfo.kRelevantTechIdsAlien =
     kTechId.AdditionalTraitSlot2,
     
 }
+
+function TeamInfo:GetNumCapturedPowerPoints()
+    return self.numCapturedPowerPoints
+end
+
+local originalTeamInfoOnUpdate
+originalTeamInfoOnUpdate = Class_ReplaceMethod("TeamInfo", "OnUpdate",
+    function(self, deltaTime)
+        originalTeamInfoOnUpdate(self, deltaTime)
+        if self.team and Server then
+            self.numCapturedPowerPoints = self.team:GetNumCapturedPowerPoints()
+        end
+    end
+)
+
+Shared.LinkClassToMap("TeamInfo", TeamInfo.kMapName, {numCapturedPowerPoints = "integer (0 to 99)"})

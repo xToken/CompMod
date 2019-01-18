@@ -5,17 +5,17 @@
 
 local originalMarineCommanderCopyPlayerDataFrom
 originalMarineCommanderCopyPlayerDataFrom = Class_ReplaceMethod("MarineCommander", "CopyPlayerDataFrom",
-	function(self, player)
-		originalMarineCommanderCopyPlayerDataFrom(self, player)
-		
-		if GetGamerules():GetGameStarted() then
-			self.utilitySlot3 = player.utilitySlot3 or kTechId.None
-			self.utilitySlot5 = player.utilitySlot5 or kTechId.None
-			self.grenadesLeft = nil
-			self.grenadeType = nil
-		end
-		
-	end
+    function(self, player)
+        originalMarineCommanderCopyPlayerDataFrom(self, player)
+        
+        if GetGamerules():GetGameStarted() then
+            self.utilitySlot3 = player.utilitySlot3 or kTechId.None
+            self.utilitySlot5 = player.utilitySlot5 or kTechId.None
+            self.grenadesLeft = nil
+            self.grenadeType = nil
+        end
+        
+    end
 )
 
 local GetIsEquipment = GetUpValue(MarineCommander.ProcessTechTreeActionForEntity, "GetIsEquipment")
@@ -52,13 +52,13 @@ function MarineCommander:ProcessTechTreeActionForEntity(techNode, position, norm
     
         -- use the client side trace.entity here
         local clientTargetEnt = Shared.GetEntity(targetId)
-		if clientTargetEnt and ( clientTargetEnt:isa("Marine") or ( techId == kTechId.CatPack and clientTargetEnt:isa("Exo") ) ) then
+        if clientTargetEnt and ( clientTargetEnt:isa("Marine") or ( techId == kTechId.CatPack and clientTargetEnt:isa("Exo") ) ) then
             position = clientTargetEnt:GetOrigin() + Vector(0, 0.05, 0)
         end
 
         -- disallow dropping packs onto hives/techpoints.  You can still drop packs ON marines above a hive/techpoint however
         if clientTargetEnt and (clientTargetEnt:isa("Hive") or clientTargetEnt:isa("TechPoint") or clientTargetEnt:isa("Harvester") or clientTargetEnt:isa("ResourcePoint")) then
-        	return false, false
+            return false, false
         end
     
         success = self:TriggerDropPack(position, techId)
