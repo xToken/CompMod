@@ -12,6 +12,7 @@ if not string.find(Script.CallStack(), "Main.lua") then
 	ModLoader.SetupFileHook("lua/DetectableMixin.lua", "lua/CompMod/Mixins/DetectableMixin/replace.lua", "replace")
 	ModLoader.SetupFileHook("lua/AlienTechMap.lua", "lua/CompMod/TechMaps/AlienTechMap/replace.lua", "replace")
 	ModLoader.SetupFileHook("lua/MarineTechMap.lua", "lua/CompMod/TechMaps/MarineTechMap/replace.lua", "replace")
+	ModLoader.SetupFileHook("lua/PowerPoint.lua", "lua/CompMod/Structures/Marine/PowerPoint/replace.lua", "replace")
 	-- Post
 	ModLoader.SetupFileHook("lua/Balance.lua", "lua/CompMod/Balance/post.lua", "post")
 	ModLoader.SetupFileHook("lua/GUIAlienBuyMenu.lua", "lua/CompMod/GUI/GUIAlienBuyMenu/post.lua", "post")
@@ -28,6 +29,7 @@ if not string.find(Script.CallStack(), "Main.lua") then
 	ModLoader.SetupFileHook("lua/Hud/Marine/GUIMarineHud.lua", "lua/CompMod/GUI/Hud/Marine/GUIMarineHud/post.lua", "post")
 	ModLoader.SetupFileHook("lua/InfestationMixin.lua", "lua/CompMod/Mixins/InfestationMixin/post.lua", "post")
 	ModLoader.SetupFileHook("lua/MaturityMixin.lua", "lua/CompMod/Mixins/MaturityMixin/post.lua", "post")
+	ModLoader.SetupFileHook("lua/CatalystMixin.lua", "lua/CompMod/Mixins/CatalystMixin/post.lua", "post")
 	ModLoader.SetupFileHook("lua/TechData.lua", "lua/CompMod/TechData/post.lua", "post")
 	ModLoader.SetupFileHook("lua/TechTreeConstants.lua", "lua/CompMod/TechTreeConstants/post.lua", "post")
 end

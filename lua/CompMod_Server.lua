@@ -44,7 +44,7 @@ Script.Load("lua/CompMod/Structures/Alien/Veil/server.lua")
 Script.Load("lua/CompMod/Structures/Alien/Whip/server.lua")
 Script.Load("lua/CompMod/Structures/Marine/ARC/server.lua")
 Script.Load("lua/CompMod/Structures/Marine/ArmsLab/server.lua")
-Script.Load("lua/CompMod/Structures/Marine/PowerPoint/server.lua")
+--Script.Load("lua/CompMod/Structures/Marine/PowerPoint/server.lua")
 
 Script.Load("lua/CompMod/Teams/AlienTeam/server.lua")
 Script.Load("lua/CompMod/Teams/MarineTeam/server.lua")

@@ -31,7 +31,7 @@ Script.Load("lua/CompMod/Structures/Alien/Shell/client.lua")
 Script.Load("lua/CompMod/Structures/Alien/Shift/client.lua")
 Script.Load("lua/CompMod/Structures/Alien/Spur/client.lua")
 Script.Load("lua/CompMod/Structures/Alien/Veil/client.lua")
-Script.Load("lua/CompMod/Structures/Marine/PowerPoint/client.lua")
 Script.Load("lua/CompMod/Structures/Marine/RoboticsFactory/client.lua")
+--Script.Load("lua/CompMod/Structures/Marine/PowerPoint/client.lua")
 
 Script.Load("lua/CompMod/TechTreeButtons/client.lua")

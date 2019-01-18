@@ -10,12 +10,13 @@ Script.Load("lua/CompMod/Utilities/Elixer/shared.lua")
 
 Elixer.UseVersion( 1.8 )
 
-kCompModBuild = 21
+kCompModBuild = 22
 
 Script.Load("lua/CompMod/AlienSensorBlip/shared.lua")
 Script.Load("lua/CompMod/Damage/shared.lua")
 Script.Load("lua/CompMod/NS2Utility/shared.lua")
 Script.Load("lua/CompMod/TeamInfo/shared.lua")
+Script.Load("lua/CompMod/SpawnAngleFix/shared.lua")
 
 Script.Load("lua/CompMod/Classes/Alien/Alien/shared.lua")
 Script.Load("lua/CompMod/Classes/Alien/AlienCommander/shared.lua")
@@ -30,6 +31,7 @@ Script.Load("lua/CompMod/Classes/Marine/Exo/shared.lua")
 Script.Load("lua/CompMod/Classes/Marine/Exosuit/shared.lua")
 Script.Load("lua/CompMod/Classes/Marine/JetpackMarine/shared.lua")
 Script.Load("lua/CompMod/Classes/Marine/Marine/shared.lua")
+Script.Load("lua/CompMod/Classes/Marine/MarineCommander/shared.lua")
 Script.Load("lua/CompMod/Classes/Player/shared.lua")
 
 Script.Load("lua/CompMod/CommAbilities/EnzymeCloud/shared.lua")
@@ -60,6 +62,8 @@ Script.Load("lua/CompMod/Structures/Alien/Shift/shared.lua")
 Script.Load("lua/CompMod/Structures/Alien/Spur/shared.lua")
 Script.Load("lua/CompMod/Structures/Alien/Veil/shared.lua")
 Script.Load("lua/CompMod/Structures/Alien/Web/shared.lua")
+Script.Load("lua/CompMod/Structures/Alien/InfestedNode/shared.lua")
+
 Script.Load("lua/CompMod/Structures/Marine/ARC/shared.lua")
 Script.Load("lua/CompMod/Structures/Marine/Armory/shared.lua")
 Script.Load("lua/CompMod/Structures/Marine/ArmsLab/shared.lua")
@@ -68,6 +72,7 @@ Script.Load("lua/CompMod/Structures/Marine/PhaseGate/shared.lua")
 Script.Load("lua/CompMod/Structures/Marine/PowerPoint/shared.lua")
 Script.Load("lua/CompMod/Structures/Marine/PrototypeLab/shared.lua")
 Script.Load("lua/CompMod/Structures/Marine/RoboticsFactory/shared.lua")
+Script.Load("lua/CompMod/Structures/Marine/PowerNode/shared.lua")
 
 Script.Load("lua/CompMod/Weapons/Alien/Ability/shared.lua")
 Script.Load("lua/CompMod/Weapons/Alien/BiteLeap/shared.lua")
@@ -77,6 +82,7 @@ Script.Load("lua/CompMod/Weapons/Alien/SporeCloud/shared.lua")
 Script.Load("lua/CompMod/Weapons/Marine/Axe/shared.lua")
 Script.Load("lua/CompMod/Weapons/Marine/ClusterGrenade/shared.lua")
 Script.Load("lua/CompMod/Weapons/Marine/Flamethrower/shared.lua")
+Script.Load("lua/CompMod/Weapons/Marine/FlameCloud/shared.lua")
 Script.Load("lua/CompMod/Weapons/Marine/Grenade/shared.lua")
 Script.Load("lua/CompMod/Weapons/Marine/GrenadeFragment/shared.lua")
 Script.Load("lua/CompMod/Weapons/Marine/GrenadeLauncher/shared.lua")
