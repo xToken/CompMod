@@ -15,7 +15,7 @@ originalFlamethrowerOnInitialized = Class_ReplaceMethod("Flamethrower", "OnIniti
 		originalFlamethrowerOnInitialized(self)
 		self.flamethrower_upg1 = false
 		self.flamethrower_upg2 = false
-		
+		self.flameCloud = Entity.invalidId
 		if Server then
 			self:AddTimedCallback(Flamethrower.OnTechOrResearchUpdated, 0.1)
 		end
@@ -42,6 +42,10 @@ function Flamethrower:OnTechOrResearchUpdated()
 	else
 		self.flamethrower_upg1 = false
 	end
+end
+
+function Flamethrower:GetMaxClips()
+    return 2
 end
 
 function Flamethrower:GetIsAffectedByWeaponUpgrades()
@@ -76,8 +80,36 @@ function Flamethrower:BurnBileDOT(startPoint, endPoint)
 
 end
 
+function Flamethrower:BurnParasites(startPoint, endPoint)
+
+    local toTarget = endPoint - startPoint
+    local length = toTarget:GetLength()
+    toTarget:Normalize()
+
+    local stepLength = 2
+    for i = 1, 5 do
+    
+        if length < i * stepLength then
+            break
+        end
+
+        local checkAtPoint = startPoint + toTarget * i * stepLength
+        -- moar dots
+        local paras = GetEntitiesWithMixinWithinRange("ParasiteAble", checkAtPoint, 2)
+
+        for i = 1, #paras do
+            local para = paras[i]
+            if para:GetIsParasited() then
+                para:RemoveParasite()
+            end
+        end
+
+    end
+
+end
+
 function Flamethrower:ApplyConeDamage(player)
-	
+
     local eyePos = player:GetEyePos()
     local ents = {}
 
@@ -103,6 +135,7 @@ function Flamethrower:ApplyConeDamage(player)
 	    if Server then
 	        self:BurnSporesAndUmbra(startPoint, endPoint)
 	        self:BurnBileDOT(startPoint, endPoint)
+            self:BurnParasites(startPoint, endPoint)
 	    end
 
 		if trace.fraction ~= 1 then
@@ -110,6 +143,7 @@ function Flamethrower:ApplyConeDamage(player)
 			local traceEnt = trace.entity
 			if traceEnt and HasMixin(traceEnt, "Live") and traceEnt:GetCanTakeDamage() then
 				table.insertunique(ents, traceEnt)
+                table.insertunique(filterEnts, traceEnt)
 			end
 
 		end
@@ -145,6 +179,80 @@ function Flamethrower:ApplyConeDamage(player)
 
     end
 
+    --[[
+    if Server then
+
+	    local trace = Shared.TraceRay(
+	        player:GetEyePos(), 
+	        player:GetEyePos() + player:GetViewCoords().zAxis * FlameCloud.kMaxRange, 
+	        CollisionRep.Damage, 
+	        PhysicsMask.Bullets, 
+	        EntityFilterTwo(player, self)
+	    )
+
+	    local flameEnt = Shared.GetEntity(self.flameCloud)
+	    if flameEnt then
+	    	flameEnt:AddIntermediateDestination(player:GetEyePos(), trace.endPoint)
+	    else
+	    	flameEnt = CreateEntity( FlameCloud.kMapName, player:GetEyePos(), player:GetTeamNumber() )
+		    flameEnt:SetInitialDestination( trace.endPoint )
+		    flameEnt:SetOwner(player)
+		    self.flameCloud = flameEnt:GetId()
+	    end
+
+	end
+	--]]
 end
+
+--[[
+function Flamethrower:OnPrimaryAttack(player)
+
+    if not self:GetIsReloading() then
+    
+        ClipWeapon.OnPrimaryAttack(self, player)
+        
+        if self:GetIsDeployed() and self:GetClip() > 0 and self:GetPrimaryAttacking() then
+        
+            self.createParticleEffects = true
+            
+            if Server and not self.loopingFireSound:GetIsPlaying() then
+                self.loopingFireSound:Start()
+            end
+            
+        end
+        
+        if self.createParticleEffects and self:GetClip() == 0 then
+        
+            self.createParticleEffects = false
+            
+            if Server then
+                self.loopingFireSound:Stop()
+            end
+            
+        end
+        
+    end
+    
+end
+
+function Flamethrower:OnPrimaryAttackEnd(player)
+
+    ClipWeapon.OnPrimaryAttackEnd(self, player)
+
+    self.createParticleEffects = false
+        
+    if Server then    
+        self.loopingFireSound:Stop()
+
+        local flameEnt = Shared.GetEntity(self.flameCloud)
+        if flameEnt then
+        	flameEnt:FinishedFiring()
+        end
+        self.flameCloud = Entity.invalidId
+
+    end
+    
+end
+--]]
 
 Shared.LinkClassToMap("Flamethrower", Flamethrower.kMapName, networkVars)
