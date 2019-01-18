@@ -1,6 +1,8 @@
 ### QoL Changes:
 	- Added predicted doors
 	- Added texture remapping system to allow for new tech icons
+	- Added spawn angles fix
+	- Added various tech tree icons
 	
 ### Resource System Changes:
 	- Starting tRes is now 50 per team (Decreased from 60)
@@ -11,5 +13,9 @@
 ### Others:
 	- Health bars are disabled in tournament mode
 	- Added binding for commander to toggle health bars being visible on all friendlies (Default H)
+	- Commander health bars setting is remembered between games, and defaults to on
 	- Adjusted medpack/ammopack drops and order issuing to limit early scouting abilities
 	- Spectators can now see maturity levels on alien structures
+	
+### Supply:
+	- Added base system for supply rework, currently disabled

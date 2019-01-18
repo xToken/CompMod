@@ -10,6 +10,52 @@ Some description/highlevel shtuffffffffff?
 
 ### [Marine Commander Guide](https://xtoken.github.io/CompMod/webpages/marine_comm_guide)
 
+### Recent Changelog: Build 22 (18-1-19)
+
+### Aliens:
+	- Decreased Leap research cost from 25 to 20 tRes
+	- Decreased Xenocide research cost from 35 to 30 tRes
+	- Decreased Umbra research cost from 25 to 20 tRes
+	- Decreased Spores research cost from 35 to 30 tRes
+	- Decreased Stab research cost from 35 to 30 tRes
+	- Decreased Charge research cost from 25 to 20 tRes
+	- Decreased Stomp research cost from 35 to 30 tRes
+	- Decreased cost of Parasite Cloud from 3 to 2 tRes
+	- Decreased duration of nutrient mist from 10 to 5 seconds
+	- Decreased maximum amount of stacked nutrient mist from 30s to 15s
+	- Added UI elements to better show sustenance levels and stacks of mist
+	- Sustenance will now decrease from 100% to 0% in 90s, was 120s previously
+	- Crag Heal Wave and Shift Energize now require flourishing structures
+	- Lowered harvester base health from 1800/200 to 1600/100.
+	- Onos charge energy consumption increased from 29 to 30.
+	- Onos charge energy usage is now based on charge fraction
+	
+### Marines:
+	- Shrunk size of flamethrower cinematic to better match cone size
+	- Weight of flamethrower decreased from 0.2 to 0.125
+	- Flamethrower clip size increased from 35 to 100
+	- Flamethrower max clips decreased from 4 to 2
+	- Flamethrower cone size increased from 0.05 to 0.06
+	- Flamethrower burning damage decreased from 25 to 10/s
+	- Flamethrower max burning time increased from 15 to 20s
+	- Flamethrower deals double damage to Clogs
+	- Exosuit costs lowered from 30 to 25 pRes
+	- MG weight lowered from 0.46 to 0.27
+	- MG Upgrade 1 now only increases clip size
+	- MG Upgrade 2 now increases reload speed by ~50%
+	- SG Upgrade 1 increases reload speed by 50%, up from 30%
+	- Railgun spread reworked to be very similar to shotgun
+	- Railgun base damage increased from 20 to 22 per pellet (88 per shot)
+	- Jetpack upgrade fuel rate usage lowered further, fuel regain rate increased.
+	- Slightly increased axing webs range
+	
+### Misc:
+	- Commander healthbars toggle is now remembered
+	- Commander healthbars default to on.
+	- Re-added spawn angles fix
+	- Added various tech tree icons
+	- Added base system for supply rework, currently disabled
+	
 ***
 ### Recent Changelog: Build 21 (12-1-19)
 
@@ -75,49 +121,5 @@ Some description/highlevel shtuffffffffff?
 	- Fixed marine structures sometimes showing maturity bars
 	- Fixed door sounds not triggering when other players opened the door.  Door sounds are no longer predicted by the client
 	- Fixed structures not losing sustenance when they reached 100%
-	
-***
-### Recent Changelog: Build 15 (7-1-19)
-
-### Marines:
-	- Increased phase gate minimum phase time to 0.3 seconds
-	- Slightly decreased railgun spread
-	- Decreased jetpack acceleration and slightly increased fuel usage
-	- Decreased railgun exo fuel usage rates
-	- Reverted Gas grenades to Armor only damage, and 50 damage/second
-	- Increased MG weight from 0.4 to 0.46 (Slightly lowers movespeed with MG)
-
-### Aliens:
-	- Increased Fade base health from 300 to 350
-	- Drifter health increased from 150 to 250
-	- Drifters will now be healed by the hive
-	- Crag/Shift/Shade eHP increased from 1200 to 1400 when fully 'grown'
-	- NutrientMist now gives 33% sustenance per use
-	- Sustenance now increases & decays at a constant rate, takes 2 minutes to go from 100% to 0%
-	- Structures now start at 0% sustenance instead of 50%
-	- Armor now heals at double the rate of health again (Same as vanilla)
-	- Echo now costs 3 tRes for all structures (except Hive which is 50)
-	- Can now only echo Harvesters onto infestation
-	- Cannot echo gorge tunnels anymore
-
-### Onos:
-	- Onos Charging sensitivity reduction removed
-	- Lowered delay between charges from 1 to 0.25 seconds
-	- Lowered time to accelerate to full charge speed from 0.5 to 0.25 seconds
-	- Increased charge energy cost from 20 to 30/second
-	- Increased base health from 850 to 900
-	- Gore now deals 75 damage
-	- Gore damage type changed to QuadStructural
-
-### Bug Fixes:
-	- Fixed crush HUD icons overwritting movement icons
-	- Fixed purchasing second/third upgrades costing the same as purchasing all 2/3 at once, instead of just the cost of the new upgrade
-	- Fixed 'Producing' text showing in spectating during construction
-	- Fixed another occurence of lingering infestation :<
-
-### Misc:
-	- Spectators can now see maturity levels on alien structures
-	- Updated tech maps for both teams
-	- Updated and added alert messages for tech researches
 	
 ***

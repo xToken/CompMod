@@ -21,7 +21,7 @@
 ### Exo:
 	- Speed increased to 6 from 5.75
 	- Model size decreased by 10%
-	- Cost decreased from 55 to 30 pRes (Minigun & Railgun)
+	- Cost decreased from 55 to 25 pRes (Minigun & Railgun)
 	- Now purchased at the Robotics Factory
 	- Base armor increased to 400
 	- Armor upgrades now grant 40 extra armor per level, up from 30
@@ -39,15 +39,15 @@
 	- Base RoF increased by ~8%
 	- Added damage falloff, starts at 6m
 	- After 16m, damage will decreased to 1 per pellet
-	- Tier 1 upgrade increases reload speed by 30%
+	- Tier 1 upgrade increases reload speed by 50%
 	- Tier 2 upgrade increases fire rate by 8%
 	
 ### MG:
 	- Increased damage from 9 to 13
 	- Damage type changed to do full damage to players, 50% damage to structures. (Previously it did 1.5x to players)
 	- Lowered base clip size from 125 to 100
-	- Tier 1 upgrade decreased weight from 0.4 to 0.25
-	- Tier 2 upgrade increased clip size from 100 to 125 and increases reload speed by 40%
+	- Tier 1 upgrade icnreases clip size from 100 to 125 weight from 0.4 to 0.25
+	- Tier 2 upgrade increases reload speed by ~50%
 	
 ### Minigun:
 	- Damage lowered from 10 to 6
@@ -56,7 +56,7 @@
 	
 ### Railgun:
 	- Changed to a 'Railgun Shotgun'
-	- Deals 20 damage per pellet, fires 4 pellets
+	- Deals 22 damage per pellet, fires 4 pellets
 	- Has 6 ammo each arm by default, regains 1 ammo every 2.25 seconds
 	- Bullet size now matches shotgun
 	- Has damage falloff ala the shotgun, starting at 10m and ending at 20m
@@ -79,16 +79,18 @@
 ### Flamethrower
 	- Cost decreased from 20 to 10 pRes
 	- Lowered damage from 25 to 18
-	- Decreased attack cone from 0.15 to 0.05
+	- Decreased attack cone from 0.15 to 0.06
 	- Increased initial range from 7 to 8
 	- Upgraded range is 10m
-	- Clip size decreased from 50 to 35.
+	- Clip size increased from 50 to 100.
+	- Max clips lowered from 4 to 2.
 	- Changed damage type back to normal from structural
-	- Increased burn damage from 0 to 25 (50/s)
-	- Lowered max burn duration from 20 to 15
+	- Increased burn damage from 0 to 10/s
+	- Max burn duration unchanged at 20s
 	- Fixed OnFire damage not applying when structures are still being damaged
 	- Now benefits from weapon upgrades
 	- Burns spores, umbra, drifter abilities, bilebomb and bilebomb DOT.
+	- Removes parasite from friendly marines
 
 ### Pistol:
 	- Changed damage type to Normal
@@ -126,10 +128,9 @@
 		- Pistol Weight = 0.05
 		- Rifle Weight = 0.175
 		- Grenade Launcher Weight = 0.3
-		- Flamethrower Weight = 0.2
+		- Flamethrower Weight = 0.125
 		- Shotgun Weight = 0.225
-		- MG Weight = 0.46
-		- MG Upgraded Weight = 0.25
+		- MG Weight = 0.27
 		- Hand Grenades Weight = 0.05
 		- LayMine Weight = 0.075
 		- Welder Weight = 0.05
@@ -215,13 +216,13 @@
 	- Cost: 10 tRes
 	- Research Time: 30 seconds
 	- Requires: Armory
-	- Grants: Increases range from 5 to 8
+	- Grants: Increases range from 8 to 10
 	
 ### Shotgun Upgrade 1 added:
 	- Cost: 15 tRes
 	- Research Time: 30 seconds
 	- Requires: Armory
-	- Grants: Increases reload speed by 20%
+	- Grants: Increases reload speed by 50%
 	
 ### Shotgun Upgrade 2 added:
 	- Cost: 30 tRes
@@ -233,13 +234,13 @@
 	- Cost: 15 tRes
 	- Research Time: 30 seconds
 	- Requires: Armory
-	- Grants: Decreases weapon weight from 0.4 to 0.25
+	- Grants: Increases clip size from 100 to 125
 	
 ### MG Upgrade 2 added:
 	- Cost: 30 tRes
 	- Research Time: 60 seconds
 	- Requires: Advanced Armory
-	- Grants: Increases clip size from 100 to 125, increases reload speed by 40%
+	- Grants: Increases reload speed by 50%
 	
 ### GL Upgrade 1 added:
 	- Cost: 15 tRes

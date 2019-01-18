@@ -102,8 +102,9 @@
 		 - No longer reduces your mouse sensitivty while charging
 		 - Lowered delay between charges from 1 to 0.25 seconds
 		 - Time to accelerate to full charge speed increased from 0.5 to 1.5 seconds
-		 - Increased charge energy cost from 20 to 29/second
-		 - Charge speed increased from 12.5 to 13
+		 - Increased charge energy cost from 20 to 30/second
+		 - Energy usage is based on the charge amount, which increases over the 1.5s windup
+		 - Speed increased from 12.5 to 13
 	- Stomp:
 		 - Damage type changed to normal from heavy
 
@@ -143,11 +144,13 @@
 	- For all other structures, each mist gives 33% sustenance over 10 seconds, and can be stacked up to 3 times
 	- After the mist effect has ended, the structure will start losing sustenance immediately
 	- Structures start at 0% sustenance
+	- Added UI elements to show sustenance levels on structures
 	
 ### Nutrient Mist:
 	- Moved to global Alien Commander ability
 	- Single target only
 	- Only increases the sustenance of the target structure
+	- Lasts for 5 seconds
 	- Nutrient Mist increases sustenance, can be stacked up to 3 times.
 	- Costs decreased to 1 tRes
 	
@@ -169,7 +172,7 @@
 	- The cloud will be shot out from the drifter towards the target location
 	- The drifter will move until it has LOS on the target area before casting the parasite cloud
 	- As the cloud moves, it will parasite (2/s duration) nearby Marines, enabling the commander to scout ahead
-	- Costs is 3 tRes
+	- Costs is 2 tRes
 	- Requires the Defensive Traits research
 	- Will last for 10 seconds, and can travel up to 40m
 	
@@ -201,6 +204,7 @@
 	- Heal Wave is now 2x the healing (increased from 1.3)
 	- Heal Wave duration lowered from 8 to 6
 	- Heal Wave cost lowered from 3 to 2
+	- Heal Wave requires the Crag to be flourishing
 	
 ### Shift:
 	- Increased move speed from 1.5 to 3
@@ -213,6 +217,7 @@
 	- New Active Ability to provide energy at 10 energy per second.
 	- Both the shift passive and active abilities scale with the shifts sustenance level
 	- Costs 2 tRes, lasts for 6s with 6s cooldown
+	- Active ability requires the Shift to be flourishing
 	
 ### Shade:
 	- Increased move speed from 1.5 to 3
@@ -247,8 +252,8 @@
 	- Three Veils cost increased from 15 to 35
 	
 ### Harvester:
-	- Adjusted health from 2000/2300 to 1800/2000
-	- Adjusted armor from 200/320 to 200/300
+	- Adjusted health from 2000/2300 to 1600/2000
+	- Adjusted armor from 200/320 to 100/300
 	- Harvester cost increased to 10
 	
 ### Hive:
@@ -274,10 +279,10 @@
 	- Disabled
 	
 ### Researches:
-	- Leap research cost increased from 15 to 25
+	- Leap research cost increased from 15 to 20
 	- Leap research time increased from 40 to 60
 	- Leap research requires two hives
-	- Xenocide research cost increased from 25 to 35
+	- Xenocide research cost increased from 25 to 30
 	- Xenocide research time increased from 60 to 90
 	- Xenocide research requires three hives
 	- GorgeTunnels research cost decreased from 15 to 10
@@ -287,10 +292,10 @@
 	- BileBomb research cost increased from 15 to 25
 	- BileBomb research time increased from 40 to 60
 	- BileBomb research requires two hives
-	- Umbra research cost increased from 20 to 25
+	- Umbra research cost unchanged at 20
 	- Umbra research time increased from 45 to 60
 	- Umbra research requires two hives
-	- Spores research cost increased from 20 to 35
+	- Spores research cost increased from 20 to 30
 	- Spores research time increased from 60 to 90
 	- Spores research requires three hives
 	- MetabolizeEnergy research time increased from 40 to 30
@@ -298,16 +303,16 @@
 	- MetabolizeHealth research cost increased from 20 to 25
 	- MetabolizeHealth research time increased from 45 to 60
 	- MetabolizeHealth research requires two hives
-	- Stab research cost increased from 25 to 35
+	- Stab research cost increased from 25 to 30
 	- Stab research time increased from 60 to 90
 	- Stab research requires three hives
-	- Charge research cost increased from 15 to 30
+	- Charge research cost increased from 15 to 20
 	- Charge research time increased from 40 to 30
 	- Charge research requires one hive
 	- BoneShield research cost increased from 20 to 25
 	- BoneShield research time increased from 40 to 60
 	- BoneShield research requires two hives
-	- Stomp research cost increased from 25 to 35
+	- Stomp research cost increased from 25 to 30
 	- Stomp research time increased from 60 to 90
 	- Stomp research requires three hives
 	- First additional trait slot research cost is 25
