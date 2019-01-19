@@ -470,6 +470,10 @@ function PowerPoint:GetMaxHealth()
     return 1
 end
 
+function PowerPoint:GetIsAlive()
+    return false
+end
+
 local kPowerPointTargetOffset = Vector(0, 0.3, 0)
 function PowerPoint:GetEngagementPointOverride()
     return self:GetCoords():TransformPoint(kPowerPointTargetOffset)
