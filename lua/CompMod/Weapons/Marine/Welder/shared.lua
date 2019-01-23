@@ -51,7 +51,7 @@ local function PrioritizeDamagedFriends(weapon, player, newTarget, oldTarget)
     return false
 end
 
-local function CheckForTeammatesToWeld(self, player, attackDirection)
+local function CheckForTeammatesToWeld(self, player, attackDirection, timePassed)
 	-- This kinda sucks, but its the easiest way.
 	local success
 	
@@ -66,7 +66,7 @@ local function CheckForTeammatesToWeld(self, player, attackDirection)
                 local prevHealthScalar = target:GetHealthScalar()
                 local prevHealth = target:GetHealth()
                 local prevArmor = target:GetArmor()
-                target:OnWeld(self, kWelderFireDelay, player)
+                target:OnWeld(self, timePassed, player)
                 success = prevHealthScalar ~= target:GetHealthScalar()
                 
                 if success then
@@ -75,14 +75,14 @@ local function CheckForTeammatesToWeld(self, player, attackDirection)
                     player:AddContinuousScore("WeldHealth", addAmount, Welder.kAmountHealedForPoints, Welder.kHealScoreAdded)
                     
                     -- weld owner as well
-                    player:SetArmor(player:GetArmor() + kWelderFireDelay * kSelfWeldAmount)
+                    player:SetArmor(player:GetArmor() + timePassed * kSelfWeldAmount)
                     
                 end
                 
             end
             
             if HasMixin(target, "Construct") and target:GetCanConstruct(player) then
-                target:Construct(kWelderFireDelay, player)
+                target:Construct(timePassed, player)
 				success = true
             end
 		end
@@ -93,7 +93,7 @@ local function CheckForTeammatesToWeld(self, player, attackDirection)
 	return success, endPoint
 end
 
-local function CheckForEnemiesToDamage(self, player, attackDirection)
+local function CheckForEnemiesToDamage(self, player, attackDirection, timePassed)
 	local success
 	
 	local didHit, target, endPoint, direction, surface = CheckMeleeCapsule(self, player, 0, kWelderAttackRange, nil, true, 1, nil, nil, PhysicsMask.Flame)
@@ -101,9 +101,9 @@ local function CheckForEnemiesToDamage(self, player, attackDirection)
         if GetAreEnemies(player, target) then
 		
 			if target.GetReceivesStructuralDamage and target:GetReceivesStructuralDamage() then
-				self:DoDamage(kWelderStructureDamagePerSecond * kWelderFireDelay, target, endPoint, attackDirection)
+				self:DoDamage(kWelderStructureDamagePerSecond * timePassed, target, endPoint, attackDirection)
 			else
-				self:DoDamage(kWelderDamagePerSecond * kWelderFireDelay, target, endPoint, attackDirection)
+				self:DoDamage(kWelderDamagePerSecond * timePassed, target, endPoint, attackDirection)
 			end
 			
             success = true
@@ -115,14 +115,14 @@ end
 
 function Welder:PerformWeld(player)
     local attackDirection = player:GetViewCoords().zAxis
+    local timePassed = math.min(Shared.GetTime() - self.timeLastWeld, kWelderFireDelay)
     local success = false
 	local endPoint
-	success, endPoint = CheckForTeammatesToWeld(self, player, attackDirection)
+	success, endPoint = CheckForTeammatesToWeld(self, player, attackDirection, timePassed)
 	if not success then
-		success, endPoint = CheckForEnemiesToDamage(self, player, attackDirection)
+		success, endPoint = CheckForEnemiesToDamage(self, player, attackDirection, timePassed)
 	end
     return endPoint
-	
 end
 
 function Weapon:GetWeight()
