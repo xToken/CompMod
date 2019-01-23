@@ -3,6 +3,16 @@
 -- lua\CompMod\Structures\Marine\PrototypeLab\shared.lua
 -- - Dragon
 
+local originalPrototypeLabOnInitialized
+originalPrototypeLabOnInitialized = Class_ReplaceMethod("PrototypeLab", "OnInitialized",
+    function(self)        
+        originalPrototypeLabOnInitialized(self)
+        if Server then
+            InitMixin(self, SupplyUserMixin)
+        end
+    end
+)
+
 function PrototypeLab:GetTechButtons(techId)
 	
 	local techButtons = { kTechId.CatPackTech, kTechId.NanoArmor, kTechId.JetpackTech, kTechId.ExoUpgrade1, 

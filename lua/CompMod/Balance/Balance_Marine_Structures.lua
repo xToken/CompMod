@@ -10,10 +10,12 @@ kArmoryCost = 10							-- Default is 10
 kArmsLabCost = 20							-- Default is 15
 kPrototypeLabCost = 40						-- Default is 40
 kSentryCost = 5								-- Default is 5
-kPowerNodeCost = 0							-- Default is 0
+kPowerNodeCost = 15							-- Default is 0
 kRoboticsFactoryCost = 10					-- Default is 10
 kObservatoryCost = 15						-- Increased from 10
 kPhaseGateCost = 15							-- Default is 15
+
+kPowerPointBuildTime = 5
 
 -- Extractor Build Time
 kExtractorBuildTime = 15					-- Increased from 11
@@ -27,6 +29,7 @@ kARCUpgradedSpeed = 3.0
 kARCCombatMoveSpeed = 0.8					-- Default is 0.8
 kARCUpgradedCombatMoveSpeed = 1.8
 kARCDamageType = kDamageType.StructuresOnly
+kARCBuildTime = 10
 
 kArmsLabBuildTime = 12						-- Decreased from 17
 

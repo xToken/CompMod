@@ -10,7 +10,7 @@ Script.Load("lua/CompMod/Utilities/Elixer/shared.lua")
 
 Elixer.UseVersion( 1.8 )
 
-kCompModBuild = 22
+kCompModBuild = 23
 
 Script.Load("lua/CompMod/AlienSensorBlip/shared.lua")
 Script.Load("lua/CompMod/Damage/shared.lua")
@@ -41,6 +41,7 @@ Script.Load("lua/CompMod/CommAbilities/NutrientMist/shared.lua")
 Script.Load("lua/CompMod/CommAbilities/ParasiteCloud/shared.lua")
 Script.Load("lua/CompMod/CommAbilities/Rupture/shared.lua")
 
+Script.Load("lua/CompMod/Mixins/ConstructMixin/shared.lua")
 Script.Load("lua/CompMod/Mixins/FireMixin/shared.lua")
 Script.Load("lua/CompMod/Mixins/InfestationMixin/shared.lua")
 Script.Load("lua/CompMod/Mixins/MaturityMixin/shared.lua")
@@ -68,6 +69,7 @@ Script.Load("lua/CompMod/Structures/Marine/ARC/shared.lua")
 Script.Load("lua/CompMod/Structures/Marine/Armory/shared.lua")
 Script.Load("lua/CompMod/Structures/Marine/ArmsLab/shared.lua")
 Script.Load("lua/CompMod/Structures/Marine/CommandStation/shared.lua")
+Script.Load("lua/CompMod/Structures/Marine/Observatory/shared.lua")
 Script.Load("lua/CompMod/Structures/Marine/PhaseGate/shared.lua")
 Script.Load("lua/CompMod/Structures/Marine/PowerPoint/shared.lua")
 Script.Load("lua/CompMod/Structures/Marine/PrototypeLab/shared.lua")

@@ -9,6 +9,9 @@ originalSpurOnInitialized = Class_ReplaceMethod("Spur", "OnInitialized",
 	function(self)
 		InitMixin(self, InfestationMixin)
 		originalSpurOnInitialized(self)
+		if Server then
+			InitMixin(self, SupplyUserMixin)
+		end
 	end
 )
 

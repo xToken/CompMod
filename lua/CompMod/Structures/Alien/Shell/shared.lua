@@ -9,6 +9,9 @@ originalShellOnInitialized = Class_ReplaceMethod("Shell", "OnInitialized",
 	function(self)
 		InitMixin(self, InfestationMixin)
 		originalShellOnInitialized(self)
+		if Server then
+			InitMixin(self, SupplyUserMixin)
+		end
 	end
 )
 

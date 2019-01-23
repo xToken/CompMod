@@ -43,6 +43,7 @@ AddMixinNetworkVars(ConstructMixin, networkVars)
 AddMixinNetworkVars(ObstacleMixin, networkVars)
 AddMixinNetworkVars(CombatMixin, networkVars)
 AddMixinNetworkVars(SelectableMixin, networkVars)
+AddMixinNetworkVars(NanoShieldMixin, networkVars)
 
 function PowerNode:OnCreate()
 
@@ -77,6 +78,9 @@ end
 function PowerNode:OnInitialized()
 
     ScriptActor.OnInitialized(self)
+
+    InitMixin(self, WeldableMixin)
+    InitMixin(self, NanoShieldMixin)
     
     if Server then
 

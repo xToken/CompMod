@@ -3,6 +3,14 @@
 -- lua\CompMod\Structures\Marine\ArmsLab\server.lua
 -- - Dragon
 
+local originalArmsLabOnInitialized
+originalArmsLabOnInitialized = Class_ReplaceMethod("ArmsLab", "OnInitialized",
+    function(self)        
+        originalArmsLabOnInitialized(self)
+        InitMixin(self, SupplyUserMixin)
+    end
+)
+
 function ArmsLab:OnResearchComplete(researchId)
 
 end

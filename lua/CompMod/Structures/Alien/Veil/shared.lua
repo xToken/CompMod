@@ -9,6 +9,9 @@ originalVeilOnInitialized = Class_ReplaceMethod("Veil", "OnInitialized",
 	function(self)
 		InitMixin(self, InfestationMixin)
 		originalVeilOnInitialized(self)
+		if Server then
+			InitMixin(self, SupplyUserMixin)
+		end
 	end
 )
 

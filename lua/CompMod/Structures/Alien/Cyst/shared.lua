@@ -4,6 +4,15 @@
 -- - Dragon
 
 -- CYST
+local originalCystOnInitialized
+originalCystOnInitialized = Class_ReplaceMethod("Cyst", "OnInitialized",
+    function(self)        
+        originalCystOnInitialized(self)
+        if Server then
+            InitMixin(self, SupplyUserMixin)
+        end
+    end
+)
 
 local kCystScale = 1.5
 

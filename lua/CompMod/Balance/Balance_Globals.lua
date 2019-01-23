@@ -18,3 +18,11 @@ kTeamResourcePerTick = 1					-- Default is 1
 kPlayerResPerInterval = 0.1					-- Translates to 1/m per RT (Default is 0.125)
 
 kAllowMarineUtilityRebuy = false
+
+kStructureInfestationRadius = 10				-- Increased from 2, actually utilized
+kHiveInfestationRadius = 25						-- Increased from 20
+
+kPhaseGateDepartureRate = 0.3
+
+kSupplyPerPowerPoint = 20
+kBaseSupply = 200

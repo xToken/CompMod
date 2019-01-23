@@ -63,8 +63,8 @@ kDefensiveTraitResearchTime = 30
 kMovementTraitCost = 10
 kMovementTraitResearchTime = 30
 
-kInfestPowerNodeCost = 20
-kInfestPowerNodeBuiltTime = 10
+kInfestPowerNodeCost = 15
+kInfestPowerNodeBuildTime = 10
 
 kEnzymeCloudCost = 2						-- Default is 2
 kHallucinationCloudCost = 2					-- Default is 2
@@ -87,7 +87,7 @@ kNutrientMistDuration = 5
 kNutrientMistRange = 0.2
 kNutrientMistMaxStackTime = 15
 
-kParasiteCloudLifetime = 10
+kParasiteCloudLifetime = 15
 kParasiteCloudDetectRadius = 5
 kParasiteCloudRange = 40
 kParasiteCloudCost = 2
@@ -99,3 +99,7 @@ kWhipSupply = 5
 kCragSupply = 2
 kShadeSupply = 2
 kShiftSupply = 2
+kShellSupply = 1
+kSpurSupply = 1
+kVeilSupply = 1
+kCystSupply = 1

@@ -52,7 +52,7 @@ kMGUpgrade1ResearchTime = 30
 kMGUpgrade2Cost = 30
 kMGUpgrade2ResearchTime = 60
 
-kGLUpgrade1Cost = 15
+kGLUpgrade1Cost = 25
 kGLUpgrade1ResearchTime = 30
 
 kJetpackTechResearchCost = 40				-- Increased from 25
@@ -86,18 +86,16 @@ kSentryUpgrade1ResearchTime = 30
 kUpgradeRoboticsFactoryCost = 15
 kUpgradeRoboticsFactoryTime = 30
 
-kARCBuildTime = 10
-
 kNanoArmorResearchCost = 30
 kNanoArmorResearchTime = 90
 
-kPowerNodeCost = 20
-
-kMACSupply = 0
+kMACSupply = 1
+kArmsLabSupply = 1
 kArmorySupply = 1
-kARCSupply = 0
+kPrototypeLabSupply = 1
+kARCSupply = 1
 kSentrySupply = 5
-kRoboticsFactorySupply = 0
-kInfantryPortalSupply = 0
-kPhaseGateSupply = 2
-kObservatorySupply = 3
+kRoboticsFactorySupply = 1
+kInfantryPortalSupply = 1
+kPhaseGateSupply = 3
+kObservatorySupply = 4
