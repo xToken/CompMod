@@ -92,7 +92,7 @@ originalMarineGetPlayFootsteps = Class_ReplaceMethod("Marine", "GetPlayFootsteps
 local originalMarineGetAirControl
 originalMarineGetAirControl = Class_ReplaceMethod("Marine", "GetAirControl",
 	function(self)
-		return 15 * self:GetSlowSpeedModifier()
+		return 13 * self:GetSlowSpeedModifier()
 	end
 )
 
