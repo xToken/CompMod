@@ -40,7 +40,7 @@ kShotgunSpreadDistance = 4					-- Decreased from 8.5 (See other adjustments in S
 kShotgunDamage = 17							-- Increased from 10
 kShotgunMaxRange = 16						-- Added max range (Damage drops to 1)
 kShotgunDropOffStartRange = 6				-- Min range where damage falloff begins
-kShotgunBaseROF	= 1.08						-- Increased SG base rate of fire
+kShotgunBaseROF	= 1.04						-- Increased SG base rate of fire
 kShotgunUpgradedROF	= 1.16					-- Increased SG base rate of fire from upgrades
 kShotgunFireRate = 0.70						-- To prevent fire rate cap from triggering
 kShotgunClipSize = 6						-- Default is 6
@@ -62,7 +62,7 @@ kPistolDamageType = kDamageType.Normal		-- Default is Light
 -- FLAMETHROWER
 kFlamethrowerDamage = 18					-- Increased from 12
 kFlamethrowerDamageRadius = 0.5				-- Decreased from 1.8 (NOT USED)
-kFlamethrowerConeWidth = 0.06				-- Default is 0.3
+kFlamethrowerConeWidth = 0.08				-- Default is 0.3
 kFlamethrowerClipSize = 100					-- Increased from 50
 kFlamethrowerRange = 8						-- Decreased from 9
 kFlamethrowerUpgradedRange = 10
@@ -82,9 +82,9 @@ kGrenadeLauncherClipSize = 4				-- Default is 4
 kGrenadeLauncherGrenadeDamageRadius = 3.5	-- Decreased from 4.8
 kGrenadeLifetime = 2.0						-- Default is 2
 kGrenadeLauncherSpeed = 30					-- Increased from 25
-kGrenadeLauncherGrenadeDamageType = kDamageType.QuadStructural
+kGrenadeLauncherGrenadeDamageType = kDamageType.TripleStructural
 
-kGrenadeFragmentDamageRadius = 3
+kGrenadeFragmentDamageRadius = 3.5
 kGrenadeFragmentDamage = 20
 
 -- CLUSTER GRENADES
@@ -105,6 +105,7 @@ kMinigunDamageType = kDamageType.Normal
 kMinigunHeatUpRate = 0.175
 kMinigunCoolDownRate = 0.25
 kMinigunBulletSize = 0.02
+kMinigunSpread = Math.Radians(3.1)
 
 -- RAILGUN
 kRailgunDamage = 22							-- Default is 10
