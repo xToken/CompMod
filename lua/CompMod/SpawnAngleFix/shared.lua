@@ -115,6 +115,76 @@ if Server then
 		end
 	)
 
+	local originalCommandStructureLogout
+	originalCommandStructureLogout = Class_ReplaceMethod("CommandStructure", "Logout",
+		function(self)
+
+		    -- Change commander back to player.
+		    local commander = self:GetCommander()
+		    local returnPlayer
+
+		    self.playerIdStartedLogin = nil
+		    self.occupied = false
+		    self.commanderId = Entity.invalidId
+		    
+		    if commander then
+		    
+		        local previousWeaponMapName = commander.previousWeaponMapName
+		        local previousOrigin = commander.lastGroundOrigin
+		        local previousAngles = commander.lastGroundAngles
+		        local previousHealth = commander.previousHealth
+		        local previousArmor = commander.previousArmor
+		        local previousMaxArmor = commander.maxArmor
+		        local previousAlienEnergy = commander.previousAlienEnergy
+		        -- local timeStartedCommanderMode = commander.timeStartedCommanderMode
+
+		        local gamerules = GetGamerules()
+		        if gamerules and gamerules.OnCommanderLogout then
+		            gamerules:OnCommanderLogout(self, commander)
+		        end
+		        
+		        local returnPlayer = commander:Replace(commander.previousMapName, commander:GetTeamNumber(), true, previousOrigin)    
+		        
+		        if returnPlayer.OnCommanderStructureLogout then
+		            returnPlayer:OnCommanderStructureLogout(self)
+		        end
+		        
+		        returnPlayer:SetActiveWeapon(previousWeaponMapName)
+
+		        SpawnPlayerAtPoint(returnPlayer, previousOrigin, previousAngles)
+
+		        returnPlayer:SetHealth(previousHealth)
+		        returnPlayer:SetMaxArmor(previousMaxArmor)
+		        returnPlayer:SetArmor(previousArmor)
+		        returnPlayer.frozen = false
+		        
+		        if returnPlayer.TransferParasite then
+		            returnPlayer:TransferParasite(commander)
+		        end
+		        
+		        returnPlayer.hasAdrenalineUpgrade = GetHasAdrenalineUpgrade(returnPlayer)
+		        
+		        -- Restore previous alien energy
+		        if previousAlienEnergy and returnPlayer.SetEnergy then
+		            returnPlayer:SetEnergy(previousAlienEnergy)            
+		        end
+		        
+		        returnPlayer:UpdateArmorAmount()
+		        
+		        returnPlayer.oneHive = commander.oneHive
+		        returnPlayer.twoHives = commander.twoHives
+		        returnPlayer.threeHives = commander.threeHives
+		        
+		        -- TODO: trigger client side in OnTag
+		        self:TriggerEffects(self:isa("Hive") and "hive_logout" or "commandstation_logout")
+
+		    end
+
+		    return returnPlayer
+		    
+		end
+	)
+
 end
 
 if Client then
