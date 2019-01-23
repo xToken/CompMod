@@ -7,6 +7,7 @@ local networkVars =
 {
     minigun_upg1 = "boolean",
 	minigun_upg2 = "boolean",
+	heatAmount = "float (0 to 1 by 0.001)"
 }
 
 local originalMinigunOnInitialized
@@ -22,6 +23,7 @@ originalMinigunOnInitialized = Class_ReplaceMethod("Minigun", "OnInitialized",
 	end
 )
 
+ReplaceUpValue(Minigun.OnTag, "kMinigunSpread", kMinigunSpread, { LocateRecurse = true } )
 ReplaceUpValue(Minigun.OnTag, "kBulletSize", kMinigunBulletSize, { LocateRecurse = true } )
 ReplaceUpValue(Minigun.ProcessMoveOnWeapon, "kHeatUpRate", kMinigunHeatUpRate, { LocateRecurse = true } )
 ReplaceUpValue(Minigun.ProcessMoveOnWeapon, "kCoolDownRate", kMinigunCoolDownRate, { LocateRecurse = true } )
