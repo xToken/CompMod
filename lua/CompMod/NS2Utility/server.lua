@@ -49,3 +49,14 @@ end
 
 function SocketPowerForLocation(locationName)
 end
+
+-- Fix for silly damage number stufffffffffff
+local oldLiveMixinTakeDamage = LiveMixin.TakeDamage
+function LiveMixin:TakeDamage(damage, attacker, doer, point, direction, armorUsed, healthUsed, damageType, preventAlert)
+	local killedFromDamage, damageDone = oldLiveMixinTakeDamage(self, damage, attacker, doer, point, direction, armorUsed, healthUsed, damageType, preventAlert)
+	-- lol....
+	if math.ceil(damageDone) - damageDone < 0.001 then
+		damageDone = math.ceil(damageDone)
+	end
+	return killedFromDamage, damageDone
+end
