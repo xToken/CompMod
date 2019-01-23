@@ -61,9 +61,9 @@ kMatureHarvesterHealth = 2200				-- Vanilla is 2300
 kMatureHarvesterArmor = 300					-- Vanilla is 320
 
 kHiveHealth = 4000							-- Vanilla is 4000
-kHiveArmor = 750							-- Vanilla is 750
+kHiveArmor = 1000							-- Vanilla is 750
 kMatureHiveHealth = 6000					-- Vanilla is 6000
-kMatureHiveArmor = 1400						-- Vanilla is 1400
+kMatureHiveArmor = 1500						-- Vanilla is 1400
 
 kCragHealth = 400							-- Vanilla is 600
 kCragArmor = 100							-- Vanilla is 200
@@ -105,7 +105,7 @@ kCystArmor = 0
 kMatureCystHealth = 650
 kMatureCystArmor = 0
 
-kMACHealth = 300							-- Vanilla is 300
+kMACHealth = 500							-- Vanilla is 300
 kMACArmor = 0								-- Vanilla is 50
 
 kHydraHealth = 650							-- Vanilla is 350
@@ -132,6 +132,7 @@ kMaturityStarvingThreshold = 0.3			-- Below this is 'staving'
 kMaturityFlourishingThreshold = 0.85		-- Above this is 'mature'
 kMaturityMinEffectivenessThreshold = 0.25	-- Minimum of this amount of effectiveness
 kMaturityMaxEffectivenessThreshold = 0.85	-- After this, effectiveness no longer increases
+kMaturityFlourishingEffectiveness = 2
 kMaturityStartingLevel = 0
 
 kMaturityBaseStarvationRate = -1/90			-- This is the base rate that maturity is lost at.
