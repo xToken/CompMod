@@ -75,6 +75,8 @@ function Railgun:GetCanShoot()
 end
 
 function Railgun:GetBulletDamage(player, endPoint)
+    return kRailgunDamage
+    --[[
     local distanceTo = (player:GetEyePos() - endPoint):GetLength()
     if distanceTo > kRailgunMaxRange then
         return 1
@@ -82,7 +84,7 @@ function Railgun:GetBulletDamage(player, endPoint)
         return kRailgunDamage
     else
         return kRailgunDamage * (1 - (distanceTo - kRailgunDropOffStartRange) / (kRailgunMaxRange - kRailgunDropOffStartRange))
-    end
+    end--]]
 end
 
 function Railgun:GetAmmoCount()
