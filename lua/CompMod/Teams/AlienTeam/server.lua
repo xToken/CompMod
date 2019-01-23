@@ -154,11 +154,11 @@ function AlienTeam:InitTechTree()
 
     -- Crag
     self.techTree:AddPassive(kTechId.CragHeal)
-    self.techTree:AddActivation(kTechId.HealWave,					kTechId.Crag,					kTechId.None)
+    self.techTree:AddPassive(kTechId.HealWave,					    kTechId.Crag,					kTechId.None)
 
     -- Shift
     self.techTree:AddActivation(kTechId.ShiftHatch,					kTechId.None,					kTechId.None)
-    self.techTree:AddActivation(kTechId.ShiftEnergize,				kTechId.Shift,					kTechId.None)
+    self.techTree:AddPassive(kTechId.ShiftEnergize,				    kTechId.Shift,					kTechId.None)
 
     self.techTree:AddTargetedActivation(kTechId.TeleportHydra,		kTechId.Hydra,					kTechId.None)
     self.techTree:AddTargetedActivation(kTechId.TeleportWhip,		kTechId.Whip,					kTechId.None)

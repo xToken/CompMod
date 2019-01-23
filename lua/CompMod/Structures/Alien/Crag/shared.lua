@@ -34,7 +34,7 @@ function Crag:TryHeal(target)
     local heal = Clamp(unclampedHeal, Crag.kMinHeal, Crag.kMaxHeal)
     
     if self.healWaveActive then
-        heal = heal * Crag.kHealWaveMultiplier
+        --heal = heal * Crag.kHealWaveMultiplier
     end
     
     if target:GetHealthScalar() ~= 1 and (not target.timeLastCragHeal or target.timeLastCragHeal + Crag.kHealInterval <= Shared.GetTime()) then

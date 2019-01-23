@@ -29,7 +29,7 @@ function MaturityMixin:GetMaturityScaling()
 	if matureFraction <= kMaturityMinEffectivenessThreshold then
 		return kMaturityMinEffectivenessThreshold
 	elseif matureFraction > kMaturityMaxEffectivenessThreshold then
-		return 1
+		return kMaturityFlourishingEffectiveness
 	else
 		return (matureFraction)/(kMaturityMaxEffectivenessThreshold)
 	end

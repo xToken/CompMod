@@ -442,7 +442,7 @@ function BuildCompModTechDataUpdates()
             [kTechDataGhostModelClass] = "AlienGhostModel",
             [kTechDataMapName] = InfestedNode.kMapName,
             [kTechDataCostKey] = kInfestPowerNodeCost,
-            [kTechDataBuildTime] = kInfestPowerNodeBuiltTime,
+            [kTechDataBuildTime] = kInfestPowerNodeBuildTime,
             [kTechDataModel] = InfestedNode.kModelName,
             [kTechDataMaxHealth] = kInfestedPowerPointHealth,
             [kTechDataMaxArmor] = kInfestedPowerPointArmor,
@@ -485,6 +485,7 @@ function BuildCompModTechDataUpdates()
 		{
 			[kTechDataId] = kTechId.PrototypeLab,
 			[kTechIDShowEnables] = false,
+			[kTechDataSupply] = kPrototypeLabSupply,
 			[kTechDataRequiresPower] = false
 		})
 	table.insert(techIdUpdates,
@@ -506,11 +507,13 @@ function BuildCompModTechDataUpdates()
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.RoboticsFactory,
+			[kTechDataSupply] = kRoboticsFactorySupply,
 			[kTechDataRequiresPower] = false
 		})
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.ArmsLab,
+			[kTechDataSupply] = kArmsLabSupply,
 			[kTechDataRequiresPower] = false
 		})
 	table.insert(techIdUpdates,
@@ -552,18 +555,21 @@ function BuildCompModTechDataUpdates()
 		{
 			[kTechDataId] = kTechId.Veil,
 			[kTechDataNotifyPlayers] = true,
+			[kTechDataSupply] = kVeilSupply,
 			[kTechDataRequiresInfestation] = false
 		})
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.Spur,
 			[kTechDataNotifyPlayers] = true,
+			[kTechDataSupply] = kSpurSupply,
 			[kTechDataRequiresInfestation] = false
 		})
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.Shell,
 			[kTechDataNotifyPlayers] = true,
+			[kTechDataSupply] = kShellSupply,
 			[kTechDataRequiresInfestation] = false
 		})
 	table.insert(techIdUpdates,
@@ -749,8 +755,8 @@ function BuildCompModTechDataUpdates()
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.ShiftEnergize,
-			[kTechDataCooldown] = kShiftEnergizeCooldown,
-			[kTechDataCostKey] = kShiftEnergizeCost,
+			--[kTechDataCooldown] = kShiftEnergizeCooldown,
+			--[kTechDataCostKey] = kShiftEnergizeCost,
 			[kTechDataOneAtATime] = true,
 		})
 	table.insert(techIdUpdates,
@@ -879,10 +885,17 @@ function BuildCompModTechDataUpdates()
             [kTechDataNotifyPlayers] = true
         })
 	table.insert(techIdUpdates,
+        {
+            [kTechDataId] = kTechId.HealWave,
+            [kTechDataCooldown] = 0,
+            [kTechDataCostKey] = 0
+        })
+	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.Cyst,
 			[kTechDataBuildRequiresMethod] = nil,
 			[kTechDataGhostModelClass] = "AlienGhostModel",
+			[kTechDataSupply] = kCystSupply,
 			[kTechDataGrows] = true
 		})
 	return newTechTable, techIdUpdates
