@@ -4,7 +4,7 @@
 -- - Dragon
 
 -- SKULK
-kSkulkMaxGroundSpeed = 7.5					-- Increased from 7.25
+kSkulkMaxGroundSpeed = 7.75					-- Increased from 7.25
 kSkulkMaxWallJumpSpeed = 11					-- Increased from 11
 kSkulkWallJumpSpeed = 1.5
 
