@@ -10,6 +10,32 @@ Some description/highlevel shtuffffffffff?
 
 ### [Marine Commander Guide](https://xtoken.github.io/CompMod/webpages/marine_comm_guide)
 
+### Recent Changelog: Build 23 (22-1-19)
+
+### Aliens:
+	- Skulk base speed increased from 7.5 to 7.75
+	- Parasite Cloud duration increased from 10 to 15 seconds
+	- Base Hive armor increased from 750 to 1000.  Mature Hive armor increased from 1400 to 1500
+	- Flourishing effectiveness on Crag and Shift increased to 2x
+	- Crag Heal Wave and Shift Active Energize disabled, same effectiveness now from passives when flourishing.
+	- Building structures can no longer be misted (was just wasting the mist previously)
+	
+### Marines:
+	- Lowered Marine air control from 15 to 13 (to decrease flying ninja marine dodges)
+	- Grenade Launcher upgrade increased from 15 to 25 tRes
+	- Shotgun base RoF increase lowered to 4% from 8% (Upgrade remains unchanged)
+	- Flamethrower damage cone increased from 0.06 to 0.08
+	- Grenade Launcher damage type changed to deal Triple damage to Structures (was Quad)
+	- Grenade Launcher fragment damage radius changed to match GL damage radius
+	- Minigun spread changed to match MG
+	- Railgun damage falloff removed
+	- MAC HP increased from 300 to 500
+	- Corrected fixed time intervals when building marine structures, should make all build times slightly shorter (more accurate!)
+	
+### Fixes:
+	- Fixed commander logout setting offset view angles instead of actual view angles.
+
+***
 ### Recent Changelog: Build 22 (18-1-19)
 
 ### Aliens:

@@ -8,7 +8,7 @@
 	- Decreased bite cone from 1.2 wide and 1.2 tall to 0.8 wide and 1.0 tall
 	- Skulks will respawn with their last evolved upgrades in full effect
 	- Automatically selected upgrades for Skulks is disabled
-	- Ground speed increased from 7.25 to 7.5
+	- Ground speed increased from 7.25 to 7.75
 	- Celerity walljump bonus increased from 1.2 to 1.5
 	- Parasite:
 		- Duration lowered from 44 to 30
@@ -167,14 +167,14 @@
 ### Enzyme:
 	- Now requires the Movement Traits research
 	
-### ParasiteCloud:
+### Parasite Cloud:
 	- New ability on the Drifter
 	- The cloud will be shot out from the drifter towards the target location
 	- The drifter will move until it has LOS on the target area before casting the parasite cloud
 	- As the cloud moves, it will parasite (2/s duration) nearby Marines, enabling the commander to scout ahead
 	- Costs is 2 tRes
 	- Requires the Defensive Traits research
-	- Will last for 10 seconds, and can travel up to 40m
+	- Will last for 15 seconds, and can travel up to 40m
 	
 ### Drifter
 	- Drifters can be built from Drifter Eggs placed anywhere on infestation.
@@ -201,10 +201,9 @@
 	- Passive healing % decreased from 6 to 4
 	- Minimum passive healing decreased from 10 to 8
 	- Maximum passive healing decreased from 60 to 30
-	- Heal Wave is now 2x the healing (increased from 1.3)
-	- Heal Wave duration lowered from 8 to 6
-	- Heal Wave cost lowered from 3 to 2
-	- Heal Wave requires the Crag to be flourishing
+	- When flourishing, healing effect will be increased by 2x (similar to old heal wave)
+	- Heal Wave is disabled
+	- Costs 2 supply
 	
 ### Shift:
 	- Increased move speed from 1.5 to 3
@@ -214,10 +213,8 @@
 	- Lowered cost from 13 to 10
 	- Energize range decreased from 17 to 12
 	- Passive energize effect only provides 4 energy per second
-	- New Active Ability to provide energy at 10 energy per second.
-	- Both the shift passive and active abilities scale with the shifts sustenance level
-	- Costs 2 tRes, lasts for 6s with 6s cooldown
-	- Active ability requires the Shift to be flourishing
+	- When flourishing, energize effect will be increased by 2x
+	- Costs 2 supply
 	
 ### Shade:
 	- Increased move speed from 1.5 to 3
@@ -227,29 +224,34 @@
 	- Adjusted health from 750/1500 to 500/1200
 	- Adjusted armor from 0/0 to 50/100
 	- Lowered cost from 13 to 10
-	- Gains a detection passive above 80% sustenance, that shows aura icons on marines like obs detection
+	- Gains a detection passive above 85% sustenance, that shows aura icons on marines like obs detection
+	- Costs 2 supply
 	
 ### Whip:
 	- Cost increased from 13 to 15
-	- Bombard unlocks above 80% sustenance, and is lost below 80%
+	- Bombard unlocks above 85% sustenance, and is lost below 85%
+	- Costs 5 supply
 	
 ### Shell:
 	- Infestation is no longer required to build, will spread automatically (10m)
 	- Will not auto-build off infestation
 	- Two Shells cost increased from 15 to 25
 	- Three Shells cost increased from 15 to 35
+	- Costs 1 supply
 	
 ### Spur:
 	- Infestation is no longer required to build, will spread automatically (10m)
 	- Will not auto-build off infestation
 	- Two Spurs cost increased from 15 to 25
 	- Three Spurs cost increased from 15 to 35
+	- Costs 1 supply
 	
 ### Veil:
 	- Infestation is no longer required to build, will spread automatically (10m)
 	- Will not auto-build off infestation
 	- Two Veils cost increased from 15 to 25
 	- Three Veils cost increased from 15 to 35
+	- Costs 1 supply
 	
 ### Harvester:
 	- Adjusted health from 2000/2300 to 1600/2000
@@ -260,11 +262,20 @@
 	- Infestation spreads further (25m up from 20m)
 	- Cost increased from 40 to 50 tRes
 	- Healing rate lowered from 1s to 2s
+	- Base armor increased from 750 to 1000
+	- Matured armor increased from 1400 to 1500
 	
 ### Cyst:
 	- Can be built anywhere, cost 5tRes.  They have 650 HP, and provide a small AOE of infestation
 	- Do not require a connection to the hive or any other Cysts.
 	- Model size increased by 50%
+	- Cost 1 supply
+	
+### Infested Power Node:
+	- Costs 15 tRes
+	- Grants 20 supply
+	- Takes 10 seconds to build
+	- Has 2000 health and 500 armor
 	
 ### Biomass:
 	- Disabled

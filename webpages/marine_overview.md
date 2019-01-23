@@ -36,11 +36,11 @@
 	- Cost decreased from 20 to 15 pRes
 	- Pellets per shot lowered to 10, damage increased to 17 per pellet (Same overall damage).
 	- Tightened and reworked spread
-	- Base RoF increased by ~8%
+	- Base RoF increased by ~4%
 	- Added damage falloff, starts at 6m
 	- After 16m, damage will decreased to 1 per pellet
 	- Tier 1 upgrade increases reload speed by 50%
-	- Tier 2 upgrade increases fire rate by 8%
+	- Tier 2 upgrade increases fire rate by 12%
 	
 ### MG:
 	- Increased damage from 9 to 13
@@ -48,22 +48,23 @@
 	- Lowered base clip size from 125 to 100
 	- Tier 1 upgrade icnreases clip size from 100 to 125 weight from 0.4 to 0.25
 	- Tier 2 upgrade increases reload speed by ~50%
+	- Spread lowered from 4 to 3.1
 	
 ### Minigun:
 	- Damage lowered from 10 to 6
 	- Can now shoot for longer before overheating
 	- Bullet size now more closely matches MG
+	- Spread lowered to match MG (5 -> 3.1)
 	
 ### Railgun:
 	- Changed to a 'Railgun Shotgun'
 	- Deals 22 damage per pellet, fires 4 pellets
 	- Has 6 ammo each arm by default, regains 1 ammo every 2.25 seconds
 	- Bullet size now matches shotgun
-	- Has damage falloff ala the shotgun, starting at 10m and ending at 20m
 	
 ### Grenade Launcher:
 	- Damage lowered from 165 to 80
-	- Damage type changed from 'GrenadeLauncher' to QuadStructural
+	- Damage type changed from 'GrenadeLauncher' to TripleStructural
 	- Now benefits from weapon upgrades
 	
 ### Welder:
@@ -79,7 +80,7 @@
 ### Flamethrower
 	- Cost decreased from 20 to 10 pRes
 	- Lowered damage from 25 to 18
-	- Decreased attack cone from 0.15 to 0.06
+	- Decreased attack cone from 0.15 to 0.08
 	- Increased initial range from 7 to 8
 	- Upgraded range is 10m
 	- Clip size increased from 50 to 100.
@@ -172,6 +173,7 @@
 ### Arms Lab:
 	- Arms Lab no longer requires Armory
 	- Arms Lab cost increased from 15 to 20 tRes
+	- Costs 1 supply
 	
 ### Extrator:
 	- Armor reduced from 1050 to 850
@@ -179,25 +181,44 @@
 ### Observatory:
 	- No longer requires Armory
 	- Cost increased from 10 to 15 tRes
+	- Costs 4 supply
 	
 ### Phase Gate:
 	- Now has a 0.3 second delay beforing phasing another player
+	- Costs 3 supply
 	
 ### Robotics Factory:
-	- Robotics Factory no longer requires Infantry Portal to be dropped first
-	- Robotics Factory now requires a Command Station (:D)
+	- No longer requires Infantry Portal to be dropped first
+	- Now requires a Command Station (:D)
+	- Costs 1 supply
 	
 ### MAC:
-	- MAC cost increased from 5 to 8 tRes
-	- MAC armor decreased from 50 to 0
+	- Cost increased from 5 to 8 tRes
+	- Armor decreased from 50 to 0
+	- Health increased from 300 to 500
+	- Costs 1 supply
 	
 ### ARC:
 	- Damage type changed to structuresonly (No change in effectiveness)
 	- Build time increased from 7 to 10 seconds
+	- Costs 1 supply
 	
 ### ARC Robotics Factory:
 	- ARC Robotics Factory upgrade cost increased from 5 to 15
 	- ARC Robotics Factory upgrade time increased from 20 to 30
+
+### Infantry Portal:
+	- Costs 1 supply
+	
+### Prototype Lab:
+	- Costs 1 supply
+	
+### Power Node:
+	- Dropped by commander on free power points (Like Extractors)
+	- Costs 15 tRes
+	- Grants 20 Supply
+	- Has 2000 health and 1000 armor
+	- Takes 5 seconds to build
 	
 ### Ghost Structures:
 	- Only return 75% of the cost when poofed
@@ -243,7 +264,7 @@
 	- Grants: Increases reload speed by 50%
 	
 ### GL Upgrade 1 added:
-	- Cost: 15 tRes
+	- Cost: 25 tRes
 	- Research Time: 30 seconds
 	- Requires: Advanced Armory
 	- Grants: Adds a fragmentation effect, 4 fragments are triggered when a grenade explodes dealing 20 additional damage each
