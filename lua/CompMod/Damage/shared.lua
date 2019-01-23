@@ -8,7 +8,7 @@
 -- Normal (Normal? :D)
 -- HalfStructural (Half to Structures)
 -- Structural (Double to Structures)
--- QuadStructural (Quad to Structures)
+-- TripleStructural (Triple to Structures)
 -- StructuresOnly (ARCs, structures ONLY)
 -- Remaing custom types below ----
 -- NerveGas (Armor only, GAS Nades)
@@ -17,14 +17,14 @@
 
 -- Update Puncture Damage Type
 local kPunctureStructureDamageScalar = 0.5
-local kQuadStructuralDamageScalar = 4
+local kTripleStructuralDamageScalar = 3
 local function HalftoStructures(target, attacker, doer, damage, armorFractionUsed, healthPerArmor, damageType, hitPoint)
     return ConditionalValue(target.GetReceivesStructuralDamage and target:GetReceivesStructuralDamage(damageType), damage * kPunctureStructureDamageScalar, damage), armorFractionUsed, healthPerArmor
 end
 
-local function QuadrupleStructures(target, attacker, doer, damage, armorFractionUsed, healthPerArmor, damageType, hitPoint)
+local function TripleStructures(target, attacker, doer, damage, armorFractionUsed, healthPerArmor, damageType, hitPoint)
     if target.GetReceivesStructuralDamage and target:GetReceivesStructuralDamage(damageType) then
-        damage = damage * kQuadStructuralDamageScalar
+        damage = damage * kTripleStructuralDamageScalar
     end
     
     return damage, armorFractionUsed, healthPerArmor
@@ -34,11 +34,11 @@ local BuildDamageTypeRules = GetUpValue( GetDamageByType, "BuildDamageTypeRules"
 local function UpdatedBuildDamageTypeRules()
     BuildDamageTypeRules()
     kDamageTypeRules[kDamageType.HalfStructural] = { }
-    kDamageTypeRules[kDamageType.QuadStructural] = { }
+    kDamageTypeRules[kDamageType.TripleStructural] = { }
     -- Insert our new func for MG
     table.insert(kDamageTypeRules[kDamageType.HalfStructural], HalftoStructures)
     -- Insert our new func for stuff
-    table.insert(kDamageTypeRules[kDamageType.QuadStructural], QuadrupleStructures)
+    table.insert(kDamageTypeRules[kDamageType.TripleStructural], TripleStructures)
 end
 
 ReplaceUpValue(GetDamageByType, "BuildDamageTypeRules", UpdatedBuildDamageTypeRules)
