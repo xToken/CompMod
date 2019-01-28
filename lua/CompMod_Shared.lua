@@ -42,7 +42,6 @@ Script.Load("lua/CompMod/CommAbilities/ParasiteCloud/shared.lua")
 Script.Load("lua/CompMod/CommAbilities/Rupture/shared.lua")
 
 Script.Load("lua/CompMod/Mixins/ConstructMixin/shared.lua")
-Script.Load("lua/CompMod/Mixins/FireMixin/shared.lua")
 Script.Load("lua/CompMod/Mixins/InfestationMixin/shared.lua")
 Script.Load("lua/CompMod/Mixins/MaturityMixin/shared.lua")
 Script.Load("lua/CompMod/Mixins/NanoShieldMixin/shared.lua")

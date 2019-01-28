@@ -9,8 +9,17 @@ function TeleportMixin:TriggerTeleport(delay, destinationEntityId, destinationPo
 	CreateEntity(Rupture.kMapName, destinationPos, self:GetTeamNumber())
 end
 
-local GetAttachDestination = GetUpValue(TeleportMixin.OnUpdate, "GetAttachDestination", { LocateRecurse = true })
-local AddObstacle = GetUpValue(TeleportMixin.OnUpdate, "AddObstacle", { LocateRecurse = true })
+local GetAttachDestination
+local AddObstacle
+
+if TeleportMixin.OnUpdate then
+    GetAttachDestination = GetUpValue(TeleportMixin.OnUpdate, "GetAttachDestination", { LocateRecurse = true })
+    AddObstacle = GetUpValue(TeleportMixin.OnUpdate, "AddObstacle", { LocateRecurse = true })
+else
+    GetAttachDestination = GetUpValue(TeleportMixin.PerformFinalTeleport, "GetAttachDestination", { LocateRecurse = true })
+    AddObstacle = GetUpValue(TeleportMixin.PerformFinalTeleport, "AddObstacle", { LocateRecurse = true })
+end
+
 local function PerformTeleport(self)
 
     local destinationEntity = Shared.GetEntity(self.destinationEntityId)
@@ -84,4 +93,17 @@ local function PerformTeleport(self)
 
 end
 
-ReplaceUpValue( TeleportMixin.OnUpdate, "PerformTeleport", PerformTeleport, { LocateRecurse = true } )
+function TeleportMixin:PerformFinalTeleport()
+
+    if self.isTeleporting and self:GetIsAlive() then 
+  
+        PerformTeleport(self)
+        
+    end
+    return false
+
+end
+
+if TeleportMixin.OnUpdate then
+    ReplaceUpValue(TeleportMixin.OnUpdate, "PerformTeleport", PerformTeleport, { LocateRecurse = true } )
+end

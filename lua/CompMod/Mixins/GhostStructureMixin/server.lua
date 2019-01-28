@@ -3,17 +3,23 @@
 -- lua\CompMod\Mixins\GhostStructureMixin\server.lua
 -- - Dragon
 
-local function ClearGhostStructure(self)
+GhostStructureMixin.kGhostStructureCancelRefundScalar = kRecyclePaybackScalar
 
-    self.isGhostStructure = false
-    self:TriggerEffects("ghoststructure_destroy")
-    local cost = math.round(LookupTechData(self:GetTechId(), kTechDataCostKey, 0) * kRecyclePaybackScalar)
-    self:GetTeam():AddTeamResources(cost)
-    self:GetTeam():PrintWorldTextForTeamInRange(kWorldTextMessageType.Resources, cost, self:GetOrigin() + kWorldMessageResourceOffset, kResourceMessageRange)
-    DestroyEntity(self)
-    
+if GhostStructureMixin.OnUpdate then
+
+	local function ClearGhostStructure(self)
+
+	    self.isGhostStructure = false
+	    self:TriggerEffects("ghoststructure_destroy")
+	    local cost = math.round(LookupTechData(self:GetTechId(), kTechDataCostKey, 0) * kRecyclePaybackScalar)
+	    self:GetTeam():AddTeamResources(cost)
+	    self:GetTeam():PrintWorldTextForTeamInRange(kWorldTextMessageType.Resources, cost, self:GetOrigin() + kWorldMessageResourceOffset, kResourceMessageRange)
+	    DestroyEntity(self)
+	    
+	end
+
+	ReplaceUpValue(GhostStructureMixin.OnUpdate, "ClearGhostStructure", ClearGhostStructure, { LocateRecurse = true } )
+	ReplaceUpValue(GhostStructureMixin.OnTouchInfestation, "ClearGhostStructure", ClearGhostStructure)
+	ReplaceUpValue(GhostStructureMixin.OnTakeDamage, "ClearGhostStructure", ClearGhostStructure)
+
 end
-
-ReplaceUpValue(GhostStructureMixin.OnUpdate, "ClearGhostStructure", ClearGhostStructure, { LocateRecurse = true } )
-ReplaceUpValue(GhostStructureMixin.OnTouchInfestation, "ClearGhostStructure", ClearGhostStructure)
-ReplaceUpValue(GhostStructureMixin.OnTakeDamage, "ClearGhostStructure", ClearGhostStructure)

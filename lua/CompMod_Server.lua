@@ -25,7 +25,6 @@ Script.Load("lua/CompMod/Classes/Marine/MarineCommander/server.lua")
 Script.Load("lua/CompMod/Classes/Marine/MarineSpectator/server.lua")
 Script.Load("lua/CompMod/Classes/Player/server.lua")
 
-Script.Load("lua/CompMod/Mixins/CatalystMixin/server.lua")
 Script.Load("lua/CompMod/Mixins/ConstructMixin/server.lua")
 Script.Load("lua/CompMod/Mixins/GhostStructureMixin/server.lua")
 Script.Load("lua/CompMod/Mixins/MaturityMixin/server.lua")
