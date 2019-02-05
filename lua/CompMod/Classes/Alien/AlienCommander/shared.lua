@@ -19,7 +19,7 @@ local gAlienMenuButtons =
                             kTechId.ThreatMarker, kTechId.NeedHealingMarker, kTechId.ExpandingMarker, kTechId.None },
                             
     [kTechId.AdvancedMenu] = { kTechId.Crag, kTechId.Shade, kTechId.Shift, kTechId.Whip,
-                               kTechId.Shell, kTechId.Veil, kTechId.Spur, kTechId.None },
+                               kTechId.Shell, kTechId.Veil, kTechId.Spur, kTechId.InfestedNode },
 
     [kTechId.AssistMenu] = { kTechId.HealWave, kTechId.ShadeInk, kTechId.ShiftEnergize, kTechId.SelectDrifter,
                              kTechId.NutrientMist, kTechId.EnzymeCloud, kTechId.BoneWall, kTechId.Hallucinate }
@@ -104,6 +104,7 @@ originalAlienCommanderOnInitialized = Class_ReplaceMethod("AlienCommander", "OnI
 
 local GetNearest = GetUpValue( AlienCommander.GetTechAllowed, "GetNearest" )
 
+--[[
 local oldAlienCommanderGetTechAllowed = AlienCommander.GetTechAllowed
 function AlienCommander:GetTechAllowed(techId, techNode)
   local allowed, canAfford = oldAlienCommanderGetTechAllowed(self, techId, techNode)
@@ -112,6 +113,7 @@ function AlienCommander:GetTechAllowed(techId, techNode)
   end
   return allowed, canAfford
 end
+--]]
 
 function AlienCommander:GetUpgradeChamberCount(techId)
 	if techId == kTechId.Shell then
