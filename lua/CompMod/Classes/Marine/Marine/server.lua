@@ -97,7 +97,7 @@ originalMarineCopyPlayerDataFrom = Class_ReplaceMethod("Marine", "CopyPlayerData
 			if player:isa("Marine") then
 				self:TransferParasite(player)
 			elseif player:isa("Exo") then
-				self:TransferParasite( { parasited = player.prevParasited, timeParasited = player.prevParasitedTime } ) 
+				self:TransferParasite( { parasited = player.prevParasited, timeParasited = player.prevParasitedTime, parasiteDuration = player.prevParasiteDuration } ) 
 			end
 			
 		end
