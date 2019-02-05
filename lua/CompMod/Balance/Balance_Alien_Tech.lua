@@ -96,10 +96,10 @@ kParasiteCloudMarkDuration = 2
 
 kDrifterSupply = 0
 kWhipSupply = 5
-kCragSupply = 2
-kShadeSupply = 2
-kShiftSupply = 2
+kCragSupply = 3
+kShadeSupply = 3
+kShiftSupply = 3
 kShellSupply = 1
 kSpurSupply = 1
 kVeilSupply = 1
-kCystSupply = 1
+kCystSupply = 2
