@@ -179,7 +179,7 @@ function PowerPoint:SocketPowerNode()
     
     self:StopSound(kDestroyedPowerDownSound)
     self:StopDamagedSound()
-    self:PlaySound(kAuxPowerBackupSound)
+    --self:PlaySound(kAuxPowerBackupSound)
     
     self:SetInternalPowerState(PowerPoint.kPowerState.socketed)
     self:SetLightMode(kLightMode.Normal)
@@ -193,7 +193,8 @@ function PowerPoint:InfestPowerNode()
     self:PlaySound(kDestroyedPowerDownSound)
 
     self:SetInternalPowerState(PowerPoint.kPowerState.infested)
-    self:SetLightMode(kLightMode.NoPower)
+    self:SetLightMode(kLightMode.Normal)
+    --self:SetLightMode(kLightMode.NoPower)
 
 end
 
@@ -202,7 +203,8 @@ function PowerPoint:ClearAttachedNode()
     self:StopDamagedSound()
     
     self:SetInternalPowerState(PowerPoint.kPowerState.unsocketed)
-    self:SetLightMode(kLightMode.LowPower)
+    self:SetLightMode(kLightMode.Normal)
+    --self:SetLightMode(kLightMode.LowPower)
 
 end
 
@@ -245,7 +247,7 @@ end
 
 -- Nice hardcoded refs...
 function PowerPoint:GetIsPowering()
-    return true
+    return self:GetPowerState() == PowerPoint.kPowerState.socketed
 end
 
 function PowerPoint:GetIsBuilt()
@@ -472,6 +474,9 @@ end
 
 function PowerPoint:GetIsAlive()
     return false
+end
+
+function PowerPoint:Kill()
 end
 
 local kPowerPointTargetOffset = Vector(0, 0.3, 0)
