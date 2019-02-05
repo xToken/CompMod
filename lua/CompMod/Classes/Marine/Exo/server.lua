@@ -7,6 +7,8 @@ local originalExoCopyPlayerDataFrom
 originalExoCopyPlayerDataFrom = Class_ReplaceMethod("Exo", "CopyPlayerDataFrom",
 	function(self, player)
 		originalExoCopyPlayerDataFrom(self, player)
+
+		self.prevParasiteDuration = player.parasiteDuration
 		
 		if GetGamerules():GetGameStarted() then
 			self.utilitySlot3 = player.utilitySlot3 or kTechId.None
