@@ -15,6 +15,28 @@ function AlienTeam:TrackEntity(techId)
 	return table.contains(TrackedTechIds, techId)
 end
 
+local originalAlienTeamOnResetComplete
+originalAlienTeamOnResetComplete = Class_ReplaceMethod("AlienTeam", "OnResetComplete",
+    function(self)
+        originalAlienTeamOnResetComplete(self)
+        local initialTechPoint = self:GetInitialTechPoint()
+        for index, powerPoint in ientitylist(Shared.GetEntitiesWithClassname("PowerPoint")) do
+      
+            if powerPoint:GetLocationName() == initialTechPoint:GetLocationName() then
+                local node = CreateEntityForTeam(kTechId.InfestedNode, powerPoint:GetOrigin(), self:GetTeamNumber())
+                if node then
+                    node:SetConstructionComplete()
+                    local orientation = powerPoint:GetAngles().yaw
+                    local angles = Angles(0, orientation, 0)
+                    local coords = Coords.GetLookIn(node:GetOrigin(), angles:GetCoords().zAxis)
+                    node:SetCoords(coords)
+                end
+            end
+            
+        end
+    end
+)
+
 function AlienTeam:InitTechTree()
 
     PlayingTeam.InitTechTree(self)

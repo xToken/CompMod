@@ -3,6 +3,29 @@
 -- lua\CompMod\Teams\MarineTeam\server.lua
 -- - Dragon
 
+local originalMarineTeamOnResetComplete
+originalMarineTeamOnResetComplete = Class_ReplaceMethod("MarineTeam", "OnResetComplete",
+	function(self)
+		originalMarineTeamOnResetComplete(self)
+		local initialTechPoint = self:GetInitialTechPoint()
+	    for index, powerPoint in ientitylist(Shared.GetEntitiesWithClassname("PowerPoint")) do
+	  
+	        if powerPoint:GetLocationName() == initialTechPoint:GetLocationName() then
+	            local node = CreateEntityForTeam(kTechId.PowerNode, powerPoint:GetOrigin(), self:GetTeamNumber())
+	            if node then
+                    node:SetConstructionComplete()
+                    local orientation = powerPoint:GetAngles().yaw
+                    local angles = Angles(0, orientation, 0)
+                    local coords = Coords.GetLookIn(node:GetOrigin(), angles:GetCoords().zAxis)
+                    node:SetCoords(coords)
+                end
+	        end
+	        
+	    end
+	end
+)
+
+
 function MarineTeam:InitTechTree()
    
    PlayingTeam.InitTechTree(self)
@@ -132,7 +155,7 @@ function MarineTeam:InitTechTree()
 	-- This is the upgraded ARC factory itself.
     self.techTree:AddBuildNode(kTechId.ARCRoboticsFactory,			kTechId.Armory,					kTechId.RoboticsFactory)
 	self.techTree:AddResearchNode(kTechId.SentryUpgrade1,			kTechId.AdvancedArmory)
-	self.techTree:AddResearchNode(kTechId.ARCUpgrade1,				kTechId.RoboticsFactory)
+	self.techTree:AddResearchNode(kTechId.ARCUpgrade1,				kTechId.ARCRoboticsFactory)
 	self.techTree:AddResearchNode(kTechId.ARCUpgrade2,				kTechId.ARCRoboticsFactory,		kTechId.ARCUpgrade1)
 	-- Dunno what this does
     self.techTree:AddTechInheritance(kTechId.RoboticsFactory, 		kTechId.ARCRoboticsFactory)
