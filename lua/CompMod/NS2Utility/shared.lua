@@ -119,6 +119,6 @@ function GetMaxSupplyForTeam(teamNumber)
 
     end
 
-    return maxSupply + kBaseSupply
+    return maxSupply
 
 end
