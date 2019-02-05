@@ -4,12 +4,12 @@
 -- - Dragon
 
 kHarvesterCost = 10							-- Increased from 8
-kHiveCost = 50								-- Increased from 40
+kHiveCost = 40								-- Increased from 40
 kCragCost = 10								-- Decreased from 13
 kShiftCost = 10								-- Decreased from 13
 kShadeCost = 10								-- Decreased from 13
 kWhipCost = 15								-- Increased from 13
-kCystCost = 5
+kCystCost = 3
 kCystBuildTime = 10
 
 kDrifterCost = 5							-- Decreased from 8
