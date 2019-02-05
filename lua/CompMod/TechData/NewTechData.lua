@@ -575,7 +575,7 @@ function BuildCompModTechDataUpdates()
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.NutrientMist,
-			[kCommanderSelectRadius] = 0.375
+			[kCommanderSelectRadius] = 0.25
 		})
 	table.insert(techIdUpdates,
 		{
@@ -640,6 +640,11 @@ function BuildCompModTechDataUpdates()
 		{
 			[kTechDataId] = kTechId.TeleportEgg,
             [kTechDataRequiresSecondPlacement] = true
+        })
+	table.insert(techIdUpdates,
+		{
+			[kTechDataId] = kTechId.Hive,
+            [kTechDataBioMass] = 0
         })
 	table.insert(techIdUpdates,
 		{
