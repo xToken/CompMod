@@ -6,6 +6,10 @@
 function Egg:BuildUpgradeStructureTable()
 end
 
+function Egg:DisableSustenance()
+    return true
+end
+
 function Egg:PickUpgrades(newPlayer)
 
     local lastUpgradeList = newPlayer.lastUpgradeList and newPlayer.lastUpgradeList["Skulk"] or {}
