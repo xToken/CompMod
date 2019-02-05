@@ -19,14 +19,14 @@ kFadeMaxSpeed = 6.5							-- Increased from 6.2
 kFadeBlinkSpeed = 15						-- Increased from 14
 
 -- ONOS
-kOnosMaxGroundSpeed = 7.0					-- Increased from 6.6
-kOnosMaxChargeSpeed = 13					-- Default is 12.5
-kOnosChargeUpTime = 1.5
+kOnosMaxGroundSpeed = 6.8					-- Increased from 6.6
+kOnosMaxChargeSpeed = 12					-- Default is 12.5
+kOnosChargeUpTime = 1.25
 kOnosChargeDelay = 0.2
 kChargeEnergyCost = 30
 
 -- Marine
-kMarineWalkMaxSpeed = 5.7					-- Increased from 5.0
+kMarineWalkMaxSpeed = 5.6					-- Increased from 5.0
 kMarineMaxSlowWalkSpeed = 2.9
 
 -- JetpackMarine
