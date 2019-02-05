@@ -91,11 +91,11 @@ kNanoArmorResearchTime = 90
 
 kMACSupply = 1
 kArmsLabSupply = 1
-kArmorySupply = 1
+kArmorySupply = 2
 kPrototypeLabSupply = 1
-kARCSupply = 1
+kARCSupply = 2
 kSentrySupply = 5
 kRoboticsFactorySupply = 1
-kInfantryPortalSupply = 1
+kInfantryPortalSupply = 3
 kPhaseGateSupply = 3
-kObservatorySupply = 4
+kObservatorySupply = 3
