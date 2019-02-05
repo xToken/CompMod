@@ -25,4 +25,3 @@ kHiveInfestationRadius = 25						-- Increased from 20
 kPhaseGateDepartureRate = 0.3
 
 kSupplyPerPowerPoint = 20
-kBaseSupply = 200
