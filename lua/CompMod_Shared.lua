@@ -10,7 +10,7 @@ Script.Load("lua/CompMod/Utilities/Elixer/shared.lua")
 
 Elixer.UseVersion( 1.8 )
 
-kCompModBuild = 23
+kCompModBuild = 25
 
 Script.Load("lua/CompMod/AlienSensorBlip/shared.lua")
 Script.Load("lua/CompMod/Damage/shared.lua")

@@ -21,6 +21,7 @@ if not string.find(Script.CallStack(), "Main.lua") then
 	ModLoader.SetupFileHook("lua/GUIAuraDisplay.lua", "lua/CompMod/GUI/GUIAuraDisplay/post.lua", "post")
 	ModLoader.SetupFileHook("lua/GUIExoThruster.lua", "lua/CompMod/GUI/GUIExoThruster/post.lua", "post")
 	ModLoader.SetupFileHook("lua/GUIFeedback.lua", "lua/CompMod/GUI/GUIFeedback/post.lua", "post")
+	ModLoader.SetupFileHook("lua/GUIInsight_PlayerFrames.lua", "lua/CompMod/GUI/GUIInsight_PlayerFrames/post.lua", "post")
 	ModLoader.SetupFileHook("lua/GUIInsight_OtherHealthbars.lua", "lua/CompMod/GUI/GUIInsight_OtherHealthbars/post.lua", "post")
 	ModLoader.SetupFileHook("lua/GUIMarineBuyMenu.lua", "lua/CompMod/GUI/GUIMarineBuyMenu/post.lua", "post")
 	ModLoader.SetupFileHook("lua/GUISelectionPanel.lua", "lua/CompMod/GUI/GUISelectionPanel/post.lua", "post")
