@@ -74,3 +74,22 @@ kSwipeEnergyCost = 7
 -- GORE
 kGoreDamage = 75
 kGoreDamageType = kDamageType.Structural
+
+-- RAGE
+kOnosRageLifetime = 5
+kOnosRageUniqueStructureHit = 0.08
+kOnosRageUniqueHit = 0.04
+kOnosRageUniqueDamage = 0.015
+kOnosRageStructureHit = 0.04
+kOnosRageOnHit = 0.020
+kOnosRageDamage = 0.0075
+kOnosRageGracePeriod = 3
+kOnosRageSourceTimeout = 2
+
+kOnosRageRegenerationRate = 0.06
+kOnosRageRegenerationTime = 1
+kOnosMaxRageAttackSpeedIncrease = 0.4
+kOnosBonusRageSpeed = 1
+
+kOnosHealRatePercentLimit = 0.125
+kOnosHealRateOverLimitReduction = 0.25
