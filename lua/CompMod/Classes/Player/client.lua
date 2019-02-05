@@ -108,3 +108,31 @@ function PlayerUI_GetExoShieldAvailable()
     return false, false, false
 
 end
+
+function PlayerUI_GetHasOnosRage()
+
+    local player = Client.GetLocalPlayer()
+
+    if player and player:GetIsPlaying() and player:isa("Onos") then
+
+        return true
+
+    end
+
+    return false
+
+end
+
+function PlayerUI_GetOnosRageAmount()
+
+    local player = Client.GetLocalPlayer()
+
+    if player and player:GetIsPlaying() and player:isa("Onos") then
+
+        return player:GetRage()
+
+    end
+
+    return 0
+
+end
