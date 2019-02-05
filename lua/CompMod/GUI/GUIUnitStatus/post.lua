@@ -38,13 +38,13 @@ local kHealthBarWidth
 local kHealthBarHeight
 local kArmorBarWidth
 local kArmorBarHeight
-local kStatusBgSizeUnscaled = GetUpValue(GUIUnitStatus.UpdateUnitStatusBlip, "kStatusBgSizeUnscaled")
-local kAmmoBarColors = GetUpValue(GUIUnitStatus.UpdateUnitStatusBlip, "kAmmoBarColors")
-local kAbilityBarColor = GetUpValue(GUIUnitStatus.UpdateUnitStatusBlip, "kAbilityBarColor")
-local GetUnitStatusTextureCoordinates = GetUpValue(GUIUnitStatus.UpdateUnitStatusBlip, "GetUnitStatusTextureCoordinates")
-local GetPixelCoordsForFraction = GetUpValue(GUIUnitStatus.UpdateUnitStatusBlip, "GetPixelCoordsForFraction")
-local GetPixelCoordsForFractionPiece = GetUpValue(GUIUnitStatus.UpdateUnitStatusBlip, "GetPixelCoordsForFractionPiece")
-local AddAbilityBar = GetUpValue(GUIUnitStatus.UpdateUnitStatusBlip, "AddAbilityBar")
+local kStatusBgSizeUnscaled = GetUpValue(GUIUnitStatus.UpdateUnitStatusBlip, "kStatusBgSizeUnscaled", { LocateRecurse = true })
+local kAmmoBarColors = GetUpValue(GUIUnitStatus.UpdateUnitStatusBlip, "kAmmoBarColors", { LocateRecurse = true })
+local kAbilityBarColor = GetUpValue(GUIUnitStatus.UpdateUnitStatusBlip, "kAbilityBarColor", { LocateRecurse = true })
+local GetUnitStatusTextureCoordinates = GetUpValue(GUIUnitStatus.UpdateUnitStatusBlip, "GetUnitStatusTextureCoordinates", { LocateRecurse = true })
+local GetPixelCoordsForFraction = GetUpValue(GUIUnitStatus.UpdateUnitStatusBlip, "GetPixelCoordsForFraction", { LocateRecurse = true })
+local GetPixelCoordsForFractionPiece = GetUpValue(GUIUnitStatus.UpdateUnitStatusBlip, "GetPixelCoordsForFractionPiece", { LocateRecurse = true })
+local AddAbilityBar = GetUpValue(GUIUnitStatus.UpdateUnitStatusBlip, "AddAbilityBar", { LocateRecurse = true })
 
 function GUIUnitStatus:UpdateUnitStatusBlip( blipIndex, localPlayerIsCommander, baseResearchRot, showHints, playerTeamType )
 
