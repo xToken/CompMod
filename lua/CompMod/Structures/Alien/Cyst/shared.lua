@@ -33,9 +33,13 @@ end
 
 function Cyst:GetMatureMaxHealth()
     return kMatureCystHealth
-end 
+end
 
 if Server then
+
+    function Cyst:GetSendDeathMessageOverride()
+        return true
+    end
   
     function Cyst:OnUpdate(deltaTime)
 
