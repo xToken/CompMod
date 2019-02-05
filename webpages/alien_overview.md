@@ -79,23 +79,39 @@
 		- Damage type changed from structuresonlylight to puncture (Deals half damage to structures)
 	- Blink:
 		- Blink can chain 'jumps' to bypass ground friction and maintain higher speeds
-
+		
 ### Onos:
 	- Base health lowered from 900 to 800
-	- Base armor unchanged at 450
-	- Maximum carapace armor increased from 650 to 750
+	- Base armor lowered from 450 to 300
+	- Maximum carapace armor decreased from 650 to 600
 	- Cost reduced from 40 to 35
 	- Onos model shrunk by 15%
 	- Disabled 'Stampede' effects, cannot charge through players and doesn't send marines flying.
-	- Speed increased to 7.0 from 6.6
+	- Speed increased to 6.8 from 6.6
 	- Cost decreased from 62 to 40 pRes
 	- Upgrade cost decreased from 8 to 4 pRes
 	- Gestate time lowered from 30 to 16 seconds
+	- Has a healing softcap, above 12.5% per second the effectiveness is reduced to 25%
+	- Rage System:
+		- Gained from hitting structures, players and taking damage
+		- Each unique source grants double on first event, every 2 seconds
+		- Rage gain from hitting structures is 0.04
+		- Rage gain from hitting players is 0.02
+		- Rage gain from taking damage is 0.0075
+		- Max rage is 1 (100%)
+		- Rage will not decrease for 3 seconds after gaining rage
+		- Rage will decrease by .2 per second
+		- Attack speed, movement speed and passive regen scale with rage amount
+		- At max rage onos gains:
+			- 6% HP regen per second
+			- 40% attack speed
+			- 1m/s additional movement speed (base and while charging)
 	- Gore:
 		- Damage reduced to 75
 		- Damage type unchanged as Structural
+		- Base attack speed lowered by 20%
 	- Smash:
-		- Animation speed up by 30%
+		- Base attack speed lowered by 15%
 	- Charge:
 		 - No longer knocks marines back
 		 - No longer allows you to charge through marines
@@ -104,7 +120,7 @@
 		 - Time to accelerate to full charge speed increased from 0.5 to 1.5 seconds
 		 - Increased charge energy cost from 20 to 30/second
 		 - Energy usage is based on the charge amount, which increases over the 1.5s windup
-		 - Speed increased from 12.5 to 13
+		 - Speed lowered from 12.5 to 12
 	- Stomp:
 		 - Damage type changed to normal from heavy
 
@@ -140,11 +156,12 @@
 	- Now called Sustenance
 	- Sustenance now passively decreases, requiring structures to be regularly misted to maintain the benefits
 	- Structure passives and actives (Crag, Shift, Shade) scale with with sustenance level
-	- For Shells, Spurs & Veils, each mist gives 100% sustenance over 30 seconds.
-	- For all other structures, each mist gives 33% sustenance over 10 seconds, and can be stacked up to 3 times
+	- For Shells, Spurs & Veils, each mist gives 100% sustenance over 15 seconds.
+	- For all other structures, each mist gives 33% sustenance over 5 seconds, and can be stacked up to 3 times
 	- After the mist effect has ended, the structure will start losing sustenance immediately
 	- Structures start at 0% sustenance
 	- Added UI elements to show sustenance levels on structures
+	- Unbuilt structures can be misted to gain sustenance
 	
 ### Nutrient Mist:
 	- Moved to global Alien Commander ability
@@ -195,7 +212,7 @@
 	- Infestation is no longer required to build, will spread automatically (10m)
 	- Will not auto-build off infestation
 	- Adjusted health from 600/700 to 400/1000
-	- Adjusted armor from 200/340 to 100/200
+	- Adjusted armor from 200/340 to 200/200
 	- Lowered cost from 13 to 10
 	- Healing range decreased from 14 to 12
 	- Passive healing % decreased from 6 to 4
@@ -203,29 +220,30 @@
 	- Maximum passive healing decreased from 60 to 30
 	- When flourishing, healing effect will be increased by 2x (similar to old heal wave)
 	- Heal Wave is disabled
-	- Costs 2 supply
+	- Costs 3 supply
 	
 ### Shift:
 	- Increased move speed from 1.5 to 3
 	- Infestation is no longer required to build, will spread automatically (10m)
 	- Will not auto-build off infestation
-	- Adjusted health from 750/1100 to 450/1100
+	- Adjusted health from 750/1100 to 600/1100
+	- Adjusted armor from 75/75 to 100/150
 	- Lowered cost from 13 to 10
 	- Energize range decreased from 17 to 12
 	- Passive energize effect only provides 4 energy per second
 	- When flourishing, energize effect will be increased by 2x
-	- Costs 2 supply
+	- Costs 3 supply
 	
 ### Shade:
 	- Increased move speed from 1.5 to 3
 	- Infestation is no longer required to build, will spread automatically (10m)
 	- Will not auto-build off infestation
 	- Cloak/Ink ranges decreased from 17 to 15
-	- Adjusted health from 750/1500 to 500/1200
+	- Adjusted health from 750/1500 to 700/1200
 	- Adjusted armor from 0/0 to 50/100
 	- Lowered cost from 13 to 10
 	- Gains a detection passive above 85% sustenance, that shows aura icons on marines like obs detection
-	- Costs 2 supply
+	- Costs 3 supply
 	
 ### Whip:
 	- Cost increased from 13 to 15
@@ -260,22 +278,25 @@
 	
 ### Hive:
 	- Infestation spreads further (25m up from 20m)
-	- Cost increased from 40 to 50 tRes
+	- Cost unchanged at 40 tRes
 	- Healing rate lowered from 1s to 2s
 	- Base armor increased from 750 to 1000
 	- Matured armor increased from 1400 to 1500
 	
 ### Cyst:
-	- Can be built anywhere, cost 5tRes.  They have 650 HP, and provide a small AOE of infestation
+	- Can be built anywhere, cost 3 tRes.  They have 650 HP, and provide a small AOE of infestation
 	- Do not require a connection to the hive or any other Cysts.
 	- Model size increased by 50%
-	- Cost 1 supply
+	- Cost 2 supply
 	
 ### Infested Power Node:
 	- Costs 15 tRes
 	- Grants 20 supply
 	- Takes 10 seconds to build
 	- Has 2000 health and 500 armor
+
+### Bonewall:
+	- Has 300 health
 	
 ### Biomass:
 	- Disabled

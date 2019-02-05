@@ -2,7 +2,7 @@
 
 ### Base Marine:
 	- Added walk, uses new binding which in in options menu.
-	- Base speed increased to 5.7 from 5.0
+	- Base speed increased to 5.6 from 5.0
 	- Slightly improved air control, can double jump uphil (More tweaks coming!)
 	- Sprint removed.
 	- Weight calculation adjusted, higher weights are required for larger impacts on movement speed
@@ -25,8 +25,8 @@
 	- Now purchased at the Robotics Factory
 	- Base armor increased to 400
 	- Armor upgrades now grant 40 extra armor per level, up from 30
-	- Cannot be welded, have an auto-repair abiltiy on E
-	- Dual Minigun & Dual Railgun cost increased from 30 to 35 pRes
+	- Cannot be welded
+	- Dual Minigun & Dual Railgun cost decreased from 55 to 25 pRes
 	- Thrusters have been improved, and use shared energy pool
 	- Can now self-repair when out of combat, at the cost of energy
 	- Comm researchable upgrade grants a damage reduction shield which uses energy
@@ -66,6 +66,8 @@
 	- Damage lowered from 165 to 80
 	- Damage type changed from 'GrenadeLauncher' to TripleStructural
 	- Now benefits from weapon upgrades
+	- Grenade has no minimum lifetime, can detonate immediately
+	- Grenade has smaller 'grace' detonation radius, decreased from .17 to .1.
 	
 ### Welder:
 	- Cost increased from 3 to 10 pRes
@@ -97,7 +99,7 @@
 	- Changed damage type to Normal
 	
 ### Axe:
-	- Fixed no-reg issue and slightly adjusted animations
+	- Fixed no-reg issue (mostly) and slightly adjusted animations
 	- Second swing animation ~10% faster to make DPS similar to animation cancelling
 	
 ### Mines:
@@ -175,13 +177,16 @@
 	- Arms Lab cost increased from 15 to 20 tRes
 	- Costs 1 supply
 	
-### Extrator:
+### Armory:
+	- Costs 2 supply
+	
+### Extractor:
 	- Armor reduced from 1050 to 850
 	
 ### Observatory:
 	- No longer requires Armory
 	- Cost increased from 10 to 15 tRes
-	- Costs 4 supply
+	- Costs 3 supply
 	
 ### Phase Gate:
 	- Now has a 0.3 second delay beforing phasing another player
@@ -192,6 +197,9 @@
 	- Now requires a Command Station (:D)
 	- Costs 1 supply
 	
+### Sentry:
+	- Costs 5 supply
+	
 ### MAC:
 	- Cost increased from 5 to 8 tRes
 	- Armor decreased from 50 to 0
@@ -201,14 +209,14 @@
 ### ARC:
 	- Damage type changed to structuresonly (No change in effectiveness)
 	- Build time increased from 7 to 10 seconds
-	- Costs 1 supply
+	- Costs 2 supply
 	
 ### ARC Robotics Factory:
 	- ARC Robotics Factory upgrade cost increased from 5 to 15
 	- ARC Robotics Factory upgrade time increased from 20 to 30
 
 ### Infantry Portal:
-	- Costs 1 supply
+	- Costs 3 supply
 	
 ### Prototype Lab:
 	- Costs 1 supply
@@ -272,7 +280,7 @@
 ### ARC Upgrade 1 added:
 	- Cost: 15 tRes
 	- Research Time: 30 seconds
-	- Requires: Robotics Factory
+	- Requires: ARC Robotics Factory
 	- Grants: Increases movement speed from 2.0 to 3.0, and from 0.8 to 1.8 when in combat/on infestation
 	
 ### ARC Upgrade 2 added:

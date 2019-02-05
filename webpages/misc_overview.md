@@ -18,4 +18,7 @@
 	- Spectators can now see maturity levels on alien structures
 	
 ### Supply:
-	- Added base system for supply rework, currently disabled
+	- Each team starts with 1 pre-built powernode/infestednode
+	- Each captured node grants 20 supply
+	- Most structures have had their supply costs rebalanced
+	- Additional nodes cost 15 tRes each
