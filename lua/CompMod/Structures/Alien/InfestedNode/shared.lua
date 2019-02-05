@@ -90,6 +90,9 @@ function InfestedNode:OnInitialized()
         if not HasMixin(self, "MapBlip") then
             InitMixin(self, MapBlipMixin)
         end
+
+        -- Someday if we get a better model, we can fix the rotation to work for this use case.. for now...
+        self:AddTimedCallback(InfestedNode.UpdateInfestedNodeAttach, 0.1)
         
     end
 
@@ -123,14 +126,17 @@ function InfestedNode:OnConstructionComplete()
     end
 end
 
-function InfestedNode:CustomAttach(structure)
-    local angles = structure:GetAngles()
-    angles.pitch = angles.pitch + math.pi/2
-    --local coords = Angles(3 * math.pi / 2, 0, 0):GetCoords()
-    local coords = angles:GetCoords()
-    coords.origin = structure:GetOrigin() - GetNormalizedVector(structure:GetCoords().zAxis) * 0.25
-    coords.origin.y = coords.origin.y + 0.1
-    self:SetCoords(coords)
+function InfestedNode:UpdateInfestedNodeAttach()
+    local structure = self:GetAttached()
+    if structure then
+        local angles = structure:GetAngles()
+        angles.pitch = angles.pitch + math.pi/2
+        --local coords = Angles(3 * math.pi / 2, 0, 0):GetCoords()
+        local coords = angles:GetCoords()
+        coords.origin = structure:GetOrigin() - GetNormalizedVector(structure:GetCoords().zAxis) * 0.25
+        coords.origin.y = coords.origin.y + 0.1
+        self:SetCoords(coords)
+    end
 end
 
 function InfestedNode:OnAdjustModelCoords(modelCoords)
