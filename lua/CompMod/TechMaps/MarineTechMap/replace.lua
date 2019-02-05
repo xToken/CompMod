@@ -49,15 +49,15 @@ kMarineTechMap =
 		{ {}, {}, {kTechId.Armory}, {}, {kTechId.Welder}, {}, {kTechId.Flamethrower}, {}, {kTechId.Shotgun}, {}, {kTechId.HeavyMachineGun}, {}, {kTechId.GrenadeLauncher}, {}, {kTechId.LayMines}, {}, {kTechId.ClusterGrenade} },
 		{ {}, {}, {}, {kTechId.FlamethrowerUpgrade1, nil, "FT Upgrade"}, {}, {}, {kTechId.GrenadeTech, nil, "Grenades Research"}, {}, {}, {kTechId.MinesTech, nil, "Mines Research"} },
 		{ {}, {}, {kTechId.AdvancedArmory} },
-		{ {}, {}, {}, {kTechId.ShotgunUpgrade1, nil, "SG Upgrade 1"}, {}, {}, {kTechId.MGUpgrade1, nil, "MG Upgrade 1"}, {}, {}, {kTechId.GLUpgrade1, nil, "GL Upgrade 1"}, {}, {}, {kTechId.MinigunUpgrade1, nil, "Minigun UPG 1"}, {}, {}, {kTechId.RailgunUpgrade1, nil, "Railgun UPG 1"} },
-		{ {}, {}, {}, {kTechId.ShotgunUpgrade2, nil, "SG Upgrade 2"}, {}, {}, {kTechId.MGUpgrade2, nil, "MG Upgrade 2"}, {}, {}, {kTechId.MinigunUpgrade2, nil, "Minigun UPG 2"} },
+		{ {}, {}, {}, {kTechId.ShotgunUpgrade1, nil, "SG Upgrade 1"}, {}, {}, {kTechId.MGUpgrade1, nil, "MG Upgrade 1"}, {}, {}, {kTechId.GLUpgrade1, nil, "GL Upgrade 1"}, {}, {} }, --, {kTechId.MinigunUpgrade1, nil, "Minigun UPG 1"}, {}, {}, {kTechId.RailgunUpgrade1, nil, "Railgun UPG 1"} },
+		{ {}, {}, {}, {kTechId.ShotgunUpgrade2, nil, "SG Upgrade 2"}, {}, {}, {kTechId.MGUpgrade2, nil, "MG Upgrade 2"}, {}, {} }, --, {kTechId.MinigunUpgrade2, nil, "Minigun UPG 2"} },
 		{ {}, {}, {kTechId.PrototypeLab} },
-		{ {}, {}, {}, {kTechId.JetpackTech}, {}, {}, {kTechId.CatPackTech}, {}, {}, {kTechId.NanoArmor}, {}, {}, {kTechId.ExoUpgrade1, nil, "Exo Upgrade 1"}, {}, {}, {kTechId.ExoUpgrade2, nil, "EXO Upgrade 2"} },
+		{ {}, {}, {}, {kTechId.JetpackTech}, {}, {}, {kTechId.CatPackTech}, {}, {}, {kTechId.NanoArmor}, {}, {}, {kTechId.ExoUpgrade1, nil, "Exo Upgrade 1"}, {}, {} }, --, {kTechId.ExoUpgrade2, nil, "EXO Upgrade 2"} },
 		{ {}, { kTechId.ArmsLab}, {}, {}, {}, {kTechId.Weapons1}, {}, {}, {}, {kTechId.Weapons2}, {}, {}, {}, { kTechId.Weapons3} },
         { {}, {}, {},{kTechId.Armor1}, {}, {}, {}, {kTechId.Armor2}, {}, {}, {}, {kTechId.Armor3} },		
-        { {}, {kTechId.RoboticsFactory}, {}, {}, {}, {kTechId.MAC}, {}, {}, {}, {kTechId.ARCUpgrade1, nil, "ARC Upgrade 1"}, {}, {}, {}, {kTechId.DualMinigunExosuit, nil, "Dual Minigun Exosuit"}, {}, {}, {}, {kTechId.DualRailgunExosuit, nil, "Dual Railgun Exosuit"} },
-		{ {}, {}, {kTechId.ARCRoboticsFactory}, {}, {}, {}, {kTechId.ARC}, {}, {}, {}, {kTechId.ARCUpgrade2, nil, "ARC Upgrade 2"} },
-		{ {}, {}, {kTechId.SentryBattery}, {}, {}, {}, {kTechId.Sentry}, {}, {}, {}, {kTechId.SentryUpgrade1} }
+        { {}, {kTechId.RoboticsFactory}, {}, {}, {}, {kTechId.MAC}, {}, {}, {}, {kTechId.DualMinigunExosuit, nil, "Dual Minigun Exosuit"}, {}, {}, {}, {kTechId.DualRailgunExosuit, nil, "Dual Railgun Exosuit"} },
+		{ {}, {}, {kTechId.ARCRoboticsFactory}, {}, {}, {}, {kTechId.ARC}, {}, {}, {}, {kTechId.ARCUpgrade1, nil, "ARC Upgrade 1"}, {}, {}, {}, {kTechId.ARCUpgrade2, nil, "ARC Upgrade 2"} },
+		{ {}, {}, {kTechId.SentryBattery}, {}, {}, {}, {kTechId.Sentry}, {}, {}, {}, {} }
 }
 
 kMarineLines = 
@@ -86,15 +86,15 @@ kMarineLines =
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.ShotgunUpgrade1),
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.MGUpgrade1),
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.GLUpgrade1),
-	GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.MinigunUpgrade1),
-	GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.RailgunUpgrade1),
+	--GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.MinigunUpgrade1),
+	--GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.RailgunUpgrade1),
 	
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.ShotgunUpgrade1, kTechId.ShotgunUpgrade2),
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.MGUpgrade1, kTechId.MGUpgrade2),
-	GetLinePositionForTechMap(kMarineTechMap, kTechId.MinigunUpgrade1, kTechId.MinigunUpgrade2),
+	--GetLinePositionForTechMap(kMarineTechMap, kTechId.MinigunUpgrade1, kTechId.MinigunUpgrade2),
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.ShotgunUpgrade2),
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.MGUpgrade2),
-	GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.MinigunUpgrade2),
+	--GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.MinigunUpgrade2),
 	
     GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.PrototypeLab),
     
@@ -103,7 +103,7 @@ kMarineLines =
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.NanoArmor),
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.ExoUpgrade1),
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.ExoUpgrade2),
-	GetLinePositionForTechMap(kMarineTechMap, kTechId.ExoUpgrade1, kTechId.ExoUpgrade2),
+	--GetLinePositionForTechMap(kMarineTechMap, kTechId.ExoUpgrade1, kTechId.ExoUpgrade2),
 	
     GetLinePositionForTechMap(kMarineTechMap, kTechId.Observatory, kTechId.Scan),
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.Observatory, kTechId.DistressBeacon),
@@ -120,15 +120,15 @@ kMarineLines =
     
     GetLinePositionForTechMap(kMarineTechMap, kTechId.RoboticsFactory, kTechId.ARCRoboticsFactory),	
     GetLinePositionForTechMap(kMarineTechMap, kTechId.ARCRoboticsFactory, kTechId.ARC),
+    GetLinePositionForTechMap(kMarineTechMap, kTechId.ARCRoboticsFactory, kTechId.ARCUpgrade1),
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.ARCRoboticsFactory, kTechId.ARCUpgrade2),
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.ARCUpgrade1, kTechId.ARCUpgrade2),
 
-	GetLinePositionForTechMap(kMarineTechMap, kTechId.RoboticsFactory, kTechId.ARCUpgrade1),
     GetLinePositionForTechMap(kMarineTechMap, kTechId.RoboticsFactory, kTechId.MAC),
     GetLinePositionForTechMap(kMarineTechMap, kTechId.RoboticsFactory, kTechId.SentryBattery),
     GetLinePositionForTechMap(kMarineTechMap, kTechId.RoboticsFactory, kTechId.DualMinigunExosuit),
     GetLinePositionForTechMap(kMarineTechMap, kTechId.RoboticsFactory, kTechId.DualRailgunExosuit),
     GetLinePositionForTechMap(kMarineTechMap, kTechId.SentryBattery, kTechId.Sentry),
-	GetLinePositionForTechMap(kMarineTechMap, kTechId.RoboticsFactory, kTechId.SentryUpgrade1),
+	--GetLinePositionForTechMap(kMarineTechMap, kTechId.RoboticsFactory, kTechId.SentryUpgrade1),
     
 }
