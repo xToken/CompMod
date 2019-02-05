@@ -6,6 +6,11 @@
 local originalShiftOnUpdate
 originalShiftOnUpdate = Class_ReplaceMethod("Shift", "OnUpdate",
 	function(self, deltaTime)
+
+		PROFILE("Shift:OnUpdate")
+
+        ScriptActor.OnUpdate(self, deltaTime)
+
 		UpdateAlienStructureMove(self, deltaTime)
 		
 		if not self:GetIsAlive() then
