@@ -20,7 +20,7 @@ function NutrientMist:Perform()
     for _, entity in ipairs(entities) do
 
         if not entity:isa("Player") then
-        	entity:TriggerCatalyst(2, self:GetId())
+        	entity:TriggerCatalyst(2)
         end
         
     end
