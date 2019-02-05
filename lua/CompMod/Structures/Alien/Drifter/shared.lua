@@ -34,7 +34,7 @@ kDrifterStructures = { kTechId.Crag, kTechId.Shade, kTechId.Shift, kTechId.Whip,
                             kTechId.Hive, kTechId.Harvester, kTechId.Cyst, kTechId.Shell, 
                             kTechId.Shell2, kTechId.Shell3, kTechId.Spur, 
                             kTechId.Spur2, kTechId.Spur3, kTechId.Veil, 
-                            kTechId.Veil2, kTechId.Veil3, kTechId.Cyst, kTechId.None }
+                            kTechId.Veil2, kTechId.Veil3, kTechId.Cyst, kTechId.InfestedNode }
 
 function Drifter:GetTechButtons(techId)
 
@@ -46,7 +46,7 @@ function Drifter:GetTechButtons(techId)
                                kTechId.Hive, kTechId.Harvester, kTechId.Cyst, kTechId.RootMenu }
     end
     if techId == kTechId.AdvancedStructureMenu then
-        techButtons = { GetTierTech(self, kTechId.Shell), GetTierTech(self, kTechId.Veil), GetTierTech(self, kTechId.Spur), kTechId.None,
+        techButtons = { GetTierTech(self, kTechId.Shell), GetTierTech(self, kTechId.Veil), GetTierTech(self, kTechId.Spur), kTechId.InfestedNode,
                                kTechId.None, kTechId.None, kTechId.None, kTechId.RootMenu }
     end
     return techButtons
@@ -270,6 +270,11 @@ function Drifter:OnUpdate(deltaTime)
             end
 	    end
 	end
+end
+
+-- For NSL Mod
+function GetOldDrifterOnUpdateHook()
+    return oldDrifterOnUpdate
 end
 
 if Server then
