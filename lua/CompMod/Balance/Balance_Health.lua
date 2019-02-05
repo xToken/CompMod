@@ -38,8 +38,8 @@ kFadeArmorFullyUpgradedAmount = 170			-- Vanilla is 120
 kFadeHealthPerBioMass = 0					-- Vanilla is 5
 
 kOnosHealth = 800							-- Vanilla is 900
-kOnosArmor = 450							-- Vanilla is 450
-kOnosArmorFullyUpgradedAmount = 750			-- Vanilla is 650
+kOnosArmor = 300							-- Vanilla is 450
+kOnosArmorFullyUpgradedAmount = 600			-- Vanilla is 650
 kOnosHealtPerBioMass = 0					-- Vanilla is 30
 
 kAlienRegenerationPercentage = 0.09			-- Vanilla is 0.08
@@ -66,16 +66,16 @@ kMatureHiveHealth = 6000					-- Vanilla is 6000
 kMatureHiveArmor = 1500						-- Vanilla is 1400
 
 kCragHealth = 400							-- Vanilla is 600
-kCragArmor = 100							-- Vanilla is 200
+kCragArmor = 200							-- Vanilla is 200
 kMatureCragHealth = 1000					-- Vanilla is 700
 kMatureCragArmor = 200						-- Vanilla is 340
 
-kShiftHealth = 450							-- Vanilla is 750
-kShiftArmor = 75							-- Vanilla is 75
+kShiftHealth = 600							-- Vanilla is 750
+kShiftArmor = 100							-- Vanilla is 75
 kMatureShiftHealth = 1100					-- Vanilla is 1100
 kMatureShiftArmor = 150						-- Vanilla is 150
 
-kShadeHealth = 500							-- Vanilla is 750
+kShadeHealth = 700							-- Vanilla is 750
 kShadeArmor = 50							-- Vanilla is 0
 kMatureShadeHealth = 1200					-- Vanilla is 1500
 kMatureShadeArmor = 100						-- Vanilla is 0
@@ -124,6 +124,8 @@ kInfestedPowerPointValue = 10
 
 kPowerPointHealth = 2000
 kPowerPointArmor = 1000
+
+kBoneWallHealth = 300
 
 kArmorHealScalar = 1						-- Vanilla is 1
 
