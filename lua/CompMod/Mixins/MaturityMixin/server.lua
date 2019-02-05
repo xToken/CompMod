@@ -42,7 +42,7 @@ function MaturityMixin:OnMaturityUpdate(deltaTime)
     	end
     end
     
-    rate = (not HasMixin(self, "Construct") or self:GetIsBuilt()) and rate or 0
+    --rate = (not HasMixin(self, "Construct") or self:GetIsBuilt()) and rate or 0
 
     self.finalMatureFraction = Clamp(self.finalMatureFraction + deltaTime * rate, 0, 1)
 
