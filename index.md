@@ -54,6 +54,7 @@ Some description/highlevel shtuffffffffff?
 		
 ### Marines:
 	- Lowered Marine movement speed from 5.7 to 5.6
+	- Moved ARC Upgrade 1 to ARC Robotics Factory for consistency
 	- Supply Costs:
 		- MAC: 1
 		- Armory: 2
