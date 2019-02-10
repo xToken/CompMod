@@ -10,6 +10,12 @@ Some description/highlevel shtuffffffffff?
 
 ### [Marine Commander Guide](https://xtoken.github.io/CompMod/webpages/marine_comm_guide)
 
+### Recent Changelog: Build 26 (10-2-19)
+
+### Global:
+	- Added progchangelog console command to show this changelog ingame!
+
+***
 ### Recent Changelog: Build 25 (5-2-19)
 
 ### Global:

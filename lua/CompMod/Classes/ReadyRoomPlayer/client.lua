@@ -12,6 +12,15 @@ local function OnShowChangelog(self)
     end
 end
 
+local function OnCommandShowChangelog()
+	local player = Client.GetLocalPlayer()
+	if player then
+		OnShowChangelog(player)
+	end
+end
+
+Event.Hook("Console_progchangelog", OnCommandShowChangelog)
+
 local function OnShowChangelogCallback(self)      
 	if self:GetIsLocalPlayer() and not HelpScreen_GetHelpScreen():GetIsBeingDisplayed() and self:isa("ReadyRoomPlayer") and Client.GetOptionInteger("LastProGModBuild", 0) < kCompModBuild then
 		Client.SetOptionInteger("LastProGModBuild", kCompModBuild)
