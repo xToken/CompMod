@@ -10,6 +10,12 @@ Some description/highlevel shtuffffffffff?
 
 ### [Marine Commander Guide](https://xtoken.github.io/CompMod/webpages/marine_comm_guide)
 
+### Recent Changelog: Build 30 (27-4-19)
+
+### Global:
+	- Updated to work with B327
+	- Khamm tunnels are implemented, can be placed without drifter currently (may change!), need infestation
+
 ### Recent Changelog: Build 26 (10-2-19)
 
 ### Global:
