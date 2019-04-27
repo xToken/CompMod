@@ -37,6 +37,3 @@ function LerkBite:OnTag(tagName)
     end
     
 end
-
--- IM LAZY
-ReplaceUpValue(SpikesMixin.OnTag, "kSpread", kLerkSpikeSpread, { LocateRecurse = true } )
