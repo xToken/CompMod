@@ -17,7 +17,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_FT_1_TOOLTIP",
 			[kTechDataDescription] = "EVT_FT_LEVEL_1_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 176
+			[kTechDataButtonID] = 191
 		})
 	table.insert(newTechTable,
 		{
@@ -28,7 +28,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_SHOTGUN_1_TOOLTIP",
 			[kTechDataDescription] = "EVT_SG_LEVEL_1_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 177
+			[kTechDataButtonID] = 192
 		})
 	table.insert(newTechTable,
 		{
@@ -39,7 +39,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_SHOTGUN_2_TOOLTIP",
 			[kTechDataDescription] = "EVT_SG_LEVEL_2_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 177
+			[kTechDataButtonID] = 192
 		})
 	table.insert(newTechTable,
 		{
@@ -50,7 +50,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_MG_1_TOOLTIP",
 			[kTechDataDescription] = "EVT_MG_LEVEL_1_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 178
+			[kTechDataButtonID] = 193
 		})
 	table.insert(newTechTable,
 		{
@@ -61,7 +61,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_MG_2_TOOLTIP",
 			[kTechDataDescription] = "EVT_MG_LEVEL_2_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 178
+			[kTechDataButtonID] = 193
 		})
 	table.insert(newTechTable,
 		{
@@ -72,7 +72,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_GL_1_TOOLTIP",
 			[kTechDataDescription] = "EVT_GL_LEVEL_1_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 179
+			[kTechDataButtonID] = 194
 		})
 	table.insert(newTechTable,
 		{
@@ -83,7 +83,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_JP_1_TOOLTIP",
 			[kTechDataDescription] = "EVT_JP_LEVEL_1_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 182
+			[kTechDataButtonID] = 197
 		})
 	table.insert(newTechTable,
 		{
@@ -94,7 +94,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataTooltipInfo] = "MARINE_EXO_1_TOOLTIP",
 			[kTechDataDescription] = "EVT_EXO_LEVEL_1_RESEARCHED",
 			[kTechDataNotifyPlayers] = true,
-			[kTechDataButtonID] = 183
+			[kTechDataButtonID] = 198
 		})
 	table.insert(newTechTable,
 		{
@@ -151,7 +151,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataResearchTimeKey] = kARCUpgrade1ResearchTime,
 			[kTechDataDisplayName] = "MARINE_ARC_1",
 			[kTechDataTooltipInfo] = "MARINE_ARC_1_TOOLTIP",
-			[kTechDataButtonID] = 180
+			[kTechDataButtonID] = 195
 		})
 	table.insert(newTechTable,
 		{
@@ -575,6 +575,7 @@ function BuildCompModTechDataUpdates()
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.NutrientMist,
+			[kTechDataRequiresInfestation] = false,
 			[kCommanderSelectRadius] = 0.25
 		})
 	table.insert(techIdUpdates,
@@ -658,6 +659,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataResearchTimeKey] = kDrifterBuildTime,
 			[kTechDataCooldown] = kDrifterCooldown
 		})
+	--[[
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.NanoShieldTech,
@@ -668,6 +670,7 @@ function BuildCompModTechDataUpdates()
 			[kTechDataId] = kTechId.PowerSurgeTech,
 			[kTechDataImplemented] = false
 		})
+	--]]
 	table.insert(techIdUpdates,
 		{
 			[kTechDataId] = kTechId.DropHeavyMachineGun,
@@ -827,7 +830,7 @@ function BuildCompModTechDataUpdates()
 	table.insert(techIdUpdates,
         {
             [kTechDataId] = kTechId.NanoArmor,
-            [kTechDataButtonID] = 181
+            [kTechDataButtonID] = 196
         })
 	table.insert(techIdUpdates,
         {
