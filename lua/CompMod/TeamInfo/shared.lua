@@ -51,7 +51,7 @@ TeamInfo.kRelevantTechIdsMarine =
     kTechId.Observatory,
     kTechId.PhaseTech,
     
-    kTechId.CatPackTech,
+    kTechId.AdvancedMarineSupport,
 
 }
 

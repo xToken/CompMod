@@ -165,6 +165,7 @@ function MarineTeam:InitTechTree()
     self.techTree:AddManufactureNode(kTechId.MAC,					kTechId.RoboticsFactory,		kTechId.None,				true)
 	
 	-- Comm Drops
+	--self.techTree:AddResearchNode(kTechId.AdvancedMarineSupport)
 	--self.techTree:AddResearchNode(kTechId.CatPackTech, 				kTechId.PrototypeLab)
     self.techTree:AddTargetedActivation(kTechId.DropShotgun,		kTechId.PrototypeLab)
     self.techTree:AddTargetedActivation(kTechId.DropHeavyMachineGun,kTechId.PrototypeLab)

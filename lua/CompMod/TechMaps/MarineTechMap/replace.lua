@@ -52,7 +52,7 @@ kMarineTechMap =
 		{ {}, {}, {}, {kTechId.ShotgunUpgrade1, nil, "SG Upgrade 1"}, {}, {}, {kTechId.MGUpgrade1, nil, "MG Upgrade 1"}, {}, {}, {kTechId.GLUpgrade1, nil, "GL Upgrade 1"}, {}, {} }, --, {kTechId.MinigunUpgrade1, nil, "Minigun UPG 1"}, {}, {}, {kTechId.RailgunUpgrade1, nil, "Railgun UPG 1"} },
 		{ {}, {}, {}, {kTechId.ShotgunUpgrade2, nil, "SG Upgrade 2"}, {}, {}, {kTechId.MGUpgrade2, nil, "MG Upgrade 2"}, {}, {} }, --, {kTechId.MinigunUpgrade2, nil, "Minigun UPG 2"} },
 		{ {}, {}, {kTechId.PrototypeLab} },
-		{ {}, {}, {}, {kTechId.JetpackTech}, {}, {}, {kTechId.CatPackTech}, {}, {}, {kTechId.NanoArmor}, {}, {}, {kTechId.ExoUpgrade1, nil, "Exo Upgrade 1"}, {}, {} }, --, {kTechId.ExoUpgrade2, nil, "EXO Upgrade 2"} },
+		{ {}, {}, {}, {kTechId.JetpackTech}, {}, {}, {kTechId.NanoArmor}, {}, {}, {kTechId.ExoUpgrade1, nil, "Exo Upgrade 1"}, {}, {} }, --, {kTechId.ExoUpgrade2, nil, "EXO Upgrade 2"} },
 		{ {}, { kTechId.ArmsLab}, {}, {}, {}, {kTechId.Weapons1}, {}, {}, {}, {kTechId.Weapons2}, {}, {}, {}, { kTechId.Weapons3} },
         { {}, {}, {},{kTechId.Armor1}, {}, {}, {}, {kTechId.Armor2}, {}, {}, {}, {kTechId.Armor3} },		
         { {}, {kTechId.RoboticsFactory}, {}, {}, {}, {kTechId.MAC}, {}, {}, {}, {kTechId.DualMinigunExosuit, nil, "Dual Minigun Exosuit"}, {}, {}, {}, {kTechId.DualRailgunExosuit, nil, "Dual Railgun Exosuit"} },
@@ -99,7 +99,7 @@ kMarineLines =
     GetLinePositionForTechMap(kMarineTechMap, kTechId.AdvancedArmory, kTechId.PrototypeLab),
     
     GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.JetpackTech),
-    GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.CatPackTech),
+    --GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.CatPackTech),
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.NanoArmor),
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.ExoUpgrade1),
 	GetLinePositionForTechMap(kMarineTechMap, kTechId.PrototypeLab, kTechId.ExoUpgrade2),

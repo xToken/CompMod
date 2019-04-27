@@ -207,7 +207,7 @@ function AlienTeam:InitTechTree()
     self.techTree:AddResearchNode(kTechId.Xenocide,					kTechId.ThreeHives,				kTechId.None,					kTechId.AllAliens)
 
     -- gorge researches
-	self.techTree:AddResearchNode(kTechId.GorgeTunnelTech,			kTechId.Hive,					kTechId.None,					kTechId.AllAliens)
+	--self.techTree:AddResearchNode(kTechId.GorgeTunnelTech,		kTechId.Hive,					kTechId.None,					kTechId.AllAliens)
     self.techTree:AddResearchNode(kTechId.BileBomb,					kTechId.Hive,					kTechId.None,					kTechId.AllAliens)
 	--self.techTree:AddResearchNode(kTechId.Something,				kTechId.ThreeHives,				kTechId.None,					kTechId.AllAliens) -- Need third hive abil
 	
@@ -216,7 +216,7 @@ function AlienTeam:InitTechTree()
     self.techTree:AddBuyNode(kTechId.BabblerAbility,				kTechId.None)
     self.techTree:AddBuyNode(kTechId.BabblerEgg,					kTechId.None)
 	
-	self.techTree:AddBuildNode(kTechId.GorgeTunnel,					kTechId.GorgeTunnelTech)
+	--self.techTree:AddBuildNode(kTechId.GorgeTunnel,					kTechId.GorgeTunnelTech)
     self.techTree:AddBuildNode(kTechId.Hydra)
     self.techTree:AddBuildNode(kTechId.Clog)
 
@@ -234,6 +234,30 @@ function AlienTeam:InitTechTree()
     self.techTree:AddResearchNode(kTechId.Charge,					kTechId.Hive,					kTechId.None,					kTechId.AllAliens)
     self.techTree:AddResearchNode(kTechId.BoneShield,				kTechId.TwoHives,				kTechId.None,					kTechId.AllAliens)
 	self.techTree:AddResearchNode(kTechId.Stomp,					kTechId.ThreeHives,				kTechId.None,					kTechId.AllAliens)
+
+    -- B327 Tunnels
+    self.techTree:AddBuildNode(kTechId.TunnelExit)
+    self.techTree:AddBuildNode(kTechId.TunnelRelocate)
+    self.techTree:AddActivation(kTechId.TunnelCollapse)
+
+    self.techTree:AddAction(kTechId.BuildTunnelMenu)
+
+    self.techTree:AddBuildNode(kTechId.BuildTunnelEntryOne)
+    self.techTree:AddBuildNode(kTechId.BuildTunnelEntryTwo)
+    self.techTree:AddBuildNode(kTechId.BuildTunnelEntryThree)
+    self.techTree:AddBuildNode(kTechId.BuildTunnelEntryFour)
+    self.techTree:AddBuildNode(kTechId.BuildTunnelExitOne)
+    self.techTree:AddBuildNode(kTechId.BuildTunnelExitTwo)
+    self.techTree:AddBuildNode(kTechId.BuildTunnelExitThree)
+    self.techTree:AddBuildNode(kTechId.BuildTunnelExitFour)
+    self.techTree:AddAction(kTechId.SelectTunnelEntryOne)
+    self.techTree:AddAction(kTechId.SelectTunnelEntryTwo)
+    self.techTree:AddAction(kTechId.SelectTunnelEntryThree)
+    self.techTree:AddAction(kTechId.SelectTunnelEntryFour)
+    self.techTree:AddAction(kTechId.SelectTunnelExitOne)
+    self.techTree:AddAction(kTechId.SelectTunnelExitTwo)
+    self.techTree:AddAction(kTechId.SelectTunnelExitThree)
+    self.techTree:AddAction(kTechId.SelectTunnelExitFour)
 
     self.techTree:SetComplete()
 
