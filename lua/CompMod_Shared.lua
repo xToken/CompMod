@@ -10,7 +10,7 @@ Script.Load("lua/CompMod/Utilities/Elixer/shared.lua")
 
 Elixer.UseVersion( 1.8 )
 
-kCompModBuild = 26
+kCompModBuild = 30
 
 Script.Load("lua/CompMod/AlienSensorBlip/shared.lua")
 Script.Load("lua/CompMod/Damage/shared.lua")
@@ -62,6 +62,7 @@ Script.Load("lua/CompMod/Structures/Alien/Shift/shared.lua")
 Script.Load("lua/CompMod/Structures/Alien/Spur/shared.lua")
 Script.Load("lua/CompMod/Structures/Alien/Veil/shared.lua")
 Script.Load("lua/CompMod/Structures/Alien/Web/shared.lua")
+Script.Load("lua/CompMod/Structures/Alien/TunnelEntrance/shared.lua")
 Script.Load("lua/CompMod/Structures/Alien/InfestedNode/shared.lua")
 
 Script.Load("lua/CompMod/Structures/Marine/ARC/shared.lua")
