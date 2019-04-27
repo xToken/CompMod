@@ -36,6 +36,11 @@ kAlienCrushDamagePercentByLevel = 0.07		-- Default is 0.07
 
 kParasiteDuration = 30						-- Default is 44
 
+-- SCANNER
+kEcholocationEnergyCost = 30
+kEcholocationMaximumRange = 25
+kEcholocationBuildupTime = 3
+
 -- SPIT
 kSpitDamage = 30
 kSpitDamageType = kDamageType.Normal		-- Default is light
@@ -50,7 +55,7 @@ kHealingRoostHealthRegain = 5
 -- SPIKES
 kSpikeMaxDamage = 14						-- Increased from 7 with damage type rework
 kSpikeMinDamage = 14						-- Increased from 7 with damage type rework
-kLerkSpikeSpread = Math.Radians(3.1)
+--kLerkSpikeSpread = Math.Radians(3.1)		-- This is part of vanilla now
 kSpikeDamageType = kDamageType.HalfStructural
 
 -- SPORES

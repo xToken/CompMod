@@ -4,6 +4,7 @@
 -- - Dragon
 
 Drifter.kHoverHeight = 1
+Drifter.kTurnSpeed = 2.5 * math.pi
 
 local originalDrifterOnCreate
 originalDrifterOnCreate = Class_ReplaceMethod("Drifter", "OnCreate",
@@ -47,7 +48,7 @@ function Drifter:GetTechButtons(techId)
     end
     if techId == kTechId.AdvancedStructureMenu then
         techButtons = { GetTierTech(self, kTechId.Shell), GetTierTech(self, kTechId.Veil), GetTierTech(self, kTechId.Spur), kTechId.InfestedNode,
-                               kTechId.None, kTechId.None, kTechId.None, kTechId.RootMenu }
+                               kTechId.BuildTunnelMenu, kTechId.None, kTechId.None, kTechId.RootMenu }
     end
     return techButtons
 
@@ -201,6 +202,26 @@ function Drifter:ProcessTeleportOrder(moveSpeed, deltaTime)
 
 end
 
+function Drifter:StructurePlacementValidated(techId)
+    local team = self:GetTeam()
+    if not team then
+        -- Erm?
+        return false
+    end
+    if GetTierTech(self, techId) then
+        -- If we are a tiered tech, validate
+        local tierTechNode = techTree:GetTechNode(GetTierTech(self, techId))
+        if not tierTechNode:GetAvailable() then
+            return false
+        end
+    end
+    -- Normal cost validations
+    local cost = GetCostForTech(techId)
+    local techTree = team:GetTechTree()
+    local techNode = techTree:GetTechNode(techId)
+    return cost <= team:GetTeamResources() and techNode:GetAvailable()
+end
+
 function Drifter:ProcessBuildOrder(moveSpeed, deltaTime)
 
     local currentOrder = self:GetCurrentOrder()
@@ -209,8 +230,7 @@ function Drifter:ProcessBuildOrder(moveSpeed, deltaTime)
 
         local targetPos = currentOrder:GetLocation()
         local techId = currentOrder:GetType()
-        local tierTechId = GetTierTech(self, techId)
-        local range = 3
+        local range = 3 -- How far can a drifter puke a structure if a drifter could puke structures? :thinking:
 
         if (targetPos - self:GetOrigin()):GetLengthXZ() < range then
 
@@ -218,19 +238,14 @@ function Drifter:ProcessBuildOrder(moveSpeed, deltaTime)
             local team = self:GetTeam()
 		    local cost = GetCostForTech(techId)
             local success = false
-		    if team then
-                local techTree = team:GetTechTree()
-                local techNode = techTree:GetTechNode(techId)
-                local techNode2 = techTree:GetTechNode(tierTechId)
-    	    	if cost <= team:GetTeamResources() then
-    	    		local trace = GetCommanderPickTarget(self, targetPos + Vector(0, 2, 0), true, true, LookupTechData(techId, kTechDataCollideWithWorldOnly, false))
-                    if techNode:GetAvailable() and (not techNode2 or techNode2:GetAvailable()) and trace and trace.fraction < 1 then
-    	                success = self:AttemptToBuild(techId, trace.endPoint, trace.normal, math.random() * 2 * math.pi, true, nil, self)
-    		            if success then
-    		            	team:AddTeamResources(-cost)
-    		            end
-                    end
-            	end
+		    if self:StructurePlacementValidated(techId) then
+	    		local trace = GetCommanderPickTarget(self, targetPos + Vector(0, 2, 0), true, true, LookupTechData(techId, kTechDataCollideWithWorldOnly, false))
+                if trace and trace.fraction < 1 then
+	                success = self:AttemptToBuild(techId, trace.endPoint, trace.normal, math.random() * 2 * math.pi, true, nil, self)
+		            if success then
+		            	team:AddTeamResources(-cost)
+		            end
+                end
 	        end
             self:CompletedCurrentOrder()
 

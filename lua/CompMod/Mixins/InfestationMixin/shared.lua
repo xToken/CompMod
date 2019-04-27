@@ -64,7 +64,6 @@ end
 
 local kUpdateInterval = 0.5
 local kGrowingUpdateInterval = 0.025 -- 40 Hz should be smooth enough
-local CreateInfestation = GetUpValue( InfestationMixin.UpdateInfestation, "CreateInfestation")
 
 function InfestationMixin:UpdateInfestation(deltaTime)
     
@@ -77,7 +76,7 @@ function InfestationMixin:UpdateInfestation(deltaTime)
     if needsInfestation and not self.infestationGenerated then
         local r = self:GetCurrentInfestationRadius()
         local t = self.infestationChangeTime
-        CreateInfestation(self)
+        self:CreateInfestation()
         -- CreateInfestation resets the radius/time, but it might be fully grown.  The server would be networking us the correct value, we just ignore it on the first update
         -- because of this.  So cache the values and restore after
         if Client then
