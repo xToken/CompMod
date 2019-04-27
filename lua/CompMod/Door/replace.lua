@@ -34,6 +34,7 @@ local networkVars =
 }
 
 AddMixinNetworkVars(BaseModelMixin, networkVars)
+AddMixinNetworkVars(ClientModelMixin, networkVars)
 
 local function UpdateAutoOpen(self, timePassed)
 
